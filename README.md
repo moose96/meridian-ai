@@ -1,70 +1,136 @@
-# Getting Started with Create React App
+# Meridian AI
+Self-generating ASMR Web App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+Nazwa jest związana ze zjawiskiem ASMR, skrótem od Autonomous Sensory Meridian Response  czyli „samoistnej odpowiedzi meridianów czuciowych”.  ASMR to zjawisko przyjemnego mrowienia w okolicach głowy, szyi i innych obszarach ludzkiego ciała. Może zostać wywołane poprzez wizualne, słuchowe, dotykowe i zapachowe bodźce zewnętrzne. Czasami określane jest również jako orgazm mózgu. Obecnie ASMR jest jednym z najchętniej oglądanych rodzajów filmów na platformie YouTube.
 
-## Available Scripts
+## Assumptions
+Nasza aplikacja, Meridian AI, jak sugeruje jej nazwa będzie korzystała z inteligentnych algorytmów optymalizujących, pseudo sztucznej inteligencji. Jej celem będzie maksymalizacja przyjemności poprzez uwzględnianie reakcji odbiorcy. Aplikacja będzie generowała ciąg specyficznych warstw dźwiękowych, które będą między sobą się przeplatać w kreatywny i kompozycyjnie harmonijny sposób. Będą to warstwy dźwięków znanych z filmów ASMR ale również z bardziej abstrakcyjnych, przetworzonych lub innych, dłuższych dźwięków przypominających relaksacyjną muzykę. Dodatkowo zadbamy o spójny wystrój graficzny i możliwe, minimalistyczne animacje oparte o świecenie punktowe na różnych tłach.
 
-In the project directory, you can run:
+Generacja dźwiękowych warstw będzie opierała się na interaktywnej manipulacji krótkimi fragmentami. Będziemy w nich wyróżniać takie cechy jak m.in. długość, intensywność, zagęszczenie, barwa i charakter. Dźwięki trafią do odpowiednich grup podzielonych według skali tych parametrów.
 
-### `npm start`
+Po włączeniu aplikacji odbiorca będzie miał do wyboru dwa tryby - 'generacji od nowa' lub 'kontynuowania'. W pierwszym trybie generacja zacznie się od użycia losowych parametrów z naciskiem na te bardziej uśrednione. W czasie gdy kompozycja będzie się generowała pojawiać się będą nowe bodźce dźwiękowe. Zadaniem odbiorcy będzie reagowanie na nie klikając na przycisk odpowiadającemu odczuwania miłych wrażeń. Sesja będzie się odbywała tak długo jak odbiorca będzie chciał. Jej celem jest zbudowanie personalnej bazy ulubionych bodźców odbiorcy. Po zakończonej sesji będzie możliwość zapisu swojego profilu i ponowne, późniejsze odwiedzenie strony w trybie kontynuacji sesji.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Doszliśmy do wniosku że w dzisiejszych czasach i szczególnie w tym trudnym okresie czasu, aplikacja webowa to dobry sposób na podzielenie się ze wszystkimi swoimi wynikami pracy. Dziś praktycznie każdy ma dostęp do internetu i każdy miałby możliwość otworzenia naszej strony, również na swoim telefonie. Nie znaleźliśmy podobnej aplikacji do naszej. Mamy nadzieję że jest to pomysł z potencjałem i przy założeniu że nam się uda, istniałoby zapotrzebowanie na używanie takiej aplikacji.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Technology
+* ReactJS
+* Pizzicato (Audio Web API)
+* P5.js
 
-### `npm test`
+## Installation
+Before installation be sure that you have following applications:
+* Node.js - [download here](https://nodejs.org/en/)
+* Git - [download here](https://git-scm.com/downloads)
+* VSCode (preffered editor) - [download here](https://code.visualstudio.com/download)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Then go by following instructions:
+1. Copy these commands into cmd or Power Shell:
+```
+git clone https://github.com/moose96/meridian-ai.git
+cd meridian-ai
+npm install
+```
 
-### `npm run build`
+If you want to run type *npm start*. Go to [http://localhost:3000/](http://localhost:3000/) to watch app.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# API
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Sound Engine
+The Sound Engine is written by Pizzicato. It enables creating sequences and compositions from simple sounds. The sounds could placed in virtual field and play. The Sound Engine consists of following objects:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Sound
+It is a basic object which represents single simple sound which can be played. It extends Pizzicato.Sound by adding panning by default and allow to randomize parameters.
 
-### `npm run eject`
+Constructor object (example):
+```json
+{
+  "type": "sound",
+  "filename": "/data/drip_01.wav",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Container
+It is basic object for containers which provides some interface for them. It has to be extended.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Random Container
+It is a kind of container which allow play sounds from list randomly.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Constructor object (example):
+```json
+{
+  "type": "random container",
+  "objects": [{
+    "type": "sound",
+    "filename": "/data/drip_01.wav",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  }]
+}
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Sequence Container
+It is a kind of container which allow play sound from list succesively once or in loop.
 
-## Learn More
+Constructor object (example):
+```json
+{
+  "type": "sequence container",
+  "delay": 100,
+  "loop": true,
+  "randomization": {
+    "key": "delay",
+    "value": 100,
+    "offset": 20
+  },
+  "objects": [0]
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+* *delay* in milliseconds
+* If you pass number into *objects* table unlike object, the React Integration Sound Engine changes that numbers into specific object. Number is an index number in data table.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Sound Object
+It is a object which represents sound source in sound field.
 
-### Code Splitting
+Constructor object (example):
+```json
+{
+  "type": "single sound object",
+  "position": {
+    "x": -0.5,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+}
+```
+or
+```json
+{
+  "type": "multiple sound object",
+  "name": "drip",
+  "root": true,
+  "objects": [2, 3]
+}
+```
+* *root* key tells React Integration Sound Engine that it is a root node and it is to find other nodes from it.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Sound Field
+It is a object which represents sound field, in which sound objects can be played.
 
-### Analyzing the Bundle Size
+## React Integration Sound Engine
+```jsx
+<SoundEngine data={data} play={true} />
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* *data* it is a raw object with sound descriptions.
+* *play* can have two values *true* and *false* which tells sound engine to play or not the sounds.

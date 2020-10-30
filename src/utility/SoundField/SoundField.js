@@ -14,7 +14,8 @@ class SoundField
   }
 
   start = () => this.sounds.forEach(sound => sound.play());
-  stop = () => this.sound.forEach(sound => sound.stop());
+  stop = () => this.sounds && this.sounds.forEach(sound => sound.stop());
+  // stop = () => console.log(this.sounds);
 }
 
 export default SoundField;

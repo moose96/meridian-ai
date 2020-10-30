@@ -5,6 +5,7 @@ class Container
   constructor(sounds) {
     this.sounds = sounds;
     this.effects = [];
+    this.onPlay = function() {};
     // this.type = type;
 
     // this.sounds.forEach(sound => sound.on('end', () => this.handleEnd()));
@@ -18,8 +19,16 @@ class Container
     this.randomizer = randomizer;
   }
 
-  play = () => {
-    Randomizer.randomize(this.randomizer);
+  setPan = pan => {
+    this.sounds.forEach(sound => sound.setPan(pan));
+  }
+
+  play() {
+    // Randomizer.randomize(this.randomizer);
+
+    if (this.onPlay) {
+      this.onPlay();
+    }
   }
 
   stop = () => {

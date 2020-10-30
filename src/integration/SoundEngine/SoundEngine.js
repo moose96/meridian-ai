@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from 'react';
 
 import RandomContainer from '../../utility/RandomContainer';
 import SequenceContainer from '../../utility/SequenceContainer';
-import SoundObject from '../../utility/SoundObject';
+import SingleSoundObject from '../../utility/SingleSoundObject';
+import MultipleSoundObject from '../../utility/MultipleSoundObject';
 import SoundField from '../../utility/SoundField';
 import Sound from '../../utility/Sound';
 
@@ -15,9 +16,9 @@ const createObject = object => {
       return new SequenceContainer(object);
     }
     case "single sound object":
-      return new SoundObject(object);
+      return new SingleSoundObject(object);
     case "multiple sound object":
-      return new SoundObject(object);
+      return new MultipleSoundObject(object);
     case "sound":
       return new Sound(object);
     default:
@@ -62,10 +63,10 @@ function SoundEngine({ data, play }) {
   useEffect(() => {
     if (play) {
       soundField.current.start();
-    } else if (soundField.sounds) {
+    } else {
       soundField.current.stop();
     }
-  }, [data, play])
+  }, [play])
   return <div></div>
 }
 

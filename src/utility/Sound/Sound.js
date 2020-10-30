@@ -24,8 +24,8 @@ class Sound extends Pizzicato.Sound {
 
     this.addEffect(this.panner);
 
-    this.on('play', () => console.log('play', initObject.filename));
-    this.on('end', () => console.log('end', initObject.filename));
+    this.on('play', () => console.log('play', initObject.filename, 'pan', this.panner.pan));
+    this.on('end', () => console.log('end', initObject.filename, 'pan', this.panner.pan));
   }
 
   setPan = newPan => {

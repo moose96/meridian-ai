@@ -2,7 +2,7 @@ import Position3D from './Position3D';
 
 class SoundObject {
   constructor(object) {
-    this.object = object.objects;
+    this.objects = object.objects;
 
     if (object.position) {
       this.position = object.position;
@@ -10,42 +10,43 @@ class SoundObject {
       this.position = Position3D(0.0, 0.0, 0.0);
     }
 
-    // this._calculatePan();
+    this._calculate();
   }
 
-  _calculatePan = () => {
-    this.object.forEach(object => object.setPan(this.position.x / this.attenuation));
+  _calculate() {
+    // this.objects.forEach(object => object.setPan(this.position.x / this.attenuation));
+    throw Error('This class has to be extended by another class');
   }
 
   setPosition = (x, y, z) => {
-    this.position = new Position3D(x, y, z);
-    this._calculatePan();
+    this.position = Position3D(x, y, z);
+    this._calculate();
   }
   setPositionX = x => {
     this.position.x = x;
-    this._calculatePan();
+    this._calculate();
   }
   setPositionY = y => {
     this.position.y = y;
-    this._calculatePan();
+    this._calculate();
   }
   setPositionZ = z => {
     this.position.z = z;
-    this._calculatePan();
+    this._calculate();
   }
 
   setAttenuation = (attenuation) => this.attenuation = attenuation;
 
   play = () => {
     // if (typeof(this.object) === 'array') {
-      this.object.forEach(object => object.play());
+      this.objects.forEach(object => object.play());
     // } else {
     //   this.object.play();
     // }
   }
 
   stop = () => {
-    this.object.forEach(object => object.stop());
+    this.objects.forEach(object => object.stop());
   }
 }
 

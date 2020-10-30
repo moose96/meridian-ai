@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <Slider min={0} max={100} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} />
-      <button onClick={handleClick}>Play</button>
+      <button onClick={handleClick}>{playing ? 'Stop' : 'Play'}</button>
       {/* <Sound source="file" options={{ path: '/data/drip_01.wav'}} intensivity={intensivity}/> */}
       <SoundEngine data={data} play={playing}/>
     </div>

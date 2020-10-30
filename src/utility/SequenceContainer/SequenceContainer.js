@@ -35,7 +35,9 @@ class SequenceContainer extends Container
   }
 
   stop = () => {
-    clearInterval(this.intervalID);
+    if (this.loop) {
+      clearInterval(this.intervalID);
+    }
   }
 }
 

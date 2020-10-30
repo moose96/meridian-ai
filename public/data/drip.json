@@ -1,0 +1,275 @@
+[{
+  "type": "random container",
+  "objects": [{
+    "type": "sound",
+    "filename": "/data/drip_01.wav",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_02.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_03.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_04.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_05.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_06.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_07.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_08.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_09.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_10.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_11.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_12.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_13.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_14.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_15.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_16.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_17.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_18.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_19.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_20.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_21.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_22.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_23.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_24.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_25.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_26.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_27.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_28.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_29.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  },{
+    "filename": "/data/drip_30.wav",
+    "type": "sound",
+    "randomization": {
+      "key": "pan",
+      "value": 0,
+      "offset": 0.1
+    }
+  }]
+},{
+  "type": "sequence container",
+  "delay": 100,
+  "loop": true,
+  "randomization": {
+    "key": "delay",
+    "value": 100,
+    "offset": 20
+  },
+  "objects": [0]
+}, {
+  "type": "single sound object",
+  "position": {
+    "x": -0.5,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.5,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
+  "type": "multiple sound object",
+  "name": "drip",
+  "root": true,
+  "objects": [2, 3]
+}]

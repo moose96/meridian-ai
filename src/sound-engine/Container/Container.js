@@ -3,6 +3,7 @@ import Randomizer from '../Randomizer';
 class Container
 {
   constructor(sounds) {
+    this.id = Math.floor(Math.random() * 200);
     this.sounds = sounds;
     this.effects = [];
     this.pan = 0;

@@ -13,6 +13,11 @@ class SequenceContainer extends Container
     this.setDelay(object.delay);
   }
 
+  // clone() {
+  //   const sounds = this.sounds.map(sound => sound.clone());
+  //   return new SequenceContainer(sounds);
+  // }
+
   _run = () => {
     this.counter++;
 

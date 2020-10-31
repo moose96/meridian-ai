@@ -2,6 +2,7 @@ import Position3D from './Position3D';
 
 class SoundObject {
   constructor(object) {
+    this.id = Math.floor(Math.random() * 200);
     this.objects = object.objects;
     this.attenuation = 0;
 

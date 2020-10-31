@@ -2,6 +2,11 @@ import Container from '../Container';
 
 class RandomContainer extends Container
 {
+  // clone() {
+  //   const sounds = this.sounds.map(sound => sound.clone());
+  //   return new RandomContainer(sounds);
+  // }
+
   onPlay = () => {
     console.log('random container play, pan', this.pan);
   }

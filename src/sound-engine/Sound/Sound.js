@@ -14,6 +14,7 @@ class Sound extends Pizzicato.Sound {
 
   constructor(initObject, _function) {
     super(initObject.filename, _function);
+    this.id = Math.floor(Math.random() * 200);
 
     this.key = initObject.randomization.key;
     this.randomizer = new Randomizer(initObject.randomization.value, initObject.randomization.offset);

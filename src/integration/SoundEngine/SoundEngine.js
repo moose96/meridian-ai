@@ -13,10 +13,8 @@ const createObject = object => {
   switch(object.type) {
     case "random container":
       return new RandomContainer(object.objects);
-    case "sequence container": {
-      console.log(object);
+    case "sequence container":
       return new SequenceContainer(object);
-    }
     case "single sound object":
       return new SingleSoundObject(object);
     case "multiple sound object":
@@ -33,7 +31,7 @@ const resolveLinks = data => {
 
   const _map = value => {
     if (typeof(value) === 'number') {
-      const object = data[value];
+      const object = {...data[value]};
       object.objects = object.objects.map(_map);
       return createObject(object);
     } else {

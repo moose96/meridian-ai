@@ -243,6 +243,36 @@
   }]
 },{
   "type": "sequence container",
+  "delay": 25,
+  "loop": true,
+  "randomization": {
+    "key": "delay",
+    "value": 100,
+    "offset": 20
+  },
+  "objects": [0]
+},{
+  "type": "sequence container",
+  "delay": 50,
+  "loop": true,
+  "randomization": {
+    "key": "delay",
+    "value": 100,
+    "offset": 20
+  },
+  "objects": [0]
+},{
+  "type": "sequence container",
+  "delay": 75,
+  "loop": true,
+  "randomization": {
+    "key": "delay",
+    "value": 50,
+    "offset": 20
+  },
+  "objects": [0]
+},{
+  "type": "sequence container",
   "delay": 100,
   "loop": true,
   "randomization": {
@@ -251,14 +281,86 @@
     "offset": 20
   },
   "objects": [0]
-}, {
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.8,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [3]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.7,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [2]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.6,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
   "type": "single sound object",
   "position": {
     "x": -0.5,
     "y": 0.0,
     "z": 0.0
   },
+  "objects": [3]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.4,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [4]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.3,
+    "y": 0.0,
+    "z": 0.0
+  },
   "objects": [1]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.2,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.2,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [4]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.3,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [3]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.4,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [2]
 },{
   "type": "single sound object",
   "position": {
@@ -268,8 +370,48 @@
   },
   "objects": [1]
 },{
+  "type": "single sound object",
+  "position": {
+    "x": 0.6,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [3]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.7,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [4]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.8,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": 0.9,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [1]
+},{
+  "type": "single sound object",
+  "position": {
+    "x": -0.9,
+    "y": 0.0,
+    "z": 0.0
+  },
+  "objects": [4]
+},{
   "type": "multiple sound object",
   "name": "drip",
   "root": true,
-  "objects": [2, 3]
+  "objects": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
 }]

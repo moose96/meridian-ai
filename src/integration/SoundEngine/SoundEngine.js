@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 
-import RandomContainer from '../../utility/RandomContainer';
-import SequenceContainer from '../../utility/SequenceContainer';
-import SingleSoundObject from '../../utility/SingleSoundObject';
-import MultipleSoundObject from '../../utility/MultipleSoundObject';
-import SoundField from '../../utility/SoundField';
-import Sound from '../../utility/Sound';
+import {
+  Sound,
+  RandomContainer,
+  SequenceContainer,
+  SingleSoundObject,
+  MultipleSoundObject,
+  SoundField
+} from '../../sound-engine';
 
 const createObject = object => {
   switch(object.type) {
@@ -54,6 +56,7 @@ function SoundEngine({ data, play }) {
       console.log(resolvedData);
 
       if (resolvedData) {
+        resolvedData.setAttenuation(1.0);
         soundField.current.addSound(resolvedData);
       }
     }

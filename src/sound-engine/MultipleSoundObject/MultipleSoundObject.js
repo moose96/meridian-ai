@@ -10,6 +10,10 @@ class MultipleSoundObject extends SoundObject
         this.position.z + object.position.z);
     });
   }
+
+  setAttenuation = attenuation => {
+    this.objects.forEach(object => object.setAttenuation(attenuation));
+  }
 }
 
 export default MultipleSoundObject;

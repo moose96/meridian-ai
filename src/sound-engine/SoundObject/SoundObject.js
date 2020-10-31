@@ -3,6 +3,7 @@ import Position3D from './Position3D';
 class SoundObject {
   constructor(object) {
     this.objects = object.objects;
+    this.attenuation = 0;
 
     if (object.position) {
       this.position = object.position;
@@ -35,7 +36,10 @@ class SoundObject {
     this._calculate();
   }
 
-  setAttenuation = (attenuation) => this.attenuation = attenuation;
+  setAttenuation = (attenuation) => {
+    this.attenuation = attenuation;
+    this._calculate();
+  }
 
   play = () => {
     // if (typeof(this.object) === 'array') {

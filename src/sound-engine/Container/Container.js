@@ -5,7 +5,8 @@ class Container
   constructor(sounds) {
     this.sounds = sounds;
     this.effects = [];
-    this.onPlay = function() {};
+    this.pan = 0;
+    this.onPlay = null;
     // this.type = type;
 
     // this.sounds.forEach(sound => sound.on('end', () => this.handleEnd()));
@@ -20,6 +21,7 @@ class Container
   }
 
   setPan = pan => {
+    this.pan = pan;
     this.sounds.forEach(sound => sound.setPan(pan));
   }
 

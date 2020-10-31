@@ -27,6 +27,7 @@ class SequenceContainer extends Container
   }
 
   play = () => {
+    super.play();
     if (this.loop) {
       this.intervalID = setInterval(this._run, INTERVAL);
     } else {
@@ -38,6 +39,10 @@ class SequenceContainer extends Container
     if (this.loop) {
       clearInterval(this.intervalID);
     }
+  }
+
+  onPlay = () => {
+    console.log('sequence container play, loop', this.loop, 'delay', this.delay * INTERVAL, 'pan', this.pan);
   }
 }
 

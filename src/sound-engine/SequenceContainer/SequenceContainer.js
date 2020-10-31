@@ -5,7 +5,7 @@ const INTERVAL = 25; //ms
 class SequenceContainer extends Container
 {
   constructor(object) {
-    super(object.objects);
+    super(object);
     this.loop = object.loop;
     this.counter = 0;
     this.delay = 0;

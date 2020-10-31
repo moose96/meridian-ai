@@ -245,6 +245,7 @@
   "type": "sequence container",
   "delay": 25,
   "loop": true,
+  "volume": 0.8,
   "randomization": {
     "key": "delay",
     "value": 100,
@@ -255,6 +256,7 @@
   "type": "sequence container",
   "delay": 50,
   "loop": true,
+  "volume": 0.8,
   "randomization": {
     "key": "delay",
     "value": 100,
@@ -265,6 +267,7 @@
   "type": "sequence container",
   "delay": 75,
   "loop": true,
+  "volume": 0.8,
   "randomization": {
     "key": "delay",
     "value": 50,
@@ -275,6 +278,7 @@
   "type": "sequence container",
   "delay": 100,
   "loop": true,
+  "volume": 0.8,
   "randomization": {
     "key": "delay",
     "value": 100,
@@ -293,7 +297,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.7,
-    "y": 0.0,
+    "y": 0.1,
     "z": 0.0
   },
   "objects": [2]
@@ -301,7 +305,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.6,
-    "y": 0.0,
+    "y": 0.2,
     "z": 0.0
   },
   "objects": [1]
@@ -309,7 +313,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.5,
-    "y": 0.0,
+    "y": 0.3,
     "z": 0.0
   },
   "objects": [3]
@@ -317,7 +321,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.4,
-    "y": 0.0,
+    "y": 0.4,
     "z": 0.0
   },
   "objects": [4]
@@ -325,7 +329,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.3,
-    "y": 0.0,
+    "y": 0.5,
     "z": 0.0
   },
   "objects": [1]
@@ -333,7 +337,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.2,
-    "y": 0.0,
+    "y": 0.6,
     "z": 0.0
   },
   "objects": [1]
@@ -341,7 +345,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.2,
-    "y": 0.0,
+    "y": 0.6,
     "z": 0.0
   },
   "objects": [4]
@@ -349,7 +353,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.3,
-    "y": 0.0,
+    "y": 0.5,
     "z": 0.0
   },
   "objects": [3]
@@ -357,7 +361,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.4,
-    "y": 0.0,
+    "y": 0.4,
     "z": 0.0
   },
   "objects": [2]
@@ -365,7 +369,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.5,
-    "y": 0.0,
+    "y": 0.3,
     "z": 0.0
   },
   "objects": [1]
@@ -373,7 +377,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.6,
-    "y": 0.0,
+    "y": 0.2,
     "z": 0.0
   },
   "objects": [3]
@@ -381,7 +385,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.7,
-    "y": 0.0,
+    "y": 0.1,
     "z": 0.0
   },
   "objects": [4]
@@ -397,7 +401,7 @@
   "type": "single sound object",
   "position": {
     "x": 0.9,
-    "y": 0.0,
+    "y": -0.1,
     "z": 0.0
   },
   "objects": [1]
@@ -405,7 +409,7 @@
   "type": "single sound object",
   "position": {
     "x": -0.9,
-    "y": 0.0,
+    "y": -0.1,
     "z": 0.0
   },
   "objects": [4]

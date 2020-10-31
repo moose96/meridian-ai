@@ -5,6 +5,7 @@ class SoundObject {
     this.id = Math.floor(Math.random() * 200);
     this.objects = object.objects;
     this.attenuation = 0;
+    this.muted = false;
 
     if (object.position) {
       this.position = object.position;
@@ -18,6 +19,14 @@ class SoundObject {
   _calculate() {
     // this.objects.forEach(object => object.setPan(this.position.x / this.attenuation));
     throw Error('This class has to be extended by another class');
+  }
+
+  mute() {
+    this.muted = true;
+  }
+
+  unmute() {
+    this.muted = false;
   }
 
   setPosition = (x, y, z) => {
@@ -44,7 +53,9 @@ class SoundObject {
 
   play = () => {
     // if (typeof(this.object) === 'array') {
+    if (!this.muted) {
       this.objects.forEach(object => object.play());
+    }
     // } else {
     //   this.object.play();
     // }

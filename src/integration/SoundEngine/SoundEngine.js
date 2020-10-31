@@ -12,7 +12,7 @@ import {
 const createObject = object => {
   switch(object.type) {
     case "random container":
-      return new RandomContainer(object.objects);
+      return new RandomContainer(object);
     case "sequence container":
       return new SequenceContainer(object);
     case "single sound object":

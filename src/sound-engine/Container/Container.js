@@ -2,15 +2,23 @@ import Randomizer from '../Randomizer';
 
 class Container
 {
-  constructor(sounds) {
+  constructor(object) {
     this.id = Math.floor(Math.random() * 200);
-    this.sounds = sounds;
+    this.sounds = object.objects;
     this.effects = [];
     this.pan = 0;
+    this.volume = 1;
     this.onPlay = null;
     // this.type = type;
 
     // this.sounds.forEach(sound => sound.on('end', () => this.handleEnd()));
+
+    if (object.volume) {
+      this.volume = object.volume;
+      this.setVolume(object.volume);
+    }
+
+    //this.setPan(object.pan);?
   }
 
   addSound = (sound) => {
@@ -43,7 +51,7 @@ class Container
   }
 
   setVolume = volume => {
-    this.sounds.forEach(sound => sound.volume = volume);
+    this.sounds.forEach(sound => sound.setVolume(sound.volume * volume));
   }
 
   // handleEnd = () => {

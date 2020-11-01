@@ -22,7 +22,9 @@ class SequenceContainer extends Container
     this.counter++;
 
     if (this.counter >= this.delay) {
-      this.sounds.forEach(sound => sound.play());
+      if (!this.muted) {
+        this.sounds.forEach(sound => sound.play());
+      }
       this.counter = 0;
     }
   }

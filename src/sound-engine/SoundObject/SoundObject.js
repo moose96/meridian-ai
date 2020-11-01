@@ -21,12 +21,8 @@ class SoundObject {
     throw Error('This class has to be extended by another class');
   }
 
-  mute() {
-    this.muted = true;
-  }
-
-  unmute() {
-    this.muted = false;
+  setMuted(muted) {
+    this.muted = muted;
   }
 
   setPosition = (x, y, z) => {

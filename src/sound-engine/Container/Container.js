@@ -9,6 +9,7 @@ class Container
     this.pan = 0;
     this.volume = 1;
     this.onPlay = null;
+    this.muted = false;
     // this.type = type;
 
     // this.sounds.forEach(sound => sound.on('end', () => this.handleEnd()));
@@ -19,6 +20,10 @@ class Container
     }
 
     //this.setPan(object.pan);?
+  }
+
+  setMuted(muted) {
+    this.muted = muted;
   }
 
   addSound = (sound) => {

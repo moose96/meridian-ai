@@ -24,6 +24,7 @@ class Container
 
   setMuted(muted) {
     this.muted = muted;
+    this.sounds.forEach(sound => sound.setMuted(muted));
   }
 
   addSound = (sound) => {

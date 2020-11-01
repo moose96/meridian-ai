@@ -6,6 +6,7 @@ class SoundObject {
     this.objects = object.objects;
     this.attenuation = 0;
     this.muted = false;
+    this.lastChildVolume = 0;
 
     if (object.position) {
       this.position = object.position;
@@ -23,6 +24,11 @@ class SoundObject {
 
   setMuted(muted) {
     this.muted = muted;
+    this.objects.forEach(object => object.setMuted(muted));
+  }
+
+  setMutedSound(index, muted) {
+    this.objects[index].setMuted(muted);
   }
 
   setPosition = (x, y, z) => {

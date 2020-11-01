@@ -18,6 +18,7 @@ class Sound extends Pizzicato.Sound {
   constructor(initObject, _function) {
     super(initObject.filename, _function);
     this.id = Math.floor(Math.random() * 200);
+    this.muted = false;
 
     this.key = initObject.randomization.key;
     this.randomizer = new Randomizer(initObject.randomization.value, initObject.randomization.offset);
@@ -54,17 +55,23 @@ class Sound extends Pizzicato.Sound {
     this.offset = offset;
   }
 
+  setMuted(muted) {
+    this.muted = muted;
+  }
+
   addRandomization = (key, randomizer) => {
     this.key = key;
     this.randomizer = randomizer;
   }
 
   _play = (delay, offset) => {
-    const _delay = delay ? delay : this.delay;
-    const _offset = offset ? offset : this.offset;
+    if (!this.muted) {
+      const _delay = delay ? delay : this.delay;
+      const _offset = offset ? offset : this.offset;
 
-    this[this.key] = Randomizer.randomize(this.randomizer);
-    super.play(_delay, _offset);
+      this[this.key] = Randomizer.randomize(this.randomizer);
+      super.play(_delay, _offset);
+    }
   }
 }
 

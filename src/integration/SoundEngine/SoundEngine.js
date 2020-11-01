@@ -45,7 +45,7 @@ const resolveLinks = data => {
   }
 }
 
-function SoundEngine({ data, play }) {
+function SoundEngine({ data, play, value1 }) {
   const soundField = useRef(new SoundField());
 
   useEffect(() => {
@@ -67,7 +67,16 @@ function SoundEngine({ data, play }) {
     } else {
       soundField.current.stop();
     }
-  }, [play])
+  }, [play]);
+
+  useEffect(() => {
+    const length = soundField.current.sounds[0] ? soundField.current.sounds[0].objects.length : 0;
+
+    for (let i = 0; i < length; i++) {
+      soundField.current.sounds[0].setMutedSound(i, i < value1 ? false : true);
+    }
+  }, [value1]);
+
   return <div></div>
 }
 

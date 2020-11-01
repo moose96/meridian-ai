@@ -23,11 +23,11 @@ function App({ voices }) {
 
   return (
     <div className="App">
-      <Slider min={0} max={100} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} />
+      <Slider min={0} max={16} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} />
       <p>voices: {voices}</p>
       <button onClick={handleClick}>{playing ? 'Stop' : 'Play'}</button>
       {/* <Sound source="file" options={{ path: '/data/drip_01.wav'}} intensivity={intensivity}/> */}
-      <SoundEngine data={data} play={playing}/>
+      <SoundEngine data={data} play={playing} value1={intensivity}/>
     </div>
   );
 }

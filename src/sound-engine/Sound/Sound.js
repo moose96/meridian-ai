@@ -1,6 +1,9 @@
 import Pizzicato from 'pizzicato';
 import Randomizer from '../Randomizer';
 
+import store from '../../redux/store';
+import { addCurrentVoices, subCurrentVoices } from '../redux';
+
 class Sound extends Pizzicato.Sound {
   // constructor(description, _function) {
   //   super(description, _function);
@@ -25,8 +28,14 @@ class Sound extends Pizzicato.Sound {
 
     this.addEffect(this.panner);
 
-    this.on('play', () => console.log('play', initObject.filename, 'pan', this.panner.pan, 'volume', this.volume));
-    this.on('end', () => console.log('end', initObject.filename));
+    this.on('play', () => {
+      store.dispatch(addCurrentVoices());
+      console.log('play', initObject.filename, 'pan', this.panner.pan, 'volume', this.volume);
+    });
+    this.on('end', () => {
+      store.dispatch(subCurrentVoices());
+      console.log('end', initObject.filename);
+    });
   }
 
   setPan = newPan => {

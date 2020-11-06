@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import Pizzicato from 'pizzicato';
 
 import {
   Sound,
@@ -19,8 +20,9 @@ const createObject = object => {
       return new SingleSoundObject(object);
     case "multiple sound object":
       return new MultipleSoundObject(object);
-    case "sound":
+    case "sound": {
       return new Sound(object);
+    }
     default:
       return object;
   }
@@ -70,10 +72,22 @@ function SoundEngine({ data, play, value1 }) {
   }, [play]);
 
   useEffect(() => {
-    const length = soundField.current.sounds[0] ? soundField.current.sounds[0].objects.length : 0;
+    // const length = soundField.current.sounds[0] ? soundField.current.sounds[0].objects.length : 0;
 
-    for (let i = 0; i < length; i++) {
-      soundField.current.sounds[0].setMutedSound(i, i < value1 ? false : true);
+    // for (let i = 0; i < length; i++) {
+    //   soundField.current.sounds[0].setMutedSound(i, i < value1 ? false : true);
+    // }
+    if (soundField.current.sounds) {
+      const value = 1000 * Math.log10(1050 / ((value1 ) * 10));
+
+      soundField.current.sounds.forEach(sound => {
+        sound.objects.forEach(object => {
+          object.objects.forEach(object2 => {
+            object2.setDelay(value);
+          });
+        })
+      })
+      console.log(value);
     }
   }, [value1]);
 

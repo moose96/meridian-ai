@@ -1,5 +1,6 @@
 [{
   "type": "random container",
+  "detune": -1200,
   "objects": [{
     "type": "sound",
     "filename": "/data/drip_01.wav",

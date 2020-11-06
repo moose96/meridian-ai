@@ -29,6 +29,10 @@ class SequenceContainer extends Container
     }
   }
 
+  getDelay() {
+    return this.delay * INTERVAL;
+  }
+
   setDelay = delay => {
     this.delay = Math.floor(delay / INTERVAL);
   }

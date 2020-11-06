@@ -12,7 +12,7 @@ function App({ voices }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch('/data/drip.json')
+    fetch('/data/aa.json')
     .then(response => response.json())
     .then(data => setData(data));
   }, []);
@@ -23,7 +23,7 @@ function App({ voices }) {
 
   return (
     <div className="App">
-      <Slider min={0} max={16} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} />
+      <Slider min={0} max={100} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} />
       <p>voices: {voices}</p>
       <button onClick={handleClick}>{playing ? 'Stop' : 'Play'}</button>
       {/* <Sound source="file" options={{ path: '/data/drip_01.wav'}} intensivity={intensivity}/> */}

@@ -19,6 +19,16 @@ class Container
       this.setVolume(object.volume);
     }
 
+    this.sounds.forEach(sound => sound.onLoad = () => {
+      // if (object.detune) {
+      //   console.log(object.detune);
+      //   sound.setDetune(object.detune);
+      //   console.log(sound.detune);
+      // }
+      // sound.setLength(100);
+    });
+      // this.setDetune(object.detune);
+
     //this.setPan(object.pan);?
   }
 
@@ -38,6 +48,10 @@ class Container
   setPan = pan => {
     this.pan = pan;
     this.sounds.forEach(sound => sound.setPan(pan));
+  }
+
+  setDetune(detune) {
+    this.sounds.forEach(sound => sound.setDetune(detune));
   }
 
   play() {

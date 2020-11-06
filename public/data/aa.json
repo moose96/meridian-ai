@@ -1,0 +1,435 @@
+[{
+  "type": "random container",
+  "objects": [
+    {
+      "type": "sound",
+      "filename": "/data/aa_1.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_2.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_3.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_4.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_5.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_6.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_7.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_8.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_9.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_10.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_11.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_12.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_13.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_14.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_15.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_16.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_17.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_18.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_19.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_20.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_21.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_22.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_23.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_24.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_25.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_26.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_27.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_28.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_29.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_30.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_31.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_32.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_33.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_34.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_35.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_36.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_37.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_38.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_39.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_40.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_41.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_42.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_43.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_44.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_45.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_46.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_47.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_48.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_49.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_50.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_51.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_52.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_53.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_54.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_55.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_56.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_57.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_58.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_59.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_60.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_61.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_62.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_63.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_64.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_65.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_66.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_67.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_68.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_69.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_70.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_71.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_72.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_73.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_74.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_75.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_76.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_77.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_78.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_79.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_80.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_81.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_82.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_83.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_84.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_85.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_86.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_87.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_88.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_89.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_90.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_91.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_92.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_93.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_94.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_95.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_96.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_97.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_98.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_99.wav"
+    },
+    {
+      "type": "sound",
+      "filename": "/data/aa_100.wav"
+    }
+  ]
+}, {
+  "type": "sequence container",
+  "delay": 1000,
+  "loop": true,
+  "objects": [0]
+}, {
+  "type": "sequence container",
+  "delay": 2000,
+  "loop": true,
+  "objects": [0]
+}, {
+  "type": "single sound object",
+  "objects": [1],
+  "position": {
+    "x": -0.6,
+    "y": 0,
+    "z": 0
+  }
+}, {
+  "type": "single sound object",
+  "objects": [1],
+  "position": {
+    "x": 0.6,
+    "y": 0,
+    "z": 0
+  }
+}, {
+  "type": "multiple sound object",
+  "objects": [3, 4],
+  "root": true
+}]

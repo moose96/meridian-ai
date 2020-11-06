@@ -78,7 +78,8 @@ function SoundEngine({ data, play, value1 }) {
     //   soundField.current.sounds[0].setMutedSound(i, i < value1 ? false : true);
     // }
     if (soundField.current.sounds) {
-      const value = 1000 * Math.log10(1050 / ((value1 ) * 10));
+      // const value = 1000 * Math.log10(1050 / ((value1 ) * 10));
+      const value = ((25 - 1000) * value1)/100 + 1000;
 
       soundField.current.sounds.forEach(sound => {
         sound.objects.forEach(object => {

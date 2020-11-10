@@ -19,20 +19,22 @@ class Randomization
     this.#randomizationEnabled = true;
   }
 
-  getValue() {
-    const matches = this.#randomizationInfo.key.match(/(\w+)/g);
-    let value = this;
-    matches.forEach(match => value = value[match]);
-    return value;
-  }
+  // getValue() {
+  //   const matches = this.#randomizationInfo.key.match(/(\w+)/g);
+  //   let value = this;
+  //   matches.forEach(match => value = value[match]);
+  //   return value;
+  // }
 
   randomize() {
     if (this.#randomizationEnabled) {
-      let value = this.getValue();
-      const top = value + this.#randomizationInfo.offset;
-      const bottom = value - this.#randomizationInfo.offset;
+      // let value = this.getValue();
+      const key = this.#randomizationInfo.key;
+      const top = this[key] + this.#randomizationInfo.offset;
+      const bottom = this[key] - this.#randomizationInfo.offset;
 
-      value = Math.random() * (top - bottom) + bottom;
+      // value = Math.random() * (top - bottom) + bottom;
+      this[key] = Math.random() * (top - bottom) + bottom;
     }
   }
 }

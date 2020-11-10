@@ -4,8 +4,6 @@ import Randomization from '../Randomization';
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
 
-Object.assign(Pizzicato.Sound.prototype, Randomization.prototype);
-
 class Sound extends Pizzicato.Sound
 {
   #panner;

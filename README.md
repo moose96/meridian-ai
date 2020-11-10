@@ -34,6 +34,9 @@ npm install
 
 If you want to run type *npm start*. Go to [http://localhost:3000/](http://localhost:3000/) to watch app.
 
+## Live View
+You can view the current version of app [here](https://meridian-ai.netlify.app/).
+
 # API
 
 ## Sound Engine

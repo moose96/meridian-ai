@@ -5,16 +5,21 @@ class SoundField
     this.sounds = [];
   }
 
-  addSound = sound => {
+  addSound(sound) {
     this.sounds.push(sound);
   }
 
-  clearSounds = () => {
+  clearSounds() {
     this.sounds = [];
   }
 
-  start = () => this.sounds.forEach(sound => sound.play());
-  stop = () => this.sounds && this.sounds.forEach(sound => sound.stop());
+  start(){
+    this.sounds.forEach(sound => sound.play());
+  }
+
+  stop() {
+    this.sounds && this.sounds.forEach(sound => sound.stop());
+  }
   // stop = () => console.log(this.sounds);
 }
 

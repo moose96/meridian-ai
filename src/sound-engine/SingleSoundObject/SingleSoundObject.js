@@ -7,7 +7,6 @@ const lineAttenuation = (x, attenuation) => {
 class SingleSoundObject extends SoundObject
 {
   _calculate() {
-    // console.log(this.position.x, this.attenuation);
     this.objects.forEach(object => {
       object.setPan(this.position.x / this.attenuation);
       object.setVolume(lineAttenuation(this.position.y, this.attenuation));

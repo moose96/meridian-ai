@@ -4,18 +4,14 @@ import Randomization from '../Randomization';
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
 
+Object.assign(Pizzicato.Sound.prototype, Randomization.prototype);
+
 class Sound extends Pizzicato.Sound
 {
   #panner;
-  // constructor(description, _function) {
-  //   super(description, _function);
-
-  //   this.panner = new Pizzicato.Effects.StereoPanner({
-  //     pan: 0.0
-  //   });
-
-  //   this.addEffect(this.panner);
-  // }
+  muted = false;
+  offset = 0;
+  delay = 0;
 
   constructor(initObject, _function) {
     super(initObject.filename, () => {
@@ -32,12 +28,7 @@ class Sound extends Pizzicato.Sound
       }
     });
 
-    this.muted = false;
-
-    // if (initObject.randomization) {
-    //   this.key = initObject.randomization.key;
-    //   this.randomizer = new Randomizer(initObject.randomization.value, initObject.randomization.offset);
-    // }
+    console.log(Randomization.prototype);
 
     this.#panner = new Pizzicato.Effects.StereoPanner({
       pan: 0.0
@@ -45,7 +36,6 @@ class Sound extends Pizzicato.Sound
 
     this.addEffect(this.#panner);
 
-    // this.randomization = new Randomization();
     if (initObject.randomization) {
       this.addRandomization(initObject.randomization.key, initObject.randomization.offset);
     }
@@ -68,20 +58,28 @@ class Sound extends Pizzicato.Sound
     return this.#panner.pan;
   }
 
-  setPan = newPan => {
+  set pan(newPan) {
     this.#panner.pan = newPan;
   }
 
-  setVolume = volume => {
+  setPan(newPan) {
+    this.#panner.pan = newPan;
+  }
+
+  setVolume(volume) {
     this.volume = volume;
   }
 
-  setDelay = delay => {
+  setDelay(delay) {
     this.delay = delay;
   }
 
-  setOffset = offset => {
+  setOffset(offset) {
     this.offset = offset;
+  }
+
+  setMuted(muted) {
+    this.muted = muted;
   }
 
   // setLength = length => {
@@ -91,10 +89,6 @@ class Sound extends Pizzicato.Sound
   //   data = buffer.getChannelData(0).slice(0, (length * buffer.sampleRate) / 1000);
   //   this.sourceNode.buffer = newBuffer;
   // }
-
-  setMuted(muted) {
-    this.muted = muted;
-  }
 
   // get detune() {
   //   const sourceNode = this.getSourceNode();
@@ -108,18 +102,12 @@ class Sound extends Pizzicato.Sound
   //   // console.log(sourceNode);
   // }
 
-  // addRandomization = (key, randomizer) => {
-  //   this.key = key;
-  //   this.randomizer = randomizer;
-  // }
-
-  _play = (delay, offset) => {
+  play(delay, offset) {
     if (!this.muted) {
       const _delay = delay ? delay : this.delay;
       const _offset = offset ? offset : this.offset;
 
-      // this[this.key] = Randomizer.randomize(this.randomizer);
-      this.randomize();
+      // this.randomize();
       super.play(_delay, _offset);
     }
   }

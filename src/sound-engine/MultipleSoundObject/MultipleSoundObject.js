@@ -11,8 +11,12 @@ class MultipleSoundObject extends SoundObject
     });
   }
 
-  setAttenuation = attenuation => {
+  setAttenuation(attenuation) {
     this.objects.forEach(object => object.setAttenuation(attenuation));
+  }
+
+  setMutedSound(index, muted) {
+    this.objects[index].setMuted(muted);
   }
 }
 

@@ -4,21 +4,18 @@ const INTERVAL = 25; //ms
 
 class SequenceContainer extends Container
 {
+  loop = false;
+  counter = 0;
+  #delay = 0;
+  #intervalID = -1;
+
   constructor(object) {
     super(object);
     this.loop = object.loop;
-    this.counter = 0;
-    this.delay = 0;
-
-    this.setDelay(object.delay);
+    this.delay = object.delay;
   }
 
-  // clone() {
-  //   const sounds = this.sounds.map(sound => sound.clone());
-  //   return new SequenceContainer(sounds);
-  // }
-
-  _run = () => {
+  _run = () => { //change to #run()
     this.counter++;
 
     if (this.counter >= this.delay) {
@@ -29,30 +26,36 @@ class SequenceContainer extends Container
     }
   }
 
-  getDelay() {
-    return this.delay * INTERVAL;
+  get delay() {
+    return this.#delay;
+  }
+
+  set delay(delay) {
+    this.#delay = Math.floor(delay / INTERVAL);
   }
 
   setDelay = delay => {
-    this.delay = Math.floor(delay / INTERVAL);
+    // this.delay = Math.floor(delay / INTERVAL);
+    this.delay = delay;
   }
 
-  play = () => {
+  play() {
     super.play();
+
     if (this.loop) {
-      this.intervalID = setInterval(this._run, INTERVAL);
+      this.#intervalID = setInterval(this._run, INTERVAL);
     } else {
       this._run();
     }
   }
 
-  stop = () => {
+  stop() {
     if (this.loop) {
-      clearInterval(this.intervalID);
+      clearInterval(this.#intervalID);
     }
   }
 
-  onPlay = () => {
+  onPlay() {
     console.log('sequence container play, loop', this.loop, 'delay', this.delay * INTERVAL, 'pan', this.pan);
   }
 }

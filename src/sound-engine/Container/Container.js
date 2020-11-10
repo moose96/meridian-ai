@@ -1,9 +1,10 @@
 import Randomizer from '../Randomizer';
+import Randomization from '../Randomization';
 
-class Container
+class Container extends Randomization
 {
   constructor(object) {
-    this.id = Math.floor(Math.random() * 200);
+    super(object.randomization);
     this.sounds = object.objects;
     this.effects = [];
     this.pan = 0;
@@ -41,12 +42,17 @@ class Container
     this.sounds.push(sound);
   }
 
-  addRandomization = (randomizer) => {
-    this.randomizer = randomizer;
-  }
+  // addRandomization = (randomizer) => {
+  //   this.randomizer = randomizer;
+  // }
 
   setPan = pan => {
     this.pan = pan;
+    // this.sounds.forEach(sound => sound.setPan(pan));
+  }
+
+  set pan(pan) {
+    // this.pan = pan;
     this.sounds.forEach(sound => sound.setPan(pan));
   }
 
@@ -56,6 +62,8 @@ class Container
 
   play() {
     // Randomizer.randomize(this.randomizer);
+    // this.randomization.randomize();
+    this.randomize();
 
     if (this.onPlay) {
       this.onPlay();
@@ -81,4 +89,5 @@ class Container
   // onEnd = callback => {this.handleEnd = callback}
 }
 
+// export default Randomization(Container);
 export default Container;

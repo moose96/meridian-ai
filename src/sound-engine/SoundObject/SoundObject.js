@@ -1,7 +1,10 @@
 import Position3D from './Position3D';
+import Randomization from '../Randomization';
 
-class SoundObject {
+class SoundObject extends Randomization
+{
   constructor(object) {
+    super(object.randomization);
     this.id = Math.floor(Math.random() * 200);
     this.objects = object.objects;
     this.attenuation = 0;
@@ -54,6 +57,7 @@ class SoundObject {
   }
 
   play = () => {
+    this.randomize();
     // if (typeof(this.object) === 'array') {
     if (!this.muted) {
       this.objects.forEach(object => object.play());

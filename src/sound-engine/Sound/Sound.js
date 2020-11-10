@@ -1,10 +1,11 @@
 import Pizzicato from 'pizzicato';
-import Randomizer from '../Randomizer';
+import Randomization from '../Randomization';
 
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
 
-class Sound extends Pizzicato.Sound {
+class Sound extends Pizzicato.Sound
+{
   #panner;
   // constructor(description, _function) {
   //   super(description, _function);
@@ -31,19 +32,23 @@ class Sound extends Pizzicato.Sound {
       }
     });
 
-    this.id = Math.floor(Math.random() * 200);
     this.muted = false;
 
-    if (initObject.randomization) {
-      this.key = initObject.randomization.key;
-      this.randomizer = new Randomizer(initObject.randomization.value, initObject.randomization.offset);
-    }
+    // if (initObject.randomization) {
+    //   this.key = initObject.randomization.key;
+    //   this.randomizer = new Randomizer(initObject.randomization.value, initObject.randomization.offset);
+    // }
 
     this.#panner = new Pizzicato.Effects.StereoPanner({
       pan: 0.0
     });
 
     this.addEffect(this.#panner);
+
+    // this.randomization = new Randomization();
+    if (initObject.randomization) {
+      this.addRandomization(initObject.randomization.key, initObject.randomization.offset);
+    }
 
     this.on('play', () => {
       store.dispatch(addCurrentVoices());
@@ -103,20 +108,23 @@ class Sound extends Pizzicato.Sound {
   //   // console.log(sourceNode);
   // }
 
-  addRandomization = (key, randomizer) => {
-    this.key = key;
-    this.randomizer = randomizer;
-  }
+  // addRandomization = (key, randomizer) => {
+  //   this.key = key;
+  //   this.randomizer = randomizer;
+  // }
 
   _play = (delay, offset) => {
     if (!this.muted) {
       const _delay = delay ? delay : this.delay;
       const _offset = offset ? offset : this.offset;
 
-      this[this.key] = Randomizer.randomize(this.randomizer);
+      // this[this.key] = Randomizer.randomize(this.randomizer);
+      this.randomize();
       super.play(_delay, _offset);
     }
   }
 }
+
+Object.assign(Sound.prototype, Randomization.prototype);
 
 export default Sound;

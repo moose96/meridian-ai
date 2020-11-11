@@ -77,6 +77,14 @@ class Container extends Randomization
     this.volume = volume;
   }
 
+  // set attack(attack) {
+  //   this.sounds.forEach(sound => sound.attack = attack);
+  // }
+
+  // set release(release) {
+  //   this.sounds.forEach(sound => sound.release = release);
+  // }
+
   // setDetune(detune) {
   //   this.sounds.forEach(sound => sound.setDetune(detune));
   // }

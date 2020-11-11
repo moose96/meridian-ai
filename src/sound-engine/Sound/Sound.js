@@ -26,7 +26,8 @@ class Sound extends Pizzicato.Sound
       }
     });
 
-    console.log(Randomization.prototype);
+    this.attack = initObject.attack;
+    this.release = initObject.release;
 
     this.#panner = new Pizzicato.Effects.StereoPanner({
       pan: 0.0

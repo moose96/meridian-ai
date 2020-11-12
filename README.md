@@ -15,6 +15,7 @@ Doszliśmy do wniosku że w dzisiejszych czasach i szczególnie w tym trudnym ok
 
 ## Technology
 * ReactJS
+* Redux
 * Pizzicato (Audio Web API)
 * P5.js
 
@@ -42,6 +43,106 @@ You can view the current version of app [here](https://meridian-ai.netlify.app/)
 ## Sound Engine
 The Sound Engine is written by Pizzicato. It enables creating sequences and compositions from simple sounds. The sounds could placed in virtual field and play. The Sound Engine consists of following objects:
 
+### Randomization
+This class provides drawing values of any parameters in child classes.
+
+#### Methods
+* constructor
+```js
+constructor([initObject]);
+```
+You can pass the initObject into constructor which inits the object with such values.
+
+```js
+const initObject = {
+  key: String, //name of the field in class which has to be drawn
+  offset: Number //it indicates the range of randomization.
+}
+```
+*offset* field is used to create range for randomization. The middle value is the default value of parameter. For example: the class has *pan* set to 0.5, and *offset* is set to 0.2 so the range of randomization is equal to (0.3; 0.7).
+
+* addRandomization
+```js
+addRandomization(key, offset);
+```
+You can use this method to add (or replace) current randomization. For this moment only one parameter can be drawn.
+
+* randomize
+```js
+randomize();
+```
+This metod is used by child class to draw new value for parameters.
+
+### SoundEngineObject
+This is a base class of all engine objects. It provides uniform interface for all of them. It inherits **Randomization** class.
+
+#### Fields
+* source - raw access for source object(s).
+* outputNode - first node before master chain, to which all sources have to be connected.
+
+#### Methods
+* constructor
+```js
+constructor([initObject]);
+
+const initObject = {
+  randomization: Object,
+  volume: Number,
+  pan: Number,
+  muted: Boolean
+}
+```
+
+* _connectSource
+```js
+_connectSource(destination);
+```
+
+This method connects source node to destination node. It should be implemented by child classes, because the source field could be Object, or Array. You should call it in constructor of child class, and pass the *this.outputNode* to it.
+
+* _disconnectSource
+```js
+_disconnectSource();
+```
+
+This method disconnects source node from any nodes. It should be implemented by child classes.
+
+* connect
+```js
+connect(destination);
+```
+This method connects object to destination node (for example master gain).
+
+* disconnect
+```js
+disconnect();
+```
+
+This method disconnects object from destination node.
+
+* get | set volume
+It sets volume at the end of the chain nodes.
+
+* get | set pan
+It sets pan before gain node
+
+* get | set muted
+It connects | disconeccts the pan node from gain one.
+
+* _connectEffects
+```js
+_connectEffects();
+```
+
+This method connects effects between items in effects field array. You shouldn't use this method.
+
+* _disconnectEffects
+```js
+_disconnectEffects();
+```
+
+This method disconnects effects between items in effects field array. You shouldn't use this method.
+
 ### Sound
 It is a basic object which represents single simple sound which can be played. It extends Pizzicato.Sound by adding panning by default and allow to randomize parameters.
 
@@ -50,11 +151,9 @@ Constructor object (example):
 {
   "type": "sound",
   "filename": "/data/drip_01.wav",
-  "randomization": {
-    "key": "pan",
-    "value": 0,
-    "offset": 0.1
-  }
+  "attack": 0.4,
+  "release": 0.4,
+  "detune": 100,
 }
 ```
 

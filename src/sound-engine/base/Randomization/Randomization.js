@@ -1,7 +1,7 @@
 class Randomization
 {
   #randomizationInfo = {
-    value: null,
+    key: null,
     offset: 0
   };
   #randomizationEnabled = false;

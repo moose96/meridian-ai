@@ -13,6 +13,7 @@ class Sound extends SoundEngineObject
 
   constructor(initObject) {
     super(initObject);
+
     this.source = new Pizzicato.Sound({
       source: 'file',
       options: {
@@ -30,15 +31,16 @@ class Sound extends SoundEngineObject
 
     this.source.on('play', () => {
       store.dispatch(addCurrentVoices());
-      // console.log('play', initObject.filename, 'pan', this.pan, 'volume', this.volume, "tune", this.detune);
+      console.log('play', initObject.filename, 'pan', this.pan, 'volume', this.volume, "tune", this.detune);
     });
+
     this.source.on('end', () => {
       store.dispatch(subCurrentVoices());
       console.log('end', initObject.filename);
     });
   }
 
-  _getRawSourceNode() {
+  _getRawSourceNode = () => {
     const node = new AudioBufferSourceNode(Pizzicato.context, {
       buffer: this.node.buffer,
       loop: this.node.loop,
@@ -77,7 +79,6 @@ class Sound extends SoundEngineObject
     const _delay = delay ? delay : this.delay;
     const _offset = offset ? offset : this.offset;
 
-    console.log(this.source);
     this.source.play(_delay, _offset);
   }
 

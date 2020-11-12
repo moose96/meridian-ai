@@ -22,7 +22,6 @@ class SoundField
   stop() {
     this.sounds && this.sounds.forEach(sound => sound.stop());
   }
-  // stop = () => console.log(this.sounds);
 }
 
 export default SoundField;

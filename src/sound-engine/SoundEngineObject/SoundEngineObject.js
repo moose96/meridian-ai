@@ -1,11 +1,21 @@
 import Randomization from '../Randomization';
 import Pizzicato from 'pizzicato';
 
+/*
+This is a base class for sound engine objects.
+
+initObject = {
+  randomization: Object,
+  volume: Number,
+  pan: Number,
+  muted: Boolean
+}
+*/
+
 class SoundEngineObject extends Randomization
 {
   source;
   #gainNode;
-  #destination;
   outputNode;
   #panner;
   #muted;
@@ -13,7 +23,6 @@ class SoundEngineObject extends Randomization
 
   constructor(initObject) {
     super(initObject.randomization);
-    // this.source = source;
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 
@@ -24,20 +33,20 @@ class SoundEngineObject extends Randomization
     this.outputNode = this.#panner;
     this.#panner.connect(this.#gainNode);
 
-    this.#muted = false;
+    this.#muted = initObject.muted ? initObject.muted : false;
     this.#effects = [];
   }
 
   _connectSource(destination) {
-    //this.source.connect(destination);
+    throw Error('This method should be overridden by child class');
   }
 
   _disconnectSource() {
-    //this.source.disconnect();
+    throw Error('This method should be overridden by child class');
   }
 
   connect(destination) {
-    this.#destination = this.#gainNode.connect(destination);
+    this.#gainNode.connect(destination);
   }
 
   disconnect() {
@@ -60,10 +69,10 @@ class SoundEngineObject extends Randomization
 
   set muted(muted) {
     if (muted) {
-      this.disconnect();
+      this.#panner.disconnect();
       this.#muted = true;
     } else {
-      this.connect(this.#destination);
+      this.#panner.connect(this.#gainNode);
       this.#muted = false;
     }
   }
@@ -110,7 +119,7 @@ class SoundEngineObject extends Randomization
   }
 
   stop() {
-
+    throw Error('This method should be overridden by child class');
   }
 }
 

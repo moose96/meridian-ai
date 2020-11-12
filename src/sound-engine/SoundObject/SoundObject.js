@@ -17,8 +17,6 @@ class SoundObject extends SoundEngineObject
     } else {
       this.position = Position3D(0.0, 0.0, 0.0);
     }
-
-    // this._calculate();
   }
 
   _connectSource(destination) {
@@ -44,16 +42,18 @@ class SoundObject extends SoundEngineObject
 
   setPosition(x, y, z) {
     this.position = Position3D(x, y, z);
-    // this._calculate();
   }
+
   setPositionX(x) {
     this.position.x = x;
     this._calculate();
   }
+
   setPositionY (y) {
     this.position.y = y;
     this._calculate();
   }
+
   setPositionZ(z) {
     this.position.z = z;
     this._calculate();

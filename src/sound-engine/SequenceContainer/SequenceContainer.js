@@ -35,7 +35,6 @@ class SequenceContainer extends Container
   }
 
   setDelay = delay => {
-    // this.delay = Math.floor(delay / INTERVAL);
     this.delay = delay;
   }
 
@@ -54,10 +53,6 @@ class SequenceContainer extends Container
       clearInterval(this.#intervalID);
     }
   }
-
-  // onPlay() {
-  //   console.log('sequence container play, loop', this.loop, 'delay', this.delay * INTERVAL, 'pan', this.pan);
-  // }
 }
 
 export default SequenceContainer;

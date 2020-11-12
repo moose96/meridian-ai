@@ -20,7 +20,7 @@ class SequenceContainer extends Container
 
     if (this.counter >= this.delay) {
       if (!this.muted) {
-        this.sounds.forEach(sound => sound.play());
+        this.source.forEach(sound => sound.play());
       }
       this.counter = 0;
     }
@@ -55,9 +55,9 @@ class SequenceContainer extends Container
     }
   }
 
-  onPlay() {
-    console.log('sequence container play, loop', this.loop, 'delay', this.delay * INTERVAL, 'pan', this.pan);
-  }
+  // onPlay() {
+  //   console.log('sequence container play, loop', this.loop, 'delay', this.delay * INTERVAL, 'pan', this.pan);
+  // }
 }
 
 export default SequenceContainer;

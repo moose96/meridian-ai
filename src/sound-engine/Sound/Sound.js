@@ -12,7 +12,15 @@ class Sound extends Pizzicato.Sound
   delay = 0;
 
   constructor(initObject, _function) {
-    super(initObject.filename, () => {
+    super({
+      source: 'file',
+      options: {
+        path: initObject.filename,
+        detached: true,
+        attack: initObject.attack && initObject.attack,
+        release: initObject.release && initObject.release
+      }
+    }, () => {
       this.sourceNode = this.getSourceNode();
       // this.sourceNode.detune.value = -1200;
       // this.sourceNode.playbackRate.value = 0.5;
@@ -25,9 +33,6 @@ class Sound extends Pizzicato.Sound
         this.onLoad();
       }
     });
-
-    this.attack = initObject.attack;
-    this.release = initObject.release;
 
     this.#panner = new Pizzicato.Effects.StereoPanner({
       pan: 0.0

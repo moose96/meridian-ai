@@ -1,3 +1,4 @@
+import Pizzicato from 'pizzicato';
 
 class SoundField
 {
@@ -6,6 +7,7 @@ class SoundField
   }
 
   addSound(sound) {
+    sound.connect(Pizzicato.masterGainNode);
     this.sounds.push(sound);
   }
 

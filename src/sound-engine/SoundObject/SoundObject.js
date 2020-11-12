@@ -1,17 +1,16 @@
 import Position3D from './Position3D';
-import Randomization from '../Randomization';
+import SoundEngineObject from '../SoundEngineObject';
 
-class SoundObject extends Randomization
+class SoundObject extends SoundEngineObject
 {
-  objects = [];
   attenuation = 0;
-  #muted = false;
-  // lastChildVolume = 0;
   #position;
 
   constructor(object) {
-    super(object.randomization);
-    this.objects = object.objects;
+    super(object);
+    this.source = object.objects;
+
+    this._connectSource(this.outputNode);
 
     if (object.position) {
       this.position = object.position;
@@ -22,22 +21,16 @@ class SoundObject extends Randomization
     // this._calculate();
   }
 
+  _connectSource(destination) {
+    this.source.forEach(source => source.connect(destination));
+  }
+
+  _disconnectSource() {
+    this.source.forEach(source => source.disconnect());
+  }
+
   _calculate() {
     throw Error('This class has to be extended by another class');
-  }
-
-  get muted() {
-    return this.#muted;
-  }
-
-  set muted(muted) {
-    this.#muted = muted;
-    this.objects.forEach(object => object.setMuted(muted));
-  }
-
-  setMuted(muted) {
-    this.muted = muted;
-    // this.objects.forEach(object => object.setMuted(muted));
   }
 
   get position() {
@@ -74,13 +67,11 @@ class SoundObject extends Randomization
   play() {
     this.randomize();
 
-    if (!this.#muted) {
-      this.objects.forEach(object => object.play());
-    }
+    this.source.forEach(object => object.play());
   }
 
   stop() {
-    this.objects.forEach(object => object.stop());
+    this.source.forEach(object => object.stop());
   }
 }
 

@@ -6,11 +6,19 @@ const lineAttenuation = (x, attenuation) => {
 
 class SingleSoundObject extends SoundObject
 {
+  constructor(object) {
+    super(object);
+
+    this.pan = 0.6;
+  }
+
   _calculate() {
-    this.objects.forEach(object => {
-      object.setPan(this.position.x / this.attenuation);
-      object.setVolume(lineAttenuation(this.position.y, this.attenuation));
-    });
+    // this.source.forEach(object => {
+    //   object.setPan(this.position.x / this.attenuation);
+    //   object.setVolume(lineAttenuation(this.position.y, this.attenuation));
+    // });
+    this.pan = this.position.x / this.attenuation;
+    this.volume = lineAttenuation(this.position.y, this.attenuation);
   }
 }
 

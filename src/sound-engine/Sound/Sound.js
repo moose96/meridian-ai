@@ -1,18 +1,19 @@
 import Pizzicato from 'pizzicato';
-import Randomization from '../Randomization';
+import SoundEngineObject from '../SoundEngineObject';
 
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
 
-class Sound extends Pizzicato.Sound
+class Sound extends SoundEngineObject
 {
-  #panner;
-  muted = false;
+  node;
+  detune;
   offset = 0;
   delay = 0;
 
-  constructor(initObject, _function) {
-    super({
+  constructor(initObject) {
+    super(initObject);
+    this.source = new Pizzicato.Sound({
       source: 'file',
       options: {
         path: initObject.filename,
@@ -21,53 +22,41 @@ class Sound extends Pizzicato.Sound
         release: initObject.release && initObject.release
       }
     }, () => {
-      this.sourceNode = this.getSourceNode();
-      // this.sourceNode.detune.value = -1200;
-      // this.sourceNode.playbackRate.value = 0.5;
-
-      if (_function) {
-        _function();
-      }
-
-      if (this.onLoad) {
-        this.onLoad();
-      }
+      this.node = this.source.getRawSourceNode();
+      this.source.getRawSourceNode = this._getRawSourceNode;
     });
 
-    this.#panner = new Pizzicato.Effects.StereoPanner({
-      pan: 0.0
-    });
+    this._connectSource(this.outputNode);
 
-    this.addEffect(this.#panner);
-
-    if (initObject.randomization) {
-      this.addRandomization(initObject.randomization.key, initObject.randomization.offset);
-    }
-
-    this.on('play', () => {
+    this.source.on('play', () => {
       store.dispatch(addCurrentVoices());
-      console.log('play', initObject.filename, 'pan', this.pan, 'volume', this.volume, "tune", this.detune);
+      // console.log('play', initObject.filename, 'pan', this.pan, 'volume', this.volume, "tune", this.detune);
     });
-    this.on('end', () => {
+    this.source.on('end', () => {
       store.dispatch(subCurrentVoices());
       console.log('end', initObject.filename);
     });
   }
 
-  onLoad() {
-    console.log(this.detune);
+  _getRawSourceNode() {
+    const node = new AudioBufferSourceNode(Pizzicato.context, {
+      buffer: this.node.buffer,
+      loop: this.node.loop,
+      detune: this.detune
+    })
+    return node;
   }
 
-  get pan() {
-    return this.#panner.pan;
+  _connectSource(destination) {
+    this.source.connect(destination);
   }
 
-  set pan(newPan) {
-    this.#panner.pan = newPan;
+  _disconnectSource() {
+    this.source.disconnect();
   }
 
   setPan(newPan) {
-    this.#panner.pan = newPan;
+    this.pan = newPan;
   }
 
   setVolume(volume) {
@@ -82,41 +71,19 @@ class Sound extends Pizzicato.Sound
     this.offset = offset;
   }
 
-  setMuted(muted) {
-    this.muted = muted;
+  play(delay, offset) {
+    super.play();
+
+    const _delay = delay ? delay : this.delay;
+    const _offset = offset ? offset : this.offset;
+
+    console.log(this.source);
+    this.source.play(_delay, _offset);
   }
 
-  // setLength = length => {
-  //   const buffer = this.sourceNode.buffer;
-  //   let newBuffer = Pizzicato.context.createBuffer(buffer.numberOfChannels, (length * buffer.sampleRate) / 1000, buffer.sampleRate);
-  //   let data = newBuffer.getChannelData(0);
-  //   data = buffer.getChannelData(0).slice(0, (length * buffer.sampleRate) / 1000);
-  //   this.sourceNode.buffer = newBuffer;
-  // }
-
-  // get detune() {
-  //   const sourceNode = this.getSourceNode();
-  //   // return sourceNode.detune.value;
-  //   return this.sourceNode.detune.value;
-  // }
-
-  // setDetune(detune) {
-  //   const sourceNode = this.getRawSourceNode();
-  //   sourceNode.detune.value = detune;
-  //   // console.log(sourceNode);
-  // }
-
-  play(delay, offset) {
-    if (!this.muted) {
-      const _delay = delay ? delay : this.delay;
-      const _offset = offset ? offset : this.offset;
-
-      // this.randomize();
-      super.play(_delay, _offset);
-    }
+  stop() {
+    this.source.stop();
   }
 }
-
-Object.assign(Sound.prototype, Randomization.prototype);
 
 export default Sound;

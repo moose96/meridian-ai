@@ -1,4 +1,4 @@
-import SoundObject from '../SoundObject';
+import SoundObject from '../base/SoundObject';
 
 class MultipleSoundObject extends SoundObject
 {

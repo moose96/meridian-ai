@@ -1,4 +1,4 @@
-import SoundObject from '../SoundObject';
+import SoundObject from '../base/SoundObject';
 
 const lineAttenuation = (x, attenuation) => {
   return (-1.0 /*max volume*/ / attenuation) * x + 1.0;

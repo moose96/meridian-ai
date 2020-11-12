@@ -1,5 +1,5 @@
 import Pizzicato from 'pizzicato';
-import SoundEngineObject from '../SoundEngineObject';
+import SoundEngineObject from '../base/SoundEngineObject';
 
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';

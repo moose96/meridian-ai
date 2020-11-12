@@ -1,4 +1,4 @@
-import Container from '../Container';
+import Container from '../base/Container';
 
 const INTERVAL = 25; //ms
 

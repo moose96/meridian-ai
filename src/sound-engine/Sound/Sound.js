@@ -6,9 +6,10 @@ import { addCurrentVoices, subCurrentVoices } from '../redux';
 
 class Sound extends SoundEngineObject
 {
+  buffer;
   node;
   detune;
-  offset = 0;
+  startPoint = 0;
   delay = 0;
 
   constructor(initObject) {
@@ -24,7 +25,14 @@ class Sound extends SoundEngineObject
       }
     }, () => {
       this.node = this.source.getRawSourceNode();
+      this.buffer = this.node.buffer;
       this.source.getRawSourceNode = this._getRawSourceNode;
+
+      if (initObject.endPoint) {
+        this.endPoint = initObject.endPoint;
+      } else if(initObject.duration) {
+        this.endPoint = initObject.duration;
+      }
     });
 
     this._connectSource(this.outputNode);
@@ -42,7 +50,7 @@ class Sound extends SoundEngineObject
 
   _getRawSourceNode = () => {
     const node = new AudioBufferSourceNode(Pizzicato.context, {
-      buffer: this.node.buffer,
+      buffer: this.buffer,
       loop: this.node.loop,
       detune: this.detune
     })
@@ -57,6 +65,30 @@ class Sound extends SoundEngineObject
     this.source.disconnect();
   }
 
+  get endPoint() {
+    return this.node.buffer.length;
+  }
+
+  set endPoint(endPoint) {
+    const data = this.buffer.getChannelData(0);
+    const buffer = new AudioBuffer({
+      sampleRate: this.buffer.sampleRate,
+      numberOfChannels: this.buffer.numberOfChannels,
+      length: endPoint
+    });
+
+    buffer.copyToChannel(data, 0);
+    this.buffer = buffer;
+  }
+
+  get duration() {
+    return this.endPoint - this.startPoint;
+  }
+
+  set duration(duration) {
+    this.endPoint = duration - this.startPoint;
+  }
+
   setPan(newPan) {
     this.pan = newPan;
   }
@@ -69,17 +101,17 @@ class Sound extends SoundEngineObject
     this.delay = delay;
   }
 
-  setOffset(offset) {
-    this.offset = offset;
+  setStartPoint(startPoint) {
+    this.startPoint = startPoint;
   }
 
-  play(delay, offset) {
+  play(delay, startPoint) {
     super.play();
 
     const _delay = delay ? delay : this.delay;
-    const _offset = offset ? offset : this.offset;
+    const _startPoint = startPoint ? startPoint : this.startPoint;
 
-    this.source.play(_delay, _offset);
+    this.source.play(_delay, _startPoint);
   }
 
   stop() {

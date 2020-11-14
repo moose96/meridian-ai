@@ -1,4 +1,5 @@
 import SoundEngineObject from './SoundEngineObject';
+import Pizzicato from 'pizzicato';
 
 describe('test SoundEngineObject', () => {
   const source = {

@@ -1,5 +1,5 @@
 import Container from './Container';
-import Sound from '../Sound';
+import Sound from '../../Sound';
 
 describe('test Container class', () => {
   const testObject = {

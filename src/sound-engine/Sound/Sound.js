@@ -34,6 +34,8 @@ class Sound extends SoundEngineObject
         this.endPoint = initObject.duration;
       }
     });
+    this.delay = initObject.delay && initObject.delay;
+    this.startPoint = initObject.startPoint && initObject.startPoint;
 
     this._connectSource(this.outputNode);
 

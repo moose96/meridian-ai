@@ -54,7 +54,7 @@ class SoundEngineObject extends Randomization
   }
 
   get volume() {
-    return this.#gainNode.gain;
+    return this.#gainNode.gain.value;
   }
 
   set volume(volume) {

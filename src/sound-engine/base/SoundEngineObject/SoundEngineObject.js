@@ -1,5 +1,6 @@
 import Randomization from '../Randomization';
 import Pizzicato from 'pizzicato';
+import { v4 as uuidv4 } from 'uuid';
 
 /*
 This is a base class for sound engine objects.
@@ -14,6 +15,7 @@ initObject = {
 
 class SoundEngineObject extends Randomization
 {
+  id;
   source;
   #gainNode;
   outputNode;
@@ -23,6 +25,7 @@ class SoundEngineObject extends Randomization
 
   constructor(initObject) {
     super(initObject.randomization);
+    this.id = uuidv4();
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 

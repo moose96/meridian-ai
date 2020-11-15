@@ -4,6 +4,7 @@ const INTERVAL = 25; //ms
 
 class SequenceContainer extends Container
 {
+  name = 'Sequence Container';
   loop = false;
   counter = 0;
   #delay = 0;

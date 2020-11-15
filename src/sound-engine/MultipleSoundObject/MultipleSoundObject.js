@@ -2,6 +2,7 @@ import SoundObject from '../base/SoundObject';
 
 class MultipleSoundObject extends SoundObject
 {
+  name = 'Multiple Sound Object';
   _calculate() {
     this.source.forEach(object => {
       object.setPosition(

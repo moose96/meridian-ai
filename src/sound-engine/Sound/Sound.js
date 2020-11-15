@@ -6,6 +6,7 @@ import { addCurrentVoices, subCurrentVoices } from '../redux';
 
 class Sound extends SoundEngineObject
 {
+  name = 'Sound';
   buffer;
   node;
   detune;

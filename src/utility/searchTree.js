@@ -13,4 +13,11 @@ function searchTree(object, callback, result) {
   return result;
 }
 
+export const modifyTreeValue = (object, callback) => {
+  callback(object);
+  if (Array.isArray(object.source)) {
+    object.source.forEach(source => modifyTreeValue(source, callback));
+  }
+}
+
 export default searchTree;

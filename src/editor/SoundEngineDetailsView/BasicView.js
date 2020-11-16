@@ -8,6 +8,10 @@ function BasicView({ object, onChange }) {
     onChange(event.target.name, event.target.value);
   }
 
+  const handleCheckedChange = event => {
+    onChange(event.target.name, event.target.checked);
+  }
+
   return (
     <DetailsGroup title="Basic properties">
       <Input
@@ -32,8 +36,8 @@ function BasicView({ object, onChange }) {
         label="Mute"
         name="muted"
         type="checkbox"
-        value={object && object.muted}
-        onChange={handleChange} />
+        checked={object && object.muted}
+        onChange={handleCheckedChange} />
     </DetailsGroup>
   );
 }

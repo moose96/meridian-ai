@@ -7,7 +7,7 @@ import Slider from './ui/Slider';
 import SoundEngine from './integration/SoundEngine';
 import { SoundField } from './sound-engine';
 import makeTree from './utility/makeTree';
-import searchTree from './utility/searchTree';
+import searchTree, { modifyTreeValue } from './utility/searchTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
 
@@ -64,7 +64,13 @@ function App({ voices }) {
     setCurrentObject({
       ...currentObject,
       [name]: value
-    })
+    });
+
+    modifyTreeValue(soundField.current.sounds[0], object => {
+      if (object.id === currentObject.id) {
+        object[name] = value;
+      }
+    });
   }
 
   useEffect(() => {

@@ -62,7 +62,7 @@ class SoundEngineObject extends Randomization
 
   set volume(volume) {
     if (volume >= 0 && volume <= 1) {
-      this.#gainNode.gain.value = volume;
+      this.#gainNode.gain.value = parseFloat(volume);
     }
   }
 
@@ -85,7 +85,7 @@ class SoundEngineObject extends Randomization
   }
 
   set pan(pan) {
-    this.#panner.pan = pan;
+    this.#panner.pan = parseFloat(pan);
   }
 
   _connectEffects() {

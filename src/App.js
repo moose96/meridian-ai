@@ -7,7 +7,9 @@ import Slider from './ui/Slider';
 import SoundEngine from './integration/SoundEngine';
 import { SoundField } from './sound-engine';
 import makeTree from './utility/makeTree';
+import searchTree from './utility/searchTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
+import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
 
 function ObjectView({ data }) {
   if (data) {
@@ -54,7 +56,15 @@ function App({ voices }) {
   }
 
   const handleTreeItemClick = id => {
-    setCurrentObject(data.source[0]);
+    const foundObject = searchTree(data, value => value.id === id);
+    setCurrentObject(foundObject);
+  }
+
+  const handleSEDetailsChange = (name, value) => {
+    setCurrentObject({
+      ...currentObject,
+      [name]: value
+    })
   }
 
   useEffect(() => {
@@ -74,7 +84,7 @@ function App({ voices }) {
       </div>
       <div className="App__right">
         <div className="App__right__top">
-          <ObjectView data={currentObject} />
+          <SoundEngineDetailsView object={currentObject} onChange={handleSEDetailsChange} />
         </div>
         <div className="App__right__bottom">
           <p>voices: {voices}</p>

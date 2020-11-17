@@ -2,37 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import './App.scss';
-import Slider from './ui/Slider';
-// import Sound from './sound/Sound';
-import SoundEngine from './integration/SoundEngine';
 import { SoundField } from './sound-engine';
 import makeTree from './utility/makeTree';
 import searchTree, { modifyTreeValue } from './utility/searchTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
 
-function ObjectView({ data }) {
-  if (data) {
-    console.log(Object.getOwnPropertyDescriptors(data));
-  }
-  return (
-    <div className="object-view">
-      {data ? (
-        Object.getOwnPropertyNames(data).map((field, index) => {
-          if (typeof(data[field]) !== 'object') {
-            return <p key={index}>{field}: {data[field]}</p>
-          } else {
-            return <p key={index}>{field}: [Object]</p>
-          }
-        })) : (
-          <p>nothing selected</p>
-        )}
-    </div>
-  )
-}
-
 function App({ voices }) {
-  // const [intensivity, setIntensivity] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [data, setData] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
@@ -97,9 +73,6 @@ function App({ voices }) {
           <button onClick={handleClick}>{playing ? 'Stop' : 'Play'}</button>
         </div>
       </div>
-      {/* <Slider min={0} max={100} step={1} value={intensivity} onChange={e => setIntensivity(e.target.value)} /> */}
-      {/* <Sound source="file" options={{ path: '/data/drip_01.wav'}} intensivity={intensivity}/> */}
-      {/* <SoundEngine data={data} play={playing} value1={intensivity}/> */}
     </div>
   );
 }

@@ -21,7 +21,7 @@ function BasicView({ object, onChange }) {
         min={0}
         max={1}
         step={0.01}
-        value={object && object.volume}
+        value={object.volume}
         onChange={handleChange} />
       <Input
         label="Pan"
@@ -30,13 +30,13 @@ function BasicView({ object, onChange }) {
         min={-1}
         max={1}
         step={0.01}
-        value={object && object.pan}
+        value={object.pan}
         onChange={handleChange} />
       <Input
         label="Mute"
         name="muted"
         type="checkbox"
-        checked={object && object.muted}
+        checked={object.muted}
         onChange={handleCheckedChange} />
     </DetailsGroup>
   );

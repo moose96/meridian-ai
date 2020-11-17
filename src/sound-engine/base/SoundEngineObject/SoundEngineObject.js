@@ -16,6 +16,7 @@ initObject = {
 class SoundEngineObject extends Randomization
 {
   id;
+  type;
   source;
   #gainNode;
   outputNode;
@@ -26,6 +27,7 @@ class SoundEngineObject extends Randomization
   constructor(initObject) {
     super(initObject.randomization);
     this.id = uuidv4();
+    this.type = this.constructor.name;
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 

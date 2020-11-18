@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import BasicView from './views/BasicView';
 
 import Header from './views/Header';
-import Randomization from './views/Randomization';
+import RandomizationView from './views/RandomizationView';
 import SoundView from './views/SoundView';
 import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
@@ -34,7 +34,7 @@ function SoundEngineDetailsView({ object, onChange }) {
       {object ? (
         <Fragment>
           <Header object={object} />
-          <Randomization object={object} />
+          <RandomizationView object={object} onChange={onChange}/>
           <BasicView object={object} onChange={onChange} />
           {dependentView}
         </Fragment>

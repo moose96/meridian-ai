@@ -17,4 +17,13 @@
     opacity: 0.5;
     margin: 0;
   }
+
+  datalist {
+    display: flex;
+    position: relative;
+
+    option {
+      position: absolute;
+    }
+  }
 }

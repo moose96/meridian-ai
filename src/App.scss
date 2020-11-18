@@ -9,7 +9,7 @@
     overflow: auto;
 
     ul {
-      padding-left: 30px;
+      padding-left: 10px;
       li {
         list-style: none;
         cursor: pointer;
@@ -29,8 +29,39 @@
     }
 
     &__bottom {
-      text-align: center;
       border-top: 1px solid rgba(0,0,0,0.25);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      button {
+        width: 3rem;
+        height: 3rem;
+        justify-self: center;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,0.25);
+        box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
+
+        &:hover {
+          box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+          transform: translate(-1px, -1px);
+        }
+
+        &:active {
+          box-shadow: none;
+          transform: translate(1px, 1px);
+        }
+      }
+
+      #voices {
+        justify-self: end;
+        opacity: 0.25;
+        margin-right: 1rem;
+      }
     }
   }
 }

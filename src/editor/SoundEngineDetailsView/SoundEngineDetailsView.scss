@@ -1,3 +1,30 @@
+$list: first, second, third, fourth, fifth, sixth, seventh, eighth;
+
 .sound-engine-details-view {
-  
+  display: grid;
+  grid-template-areas:
+    "first first second"
+    "third fourth fourth"
+    "fifth fifth fifth"
+    "sixth seventh eighth";
+  grid-column-gap: 1rem;
+
+  @for $i from 1 to 9 {
+    :nth-child(#{$i}) {
+      grid-area: nth($list, $i );
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .sound-engine-details-view {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-areas: unset;
+
+    @for $i from 1 to 9 {
+      :nth-child(#{$i}) {
+        grid-area: unset;
+      }
+    }
+  }
 }

@@ -13,6 +13,15 @@ class Randomization
     }
   }
 
+  get randomization() {
+    return this.#randomizationInfo;
+  }
+
+  set randomization(randomization) {
+    this.#randomizationInfo = randomization;
+    this.#randomizationEnabled = true;
+  }
+
   addRandomization(key, offset) {
     this.#randomizationInfo.key = key;
     this.#randomizationInfo.offset = offset;

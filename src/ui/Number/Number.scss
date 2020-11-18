@@ -1,0 +1,13 @@
+.number {
+  &__bottom-row {
+    display: flex;
+  }
+
+  input {
+    margin: 0 1rem 0 1rem;
+  }
+
+  p {
+    opacity: 0.5;
+  }
+}

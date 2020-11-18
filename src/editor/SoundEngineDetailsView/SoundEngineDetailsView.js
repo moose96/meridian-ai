@@ -8,10 +8,13 @@ import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
 import './SoundEngineDetailsView.scss'
 
+import { Sound, SingleSoundObject } from '../../sound-engine';
+
 function SoundEngineDetailsView({ object, onChange }) {
   let dependentView;
 
   if (object) {
+  console.log(object.type === Sound.constructor.name);
     switch(object.type) {
       case 'Sound':
         dependentView = <SoundView object={object} onChange={onChange} />

@@ -7,6 +7,7 @@ const lineAttenuation = (x, attenuation) => {
 class SingleSoundObject extends SoundObject
 {
   name = 'Single Sound Object';
+  type = 'SingleSoundObject'; //due to webpack issue
   _calculate() {
     this.pan = this.position.x / this.attenuation;
     this.volume = lineAttenuation(this.position.y, this.attenuation);

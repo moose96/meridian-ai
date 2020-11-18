@@ -3,6 +3,7 @@ import SoundObject from '../base/SoundObject';
 class MultipleSoundObject extends SoundObject
 {
   name = 'Multiple Sound Object';
+  type = 'MultipleSoundObject'; //due to webpack issue
   _calculate() {
     this.source.forEach(object => {
       object.setPosition(

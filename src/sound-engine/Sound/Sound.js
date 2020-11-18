@@ -16,6 +16,7 @@ class Sound extends SoundEngineObject
 
   constructor(initObject) {
     super(initObject);
+    this.type = 'Sound'; //due to webpack issue
 
     this.source = new Pizzicato.Sound({
       source: 'file',

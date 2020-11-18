@@ -12,6 +12,7 @@ class SequenceContainer extends Container
 
   constructor(object) {
     super(object);
+    this.type = 'SequenceContainer'; //due to webpack issue
     this.loop = object.loop;
     this.delay = object.delay;
   }

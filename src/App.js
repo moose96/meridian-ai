@@ -8,6 +8,9 @@ import searchTree, { modifyTreeValue } from './utility/searchTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
 
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import StopIcon from '@material-ui/icons/Stop';
+
 function App({ voices }) {
   const [playing, setPlaying] = useState(false);
   const [data, setData] = useState([]);
@@ -69,8 +72,10 @@ function App({ voices }) {
           <SoundEngineDetailsView object={currentObject} onChange={handleSEDetailsChange} />
         </div>
         <div className="App__right__bottom">
-          <p>voices: {voices}</p>
-          <button onClick={handleClick}>{playing ? 'Stop' : 'Play'}</button>
+          <button style={{gridColumn: '2/3'}} onClick={handleClick}>
+            {playing ? <StopIcon /> : <PlayArrowIcon />}
+          </button>
+          <p id="voices">voices: {voices}</p>
         </div>
       </div>
     </div>

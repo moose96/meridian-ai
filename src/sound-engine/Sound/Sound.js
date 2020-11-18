@@ -11,6 +11,7 @@ class Sound extends SoundEngineObject
   node;
   detune;
   startPoint = 0;
+  originalLength = 0;
   delay = 0;
 
   constructor(initObject) {
@@ -27,16 +28,17 @@ class Sound extends SoundEngineObject
     }, () => {
       this.node = this.source.getRawSourceNode();
       this.buffer = this.node.buffer;
+      this.originalLength = this.node.buffer.length;
       this.source.getRawSourceNode = this._getRawSourceNode;
 
       if (initObject.endPoint) {
         this.endPoint = initObject.endPoint;
       } else if(initObject.duration) {
-        this.endPoint = initObject.duration;
+        this.duration = initObject.duration;
       }
     });
-    this.delay = initObject.delay && initObject.delay;
-    this.startPoint = initObject.startPoint && initObject.startPoint;
+    this.delay = initObject.delay ? initObject.delay : 0;
+    this.startPoint = initObject.startPoint ? initObject.startPoint : 0;
 
     this._connectSource(this.outputNode);
 
@@ -90,6 +92,22 @@ class Sound extends SoundEngineObject
 
   set duration(duration) {
     this.endPoint = duration - this.startPoint;
+  }
+
+  get attack() {
+    return this.source.attack;
+  }
+
+  set attack(attack) {
+    this.source.attack = attack;
+  }
+
+  get release() {
+    return this.source.release;
+  }
+
+  set release(release) {
+    this.source.release = release;
   }
 
   setPan(newPan) {

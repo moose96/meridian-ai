@@ -1,11 +1,27 @@
 import React, { useState } from 'react';
 
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+
 function TreeItem({ id, label, children, onClick }) {
   const [rolledUp, setRolledUp] = useState(false);
 
-  const handleClick = () => {
-    setRolledUp(!rolledUp);
+  const handleLabelClick = () => {
     onClick(id);
+  }
+
+  const handleIconClick = () => {
+    setRolledUp(!rolledUp);
+  }
+
+  let icon;
+
+  if (children) {
+    if (!rolledUp) {
+      icon = <ArrowDropDownIcon onClick={handleIconClick}/>
+    } else {
+      icon = <ArrowRightIcon onClick={handleIconClick}/>
+    }
   }
 
   const style = {
@@ -13,8 +29,11 @@ function TreeItem({ id, label, children, onClick }) {
   }
 
   return (
-    <li>
-      <p onClick={handleClick}>{label}</p>
+    <li style={!children ? {paddingLeft: '30px'} : null}>
+      <p>
+        {icon}
+        <span onClick={handleLabelClick}>{label}</span>
+      </p>
       <ul style={style}>
         {children}
       </ul>

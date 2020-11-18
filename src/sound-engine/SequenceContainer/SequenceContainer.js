@@ -7,7 +7,7 @@ class SequenceContainer extends Container
   name = 'Sequence Container';
   loop = false;
   counter = 0;
-  #delay = 0;
+  _delay = 0;
   #intervalID = -1;
 
   constructor(object) {
@@ -19,7 +19,7 @@ class SequenceContainer extends Container
   _run = () => { //change to #run()
     this.counter++;
 
-    if (this.counter >= this.delay) {
+    if (this.counter >= this._delay) {
       if (!this.muted) {
         this.source.forEach(sound => sound.play());
       }
@@ -28,11 +28,11 @@ class SequenceContainer extends Container
   }
 
   get delay() {
-    return this.#delay;
+    return this._delay * INTERVAL;
   }
 
   set delay(delay) {
-    this.#delay = Math.floor(delay / INTERVAL);
+    this._delay = Math.floor(delay / INTERVAL);
   }
 
   setDelay = delay => {

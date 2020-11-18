@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import './Input.scss';
 
-function Input({ label, name, ...props }) {
+function Input({ className, label, name, children, ...props }) {
+  const labelComponent = <label htmlFor={name}>{label}:</label>;
+  const inputComponent = <input name={name} {...props} />;
+
   return (
-    <div className="input">
-      <div className="input__top-row">
-        <label htmlFor={name}>{label}</label>
-        <p>{props.value}</p>
-      </div>
-      <div className="input__bottom-row">
-        <p>{props.min}</p>
-        <input name={name} {...props} />
-        <p>{props.max}</p>
-      </div>
+    <div className={`input ${className}`}>
+      {children ?
+        children(labelComponent, inputComponent) : (
+        <Fragment>
+          {labelComponent}
+          {inputComponent}
+        </Fragment>
+      )}
     </div>
   )
 }

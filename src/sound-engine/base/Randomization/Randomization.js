@@ -37,6 +37,10 @@ class Randomization
       this[key] = Math.random() * (top - bottom) + bottom;
     }
   }
+
+  toPlainObject() {
+    return this.randomization;
+  }
 }
 
 export default Randomization

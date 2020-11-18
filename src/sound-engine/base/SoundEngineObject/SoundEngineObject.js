@@ -126,6 +126,17 @@ class SoundEngineObject extends Randomization
   stop() {
     throw Error('This method should be overridden by child class');
   }
+
+  toPlainObject() {
+    return {
+      ...super.toPlainObject(),
+      id: this.id,
+      type: this.type,
+      name: this.name,
+      volume: this.volume,
+      pan: this.pan
+    };
+  }
 }
 
 export default SoundEngineObject;

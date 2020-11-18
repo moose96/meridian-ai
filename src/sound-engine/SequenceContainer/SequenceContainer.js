@@ -33,7 +33,7 @@ class SequenceContainer extends Container
   }
 
   set delay(delay) {
-    this._delay = Math.floor(delay / INTERVAL);
+    this._delay = Math.floor(parseInt(delay) / INTERVAL);
   }
 
   setDelay = delay => {
@@ -53,6 +53,14 @@ class SequenceContainer extends Container
   stop() {
     if (this.loop) {
       clearInterval(this.#intervalID);
+    }
+  }
+
+  toPlainObject() {
+    return {
+      ...super.toPlainObject(),
+      delay: this.delay,
+      loop: this.loop
     }
   }
 }

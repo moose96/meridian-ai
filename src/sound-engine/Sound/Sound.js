@@ -72,7 +72,7 @@ class Sound extends SoundEngineObject
   }
 
   get endPoint() {
-    return this.node.buffer.length;
+    return this.buffer.length;
   }
 
   set endPoint(endPoint) {
@@ -80,7 +80,7 @@ class Sound extends SoundEngineObject
     const buffer = new AudioBuffer({
       sampleRate: this.buffer.sampleRate,
       numberOfChannels: this.buffer.numberOfChannels,
-      length: endPoint
+      length: parseInt(endPoint)
     });
 
     buffer.copyToChannel(data, 0);
@@ -92,7 +92,7 @@ class Sound extends SoundEngineObject
   }
 
   set duration(duration) {
-    this.endPoint = duration - this.startPoint;
+    this.endPoint = parseInt(duration - this.startPoint);
   }
 
   get attack() {
@@ -100,7 +100,7 @@ class Sound extends SoundEngineObject
   }
 
   set attack(attack) {
-    this.source.attack = attack;
+    this.source.attack = parseFloat(attack);
   }
 
   get release() {
@@ -108,7 +108,7 @@ class Sound extends SoundEngineObject
   }
 
   set release(release) {
-    this.source.release = release;
+    this.source.release = parseFloat(release);
   }
 
   setPan(newPan) {
@@ -138,6 +138,20 @@ class Sound extends SoundEngineObject
 
   stop() {
     this.source.stop();
+  }
+
+  toPlainObject() {
+    return {
+      ...super.toPlainObject(),
+      detune: this.detune,
+      startPoint: this.startPoint,
+      endPoint: this.endPoint,
+      duration: this.duration,
+      originalLength: this.originalLength,
+      delay: this.delay,
+      attack: this.attack,
+      release: this.release
+    }
   }
 }
 

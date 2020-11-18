@@ -73,6 +73,18 @@ class SoundObject extends SoundEngineObject
   stop() {
     this.source.forEach(object => object.stop());
   }
+
+  toPlainObject() {
+    return {
+      ...super.toPlainObject(),
+      attenuation: this.attenuation,
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+        z: this.position.z
+      }
+    }
+  }
 }
 
 export default SoundObject;

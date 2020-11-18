@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import './App.scss';
 import { SoundField } from './sound-engine';
-import makeTree from './utility/makeTree';
+import makeTree, { makeTree2 } from './utility/makeTree';
 import searchTree, { modifyTreeValue } from './utility/searchTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
@@ -17,16 +17,23 @@ function App({ voices }) {
   const [currentObject, setCurrentObject] = useState(null);
 
   const soundField = useRef(new SoundField());
+  const refs = useRef([]);
+  const currentRef = useRef(null);
 
   useEffect(() => {
     fetch('/data/aa.json')
     .then(response => response.json())
-    .then(data => makeTree(data))
+    .then(data => {
+      const [_treeView, result, _refs] = makeTree2(data);
+      refs.current = _refs;
+      return result;
+    })
     .then(data => {
       data.setAttenuation(1.0);
       setData(data);
       soundField.current.addSound(data);
       console.log(data);
+      console.log(refs);
     });
   }, []);
 
@@ -35,21 +42,26 @@ function App({ voices }) {
   }
 
   const handleTreeItemClick = id => {
-    const foundObject = searchTree(data, value => value.id === id);
-    setCurrentObject(foundObject);
+    // const foundObject = searchTree(data, value => value.id === id);
+    // setCurrentObject(foundObject);
+    currentRef.current = refs.current.find(ref => ref.id === id);
+    setCurrentObject(currentRef.current.toPlainObject());
   }
 
   const handleSEDetailsChange = (name, value) => {
-    setCurrentObject({
-      ...currentObject,
-      [name]: value
-    });
+    // setCurrentObject({
+    //   ...currentObject,
+    //   [name]: value
+    // });
 
-    modifyTreeValue(soundField.current.sounds[0], object => {
-      if (object.id === currentObject.id) {
-        object[name] = value;
-      }
-    });
+    // modifyTreeValue(soundField.current.sounds[0], object => {
+    //   if (object.id === currentObject.id) {
+    //     object[name] = value;
+    //   }
+    // });
+
+    currentRef.current[name] = value;
+    setCurrentObject(currentRef.current.toPlainObject());
   }
 
   useEffect(() => {

@@ -45,4 +45,33 @@ const resolveLinks = data => {
   }
 }
 
+export const makeTree2 = data => {
+  const root = data.find(object => object.root);
+  let refs = [];
+
+  const _map = value => {
+    if (typeof(value) === 'number') { //if in the table will be number unlike object
+      const object = {...data[value]};
+      object.objects = object.objects.map(_map);
+
+      const result = createObject(object);
+      refs.push(result);
+
+      return result;
+    } else {
+      const result = createObject(value);
+      refs.push(result);
+      return result;
+    }
+  }
+
+  if (root) {
+    root.objects = root.objects.map(_map);
+    const result = createObject(root);
+    refs.push(result);
+
+    return [null, result, refs];
+  }
+}
+
 export default resolveLinks;

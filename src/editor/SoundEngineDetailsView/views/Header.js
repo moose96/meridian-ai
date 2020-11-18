@@ -1,5 +1,6 @@
 import React from 'react';
-import DetailsGroup from '../DetailsGroup';
+
+import DetailsGroup from '../../DetailsGroup';
 
 function Header({ object }) {
   return (

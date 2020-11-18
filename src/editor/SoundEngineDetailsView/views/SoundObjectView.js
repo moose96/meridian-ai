@@ -1,25 +1,28 @@
 import React from 'react';
 
-import Input from '../../ui/Input';
-import DetailsGroup from '../DetailsGroup';
+import Slider from '../../../ui/Slider';
+import Number from '../../../ui/Number';
+import DetailsGroup from '../../DetailsGroup';
+import withHandlers from './withHandlers';
 
-function SoundObjectView({ object, onChange }) {
+function SoundObjectView({ object, onInputChange }) {
   const handlePositionChange = event => {
     const position = {
       ...object.position,
       [event.target.name]: event.target.value
     }
 
-    onChange('position', position);
-  }
-  const handleChange = event => {
-    onChange(event.target.name, event.target.value);
+    onInputChange({
+      target: {
+        name: 'position',
+        value: position
+      }
+    });
   }
 
   return (
     <DetailsGroup title="Sound Object details">
-      <Input
-        type="range"
+      <Slider
         name="x"
         label="Position x"
         min={-object.attenuation}
@@ -27,8 +30,7 @@ function SoundObjectView({ object, onChange }) {
         step={object.attenuation/10}
         value={object.position.x}
         onChange={handlePositionChange} />
-      <Input
-        type="range"
+      <Slider
         name="y"
         label="Position y"
         min={-object.attenuation}
@@ -36,8 +38,7 @@ function SoundObjectView({ object, onChange }) {
         step={object.attenuation/10}
         value={object.position.y}
         onChange={handlePositionChange} />
-      <Input
-        type="range"
+      <Slider
         name="z"
         label="Position z"
         min={-object.attenuation}
@@ -45,15 +46,14 @@ function SoundObjectView({ object, onChange }) {
         step={object.attenuation/10}
         value={object.position.z}
         onChange={handlePositionChange} />
-      <Input
-        type="number"
+      <Number
         name="attenuation"
         label="Attennuation"
         min={0}
         value={object.attenuation}
-        onChange={handleChange} />
+        onChange={onInputChange} />
     </DetailsGroup>
   );
 }
 
-export default SoundObjectView;
+export default withHandlers(SoundObjectView);

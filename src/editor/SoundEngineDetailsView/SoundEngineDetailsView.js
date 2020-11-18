@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import BasicView from './BasicView';
+import BasicView from './views/BasicView';
 
-import Header from './Header';
-import Randomization from './Randomization';
-import SoundView from './SoundView';
-import SequenceView from './SequenceView'
-import SoundObjectView from './SoundObjectView';
+import Header from './views/Header';
+import Randomization from './views/Randomization';
+import SoundView from './views/SoundView';
+import SequenceView from './views/SequenceView'
+import SoundObjectView from './views/SoundObjectView';
+import './SoundEngineDetailsView.scss'
 
 function SoundEngineDetailsView({ object, onChange }) {
   let dependentView;
@@ -20,7 +21,7 @@ function SoundEngineDetailsView({ object, onChange }) {
       break;
       case 'MultipleSoundObject':
       case 'SingleSoundObject':
-        dependentView = <SoundObjectView object={object} onChange={onChange} />
+      dependentView = <SoundObjectView object={object} onChange={onChange} />
       break;
       default:
         dependentView = null;

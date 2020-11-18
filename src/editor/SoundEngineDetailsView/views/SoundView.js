@@ -1,70 +1,63 @@
 import React from 'react';
 
-import Input from '../../ui/Input';
-import DetailsGroup from '../DetailsGroup';
+import Input from '../../../ui/Input';
+import Slider from '../../../ui/Slider';
+import Number from '../../../ui/Number';
+import DetailsGroup from '../../DetailsGroup';
+import withHandlers from './withHandlers';
 
-function SoundView({ object, onChange }) {
-  const handleChange = event => {
-    onChange(event.target.name, event.target.value);
-  }
-
+function SoundView({ object, onInputChange }) {
   return (
     <DetailsGroup title="Sound details">
-      <Input
-        type="range"
+      <Slider
         name="startPoint"
         label="Start point"
         min={0}
         max={object.endPoint ? object.endPoint : object.originalLength}
         step={1}
         value={object.startPoint}
-        onChange={handleChange} />
-      <Input
-        type="range"
+        onChange={onInputChange} />
+      <Slider
         name="endPoint"
         label="End point"
         min={0}
         max={object.originalLength}
         step={1}
         value={object.endPoint}
-        onChange={handleChange} />
-      <Input
-        type="range"
+        onChange={onInputChange} />
+      <Slider
         name="detune"
         label="Detune"
         min={-1200}
         max={1200}
         step={1}
         value={object.detune}
-        onChange={handleChange} />
-      <Input
-        type="number"
+        onChange={onInputChange} />
+      <Number
         name="delay"
         label="Delay"
         min={0}
         step={1}
         value={object.delay}
-        onChange={handleChange} />
-      <Input
-        type="number"
+        onChange={onInputChange} />
+      <Number
         name="attack"
         label="Attack"
         min={0}
         max={10}
         step={0.001}
         value={object.attack}
-        onChange={handleChange} />
-      <Input
-        type="number"
+        onChange={onInputChange} />
+      <Number
         name="release"
         label="Release"
         min={0}
         max={10}
         step={0.001}
         value={object.release}
-        onChange={handleChange} />
+        onChange={onInputChange} />
     </DetailsGroup>
   );
 }
 
-export default SoundView;
+export default withHandlers(SoundView);

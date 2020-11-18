@@ -1,6 +1,7 @@
 import React from 'react';
-import DetailsGroup from '../DetailsGroup';
-import Input from '../../ui/Input';
+
+import DetailsGroup from '../../DetailsGroup';
+import Input from '../../../ui/Input';
 
 function Randomization({ object }) {
   return(

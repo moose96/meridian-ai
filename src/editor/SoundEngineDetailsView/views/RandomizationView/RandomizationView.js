@@ -24,8 +24,8 @@ function RandomizationView({ object, onChange }) {
 
   return(
     <DetailsGroup title="Randomization">
-      {randomization.key &&
-        <Randomization randomization={randomization} />}
+      {/*randomization.key &&
+        <Randomization randomization={randomization} />*/}
       <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );

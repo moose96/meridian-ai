@@ -1,12 +1,9 @@
-import { v4 as uuidv4 } from 'uuid';
-
 import {
   Sound,
   RandomContainer,
   SequenceContainer,
   SingleSoundObject,
-  MultipleSoundObject,
-  SoundField
+  MultipleSoundObject
 } from '../sound-engine';
 
 const createObject = object => {
@@ -26,26 +23,26 @@ const createObject = object => {
   }
 }
 
-const resolveLinks = data => {
-  const root = data.find(object => object.root);
+// const resolveLinks = data => {
+//   const root = data.find(object => object.root);
 
-  const _map = value => {
-    if (typeof(value) === 'number') {
-      const object = {...data[value]};
-      object.objects = object.objects.map(_map);
-      return createObject(object);
-    } else {
-      return createObject(value);
-    }
-  }
+//   const _map = value => {
+//     if (typeof(value) === 'number') {
+//       const object = {...data[value]};
+//       object.objects = object.objects.map(_map);
+//       return createObject(object);
+//     } else {
+//       return createObject(value);
+//     }
+//   }
 
-  if (root) {
-    root.objects = root.objects.map(_map);
-    return createObject(root);
-  }
-}
+//   if (root) {
+//     root.objects = root.objects.map(_map);
+//     return createObject(root);
+//   }
+// }
 
-export const makeTree2 = data => {
+export const makeTree = data => {
   const root = data.find(object => object.root);
   let refs = [];
 
@@ -74,4 +71,4 @@ export const makeTree2 = data => {
   }
 }
 
-export default resolveLinks;
+// export default resolveLinks;

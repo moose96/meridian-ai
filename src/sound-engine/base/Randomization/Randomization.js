@@ -1,45 +1,36 @@
 class Randomization
 {
-  #randomizationInfo = {
-    key: null,
-    offset: 0
-  };
-  #randomizationEnabled = false;
+  randomization = [];
 
   constructor(randomizationInfo) {
     if (randomizationInfo) {
-      this.#randomizationInfo = randomizationInfo;
-      this.#randomizationEnabled = true;
+      this.randomization = randomizationInfo.map(info => ({...info, enabled: true}));
     }
   }
 
-  get randomization() {
-    return this.#randomizationInfo;
-  }
-
-  set randomization(randomization) {
-    this.#randomizationInfo = randomization;
-    this.#randomizationEnabled = true;
-  }
-
-  addRandomization(key, offset) {
-    this.#randomizationInfo.key = key;
-    this.#randomizationInfo.offset = offset;
-    this.#randomizationEnabled = true;
-  }
+  // addRandomization(key, offset) {
+  //   this.#randomizationInfo.key = key;
+  //   this.#randomizationInfo.offset = offset;
+  //   this.#randomizationEnabled = true;
+  // }
 
   randomize() {
-    if (this.#randomizationEnabled) {
-      const key = this.#randomizationInfo.key;
-      const top = this[key] + this.#randomizationInfo.offset;
-      const bottom = this[key] - this.#randomizationInfo.offset;
+    this.randomization.forEach(randomization => {
+      const { enabled, key, offset, value } = randomization;
 
-      this[key] = Math.random() * (top - bottom) + bottom;
-    }
+      if (enabled) {
+        const top = value + offset;
+        const bottom = value - offset;
+
+        this[key] = Math.random() * (top - bottom) + bottom;
+      }
+    });
   }
 
   toPlainObject() {
-    return this.randomization;
+    return {
+      randomization: this.randomization
+    };
   }
 }
 

@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 function withHandlers(WrappedComponent) {
   return class extends Component {
     handleChange = event => {
-      this.props.onChange(event.target.name, event.target.value);
+      this.props.onChange(event.target.name, event.target.value, event.target.id);
     }
 
     handleCheckedChange = event => {
-      this.props.onChange(event.target.name, event.target.checked);
+      this.props.onChange(event.target.name, event.target.checked, event.target.id);
     }
 
     render() {

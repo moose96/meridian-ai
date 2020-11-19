@@ -1,0 +1,12 @@
+.randomization {
+  display: flex;
+  align-items: center;
+
+  &>* {
+    margin-right: 1rem;
+  }
+
+  select, input {
+    height: 80%;
+  }
+}

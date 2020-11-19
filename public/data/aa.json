@@ -1,9 +1,10 @@
 [{
   "type": "random container",
-  "randomization": {
+  "randomization": [{
     "key": "pan",
-    "offset": 0.4
-  },
+    "offset": 0.4,
+    "value": 0.0
+  }],
   "objects": [
     {
       "type": "sound",

@@ -10,14 +10,17 @@ import './SoundEngineDetailsView.scss'
 
 function SoundEngineDetailsView({ object, onChange }) {
   let dependentView;
+  let additionalRandomizationKeys;
 
   if (object) {
     switch(object.type) {
       case 'Sound':
         dependentView = <SoundView object={object} onChange={onChange} />
+        additionalRandomizationKeys = SoundView.randomizationKeys;
       break;
       case 'SequenceContainer':
         dependentView = <SequenceView object={object} onChange={onChange} />
+        additionalRandomizationKeys = SequenceView.randomizationKeys;
       break;
       case 'MultipleSoundObject':
       case 'SingleSoundObject':
@@ -34,7 +37,7 @@ function SoundEngineDetailsView({ object, onChange }) {
       {object ? (
         <Fragment>
           <Header object={object} />
-          <RandomizationView object={object} onChange={onChange}/>
+          <RandomizationView object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
           <BasicView object={object} onChange={onChange} />
           {dependentView}
         </Fragment>

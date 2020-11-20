@@ -5,9 +5,9 @@ import Number from '../../../../ui/Number';
 import './Randomization.scss';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const keys = ['volume', 'pan', 'muted'];
+const KEYS = ['volume', 'pan', 'muted'];
 
-function Randomization({ id, randomization, onChange, onDelete }) {
+function Randomization({ id, randomization, keys, onChange, onDelete }) {
   const handleChange = event => {
     onChange(id, event);
   }
@@ -17,6 +17,14 @@ function Randomization({ id, randomization, onChange, onDelete }) {
     onDelete(id);
   }
 
+  let mergedKeys;
+
+  if (keys) {
+    mergedKeys = [...KEYS, ...keys];
+  } else {
+    mergedKeys = KEYS;
+  }
+
   return (
     <div className="randomization">
       {/* <Input
@@ -24,7 +32,7 @@ function Randomization({ id, randomization, onChange, onDelete }) {
         name="bypass"
         label="Enabled"/> */}
       <select name="key" value={randomization.key} onChange={handleChange}>
-        {keys.map((element, index) => (
+        {mergedKeys.map((element, index) => (
           <option
             key={`randomization-key-${index}`}
             value={element}>

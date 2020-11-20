@@ -25,4 +25,6 @@ function SequenceView({ object, onInputChange, onCheckedChange }) {
   );
 }
 
+SequenceView.randomizationKeys = ['delay', 'loop'];
+
 export default withHandlers(SequenceView);

@@ -3,13 +3,14 @@ import React from 'react';
 import DetailsGroup from '../../../DetailsGroup';
 import RandomizationList from './RandomizationList';
 
-function RandomizationView({ object, onChange }) {
+function RandomizationView({ object, onChange, keys }) {
   const randomization = object.randomization;
 
   const handleAdd = event => {
     event.preventDefault();
 
     const newRandomization = {
+      enabled: true,
       key: 'volume',
       offset: 0,
       value: 0
@@ -36,7 +37,7 @@ function RandomizationView({ object, onChange }) {
 
   return(
     <DetailsGroup title="Randomization">
-      <RandomizationList randomizations={randomization} onChange={handleChange} onDelete={handleDelete}/>
+      <RandomizationList randomizations={randomization} keys={keys} onChange={handleChange} onDelete={handleDelete}/>
       <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );

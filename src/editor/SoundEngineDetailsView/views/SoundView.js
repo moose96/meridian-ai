@@ -60,4 +60,6 @@ function SoundView({ object, onInputChange }) {
   );
 }
 
+SoundView.randomizationKeys = ['startPoint', 'endPoint', 'detune', 'delay', 'attack', 'release'];
+
 export default withHandlers(SoundView);

@@ -1,6 +1,7 @@
-const SET_CURRENT_VOICES = 'voices\SET_CURRENT_VOICES';
-const ADD_CURRENT_VOICES = 'voices\ADD_CURRENT_VOICES';
-const SUB_CURRENT_VOICES = 'voices\SUB_CURRENT_VOICES';
+const SET_CURRENT_VOICES = 'voices/SET_CURRENT_VOICES';
+const ADD_CURRENT_VOICES = 'voices/ADD_CURRENT_VOICES';
+const SUB_CURRENT_VOICES = 'voices/SUB_CURRENT_VOICES';
+const SET_GLOBAL_CURVE = 'global/SET_GLOBAL_CURVE';
 
 export function setCurrentVoices(voices) {
   return {
@@ -20,8 +21,19 @@ export function subCurrentVoices() {
   }
 }
 
+export function setGlobalCurve(curve, value) {
+  return {
+    type: SET_GLOBAL_CURVE,
+    payload: {
+      curve,
+      value
+    }
+  }
+}
+
 const INITIAL_STATE = {
-  voices: 0
+  voices: 0,
+  globalCurves: [0, 0, 0, 0]
 }
 
 export default function reducer (state = INITIAL_STATE, action) {
@@ -41,6 +53,15 @@ export default function reducer (state = INITIAL_STATE, action) {
         ...state,
         voices: state.voices - 1
       }
+    case SET_GLOBAL_CURVE: {
+      let curves = state.globalCurves;
+      curves[action.payload.curve] = action.payload.value;
+
+      return {
+        ...state,
+        globalCurves: [...curves]
+      }
+    }
     default:
       return {...state};
   }

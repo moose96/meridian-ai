@@ -416,6 +416,13 @@
     "key": "volume",
     "offset": 0.2,
     "value": 0.5
+  }],
+  "curves": [{
+    "id": 0,
+    "key": "delay",
+    "min": 1000,
+    "max": 25,
+    "type": "linear"
   }]
 }, {
   "type": "sequence container",

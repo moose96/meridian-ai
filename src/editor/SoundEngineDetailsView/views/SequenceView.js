@@ -12,7 +12,7 @@ function SequenceView({ object, onInputChange, onCheckedChange }) {
         name="delay"
         label="Delay"
         min={0}
-        step={1}
+        step={25}
         value={object.delay}
         onChange={onInputChange} />
       <Input

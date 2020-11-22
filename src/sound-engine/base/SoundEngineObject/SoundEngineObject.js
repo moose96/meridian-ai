@@ -23,6 +23,11 @@ class SoundEngineObject extends Randomization
   #panner;
   #muted;
   #effects;
+  #redux = {
+    store: null,
+    curves: []
+  };
+  curves = [];
 
   constructor(initObject) {
     super(initObject.randomization);
@@ -39,6 +44,7 @@ class SoundEngineObject extends Randomization
     this.#panner.connect(this.#gainNode);
 
     this.#muted = initObject.muted ? initObject.muted : false;
+    this.curves = initObject.curves ? initObject.curves : [];
     this.#effects = [];
   }
 
@@ -136,6 +142,27 @@ class SoundEngineObject extends Randomization
       volume: this.volume,
       pan: this.pan
     };
+  }
+
+  curvesListener = () => {
+    const linear = (min, max, x) => {
+      return ((max - min) / 100.0) * x + min;
+    }
+
+    const curves = this.#redux.store.getState().soundEngine.globalCurves;
+
+      if (this.#redux.curves !== curves) {
+        this.curves.forEach(curve => {
+          const { id, key, min, max} = curve;
+          this[key] = linear(min, max, curves[id]);
+        });
+        this.#redux.curves = curves;
+      }
+  }
+
+  setReduxStore(reduxStore) {
+    this.#redux.store = reduxStore;
+    this.#redux.store.subscribe(this.curvesListener);
   }
 }
 

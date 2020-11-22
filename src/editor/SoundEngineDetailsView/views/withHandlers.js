@@ -5,11 +5,11 @@ function withHandlers(WrappedComponent) {
     static randomizationKeys = WrappedComponent.randomizationKeys;
 
     handleChange = event => {
-      this.props.onChange(event.target.name, event.target.value, event.target.id);
+      this.props.onChange(event.target.name, event.target.value);
     }
 
     handleCheckedChange = event => {
-      this.props.onChange(event.target.name, event.target.checked, event.target.id);
+      this.props.onChange(event.target.name, event.target.checked);
     }
 
     render() {

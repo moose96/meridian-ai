@@ -6,6 +6,7 @@ import RandomizationView from './views/RandomizationView';
 import SoundView from './views/SoundView';
 import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
+import GlobalView from './views/GlobalView';
 import './SoundEngineDetailsView.scss'
 
 function SoundEngineDetailsView({ object, onChange }) {
@@ -40,6 +41,7 @@ function SoundEngineDetailsView({ object, onChange }) {
           <RandomizationView object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
           <BasicView object={object} onChange={onChange} />
           {dependentView}
+          <GlobalView />
         </Fragment>
       ) : (
         <p>Select object on the left side.</p>

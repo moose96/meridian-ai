@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import Pizzicato from 'pizzicato';
 
 import './App.scss';
 import { SoundField } from './sound-engine';
 import { makeTree } from './utility/makeTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
+import store from './redux/store';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
@@ -25,6 +27,8 @@ function App({ voices }) {
     .then(data => {
       const [_treeView, result, _refs] = makeTree(data);
       refs.current = _refs;
+
+      refs.current.forEach(ref => ref.setReduxStore(store));
       return result;
     })
     .then(data => {

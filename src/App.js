@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
-import Pizzicato from 'pizzicato';
 
 import './App.scss';
 import { SoundField } from './sound-engine';

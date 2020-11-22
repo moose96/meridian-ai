@@ -2,6 +2,8 @@ import Randomization from '../Randomization';
 import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
 
+// import createEffect from '../../effects/createEffect';
+
 /*
 This is a base class for sound engine objects.
 
@@ -22,7 +24,7 @@ class SoundEngineObject extends Randomization
   outputNode;
   #panner;
   #muted;
-  #effects;
+  effects = [];
   #redux = {
     store: null,
     curves: []
@@ -45,7 +47,10 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
-    this.#effects = [];
+
+    // if (initObject.effects) {
+    //   this.effects = initObject.effects;
+    // }
   }
 
   _connectSource(destination) {
@@ -98,30 +103,30 @@ class SoundEngineObject extends Randomization
 
   _connectEffects() {
     this._disconnectEffects();
-    this._connectSource(this.#effects[0]);
+    this._connectSource(this.effects[0]);
 
-    this.#effects.forEach((effect, index) => {
-      if (index >= this.#effects.length - 1) {
+    this.effects.forEach((effect, index) => {
+      if (index >= this.effects.length - 1) {
         effect.connect(this.outputNode);
       } else {
-        effect.connect(this.#effects[index + 1]);
+        effect.connect(this.effects[index + 1]);
       }
     });
   }
 
   _disconnectEffects() {
     this._disconnectSource();
-    this.#effects.forEach(effect => effect.disconnect());
+    this.effects.forEach(effect => effect.disconnect());
   }
 
   addEffect(effect) {
-    this.#effects.push(effect);
+    this.effects.push(effect);
     this._connectEffects();
   }
 
   removeEffect(effect) {
-    const index = this.#effects.indexOf(effect);
-    delete this.#effects[index];
+    const index = this.effects.indexOf(effect);
+    delete this.effects[index];
     this._connectEffects();
   }
 

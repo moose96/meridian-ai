@@ -102,14 +102,22 @@ class SoundEngineObject extends Randomization
   }
 
   _connectEffects() {
+    const _getNodeByType = effect => {
+      if (effect instanceof SoundEngineObject) {
+        return effect.source;
+      } else if (effect instanceof AudioNode) {
+        return effect;
+      }
+    };
+
     this._disconnectEffects();
-    this._connectSource(this.effects[0]);
+    this._connectSource(_getNodeByType(this.effects[0]));
 
     this.effects.forEach((effect, index) => {
       if (index >= this.effects.length - 1) {
         effect.connect(this.outputNode);
       } else {
-        effect.connect(this.effects[index + 1]);
+        effect.connect(_getNodeByType(this.effects[index + 1]));
       }
     });
   }

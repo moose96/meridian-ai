@@ -29,9 +29,9 @@ const createObject = object => {
       result = object
   }
 
-  // if (object.effects) {
-  //   object.effects.forEach(effect => result.addEffect(createEffect(effect)));
-  // }
+  if (object.effects) {
+    object.effects.forEach(effect => result.addEffect(createEffect(effect)));
+  }
 
   return result;
 }

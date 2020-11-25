@@ -4,6 +4,7 @@ class SoundField
 {
   constructor() {
     this.sounds = [];
+    this.effects = [Pizzicato.createConvolver()];
   }
 
   addSound(sound) {

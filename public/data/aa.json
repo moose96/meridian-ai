@@ -448,12 +448,5 @@
 }, {
   "type": "multiple sound object",
   "objects": [3, 4],
-  "effects": [{
-    "type": "equalizer",
-    "effects": [{
-      "type": "lowpass",
-      "frequency": 4000
-    }]
-  }],
   "root": true
 }]

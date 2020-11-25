@@ -47,10 +47,6 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
-
-    // if (initObject.effects) {
-    //   this.effects = initObject.effects;
-    // }
   }
 
   _connectSource(destination) {

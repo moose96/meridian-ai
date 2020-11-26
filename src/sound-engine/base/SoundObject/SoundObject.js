@@ -1,3 +1,5 @@
+import Pizzicato from 'pizzicato';
+
 import Position3D from './Position3D';
 import SoundEngineObject from '../SoundEngineObject';
 
@@ -5,6 +7,7 @@ class SoundObject extends SoundEngineObject
 {
   attenuation = 0;
   #position;
+  externalOutputs = [];
 
   constructor(object) {
     super(object);
@@ -17,6 +20,8 @@ class SoundObject extends SoundEngineObject
     } else {
       this.position = Position3D(0.0, 0.0, 0.0);
     }
+
+    this.externalOutputs.push(Pizzicato.createGain());
   }
 
   _connectSource(destination) {
@@ -25,6 +30,10 @@ class SoundObject extends SoundEngineObject
 
   _disconnectSource() {
     this.source.forEach(source => source.disconnect());
+  }
+
+  externalConnect(index, external) {
+    this.externalOutputs[index].connect(external);
   }
 
   _calculate() {

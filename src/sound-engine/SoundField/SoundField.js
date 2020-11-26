@@ -15,7 +15,7 @@ class SoundField
   addSound(sound) {
     sound.connect(Pizzicato.masterGainNode);
 
-    sound.createExternalOutputs(this.effects.size);
+    sound.createExternalOutputs(this.effects.length);
     this.effects.forEach((effect, index) => sound.externalConnect(index, effect));
 
     this.sounds.push(sound);

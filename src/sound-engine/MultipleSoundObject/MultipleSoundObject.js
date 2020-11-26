@@ -22,7 +22,7 @@ class MultipleSoundObject extends SoundObject
   externalConnect(index, external) {
     super.externalConnect(index, external);
 
-    this.externalOutputs[index].connect(external);
+    this.source.forEach(source => source.externalConnect(index, external));
   }
 
   setAttenuation(attenuation) {

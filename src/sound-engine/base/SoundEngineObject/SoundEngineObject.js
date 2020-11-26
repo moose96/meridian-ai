@@ -30,7 +30,6 @@ class SoundEngineObject extends Randomization
     curves: []
   };
   curves = [];
-  externalNodes = [];
 
   constructor(initObject) {
     super(initObject.randomization);
@@ -133,15 +132,6 @@ class SoundEngineObject extends Randomization
     const index = this.effects.indexOf(effect);
     delete this.effects[index];
     this._connectEffects();
-  }
-
-  addExternalOutput() {
-    this.externalNodes.push(Pizzicato.context.createGain());
-  }
-
-  connectExternalOutputToBus(externalIndex, busIndex) {
-    //check this hah
-    this.externalNodes[externalIndex].connect(this.#redux.store.externalBuses[busIndex]);
   }
 
   play() {

@@ -5,7 +5,7 @@ class SoundField
   constructor() {
     this.sounds = [];
     this.effects = [new Pizzicato.Effects.Convolver({
-      impulse: '/data/impulses/test-impulse-2.wav',
+      impulse: '/data/impulses/Large Long Echo Hall.wav',
       mix: 1.0
     }, () => console.log('impulse loaded'))];
 

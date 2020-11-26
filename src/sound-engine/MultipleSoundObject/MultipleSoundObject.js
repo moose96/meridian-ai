@@ -13,6 +13,18 @@ class MultipleSoundObject extends SoundObject
     });
   }
 
+  createExternalOutputs(size) {
+    super.createExternalOutputs(size);
+
+    this.source.forEach(source => source.createExternalOutputs(size));
+  }
+
+  externalConnect(index, external) {
+    super.externalConnect(index, external);
+
+    this.externalOutputs[index].connect(external);
+  }
+
   setAttenuation(attenuation) {
     this.source.forEach(object => object.setAttenuation(attenuation));
   }

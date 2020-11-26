@@ -20,8 +20,14 @@ class SoundObject extends SoundEngineObject
     } else {
       this.position = Position3D(0.0, 0.0, 0.0);
     }
+  }
 
-    this.externalOutputs.push(Pizzicato.createGain());
+  createExternalOutputs(size) {
+    for (let i = 0; i < size; i++) {
+      const gain = Pizzicato.createGain();
+      gain.gain.value = 0.0;
+      this.externalOutputs.push(gain);
+    }
   }
 
   _connectSource(destination) {

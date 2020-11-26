@@ -16,6 +16,8 @@ class SingleSoundObject extends SoundObject
     if (this.externalOutputs[0]) {
       this.externalOutputs[0].gain.value = lineAttenuation(this.position.y, 1.0, 0.0, this.attenuation);
     }
+
+    this.effects[0].filters[0].gain.value = Math.abs(this.position.y) * -12.0;
   }
 }
 

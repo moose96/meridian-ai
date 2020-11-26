@@ -2,6 +2,7 @@ import Pizzicato from 'pizzicato';
 
 import Position3D from './Position3D';
 import SoundEngineObject from '../SoundEngineObject';
+import Equalizer from '../../effects/Equalizer';
 
 class SoundObject extends SoundEngineObject
 {
@@ -14,6 +15,14 @@ class SoundObject extends SoundEngineObject
     this.source = object.objects;
 
     this._connectSource(this.outputNode);
+
+    const eq = new Equalizer({
+      effects: [{
+        type: "highshelf",
+        frequency: 10000
+      }]
+    });
+    this.addEffect(eq);
 
     if (object.position) {
       this.position = object.position;

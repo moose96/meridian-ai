@@ -16,7 +16,8 @@ function App({ voices }) {
   const [data, setData] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
 
-  const soundField = useRef(new SoundField());
+  // const soundField = useRef(new SoundField());
+  const soundField = useRef();
   const refs = useRef([]);
   const currentRef = useRef(null);
 
@@ -33,6 +34,7 @@ function App({ voices }) {
     .then(data => {
       data.setAttenuation(1.0);
       setData(data);
+      soundField.current = new SoundField();
       soundField.current.addSound(data);
       console.log(data);
       console.log(refs);
@@ -56,7 +58,7 @@ function App({ voices }) {
   useEffect(() => {
     if (playing) {
       soundField.current.start();
-    } else {
+    } else if(soundField.current) {
       soundField.current.stop();
     }
   }, [playing]);

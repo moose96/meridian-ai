@@ -26,6 +26,7 @@ class SoundObject extends SoundEngineObject
     for (let i = 0; i < size; i++) {
       const gain = Pizzicato.context.createGain();
       gain.gain.value = 0.0;
+      this.outputNode.connect(gain);
       this.externalOutputs.push(gain);
     }
   }

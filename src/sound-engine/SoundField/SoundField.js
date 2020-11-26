@@ -5,7 +5,7 @@ class SoundField
   constructor() {
     this.sounds = [];
     this.effects = [new Pizzicato.Effects.Convolver({
-      impulse: '/data/impulses/test-impulse.wav',
+      impulse: '/data/impulses/test-impulse-2.wav',
       mix: 1.0
     }, () => console.log('impulse loaded'))];
 
@@ -16,7 +16,7 @@ class SoundField
     sound.connect(Pizzicato.masterGainNode);
 
     sound.createExternalOutputs(this.effects.length);
-    this.effects.forEach((effect, index) => sound.externalConnect(index, effect));
+    this.effects.forEach((effect, index) => sound.externalConnect(index, effect.inputNode));
 
     this.sounds.push(sound);
   }

@@ -81,7 +81,7 @@ class SoundEngineObject extends Randomization
 
   set muted(muted) {
     if (muted) {
-      this.#panner.disconnect();
+      this.#panner.disconnect(this.#gainNode);
       this.#muted = true;
     } else {
       this.#panner.connect(this.#gainNode);

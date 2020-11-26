@@ -1,7 +1,7 @@
 import SoundObject from '../base/SoundObject';
 
-const lineAttenuation = (x, attenuation) => {
-  return (-1.0 /*max volume*/ / attenuation) * x + 1.0;
+const lineAttenuation = (x, min, max, attenuation) => { //move this and from sound engine object to utility
+  return ((min - max) / attenuation) * Math.abs(x) + max;
 }
 
 class SingleSoundObject extends SoundObject
@@ -11,10 +11,10 @@ class SingleSoundObject extends SoundObject
 
   _calculate() {
     this.pan = this.position.x / this.attenuation;
-    // this.volume = lineAttenuation(this.position.y, this.attenuation);
+    this.volume = lineAttenuation(this.position.y, 0.0, 1.0, this.attenuation);
 
     if (this.externalOutputs[0]) {
-      this.externalOutputs[0].gain.value = this.position.y / this.attenuation;
+      this.externalOutputs[0].gain.value = lineAttenuation(this.position.y, 1.0, 0.0, this.attenuation);
     }
   }
 }

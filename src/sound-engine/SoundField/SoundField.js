@@ -4,7 +4,10 @@ class SoundField
 {
   constructor() {
     this.sounds = [];
-    this.effects = [Pizzicato.createConvolver()];
+    this.effects = [new Pizzicato.Effects.Convolver({
+      impulse: '/data/impulses/test-impulse.wav',
+      mix: 1.0
+    }, () => console.log('impulse loaded'))];
 
     this.effects[0].connect(Pizzicato.masterGainNode);
   }

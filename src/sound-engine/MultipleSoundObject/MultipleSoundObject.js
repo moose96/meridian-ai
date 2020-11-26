@@ -26,6 +26,7 @@ class MultipleSoundObject extends SoundObject
   }
 
   setAttenuation(attenuation) {
+    super.setAttenuation(attenuation);
     this.source.forEach(object => object.setAttenuation(attenuation));
   }
 

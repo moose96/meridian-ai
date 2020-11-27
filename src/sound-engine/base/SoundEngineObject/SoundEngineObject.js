@@ -22,7 +22,7 @@ class SoundEngineObject extends Randomization
   source;
   #gainNode;
   outputNode;
-  #panner;
+  #panNode;
   #muted;
   effects = [];
   #redux = {
@@ -38,12 +38,12 @@ class SoundEngineObject extends Randomization
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 
-    this.#panner = new Pizzicato.Effects.StereoPanner({
+    this.#panNode = new Pizzicato.Effects.StereoPanner({
       pan: initObject.pan ? initObject.pan : 0.0
     });
 
-    this.outputNode = this.#panner;
-    this.#panner.connect(this.#gainNode);
+    this.outputNode = this.#panNode;
+    this.#panNode.connect(this.#gainNode);
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
@@ -65,6 +65,10 @@ class SoundEngineObject extends Randomization
     this.#gainNode.disconnect();
   }
 
+  getRawNode(nodeName) {
+    return this[`${nodeName}Node`];
+  }
+
   get volume() {
     return this.#gainNode.gain.value;
   }
@@ -81,20 +85,20 @@ class SoundEngineObject extends Randomization
 
   set muted(muted) {
     if (muted) {
-      this.#panner.disconnect(this.#gainNode);
+      this.#panNode.disconnect(this.#gainNode);
       this.#muted = true;
     } else {
-      this.#panner.connect(this.#gainNode);
+      this.#panNode.connect(this.#gainNode);
       this.#muted = false;
     }
   }
 
   get pan() {
-    return this.#panner.pan;
+    return this.#panNode.pan;
   }
 
   set pan(pan) {
-    this.#panner.pan = parseFloat(pan);
+    this.#panNode.pan = parseFloat(pan);
   }
 
   _connectEffects() {

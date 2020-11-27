@@ -66,7 +66,7 @@ class SoundEngineObject extends Randomization
   }
 
   getRawNode(nodeName) {
-    return this[`${nodeName}Node`];
+    return this[`#${nodeName}Node`];
   }
 
   get volume() {

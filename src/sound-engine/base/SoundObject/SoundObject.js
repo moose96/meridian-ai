@@ -1,10 +1,14 @@
+import Pizzicato from 'pizzicato';
+
 import Position3D from './Position3D';
 import SoundEngineObject from '../SoundEngineObject';
+import Equalizer from '../../effects/Equalizer';
 
 class SoundObject extends SoundEngineObject
 {
   attenuation = 0;
   #position;
+  externalOutputs = [];
 
   constructor(object) {
     super(object);
@@ -12,10 +16,27 @@ class SoundObject extends SoundEngineObject
 
     this._connectSource(this.outputNode);
 
+    const eq = new Equalizer({
+      effects: [{
+        type: "highshelf",
+        frequency: 10000
+      }]
+    });
+    this.addEffect(eq);
+
     if (object.position) {
       this.position = object.position;
     } else {
       this.position = Position3D(0.0, 0.0, 0.0);
+    }
+  }
+
+  createExternalOutputs(size) {
+    for (let i = 0; i < size; i++) {
+      const gain = Pizzicato.context.createGain();
+      gain.gain.value = 0.0;
+      this.outputNode.connect(gain);
+      this.externalOutputs.push(gain);
     }
   }
 
@@ -25,6 +46,10 @@ class SoundObject extends SoundEngineObject
 
   _disconnectSource() {
     this.source.forEach(source => source.disconnect());
+  }
+
+  externalConnect(index, external) {
+    this.externalOutputs[index].connect(external);
   }
 
   _calculate() {

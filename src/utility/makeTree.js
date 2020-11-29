@@ -5,22 +5,35 @@ import {
   SingleSoundObject,
   MultipleSoundObject
 } from '../sound-engine';
+import createEffect from '../sound-engine/effects';
 
 const createObject = object => {
+  let result;
   switch(object.type) {
     case "random container":
-      return new RandomContainer(object);
+      result = new RandomContainer(object);
+    break;
     case "sequence container":
-      return new SequenceContainer(object);
+      result = new SequenceContainer(object);
+    break;
     case "single sound object":
-      return new SingleSoundObject(object);
+      result = new SingleSoundObject(object);
+    break;
     case "multiple sound object":
-      return new MultipleSoundObject(object);
+      result = new MultipleSoundObject(object);
+    break;
     case "sound":
-      return new Sound(object);
+      result = new Sound(object);
+    break;
     default:
-      return object
+      result = object
   }
+
+  if (object.effects) {
+    object.effects.forEach(effect => result.addEffect(createEffect(effect)));
+  }
+
+  return result;
 }
 
 export const makeTree = data => {

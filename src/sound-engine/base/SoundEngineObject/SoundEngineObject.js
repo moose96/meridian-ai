@@ -2,6 +2,8 @@ import Randomization from '../Randomization';
 import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
 
+// import createEffect from '../../effects/createEffect';
+
 /*
 This is a base class for sound engine objects.
 
@@ -22,7 +24,7 @@ class SoundEngineObject extends Randomization
   outputNode;
   #panner;
   #muted;
-  #effects;
+  effects = [];
   #redux = {
     store: null,
     curves: []
@@ -45,7 +47,6 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
-    this.#effects = [];
   }
 
   _connectSource(destination) {
@@ -80,7 +81,7 @@ class SoundEngineObject extends Randomization
 
   set muted(muted) {
     if (muted) {
-      this.#panner.disconnect();
+      this.#panner.disconnect(this.#gainNode);
       this.#muted = true;
     } else {
       this.#panner.connect(this.#gainNode);
@@ -97,31 +98,39 @@ class SoundEngineObject extends Randomization
   }
 
   _connectEffects() {
-    this._disconnectEffects();
-    this._connectSource(this.#effects[0]);
+    const _getNodeByType = effect => {
+      if (effect instanceof SoundEngineObject) {
+        return effect.source;
+      } else if (effect instanceof AudioNode) {
+        return effect;
+      }
+    };
 
-    this.#effects.forEach((effect, index) => {
-      if (index >= this.#effects.length - 1) {
+    this._disconnectEffects();
+    this._connectSource(_getNodeByType(this.effects[0]));
+
+    this.effects.forEach((effect, index) => {
+      if (index >= this.effects.length - 1) {
         effect.connect(this.outputNode);
       } else {
-        effect.connect(this.#effects[index + 1]);
+        effect.connect(_getNodeByType(this.effects[index + 1]));
       }
     });
   }
 
   _disconnectEffects() {
     this._disconnectSource();
-    this.#effects.forEach(effect => effect.disconnect());
+    this.effects.forEach(effect => effect.disconnect());
   }
 
   addEffect(effect) {
-    this.#effects.push(effect);
+    this.effects.push(effect);
     this._connectEffects();
   }
 
   removeEffect(effect) {
-    const index = this.#effects.indexOf(effect);
-    delete this.#effects[index];
+    const index = this.effects.indexOf(effect);
+    delete this.effects[index];
     this._connectEffects();
   }
 

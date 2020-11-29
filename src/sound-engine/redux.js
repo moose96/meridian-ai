@@ -2,6 +2,7 @@ const SET_CURRENT_VOICES = 'voices/SET_CURRENT_VOICES';
 const ADD_CURRENT_VOICES = 'voices/ADD_CURRENT_VOICES';
 const SUB_CURRENT_VOICES = 'voices/SUB_CURRENT_VOICES';
 const SET_GLOBAL_CURVE = 'global/SET_GLOBAL_CURVE';
+const ADD_EXTERNAL_BUS = 'buses/ADD_EXTERNAL_BUS';
 
 export function setCurrentVoices(voices) {
   return {
@@ -31,9 +32,17 @@ export function setGlobalCurve(curve, value) {
   }
 }
 
+export function addExternalBus(bus) {
+  return {
+    type: ADD_EXTERNAL_BUS,
+    payload: bus
+  }
+}
+
 const INITIAL_STATE = {
   voices: 0,
-  globalCurves: [0, 0, 0, 0]
+  globalCurves: [0, 0, 0, 0],
+  externalBuses: []
 }
 
 export default function reducer (state = INITIAL_STATE, action) {
@@ -62,6 +71,12 @@ export default function reducer (state = INITIAL_STATE, action) {
         globalCurves: [...curves]
       }
     }
+
+    case ADD_EXTERNAL_BUS:
+      return {
+        ...state,
+        externalBuses: [...state.externalBuses, action.payload]
+      }
     default:
       return {...state};
   }

@@ -1,6 +1,9 @@
-import Randomization from '../Randomization';
 import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
+
+import RandomParameterGenerator from '../RandomParameterGenerator';
+import Randomization from '../Randomization';
+
 
 // import createEffect from '../../effects/createEffect';
 
@@ -30,6 +33,7 @@ class SoundEngineObject extends Randomization
     curves: []
   };
   curves = [];
+  #rpg;
 
   constructor(initObject) {
     super(initObject.randomization);
@@ -47,6 +51,7 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
+    this.#rpg = initObject.rpg ? initObject.rpg : new RandomParameterGenerator({ time: 2000 });
   }
 
   _connectSource(destination) {

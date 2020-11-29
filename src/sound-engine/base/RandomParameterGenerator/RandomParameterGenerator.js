@@ -22,17 +22,13 @@ class RandomParameterGenerator extends Randomization
         const bottom = value - offset;
 
         const field = this.getRawNode(key);
-        field.setValueAtTime(Math.random() * (top - bottom) + bottom, Pizzicato.context.currentTime + this.#time);
+        field.linearRampToValueAtTime(Math.random() * (top - bottom) + bottom, Pizzicato.context.currentTime + this.#time * 1000);
       }
     })
   }
 
-  intervalCallback() {
-    this.randomize();
-  }
-
   start() {
-    this.#intervalID = setInterval(this.intervalCallback, this.#intervalID);
+    this.#intervalID = setInterval(this.randomize, this.#intervalID);
   }
 
   stop() {

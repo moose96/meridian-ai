@@ -50,7 +50,7 @@ function Filter({ type, frequency, gain, Q }) {
         min={-12}
         max={12}
         step={0.1}
-        disabled={currentType.disabled === 'gain'} />
+        disabled={currentType?.disabled === 'gain'} />
       <Slider
         label="Q"
         name="Q"
@@ -58,7 +58,7 @@ function Filter({ type, frequency, gain, Q }) {
         min={0.5}
         max={10.0}
         step={0.1}
-        disabled={currentType.disabled === 'Q'} />
+        disabled={currentType?.disabled === 'Q'} />
     </div>
   )
 }

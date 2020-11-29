@@ -1,14 +1,15 @@
 import React from 'react';
 
+import DetailsGroup from '../../../../DetailsGroup';
 import Filter from './Filter';
 
 function EqualizerView({ data }) {
   const filters = data?.filters;
 
   return (
-    <div className="equalizer-view">
+    <DetailsGroup title="Equalizer">
       {filters.map(filter => <Filter {...filter} />)}
-    </div>
+    </DetailsGroup>
   );
 }
 

@@ -150,7 +150,7 @@ class SoundEngineObject extends Randomization
       name: this.name,
       volume: this.volume,
       pan: this.pan,
-      effects: this.effects
+      effects: this.effects.map(effect => effect.toPlainObject())
     };
   }
 

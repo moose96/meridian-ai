@@ -31,11 +31,26 @@ class Equalizer extends SoundEngineObject
     this._connectEffects();
   }
 
+  toPlainObject() {
+    return {
+      filters: this.filters.map(filter => Equalizer.plainFilter(filter))
+    }
+  }
+
   static createFilter(type) {
     if (typeof(type) === 'string') {
       return new BiquadFilterNode(Pizzicato.context, {type});
     } else if (typeof(type) === 'object') {
       return new BiquadFilterNode(Pizzicato.context, type);
+    }
+  }
+
+  static plainFilter({ type, frequency, gain, Q }) {
+    return {
+      type,
+      frequency: frequency.value,
+      gain: gain.value,
+      Q: Q.value
     }
   }
 }

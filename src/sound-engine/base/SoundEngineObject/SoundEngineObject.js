@@ -140,7 +140,8 @@ class SoundEngineObject extends Randomization
       type: this.type,
       name: this.name,
       volume: this.volume,
-      pan: this.pan
+      pan: this.pan,
+      effects: this.#effects
     };
   }
 

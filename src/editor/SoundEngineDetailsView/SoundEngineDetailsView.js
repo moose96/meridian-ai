@@ -7,6 +7,7 @@ import SoundView from './views/SoundView';
 import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
 import GlobalView from './views/GlobalView';
+import EqualizerView from './views/effects/EqualizerView';
 import './SoundEngineDetailsView.scss'
 
 function SoundEngineDetailsView({ object, onChange }) {
@@ -41,6 +42,7 @@ function SoundEngineDetailsView({ object, onChange }) {
           <RandomizationView object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
           <BasicView object={object} onChange={onChange} />
           {dependentView}
+          {object?.effects?.length > 0 && <EqualizerView data={object.effects[0]} />}
           <GlobalView />
         </Fragment>
       ) : (

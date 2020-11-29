@@ -3,11 +3,13 @@ import Pizzicato from 'pizzicato';
 import SoundEngineObject from '../../base/SoundEngineObject';
 
 const generateFrequencies = (size) => {
-  let frequencies = new Float32Array();
+  let frequencies = []
 
   for (let i = 0; i < size; i++) {
     frequencies.push(31.25 * 2 ** (i / 10));
   }
+
+  return Float32Array.from(frequencies);
 }
 
 class Equalizer extends SoundEngineObject
@@ -23,7 +25,7 @@ class Equalizer extends SoundEngineObject
       this.addEffect(Equalizer.createFilter(effect));
     });
 
-    this.#frequencies = generateFrequencies(100);
+    this.#frequencies = generateFrequencies(95);
   }
 
   _connectSource(destination) {
@@ -47,8 +49,9 @@ class Equalizer extends SoundEngineObject
     const magnitudes = [];
 
     this.filters.forEach(filter => {
-      const magnitude = new Float32Array(this.#frequencies.length);
-      filter.getFrequencyResponse(this.#frequencies, magnitude);
+      let magnitude = new Float32Array(this.#frequencies.length);
+      const phase = new Float32Array(this.#frequencies.length);
+      filter.getFrequencyResponse(this.#frequencies, magnitude, phase);
       magnitudes.push(magnitude);
     });
 
@@ -59,6 +62,7 @@ class Equalizer extends SoundEngineObject
   toPlainObject() {
     return {
       filters: this.filters.map(filter => Equalizer.plainFilter(filter)),
+      frequencies: this.#frequencies,
       frequencyResponse: this.getFrequencyResponse()
     }
   }

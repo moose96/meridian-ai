@@ -7,6 +7,7 @@ const generateFrequencies = (size) => {
 
   for (let i = 0; i < size; i++) {
     frequencies.push(31.25 * 2 ** (i / 10));
+    // frequencies.push(31.25 * i);
   }
 
   return Float32Array.from(frequencies);
@@ -25,7 +26,7 @@ class Equalizer extends SoundEngineObject
       this.addEffect(Equalizer.createFilter(effect));
     });
 
-    this.#frequencies = generateFrequencies(95);
+    this.#frequencies = generateFrequencies(100);
   }
 
   _connectSource(destination) {

@@ -20,11 +20,11 @@ function EqualizerView({ data }) {
 
   return (
     <DetailsGroup title="Equalizer">
-      <XYPlot width={800} height={200} yDomain={[0.5, 1.5]}>
+      <XYPlot width={800} height={200} yDomain={[0.5, 1.5]} xType="log">
         {/* <VerticalGridLines /> */}
         <HorizontalGridLines />
         <LineSeries color="blue" data={chartData}/>
-        <XAxis tickValues={[62.5, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
+        <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
       {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} {...filter} />)}

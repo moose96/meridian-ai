@@ -27,7 +27,7 @@ function EqualizerView({ data }) {
         <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
-      {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} {...filter} />)}
+      {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} />)}
     </DetailsGroup>
   );
 }

@@ -18,6 +18,13 @@ function EqualizerView({ data }) {
     }
   }
 
+  const handleChange = (id, name, value) => {
+    const newFilter = {
+      ...data?.filters[id],
+      [name]: value
+    };
+  }
+
   return (
     <DetailsGroup title="Equalizer">
       <XYPlot width={800} height={200} yDomain={[0.5, 1.5]} xType="log">
@@ -27,7 +34,7 @@ function EqualizerView({ data }) {
         <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
-      {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} />)}
+      {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />)}
     </DetailsGroup>
   );
 }

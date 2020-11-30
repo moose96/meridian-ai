@@ -50,9 +50,34 @@ function App({ voices }) {
     setCurrentObject(currentRef.current.toPlainObject());
   }
 
+  const setDeepValue = (object, names, value) => {
+    const key = names.shift();
+
+    if (key) {
+      setDeepValue(object[key], names, value);
+    } else {
+      object[key] = value;
+    }
+  }
+
   const handleSEDetailsChange = (name, value) => {
     currentRef.current[name] = value;
+    //setDeepValue(currentRef.current, names, value);
     setCurrentObject(currentRef.current.toPlainObject());
+
+    /*
+    all functions
+    current.volume = value
+    current.pan = value
+    current.muted = value
+    ...
+    current.position.x = value
+    ...
+    current.addRandomization() | current.randomization = Array()
+    current.randomization[id].offset = value
+    current.effect[effectID].filters[0].frequency = value
+    current.addEffect()
+    */
   }
 
   useEffect(() => {

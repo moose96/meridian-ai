@@ -5,7 +5,7 @@ import DetailsGroup from '../../../../DetailsGroup';
 import Filter from './Filter';
 import 'react-vis/dist/style.css';
 
-const EqualizerView = React.forwardRef(({ data }, ref) => {
+const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
   const filters = data?.filters;
   let chartData = [];
 
@@ -22,6 +22,8 @@ const EqualizerView = React.forwardRef(({ data }, ref) => {
     if (ref.current?.filters?.length > 0) {
       ref.current.filters[id][name].value = value;
     }
+
+    onChange();
   }
 
   return (

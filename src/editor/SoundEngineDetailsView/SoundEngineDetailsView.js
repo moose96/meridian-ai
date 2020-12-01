@@ -42,7 +42,7 @@ const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
           <RandomizationView ref={ref} object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
           <BasicView ref={ref} object={object} onChange={onChange} />
           {dependentView}
-          <EffectView ref={ref} object={object} id={0} />
+          <EffectView ref={ref} object={object} id={0} onChange={onChange} />
           <GlobalView />
         </Fragment>
       ) : (

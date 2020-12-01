@@ -2,11 +2,15 @@ import React, { useRef, Fragment } from 'react';
 
 import EqualizerView from '../EqualizerView';
 
-const EffectView = React.forwardRef(({ object, id }, ref) => {
+const EffectView = React.forwardRef(({ object, id, onChange }, ref) => {
   const effects = object?.effects;
   let effectView = null;
 
   const effectRef = useRef();
+
+  const handleChange = () => {
+    onChange(ref.current.toPlainObject());
+  }
 
   if (effects?.length > 0) {
     effectRef.current = ref.current.effects[id];
@@ -15,7 +19,7 @@ const EffectView = React.forwardRef(({ object, id }, ref) => {
 
     switch (effects[id].type) {
       case 'Equalizer':
-        effectView = <EqualizerView ref={effectRef} data={effects[id]} />
+        effectView = <EqualizerView ref={effectRef} data={effects[id]} onChange={handleChange} />
       break;
       default:
         effectView = null;

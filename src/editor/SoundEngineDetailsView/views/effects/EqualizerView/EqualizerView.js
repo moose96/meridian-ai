@@ -27,6 +27,13 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
     onChange();
   }
 
+  const handleAdd = event => {
+    event.preventDefault();
+
+    ref.current.createNewFilter();
+    onChange();
+  }
+
   return (
     <DetailsGroup title="Equalizer">
       <XYPlot width={800} height={200} yDomain={[0.5, 1.5]} xType="log">
@@ -37,7 +44,7 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
       {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />)}
-      <a href="#">Add new</a>
+      <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );
 });

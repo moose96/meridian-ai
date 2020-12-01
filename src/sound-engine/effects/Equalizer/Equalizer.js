@@ -16,6 +16,7 @@ const generateFrequencies = (size) => {
 class Equalizer extends SoundEngineObject
 {
   #frequencies;
+  type = 'Equalizer';
 
   constructor(initObject) {
     super(initObject);
@@ -62,6 +63,7 @@ class Equalizer extends SoundEngineObject
 
   toPlainObject() {
     return {
+      type: this.type,
       filters: this.filters.map(filter => Equalizer.plainFilter(filter)),
       frequencies: this.#frequencies,
       frequencyResponse: this.getFrequencyResponse()

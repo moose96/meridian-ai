@@ -5,7 +5,7 @@ import DetailsGroup from '../../../../DetailsGroup';
 import Filter from './Filter';
 import 'react-vis/dist/style.css';
 
-function EqualizerView({ data }) {
+const EqualizerView = React.forwardRef(({ data }, ref) => {
   const filters = data?.filters;
   let chartData = [];
 
@@ -19,16 +19,15 @@ function EqualizerView({ data }) {
   }
 
   const handleChange = (id, name, value) => {
-    const newFilter = {
-      ...data?.filters[id],
-      [name]: value
-    };
+    if (ref.current?.filters?.length > 0) {
+      ref.current.filters[id][name].value = value;
+    }
   }
 
   return (
     <DetailsGroup title="Equalizer">
       <XYPlot width={800} height={200} yDomain={[0.5, 1.5]} xType="log">
-        {/* <VerticalGridLines /> */}
+        <VerticalGridLines />
         <HorizontalGridLines />
         <LineSeries color="blue" data={chartData}/>
         <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
@@ -37,6 +36,6 @@ function EqualizerView({ data }) {
       {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />)}
     </DetailsGroup>
   );
-}
+});
 
 export default EqualizerView;

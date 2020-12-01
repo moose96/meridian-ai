@@ -7,26 +7,26 @@ import SoundView from './views/SoundView';
 import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
 import GlobalView from './views/GlobalView';
-import EqualizerView from './views/effects/EqualizerView';
+import EffectView from './views/effects/EffectView';
 import './SoundEngineDetailsView.scss'
 
-function SoundEngineDetailsView({ object, onChange }) {
+const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
   let dependentView;
   let additionalRandomizationKeys;
 
   if (object) {
     switch(object.type) {
       case 'Sound':
-        dependentView = <SoundView object={object} onChange={onChange} />
+        dependentView = <SoundView ref={ref} object={object} onChange={onChange} />
         additionalRandomizationKeys = SoundView.randomizationKeys;
       break;
       case 'SequenceContainer':
-        dependentView = <SequenceView object={object} onChange={onChange} />
+        dependentView = <SequenceView ref={ref} object={object} onChange={onChange} />
         additionalRandomizationKeys = SequenceView.randomizationKeys;
       break;
       case 'MultipleSoundObject':
       case 'SingleSoundObject':
-      dependentView = <SoundObjectView object={object} onChange={onChange} />
+      dependentView = <SoundObjectView ref={ref} object={object} onChange={onChange} />
       break;
       default:
         dependentView = null;
@@ -39,10 +39,10 @@ function SoundEngineDetailsView({ object, onChange }) {
       {object ? (
         <Fragment>
           <Header object={object} />
-          <RandomizationView object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
-          <BasicView object={object} onChange={onChange} />
+          <RandomizationView ref={ref} object={object} onChange={onChange} keys={additionalRandomizationKeys}/>
+          <BasicView ref={ref} object={object} onChange={onChange} />
           {dependentView}
-          {object?.effects?.length > 0 && <EqualizerView data={object.effects[0]} />}
+          <EffectView ref={ref} object={object} id={0} />
           <GlobalView />
         </Fragment>
       ) : (
@@ -50,6 +50,6 @@ function SoundEngineDetailsView({ object, onChange }) {
       )}
     </div>
   );
-}
+});
 
 export default SoundEngineDetailsView;

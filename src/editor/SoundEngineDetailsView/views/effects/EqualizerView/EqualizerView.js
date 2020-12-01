@@ -3,6 +3,7 @@ import { XYPlot, XAxis, YAxis, VerticalGridLines, HorizontalGridLines, LineSerie
 
 import DetailsGroup from '../../../../DetailsGroup';
 import Filter from './Filter';
+import RawFilter from '../../../../../sound-engine/effects/Equalizer/Filter';
 import 'react-vis/dist/style.css';
 
 const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
@@ -20,7 +21,7 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
 
   const handleChange = (id, name, value) => {
     if (ref.current?.filters?.length > 0) {
-      ref.current.filters[id][name].value = value;
+      RawFilter.set(ref.current.filters[id], name, value);
     }
 
     onChange();
@@ -36,6 +37,7 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
       {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />)}
+      <a href="#">Add new</a>
     </DetailsGroup>
   );
 });

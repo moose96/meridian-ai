@@ -1,38 +1,45 @@
-import Pizzicato from 'pizzicato';
-
-class Filter extends BiquadFilterNode {
-  constructor(init) {
-    if (typeof(init) === 'string') {
-      super(Pizzicato.context, { type: init });
-    } else if (typeof(init) === 'object') {
-      super(Pizzicato.context, init);
-    } else {
-      throw Error("can't create Filter class");
+class Filter {
+  static get(filter, key) {
+    switch(key) {
+      case 'type':
+        return filter.type;
+      case 'gain':
+        return filter.gain.value;
+      case 'frequency':
+        return filter.frequency.value;
+      case 'Q':
+        return filter.Q.value;
+      default:
+        return null;
     }
   }
 
-  get gain() {
-    return this.gain.value;
+  static set(filter, key, value) {
+    switch(key) {
+      case 'type':
+        filter.type = value;
+      break;
+      case 'gain':
+        filter.gain.value = value;
+      break;
+      case 'frequency':
+        filter.frequency.value = value;
+      break;
+      case 'Q':
+        filter.Q.value = value;
+      break;
+      default:
+        return null;
+    }
   }
 
-  set gain(gain) {
-    this.gain.value = gain;
-  }
-
-  get frequency() {
-    return this.frequency.value;
-  }
-
-  set frequency(frequency) {
-    this.frequency.value = frequency;
-  }
-
-  get Q() {
-    return this.Q.value;
-  }
-
-  set Q(Q) {
-    this.Q.value = Q;
+  static toPlainObject(object) {
+    return {
+      type: object.type,
+      gain: object.gain.value,
+      frequency: object.frequency.value,
+      Q: object.Q.value
+    }
   }
 }
 

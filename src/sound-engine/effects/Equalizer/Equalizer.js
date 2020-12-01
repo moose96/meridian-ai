@@ -1,6 +1,7 @@
 import Pizzicato from 'pizzicato';
 
 import SoundEngineObject from '../../base/SoundEngineObject';
+import Filter from './Filter';
 
 const generateFrequencies = (size) => {
   let frequencies = []
@@ -47,6 +48,10 @@ class Equalizer extends SoundEngineObject
     this._connectEffects();
   }
 
+  createNewFilter(type = 'highpass') {
+    this.filters.push(Equalizer.createFilter(type));
+  }
+
   getFrequencyResponse() {
     const magnitudes = [];
 
@@ -62,29 +67,29 @@ class Equalizer extends SoundEngineObject
   }
 
   toPlainObject() {
+    console.log(this.filters);
     return {
       type: this.type,
-      filters: this.filters.map(filter => Equalizer.plainFilter(filter)),
+      filters: this.filters.map(filter => Filter.toPlainObject(filter)),
       frequencies: this.#frequencies,
       frequencyResponse: this.getFrequencyResponse()
     }
   }
 
-  static createFilter(type) {
-    if (typeof(type) === 'string') {
-      return new BiquadFilterNode(Pizzicato.context, {type});
-    } else if (typeof(type) === 'object') {
-      return new BiquadFilterNode(Pizzicato.context, type);
-    }
-  }
+  static createFilter(init) {
+    let initObject = {};
 
-  static plainFilter({ type, frequency, gain, Q }) {
-    return {
-      type,
-      frequency: frequency.value,
-      gain: gain.value,
-      Q: Q.value
+    if (typeof(init) === 'string') {
+      initObject = { type: init };
+    } else if (typeof(init) === 'object') {
+      initObject = init;
+    } else {
+      initObject = {
+        type: 'highpass'
+      }
     }
+
+    return new BiquadFilterNode(Pizzicato.context, initObject);
   }
 }
 

@@ -48,8 +48,8 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
         {filters.map((filter, index) => (
           <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />
         ))}
+        <a href="#" onClick={handleAdd}>Add new</a>
       </div>
-      <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );
 });

@@ -15,8 +15,6 @@ const EffectView = React.forwardRef(({ object, id, onChange }, ref) => {
   if (effects?.length > 0) {
     effectRef.current = ref.current.effects[id];
 
-    console.log(effects[id]);
-
     switch (effects[id].type) {
       case 'Equalizer':
         effectView = <EqualizerView ref={effectRef} data={effects[id]} onChange={handleChange} />

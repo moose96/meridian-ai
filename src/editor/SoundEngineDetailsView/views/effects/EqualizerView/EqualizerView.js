@@ -15,7 +15,7 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
     for (let i = 0; i < data.frequencies.length; i++) {
       chartData.push({
         x: data?.frequencies[i],
-        y: data?.frequencyResponse[i]
+        y: 20 * Math.log10(data?.frequencyResponse[i] / 1.0)
       });
     }
   }
@@ -37,12 +37,12 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
 
   return (
     <DetailsGroup title="Equalizer">
-      <XYPlot width={800} height={200} yDomain={[0.5, 1.5]} xType="log">
+      <XYPlot width={800} height={200} yDomain={[-12, 12]} xDomain={[20, 20000]}>
         <VerticalGridLines />
         <HorizontalGridLines />
         <LineSeries color="blue" data={chartData}/>
         <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
-        <YAxis tickValues={[0.5, 1.0, 1.5]} />
+        <YAxis tickValues={[-12, -6, 0, 6, 12]} />
       </XYPlot>
       <div className="equalizer-filter-box">
         {filters.map((filter, index) => (

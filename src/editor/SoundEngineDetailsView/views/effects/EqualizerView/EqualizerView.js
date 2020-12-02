@@ -5,6 +5,7 @@ import DetailsGroup from '../../../../DetailsGroup';
 import Filter from './Filter';
 import RawFilter from '../../../../../sound-engine/effects/Equalizer/Filter';
 import 'react-vis/dist/style.css';
+import './EqualizerView.scss';
 
 const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
   const filters = data?.filters;
@@ -43,7 +44,11 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
         <XAxis tickValues={[63, 125, 250, 500, 1000, 2000, 4000, 8000, 16000]}/>
         <YAxis tickValues={[0.5, 1.0, 1.5]} />
       </XYPlot>
-      {filters.map((filter, index) => <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />)}
+      <div className="equalizer-filter-box">
+        {filters.map((filter, index) => (
+          <Filter key={`eq-filter-${index}`} id={index} {...filter} onChange={handleChange} />
+        ))}
+      </div>
       <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );

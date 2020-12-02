@@ -12,7 +12,7 @@ class Randomization
     this.randomization.push({
       enabled: true,
       key: 'volume',
-      offfset: 0,
+      offset: 0,
       value: 0
     });
   }

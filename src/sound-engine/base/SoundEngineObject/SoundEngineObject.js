@@ -83,7 +83,7 @@ class SoundEngineObject extends Randomization
       throw Error('Invalid value type');
     }
 
-    audioParam.linearRampToValueAtTime(_value, _time);
+    audioParam.linearRampToValueAtTime(_value, Pizzicato.context.currentTime + _time);
   }
 
   get volume() {

@@ -6,11 +6,13 @@ class RandomParameterGenerator extends Randomization
 {
   #time;
   #intervalID;
+  #object;
 
-  constructor(initObject) {
+  constructor(initObject, object) {
     super(initObject.randomization);
 
     this.#time = initObject.time;
+    this.#object = object;
   }
 
   randomize() {
@@ -20,9 +22,9 @@ class RandomParameterGenerator extends Randomization
       if (enabled) {
         const top = value + offset;
         const bottom = value - offset;
+        const _value = Math.random() * (top - bottom) + bottom;
 
-        const field = this.getRawNode(key);
-        field.linearRampToValueAtTime(Math.random() * (top - bottom) + bottom, Pizzicato.context.currentTime + this.#time * 1000);
+        this.#object[key] = { value: _value, time: this.#time };
       }
     })
   }

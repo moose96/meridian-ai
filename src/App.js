@@ -50,9 +50,25 @@ function App({ voices }) {
     setCurrentObject(currentRef.current.toPlainObject());
   }
 
-  const handleSEDetailsChange = (name, value) => {
-    currentRef.current[name] = value;
-    setCurrentObject(currentRef.current.toPlainObject());
+  const handleSEDetailsChange = (object) => {
+    setCurrentObject(object);
+    // currentRef.current[name] = value;
+    //setDeepValue(currentRef.current, names, value);
+    // setCurrentObject(currentRef.current.toPlainObject());
+
+    /*
+    all functions
+    current.volume = value
+    current.pan = value
+    current.muted = value
+    ...
+    current.position.x = value
+    ...
+    current.addRandomization() | current.randomization = Array()
+    current.randomization[id].offset = value
+    current.effect[effectID].filters[0].frequency = value
+    current.addEffect()
+    */
   }
 
   useEffect(() => {
@@ -72,7 +88,7 @@ function App({ voices }) {
       </div>
       <div className="App__right">
         <div className="App__right__top">
-          <SoundEngineDetailsView object={currentObject} onChange={handleSEDetailsChange} />
+          <SoundEngineDetailsView ref={currentRef} object={currentObject} onChange={handleSEDetailsChange} />
         </div>
         <div className="App__right__bottom">
           <button style={{gridColumn: '2/3'}} onClick={handleClick}>

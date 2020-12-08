@@ -1,9 +1,24 @@
 import Pizzicato from 'pizzicato';
 
 import SoundEngineObject from '../../base/SoundEngineObject';
+import Filter from './Filter';
+
+const generateFrequencies = (size) => {
+  let frequencies = []
+
+  for (let i = 0; i < size; i++) {
+    frequencies.push(31.25 * 2 ** (i / (size / 10)));
+    // frequencies.push(20 * i);
+  }
+
+  return Float32Array.from(frequencies);
+}
 
 class Equalizer extends SoundEngineObject
 {
+  #frequencies;
+  type = 'Equalizer';
+
   constructor(initObject) {
     super(initObject);
 
@@ -12,6 +27,8 @@ class Equalizer extends SoundEngineObject
     initObject.effects.forEach(effect => {
       this.addEffect(Equalizer.createFilter(effect));
     });
+
+    this.#frequencies = generateFrequencies(1000);
   }
 
   _connectSource(destination) {
@@ -31,12 +48,47 @@ class Equalizer extends SoundEngineObject
     this._connectEffects();
   }
 
-  static createFilter(type) {
-    if (typeof(type) === 'string') {
-      return new BiquadFilterNode(Pizzicato.context, {type});
-    } else if (typeof(type) === 'object') {
-      return new BiquadFilterNode(Pizzicato.context, type);
+  createNewFilter(type = 'highpass') {
+    this.filters.push(Equalizer.createFilter(type));
+  }
+
+  getFrequencyResponse() {
+    const magnitudes = [];
+
+    this.filters.forEach(filter => {
+      let magnitude = new Float32Array(this.#frequencies.length);
+      const phase = new Float32Array(this.#frequencies.length);
+      filter.getFrequencyResponse(this.#frequencies, magnitude, phase);
+      magnitudes.push(magnitude);
+    });
+
+    //multiply magnitude values from all filters
+    return magnitudes.reduce((prev, current) => prev.map((value, index) => value * current[index]));
+  }
+
+  toPlainObject() {
+    return {
+      type: this.type,
+      filters: this.filters.map(filter => Filter.toPlainObject(filter)),
+      frequencies: this.#frequencies,
+      frequencyResponse: this.getFrequencyResponse()
     }
+  }
+
+  static createFilter(init) {
+    let initObject = {};
+
+    if (typeof(init) === 'string') {
+      initObject = { type: init };
+    } else if (typeof(init) === 'object') {
+      initObject = init;
+    } else {
+      initObject = {
+        type: 'highpass'
+      }
+    }
+
+    return new BiquadFilterNode(Pizzicato.context, initObject);
   }
 }
 

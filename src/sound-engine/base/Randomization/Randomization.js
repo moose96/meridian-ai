@@ -8,11 +8,18 @@ class Randomization
     }
   }
 
-  // addRandomization(key, offset) {
-  //   this.#randomizationInfo.key = key;
-  //   this.#randomizationInfo.offset = offset;
-  //   this.#randomizationEnabled = true;
-  // }
+  addRandomization() {
+    this.randomization.push({
+      enabled: true,
+      key: 'volume',
+      offset: 0,
+      value: 0
+    });
+  }
+
+  deleteRandomization(index) {
+    this.randomization.splice(index, 1);
+  }
 
   randomize() {
     this.randomization.forEach(randomization => {

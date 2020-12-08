@@ -3,36 +3,26 @@ import React from 'react';
 import DetailsGroup from '../../../DetailsGroup';
 import RandomizationList from './RandomizationList';
 
-function RandomizationView({ object, onChange, keys }) {
+const RandomizationView = React.forwardRef(({ object, onChange, keys }, ref) => {
   const randomization = object.randomization;
 
   const handleAdd = event => {
     event.preventDefault();
 
-    const newRandomization = {
-      enabled: true,
-      key: 'volume',
-      offset: 0,
-      value: 0
-    }
-
-    onChange('randomization', [...randomization, newRandomization]);
+    ref.current.addRandomization();
+    onChange(ref.current.toPlainObject());
   }
 
   const handleChange = (id, event) => {
-    let newRandomization = [...randomization];
     const { name, value } = event.target;
 
-    newRandomization[id][name] = name !== 'key' ? parseFloat(value) : value;
-
-    onChange('randomization', newRandomization);
+    ref.current.randomization[id][name] = name !== 'key' ? parseFloat(value) : value;
+    onChange(ref.current.toPlainObject());
   }
 
   const handleDelete = (id, event) => {
-    let newRandomization = [...randomization];
-
-    newRandomization.splice(id, 1);
-    onChange('randomization', newRandomization);
+    ref.current.deleteRandomization(id);
+    onChange(ref.current.toPlainObject());
   }
 
   return(
@@ -41,6 +31,6 @@ function RandomizationView({ object, onChange, keys }) {
       <a href="#" onClick={handleAdd}>Add new</a>
     </DetailsGroup>
   );
-}
+});
 
 export default RandomizationView;

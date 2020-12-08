@@ -70,8 +70,20 @@ class SoundEngineObject extends Randomization
     this.#gainNode.disconnect();
   }
 
-  getRawNode(nodeName) {
-    return this[`#${nodeName}Node`];
+  _setAudioParam(audioParam, value) {
+    let _value;
+    let _time = 0;
+
+    if (typeof value === 'number') {
+      _value = parseFloat(value);
+    } else if (typeof value === 'object') {
+      _value = value.value;
+      _time = value.time;
+    } else {
+      throw Error('Invalid value type');
+    }
+
+    audioParam.linearRampToValueAtTime(_value, _time);
   }
 
   get volume() {
@@ -79,9 +91,7 @@ class SoundEngineObject extends Randomization
   }
 
   set volume(volume) {
-    if (volume >= 0 && volume <= 1) {
-      this.#gainNode.gain.value = parseFloat(volume);
-    }
+    this._setAudioParam(this.#gainNode, volume);
   }
 
   get muted() {
@@ -103,7 +113,8 @@ class SoundEngineObject extends Randomization
   }
 
   set pan(pan) {
-    this.#panNode.pan = parseFloat(pan);
+    // this.#panNode.pan = parseFloat(pan);
+    this._setAudioParam(this.#panNode, pan);
   }
 
   _connectEffects() {

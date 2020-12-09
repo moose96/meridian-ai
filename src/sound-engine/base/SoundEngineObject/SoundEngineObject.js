@@ -41,7 +41,7 @@ class SoundEngineObject
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 
-    this.#panNode = new Pizzicato.Effects.StereoPanner({
+    this.#panNode = new StereoPannerNode(Pizzicato.context, {
       pan: initObject.pan ? initObject.pan : 0.0
     });
 
@@ -73,6 +73,10 @@ class SoundEngineObject
     let _time = 0;
 
     if (typeof value === 'number') {
+      if (!isFinite(value) && isNaN(value)) {
+        throw Error('value must be finite');
+      }
+
       _value = parseFloat(value);
     } else if (typeof value === 'object') {
       _value = value.value;
@@ -81,13 +85,10 @@ class SoundEngineObject
       throw Error('Invalid value type');
     }
 
-    console.log(audioParam, value);
-
     if (audioParam instanceof AudioParam) {
       audioParam.linearRampToValueAtTime(_value, Pizzicato.context.currentTime + _time);
     } else {
-      // throw Error('audioParam must be an instance of AudioParam');
-      console.log('error audio param');
+      throw Error('audioParam must be an instance of AudioParam');
     }
   }
 
@@ -121,7 +122,10 @@ class SoundEngineObject
 
   set pan(pan) {
     // this.#panNode.pan = parseFloat(pan);
-    this._setAudioParam(this.#panNode.pan, pan);
+    if (isFinite(pan)) {
+      console.log(pan);
+      this._setAudioParam(this.#panNode.pan, pan);
+    }
   }
 
   _connectEffects() {

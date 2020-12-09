@@ -1,3 +1,12 @@
+const defaultObject = {
+  enabled: true,
+  key: '',
+  offset: 0,
+  value: 0,
+  loop: false,
+  time: 2000
+}
+
 class Randomization
 {
   randomization = {};
@@ -7,10 +16,23 @@ class Randomization
 
   constructor(randomizationInfo, object) {
     if (randomizationInfo) {
-      this.randomization = {...randomizationInfo, enabled: true }
+      this.randomization = {...defaultObject, ...randomizationInfo};
     }
 
     this.#object = object;
+  }
+
+  setValue(name, value) {
+    switch(name) {
+      case 'key':
+        this.randomization.key = value;
+      break;
+      case 'loop':
+        this.randomization.loop = value;
+      break;
+      default:
+        this.randomization[name] = parseFloat(value);
+    }
   }
 
   randomize() {
@@ -42,9 +64,7 @@ class Randomization
   }
 
   toPlainObject() {
-    return {
-      randomization: this.randomization
-    };
+    return this.randomization;
   }
 }
 

@@ -32,9 +32,7 @@ class RandomizationList
   }
 
   toPlainObject() {
-    return {
-      randomization: this.randomization.map(randomization => randomization.toPlainObject())
-    }
+    return this.randomization.map(randomization => randomization.toPlainObject());
   }
 }
 

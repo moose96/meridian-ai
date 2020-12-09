@@ -37,7 +37,7 @@ class SoundEngineObject
   constructor(initObject) {
     this.id = uuidv4();
     this.type = this.constructor.name;
-    this.#randomization = new RandomizationList(initObject.randomization, this);
+    this.randomization = new RandomizationList(initObject.randomization, this);
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 
@@ -117,7 +117,7 @@ class SoundEngineObject
   }
 
   get pan() {
-    return this.#panNode.pan;
+    return this.#panNode.pan.value;
   }
 
   set pan(pan) {
@@ -166,7 +166,7 @@ class SoundEngineObject
   }
 
   play() {
-    this.#randomization.randomize();
+    this.randomization.randomize();
   }
 
   stop() {
@@ -175,7 +175,7 @@ class SoundEngineObject
 
   toPlainObject() {
     return {
-      randomization: this.#randomization.toPlainObject(),
+      randomization: this.randomization.toPlainObject(),
       id: this.id,
       type: this.type,
       name: this.name,

@@ -14,9 +14,14 @@ const RandomizationView = React.forwardRef(({ object, onChange, keys }, ref) => 
   }
 
   const handleChange = (id, event) => {
-    const { name, value } = event.target;
+    const { type, name, value, checked } = event.target;
+    let _value = value;
 
-    ref.current.randomization[id][name] = name !== 'key' ? parseFloat(value) : value;
+    if (type === 'checkbox') {
+      _value = checked;
+    }
+
+    ref.current.randomization.randomization[id].setValue(name, _value);
     onChange(ref.current.toPlainObject());
   }
 

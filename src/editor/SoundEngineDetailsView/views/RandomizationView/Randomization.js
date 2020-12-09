@@ -53,6 +53,17 @@ function Randomization({ id, randomization, keys, onChange, onDelete }) {
         step={0.1}
         value={randomization.offset}
         onChange={handleChange}/>
+      <Input
+        type="checkbox"
+        name="loop"
+        label="Loop"
+        checked={randomization.loop}
+        onChange={handleChange} />
+      <Number
+        name="time"
+        label="Time"
+        value={randomization.time}
+        onChange={handleChange} />
       <a href="#" onClick={handleDelete}><DeleteIcon /></a>
     </div>
   );

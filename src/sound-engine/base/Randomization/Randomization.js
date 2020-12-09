@@ -12,6 +12,7 @@ class Randomization
   randomization = {};
   #started = false;
   #object;
+  #audioParams;
   #intervalID;
 
   constructor(randomizationInfo, object) {
@@ -20,6 +21,7 @@ class Randomization
     }
 
     this.#object = object;
+    this.#audioParams = object.getKeysOfAudioParams();
   }
 
   setValue(name, value) {
@@ -41,11 +43,16 @@ class Randomization
     if (enabled && (!loop || (loop && this.#started))) {
       const top = value + offset;
       const bottom = value - offset;
+      const _value = Math.random() * (top - bottom) + bottom
 
-      this.#object[key] = {
-        value: Math.random() * (top - bottom) + bottom,
-        time: loop ? time : 0
-      };
+      if (this.#audioParams.indexOf(key) !== -1) {
+        this.#object[key] = {
+          value: _value,
+          time: loop ? time : 0
+        };
+      } else {
+        this.#object[key] = value;
+      }
     }
   }
 

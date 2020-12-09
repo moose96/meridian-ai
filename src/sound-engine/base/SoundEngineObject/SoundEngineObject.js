@@ -80,7 +80,7 @@ class SoundEngineObject
       _value = parseFloat(value);
     } else if (typeof value === 'object') {
       _value = value.value;
-      _time = value.time;
+      _time = value.time / 1000;
     } else {
       throw Error('Invalid value type');
     }
@@ -123,7 +123,6 @@ class SoundEngineObject
   set pan(pan) {
     // this.#panNode.pan = parseFloat(pan);
     if (isFinite(pan)) {
-      console.log(pan);
       this._setAudioParam(this.#panNode.pan, pan);
     }
   }
@@ -183,6 +182,10 @@ class SoundEngineObject
       pan: this.pan,
       effects: this.effects.map(effect => effect.toPlainObject())
     };
+  }
+
+  getKeysOfAudioParams() {
+    return ['gain', 'pan'];
   }
 
   curvesListener = () => {

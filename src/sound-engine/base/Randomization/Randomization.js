@@ -16,7 +16,7 @@ class Randomization
   randomize() {
     const { enabled, key, offset, value, loop, time } = this.randomization;
 
-    if ((enabled && !loop) || (enabled && loop && this.#started)) {
+    if (enabled && (!loop || (loop && this.#started)) {
       const top = value + offset;
       const bottom = value - offset;
 
@@ -28,13 +28,17 @@ class Randomization
   }
 
   start() {
-    this.#intervalID = setInterval(this.randomize, this.randomization.time);
-    this.#started = true;
+    if (this.randomization.loop) {
+      this.#intervalID = setInterval(this.randomize, this.randomization.time);
+      this.#started = true;
+    }
   }
 
   stop() {
-    clearInterval(this.#intervalID);
-    this.#started = false;
+    if (this.randomization.loop) {
+      clearInterval(this.#intervalID);
+      this.#started = false;
+    }
   }
 
   toPlainObject() {

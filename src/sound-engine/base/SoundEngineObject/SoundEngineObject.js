@@ -1,8 +1,7 @@
 import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
 
-import RandomParameterGenerator from '../RandomParameterGenerator';
-import Randomization from '../Randomization';
+import RandomizationList from '../RandomizationList';
 
 
 // import createEffect from '../../effects/createEffect';
@@ -18,7 +17,7 @@ initObject = {
 }
 */
 
-class SoundEngineObject extends Randomization
+class SoundEngineObject
 {
   id;
   type;
@@ -27,18 +26,18 @@ class SoundEngineObject extends Randomization
   outputNode;
   #panNode;
   #muted;
+  #randomization;
   effects = [];
   #redux = {
     store: null,
     curves: []
   };
   curves = [];
-  #rpg;
 
   constructor(initObject) {
-    super(initObject.randomization);
     this.id = uuidv4();
     this.type = this.constructor.name;
+    this.#randomization = new RandomizationList(initObject.randomization, this);
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
 
@@ -51,7 +50,6 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
-    this.#rpg = initObject.rpg ? initObject.rpg : new RandomParameterGenerator({ time: 2000 }, this);
   }
 
   _connectSource(destination) {
@@ -155,7 +153,7 @@ class SoundEngineObject extends Randomization
   }
 
   play() {
-    this.randomize();
+    this.#randomization.randomize();
   }
 
   stop() {
@@ -164,7 +162,7 @@ class SoundEngineObject extends Randomization
 
   toPlainObject() {
     return {
-      ...super.toPlainObject(),
+      randomization: this.#randomization.toPlainObject(),
       id: this.id,
       type: this.type,
       name: this.name,

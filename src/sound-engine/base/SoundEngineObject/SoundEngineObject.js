@@ -51,7 +51,7 @@ class SoundEngineObject extends Randomization
 
     this.#muted = initObject.muted ? initObject.muted : false;
     this.curves = initObject.curves ? initObject.curves : [];
-    this.#rpg = initObject.rpg ? initObject.rpg : new RandomParameterGenerator({ time: 2000 });
+    this.#rpg = initObject.rpg ? initObject.rpg : new RandomParameterGenerator({ time: 2000 }, this);
   }
 
   _connectSource(destination) {

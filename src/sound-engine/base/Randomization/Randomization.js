@@ -1,37 +1,40 @@
 class Randomization
 {
-  randomization = [];
+  randomization = {};
+  #started = false;
+  #object;
+  #intervalID;
 
-  constructor(randomizationInfo) {
+  constructor(randomizationInfo, object) {
     if (randomizationInfo) {
-      this.randomization = randomizationInfo.map(info => ({...info, enabled: true}));
+      this.randomization = {...randomizationInfo, enabled: true }
     }
-  }
 
-  addRandomization() {
-    this.randomization.push({
-      enabled: true,
-      key: 'volume',
-      offset: 0,
-      value: 0
-    });
-  }
-
-  deleteRandomization(index) {
-    this.randomization.splice(index, 1);
+    this.#object = object;
   }
 
   randomize() {
-    this.randomization.forEach(randomization => {
-      const { enabled, key, offset, value } = randomization;
+    const { enabled, key, offset, value, loop, time } = this.randomization;
 
-      if (enabled) {
-        const top = value + offset;
-        const bottom = value - offset;
+    if ((enabled && !loop) || (enabled && loop && this.#started)) {
+      const top = value + offset;
+      const bottom = value - offset;
 
-        this[key] = Math.random() * (top - bottom) + bottom;
-      }
-    });
+      this.#object[key] = {
+        value: Math.random() * (top - bottom) + bottom,
+        time: loop ? time : 0
+      };
+    }
+  }
+
+  start() {
+    this.#intervalID = setInterval(this.randomize, this.randomization.time);
+    this.#started = true;
+  }
+
+  stop() {
+    clearInterval(this.#intervalID);
+    this.#started = false;
   }
 
   toPlainObject() {

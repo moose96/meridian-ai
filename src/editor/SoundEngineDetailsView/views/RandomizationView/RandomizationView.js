@@ -17,10 +17,12 @@ const RandomizationView = React.forwardRef(({ object, onChange, keys }, ref) => 
     const { type, name, value, checked } = event.target;
     let _value = value;
 
+    //change it to 'withHandlers'
     if (type === 'checkbox') {
       _value = checked;
     }
 
+    //it's not nice
     ref.current.randomization.randomization[id].setValue(name, _value);
     onChange(ref.current.toPlainObject());
   }

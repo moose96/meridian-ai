@@ -1,7 +1,7 @@
 import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
 
-import RandomizationList from '../RandomizationList';
+import RandomizationList from '../Randomization/RandomizationList';
 
 
 // import createEffect from '../../effects/createEffect';
@@ -81,7 +81,14 @@ class SoundEngineObject
       throw Error('Invalid value type');
     }
 
-    audioParam.linearRampToValueAtTime(_value, Pizzicato.context.currentTime + _time);
+    console.log(audioParam, value);
+
+    if (audioParam instanceof AudioParam) {
+      audioParam.linearRampToValueAtTime(_value, Pizzicato.context.currentTime + _time);
+    } else {
+      // throw Error('audioParam must be an instance of AudioParam');
+      console.log('error audio param');
+    }
   }
 
   get volume() {
@@ -89,7 +96,9 @@ class SoundEngineObject
   }
 
   set volume(volume) {
-    this._setAudioParam(this.#gainNode, volume);
+    if (!isNaN(volume)) {
+      this._setAudioParam(this.#gainNode.gain, volume);
+    }
   }
 
   get muted() {
@@ -112,7 +121,7 @@ class SoundEngineObject
 
   set pan(pan) {
     // this.#panNode.pan = parseFloat(pan);
-    this._setAudioParam(this.#panNode, pan);
+    this._setAudioParam(this.#panNode.pan, pan);
   }
 
   _connectEffects() {

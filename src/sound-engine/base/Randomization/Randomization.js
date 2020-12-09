@@ -16,7 +16,7 @@ class Randomization
   randomize() {
     const { enabled, key, offset, value, loop, time } = this.randomization;
 
-    if (enabled && (!loop || (loop && this.#started)) {
+    if (enabled && (!loop || (loop && this.#started))) {
       const top = value + offset;
       const bottom = value - offset;
 

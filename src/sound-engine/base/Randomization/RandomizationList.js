@@ -6,7 +6,9 @@ class RandomizationList
   #object;
 
   constructor(initObject, object) {
-    this.randomization = initObject.map(init => new Randomization(init, object));
+    if (initObject?.length > 0) {
+      this.randomization = initObject.map(init => new Randomization(init, object));
+    }
 
     this.#object = object;
   }

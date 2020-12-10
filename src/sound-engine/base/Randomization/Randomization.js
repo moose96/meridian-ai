@@ -40,12 +40,12 @@ class Randomization
   randomizeRunner = () => {
     const { enabled, key, offset, value, loop, time } = this.randomization;
 
-    console.log(enabled, (!loop || (loop && this.#started)), enabled && (!loop || (loop && this.#started)));
-
     if (enabled && (!loop || (loop && this.#started))) {
       const top = value + offset;
       const bottom = value - offset;
-      const _value = Math.random() * (top - bottom) + bottom
+      const _value = Math.random() * (top - bottom) + bottom;
+
+      console.log('randomization', this.#object.type);
 
       if (this.#audioParams.indexOf(key) !== -1) {
         this.#object[key] = {
@@ -59,7 +59,7 @@ class Randomization
   }
 
   randomize() {
-    if (this.randomization.loop && !this.randomization.started) {
+    if (this.randomization.loop && !this.#started) {
       console.log('randomization triggered', this.#object.type);
       this.#intervalID = setInterval(this.randomizeRunner, this.randomization.time);
       this.#started = true;
@@ -69,7 +69,8 @@ class Randomization
   }
 
   stop() {
-    if (this.randomization.loop && this.randomization.started) {
+    if (this.randomization.loop && this.#started) {
+      console.log('clear interval');
       clearInterval(this.#intervalID);
       this.#started = false;
     }

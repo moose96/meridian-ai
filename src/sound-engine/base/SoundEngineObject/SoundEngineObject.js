@@ -166,7 +166,6 @@ class SoundEngineObject
   }
 
   stop() {
-    console.log(this.randomization);
     this.randomization.stop();
   }
 

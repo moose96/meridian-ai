@@ -69,7 +69,7 @@ class SoundEngineObject
 
   _setAudioParam(audioParam, value) {
     const _getValue = value => {
-      if (!isFinite(value) && isNaN(value)) {
+      if (!isFinite(value) || isNaN(value)) {
         return 0;
       } else {
         return value;
@@ -94,9 +94,7 @@ class SoundEngineObject
   }
 
   set volume(volume) {
-    if (!isNaN(volume)) {
-      this._setAudioParam(this.#gainNode.gain, volume);
-    }
+    this._setAudioParam(this.#gainNode.gain, volume);
   }
 
   get muted() {
@@ -119,9 +117,7 @@ class SoundEngineObject
 
   set pan(pan) {
     // this.#panNode.pan = parseFloat(pan);
-    if (isFinite(pan)) {
-      this._setAudioParam(this.#panNode.pan, pan);
-    }
+    this._setAudioParam(this.#panNode.pan, pan);
   }
 
   _connectEffects() {
@@ -182,7 +178,7 @@ class SoundEngineObject
   }
 
   getKeysOfAudioParams() {
-    return ['gain', 'pan'];
+    return ['volume', 'pan'];
   }
 
   curvesListener = () => {

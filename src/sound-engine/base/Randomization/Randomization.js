@@ -45,8 +45,6 @@ class Randomization
       const bottom = value - offset;
       const _value = Math.random() * (top - bottom) + bottom;
 
-      console.log('randomization', this.#object.type);
-
       if (this.#audioParams.indexOf(key) !== -1) {
         this.#object[key] = {
           value: _value,
@@ -60,7 +58,6 @@ class Randomization
 
   randomize() {
     if (this.randomization.loop && !this.#started) {
-      console.log('randomization triggered', this.#object.type);
       this.#intervalID = setInterval(this.randomizeRunner, this.randomization.time);
       this.#started = true;
     } else {
@@ -70,7 +67,6 @@ class Randomization
 
   stop() {
     if (this.randomization.loop && this.#started) {
-      console.log('clear interval');
       clearInterval(this.#intervalID);
       this.#started = false;
     }

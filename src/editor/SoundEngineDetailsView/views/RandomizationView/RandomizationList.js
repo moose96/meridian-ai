@@ -2,8 +2,6 @@ import React from 'react';
 import Randomization from './Randomization';
 
 function RandomizationList({ randomizations, keys, onChange, onDelete }) {
-
-  console.log(randomizations);
   return (
     <div className="randomization-wrapper">
       {randomizations && randomizations.map((element, index) => (

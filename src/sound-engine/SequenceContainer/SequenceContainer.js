@@ -36,12 +36,11 @@ class SequenceContainer extends Container
   }
 
   get delay() {
-    return this.#delayNode.delayTime.value * 1000;
+    return parseInt(this.#delayNode.delayTime.value * 1000);
   }
 
   set delay(delay) {
-    this._setAudioParam(this.#delayNode.delayTime, delay / 1000);
-    console.log(this.delay);
+    this._setAudioParam(this.#delayNode.delayTime, parseInt(delay) / 1000);
   }
 
   // setDelay = delay => {

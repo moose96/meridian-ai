@@ -69,26 +69,24 @@ class SoundEngineObject
   }
 
   _setAudioParam(audioParam, value) {
-    let _value;
-    let _time = 0;
-
-    if (typeof value === 'number') {
+    const _getValue = value => {
       if (!isFinite(value) && isNaN(value)) {
-        throw Error('value must be finite');
+        return 0;
+      } else {
+        return value;
       }
-
-      _value = parseFloat(value);
-    } else if (typeof value === 'object') {
-      _value = value.value;
-      _time = value.time / 1000;
-    } else {
-      throw Error('Invalid value type');
     }
 
     if (audioParam instanceof AudioParam) {
-      audioParam.linearRampToValueAtTime(_value, Pizzicato.context.currentTime + _time);
+      if (typeof value === 'number') {
+        audioParam.value = parseFloat(_getValue(value));
+      } else if (typeof value === 'object') {
+        audioParam.linearRampToValueAtTime(_getValue(value.value), Pizzicato.context.currentTime + value.time / 1000);
+      } else {
+        throw Error('value has to be a number or object');
+      }
     } else {
-      throw Error('audioParam must be an instance of AudioParam');
+      throw Error('audioParam has to be an instance of AudioParam');
     }
   }
 

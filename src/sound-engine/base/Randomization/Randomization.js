@@ -37,8 +37,10 @@ class Randomization
     }
   }
 
-  randomize() {
+  randomizeRunner = () => {
     const { enabled, key, offset, value, loop, time } = this.randomization;
+
+    console.log(enabled, (!loop || (loop && this.#started)), enabled && (!loop || (loop && this.#started)));
 
     if (enabled && (!loop || (loop && this.#started))) {
       const top = value + offset;
@@ -56,15 +58,18 @@ class Randomization
     }
   }
 
-  start() {
-    if (this.randomization.loop) {
-      this.#intervalID = setInterval(this.randomize, this.randomization.time);
+  randomize() {
+    if (this.randomization.loop && !this.randomization.started) {
+      console.log('randomization triggered', this.#object.type);
+      this.#intervalID = setInterval(this.randomizeRunner, this.randomization.time);
       this.#started = true;
+    } else {
+      this.randomizeRunner();
     }
   }
 
   stop() {
-    if (this.randomization.loop) {
+    if (this.randomization.loop && this.randomization.started) {
       clearInterval(this.#intervalID);
       this.#started = false;
     }

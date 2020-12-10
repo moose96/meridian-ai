@@ -31,6 +31,10 @@ class RandomizationList
     this.randomization.forEach(randomization => randomization.randomize());
   }
 
+  stop() {
+    this.randomization.forEach(randomization => randomization.stop());
+  }
+
   toPlainObject() {
     return this.randomization.map(randomization => randomization.toPlainObject());
   }

@@ -9,7 +9,7 @@ const RandomizationView = React.forwardRef(({ object, onChange, keys }, ref) => 
   const handleAdd = event => {
     event.preventDefault();
 
-    ref.current.addRandomization();
+    ref.current.randomization.addRandomization();
     onChange(ref.current.toPlainObject());
   }
 

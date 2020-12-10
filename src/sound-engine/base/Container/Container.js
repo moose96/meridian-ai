@@ -26,7 +26,8 @@ class Container extends SoundEngineObject
   }
 
   stop() {
-    this.sounds.forEach(sound => sound.stop());
+    super.stop();
+    this.source.forEach(sound => sound.stop());
   }
 }
 

@@ -26,7 +26,6 @@ class SoundEngineObject
   outputNode;
   #panNode;
   #muted;
-  #randomization;
   effects = [];
   #redux = {
     store: null,
@@ -167,7 +166,8 @@ class SoundEngineObject
   }
 
   stop() {
-    throw Error('This method should be overridden by child class');
+    console.log(this.randomization);
+    this.randomization.stop();
   }
 
   toPlainObject() {

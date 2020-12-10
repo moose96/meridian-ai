@@ -137,6 +137,7 @@ class Sound extends SoundEngineObject
   }
 
   stop() {
+    super.stop();
     this.source.stop();
   }
 

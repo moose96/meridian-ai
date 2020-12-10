@@ -90,12 +90,13 @@ class SoundObject extends SoundEngineObject
   }
 
   play() {
-    this.randomization.randomize();
+    super.play();
 
     this.source.forEach(object => object.play());
   }
 
   stop() {
+    super.stop();
     this.source.forEach(object => object.stop());
   }
 

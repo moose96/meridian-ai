@@ -58,6 +58,7 @@ class SequenceContainer extends Container
   }
 
   stop() {
+    super.stop();
     if (this.loop) {
       clearInterval(this.#intervalID);
     }

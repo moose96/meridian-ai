@@ -51,6 +51,7 @@ function App({ voices }) {
   }
 
   const handleSEDetailsChange = (object) => {
+    console.log(object);
     setCurrentObject(object);
     // currentRef.current[name] = value;
     //setDeepValue(currentRef.current, names, value);

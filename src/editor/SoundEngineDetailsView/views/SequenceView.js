@@ -13,7 +13,7 @@ function SequenceView({ object, onInputChange, onCheckedChange }) {
         label="Delay"
         min={0}
         step={25}
-        value={object.delay}
+        value={Math.floor(object.delay)}
         onChange={onInputChange} />
       <Input
         type="checkbox"

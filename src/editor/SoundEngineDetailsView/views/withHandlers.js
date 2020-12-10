@@ -7,7 +7,8 @@ function withHandlers(WrappedComponent) {
     changeRefProperty(name, value) {
       const { forwardedRef, onChange } = this.props;
 
-      forwardedRef.current[name] = value;
+      console.log(name, parseFloat(value));
+      forwardedRef.current[name] = parseFloat(value);
       onChange(forwardedRef.current.toPlainObject());
     }
 

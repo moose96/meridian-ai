@@ -1,3 +1,5 @@
+import Pizzicato from 'pizzicato';
+
 import Container from '../base/Container';
 
 const INTERVAL = 25; //ms
@@ -7,20 +9,25 @@ class SequenceContainer extends Container
   name = 'Sequence Container';
   loop = false;
   counter = 0;
-  _delay = 0;
+  #delayNode;
   #intervalID = -1;
 
   constructor(object) {
     super(object);
     this.type = 'SequenceContainer'; //due to webpack issue
     this.loop = object.loop;
-    this.delay = object.delay;
+    // this.#delay = object.delay;
+
+    this.#delayNode = Pizzicato.context.createDelay(5.0);
+    this.#delayNode.delayTime.value = (object.delay / 1000);
+    this.#delayNode.connect(this.outputNode);
   }
 
   _run = () => { //change to #run()
     this.counter++;
+    const currentDelay = this.delay / INTERVAL;
 
-    if (this.counter >= this._delay) {
+    if (this.counter >= currentDelay) {
       if (!this.muted) {
         this.source.forEach(sound => sound.play());
       }
@@ -29,16 +36,17 @@ class SequenceContainer extends Container
   }
 
   get delay() {
-    return this._delay * INTERVAL;
+    return this.#delayNode.delayTime.value * 1000;
   }
 
   set delay(delay) {
-    this._delay = Math.floor(parseInt(delay) / INTERVAL);
+    this._setAudioParam(this.#delayNode.delayTime, delay / 1000);
+    console.log(this.delay);
   }
 
-  setDelay = delay => {
-    this.delay = delay;
-  }
+  // setDelay = delay => {
+  //   this.delay = delay;
+  // }
 
   play() {
     super.play();

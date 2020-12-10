@@ -90,7 +90,7 @@ class SoundObject extends SoundEngineObject
   }
 
   play() {
-    this.randomize();
+    this.randomization.randomize();
 
     this.source.forEach(object => object.play());
   }

@@ -1,6 +1,6 @@
 import Pizzicato from 'pizzicato';
 
-import Container from '../base/Container';
+import Container from '../Container';
 
 const INTERVAL = 25; //ms
 

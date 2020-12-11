@@ -1,4 +1,4 @@
-import Container from '../base/Container';
+import Container from '../Container';
 
 class RandomContainer extends Container
 {

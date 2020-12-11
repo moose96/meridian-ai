@@ -1,4 +1,4 @@
-import SoundEngineObject from '../SoundEngineObject';
+import SoundEngineObject from '../../base/SoundEngineObject';
 
 class Container extends SoundEngineObject
 {

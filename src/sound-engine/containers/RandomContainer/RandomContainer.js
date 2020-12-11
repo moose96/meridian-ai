@@ -4,8 +4,8 @@ class RandomContainer extends Container
 {
   name = 'Random Container';
   type = 'RandomContainer'; //due to webpack issue
-  play() {
-    super.play();
+
+  onPlay() {
     const index = Math.floor(Math.random() * this.source.length);
     this.source[index].play();
   }

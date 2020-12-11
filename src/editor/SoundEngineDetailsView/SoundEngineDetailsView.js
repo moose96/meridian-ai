@@ -21,6 +21,8 @@ const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
         additionalRandomizationKeys = SoundView.randomizationKeys;
       break;
       case 'SequenceContainer':
+      case 'RandomContainer':
+      case 'ParallelContainer':
         dependentView = <SequenceView ref={ref} object={object} onChange={onChange} />
         additionalRandomizationKeys = SequenceView.randomizationKeys;
       break;

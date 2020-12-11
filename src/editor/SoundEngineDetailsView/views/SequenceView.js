@@ -7,7 +7,7 @@ import withHandlers from './withHandlers';
 
 function SequenceView({ object, onInputChange, onCheckedChange }) {
   return (
-    <DetailsGroup title="Sequence Container details">
+    <DetailsGroup title="Container details">
       <Number
         name="delay"
         label="Delay"

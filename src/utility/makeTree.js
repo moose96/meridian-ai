@@ -2,6 +2,7 @@ import {
   Sound,
   RandomContainer,
   SequenceContainer,
+  ParallelContainer,
   SingleSoundObject,
   MultipleSoundObject
 } from '../sound-engine';
@@ -15,6 +16,9 @@ const createObject = object => {
     break;
     case "sequence container":
       result = new SequenceContainer(object);
+    break;
+    case "parallel container":
+      result = new ParallelContainer(object);
     break;
     case "single sound object":
       result = new SingleSoundObject(object);

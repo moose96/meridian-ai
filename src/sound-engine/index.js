@@ -10,6 +10,7 @@ export {
   Sound,
   RandomContainer,
   SequenceContainer,
+  ParallelContainer,
   SingleSoundObject,
   MultipleSoundObject,
   SoundField

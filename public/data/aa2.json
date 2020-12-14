@@ -420,7 +420,7 @@
   "type": "parallel container",
   "objects": [100, 101]
 }, {
-  "type": "sound sfx",
+  "type": "sound fx",
   "objects": [102],
   "root": true
 }]

@@ -7,12 +7,12 @@ const defaultObject = {
 
 class SoundFX extends SoundEngineObject
 {
-  constructor(initObject) {
-    const _initObject = {...defaultObject, ...initObject};
-    super(_initObject);
+  constructor(_initObject) {
+    const initObject = {...defaultObject, ..._initObject};
+    super(initObject);
 
-    if (_initObject.source instanceof Container) {
-      this.source = _initObject.source;
+    if (initObject.objects[0] instanceof Container) {
+      this.source = initObject.objects[0];
     } else {
       throw Error('Source has to be an instance of Container class');
     }

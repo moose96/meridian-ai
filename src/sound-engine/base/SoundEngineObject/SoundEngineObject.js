@@ -17,6 +17,15 @@ initObject = {
 }
 */
 
+const defaultObject = {
+  id: uuidv4(),
+  randomization: [],
+  volume: 1,
+  pan: 0.0,
+  muted: false,
+  curves: []
+}
+
 class SoundEngineObject
 {
   id;
@@ -33,22 +42,23 @@ class SoundEngineObject
   };
   curves = [];
 
-  constructor(initObject) {
-    this.id = uuidv4();
+  constructor(_initObject) {
+    const initObject = {...defaultObject, ..._initObject};
+    this.id = initObject.id;
     this.type = this.constructor.name;
     this.randomization = new RandomizationList(initObject.randomization, this);
     this.#gainNode = Pizzicato.context.createGain();
-    this.#gainNode.gain.value = initObject.volume ? initObject.volume : 1;
+    this.#gainNode.gain.value = initObject.volume;
 
     this.#panNode = new StereoPannerNode(Pizzicato.context, {
-      pan: initObject.pan ? initObject.pan : 0.0
+      pan: initObject.pan
     });
 
     this.outputNode = this.#panNode;
     this.#panNode.connect(this.#gainNode);
 
-    this.#muted = initObject.muted ? initObject.muted : false;
-    this.curves = initObject.curves ? initObject.curves : [];
+    this.#muted = initObject.muted;
+    this.curves = initObject.curves;
   }
 
   _connectSource(destination) {

@@ -4,6 +4,16 @@ import SoundEngineObject from '../base/SoundEngineObject';
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
 
+const defaultObject = {
+  //filename
+  //attack
+  //release
+  //endPoint || duration
+  delay: 0,
+  startPoint: 0,
+  detune: 0
+}
+
 class Sound extends SoundEngineObject
 {
   name = 'Sound';
@@ -14,9 +24,14 @@ class Sound extends SoundEngineObject
   originalLength = 0;
   delay = 0;
 
-  constructor(initObject) {
+  constructor(_initObject) {
+    const initObject = {...defaultObject, ..._initObject};
     super(initObject);
     this.type = 'Sound'; //due to webpack issue
+
+    if (!initObject.filename) {
+      throw Error('"filename" field is not defined');
+    }
 
     this.source = new Pizzicato.Sound({
       source: 'file',
@@ -38,8 +53,9 @@ class Sound extends SoundEngineObject
         this.duration = initObject.duration;
       }
     });
-    this.delay = initObject.delay ? initObject.delay : 0;
-    this.startPoint = initObject.startPoint ? initObject.startPoint : 0;
+    this.delay = initObject.delay;
+    this.startPoint = initObject.startPoint;
+    this.detune = initObject.detune;
 
     this._connectSource(this.outputNode);
 

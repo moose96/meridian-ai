@@ -16,16 +16,16 @@ class Container extends SoundEngineObject
   #delayNode;
   #intervalID = -1;
 
-  constructor(initObject) {
-    const _initObject = {...defaultObject, ...initObject};
+  constructor(_initObject) {
+    const initObject = {...defaultObject, ..._initObject};
 
-    super(_initObject);
-    this.source = _initObject.objects;
+    super(initObject);
+    this.source = initObject.objects;
 
-    this.loop = _initObject.loop;
+    this.loop = initObject.loop;
 
     this.#delayNode = Pizzicato.context.createDelay(5.0);
-    this.#delayNode.delayTime.value = (_initObject.delay / 1000);
+    this.#delayNode.delayTime.value = (initObject.delay / 1000);
     this.#delayNode.connect(this.outputNode);
 
     this._connectSource(this.outputNode);

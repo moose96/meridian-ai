@@ -22,7 +22,7 @@ function App({ voices }) {
   const currentRef = useRef(null);
 
   useEffect(() => {
-    fetch('/data/aa.json')
+    fetch('/data/aa2.json')
     .then(response => response.json())
     .then(data => {
       const [_treeView, result, _refs] = makeTree(data);
@@ -32,7 +32,7 @@ function App({ voices }) {
       return result;
     })
     .then(data => {
-      data.setAttenuation(1.0);
+      // data.setAttenuation(1.0);
       setData(data);
       soundField.current = new SoundField();
       soundField.current.addSound(data);

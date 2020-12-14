@@ -383,6 +383,8 @@
 },{
   "type": "random container",
   "pan": -0.6,
+  "loop": true,
+  "delay": 1000,
   "randomization": [{
     "key": "pan",
     "offset": 0.4,
@@ -401,6 +403,8 @@
 },{
   "type": "random container",
   "pan": 0.6,
+  "loop": true,
+  "delay": 1000,
   "randomization": [{
     "key": "pan",
     "offset": 0.4,

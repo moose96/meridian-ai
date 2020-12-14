@@ -5,6 +5,7 @@ import ParallelContainer from './containers/ParallelContainer';
 import SingleSoundObject from './SingleSoundObject';
 import MultipleSoundObject from './MultipleSoundObject';
 import SoundField from './SoundField';
+import SoundFX from './SoundFX';
 
 export {
   Sound,
@@ -13,5 +14,6 @@ export {
   ParallelContainer,
   SingleSoundObject,
   MultipleSoundObject,
-  SoundField
+  SoundField,
+  SoundFX
 }

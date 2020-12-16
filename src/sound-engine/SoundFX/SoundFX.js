@@ -10,6 +10,8 @@ const defaultObject = {
 
 class SoundFX extends SoundEngineObject
 {
+  name = "Sound FX";
+  type = "SoundFX";
   externalOutputs = [];
 
   constructor(_initObject) {

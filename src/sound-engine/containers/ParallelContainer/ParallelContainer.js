@@ -8,6 +8,11 @@ class ParallelContainer extends Container
   onPlay() {
     this.source.forEach(source => source.play());
   }
+
+  stop() {
+    super.stop();
+    this.source.forEach(source => source.stop());
+  }
 }
 
 export default ParallelContainer;

@@ -3,6 +3,7 @@ import Pizzicato from 'pizzicato';
 import SoundEngineObject from '../base/SoundEngineObject';
 import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';
+import ExternalOutput from './ExternalOutput';
 
 const defaultObject = {
 
@@ -55,15 +56,23 @@ class SoundFX extends SoundEngineObject
 
   createExternalOutputs(size) {
     for (let i = 0; i < size; i++) {
-      const gain = Pizzicato.context.createGain();
-      gain.gain.value = 0.0;
-      this.outputNode.connect(gain);
-      this.externalOutputs.push(gain);
+      // const gain = Pizzicato.context.createGain();
+      // gain.gain.value = 0.0;
+      const newExternal = new ExternalOutput();
+      this.outputNode.connect(newExternal.node);
+      this.externalOutputs.push(newExternal);
     }
   }
 
   externalConnect(index, external) {
     this.externalOutputs[index].connect(external);
+  }
+
+  toPlainObject() {
+    return {
+      ...super.toPlainObject(),
+      externalOutputs: this.externalOutputs
+    }
   }
 }
 

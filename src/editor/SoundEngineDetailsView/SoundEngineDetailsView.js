@@ -9,6 +9,7 @@ import SoundObjectView from './views/SoundObjectView';
 import GlobalView from './views/GlobalView';
 import EffectView from './views/effects/EffectView';
 import './SoundEngineDetailsView.scss'
+import SoundFXView from './views/SoundFXView/SoundFXView';
 
 const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
   let dependentView;
@@ -28,7 +29,10 @@ const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
       break;
       case 'MultipleSoundObject':
       case 'SingleSoundObject':
-      dependentView = <SoundObjectView ref={ref} object={object} onChange={onChange} />
+        dependentView = <SoundObjectView ref={ref} object={object} onChange={onChange} />
+      break;
+      case 'SoundFX':
+        dependentView = <SoundFXView ref={ref} object={object} onChange={onChange} />
       break;
       default:
         dependentView = null;

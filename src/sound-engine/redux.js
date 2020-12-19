@@ -1,8 +1,9 @@
 const SET_CURRENT_VOICES = 'voices/SET_CURRENT_VOICES';
 const ADD_CURRENT_VOICES = 'voices/ADD_CURRENT_VOICES';
 const SUB_CURRENT_VOICES = 'voices/SUB_CURRENT_VOICES';
-const SET_GLOBAL_CURVE = 'global/SET_GLOBAL_CURVE';
-const ADD_EXTERNAL_BUS = 'buses/ADD_EXTERNAL_BUS';
+
+const SET_CURVES = 'curves/SET_CURVES';
+const SET_CURVE_VALUE = 'curves/SET_CURVE_VALUE';
 
 export function setCurrentVoices(voices) {
   return {
@@ -22,27 +23,37 @@ export function subCurrentVoices() {
   }
 }
 
-export function setGlobalCurve(curve, value) {
+export function setCurves(id) {
+  const defaultCurves = {
+    volume: 0,
+    distance: 0,
+    brightness: 0,
+    sharpness: 0
+  };
+
   return {
-    type: SET_GLOBAL_CURVE,
+    type: SET_CURVES,
     payload: {
+      id,
+      curves: defaultCurves
+    }
+  }
+}
+
+export function setCurveValue(id, curve, value) {
+  return {
+    type: SET_CURVE_VALUE,
+    payload: {
+      id,
       curve,
       value
     }
   }
 }
 
-export function addExternalBus(bus) {
-  return {
-    type: ADD_EXTERNAL_BUS,
-    payload: bus
-  }
-}
-
 const INITIAL_STATE = {
   voices: 0,
-  globalCurves: [0, 0, 0, 0],
-  externalBuses: []
+  curves: []
 }
 
 export default function reducer (state = INITIAL_STATE, action) {
@@ -62,21 +73,21 @@ export default function reducer (state = INITIAL_STATE, action) {
         ...state,
         voices: state.voices - 1
       }
-    case SET_GLOBAL_CURVE: {
-      let curves = state.globalCurves;
-      curves[action.payload.curve] = action.payload.value;
+    case SET_CURVES:
+      return {
+        ...state,
+        curves: [...state.curves, action.payload]
+      }
+    case SET_CURVE_VALUE: {
+      let curves = {...state.curves};
+      let sound = curves.find(curve => curve.id === action.payload.id);
+      sound.curves[action.payload.curve] = action.payload.value;
 
       return {
         ...state,
-        globalCurves: [...curves]
+        curves: [...curves]
       }
     }
-
-    case ADD_EXTERNAL_BUS:
-      return {
-        ...state,
-        externalBuses: [...state.externalBuses, action.payload]
-      }
     default:
       return {...state};
   }

@@ -196,7 +196,7 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
-    const curves = this.#redux.store.getState().soundEngine.globalCurves;
+    const curves = this.#redux.store.getState().soundEngine.curves;
 
       if (this.#redux.curves !== curves) {
         this.curves.forEach(curve => {

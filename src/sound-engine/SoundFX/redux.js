@@ -1,55 +1,30 @@
-const SET_CURVES = 'curves/SET_CURVES';
-const SET_CURVE_VALUE = 'curves/SET_CURVE_VALUE';
+const SET_PARAM_VALUE = 'params/SET_PARAM_VALUE';
 
-export function setCurves(id) {
-  const defaultCurves = {
-    volume: 0,
-    distance: 0,
-    brightness: 0,
-    sharpness: 0
-  };
 
+export function setParamValue(name, value) {
   return {
-    type: SET_CURVES,
+    type: SET_PARAM_VALUE,
     payload: {
-      id,
-      curves: defaultCurves
-    }
-  }
-}
-
-export function setCurveValue(id, curve, value) {
-  return {
-    type: SET_CURVE_VALUE,
-    payload: {
-      id,
-      curve,
+      name,
       value
     }
   }
 }
 
 const INITIAL_STATE = {
-  curves: []
+  volume: 0,
+  distance: 0,
+  brightness: 0,
+  sharpness: 0
 }
 
 export default function reducer(state = INITIAL_STATE, action) {
   switch(action.type) {
-    case SET_CURVES:
+    case SET_PARAM_VALUE:
       return {
         ...state,
-        curves: [...state.curves, action.payload]
+        [action.payload.name]: action.payload.value
       }
-    case SET_CURVE_VALUE: {
-      let curves = [...state.curves];
-      let sound = curves.find(curve => curve.id === action.payload.id);
-      sound.curves[action.payload.curve] = action.payload.value;
-
-      return {
-        ...state,
-        curves: [...curves]
-      }
-    }
     default:
       return {...state};
   }

@@ -17,6 +17,12 @@ class SoundFX extends SoundEngineObject
   name = "Sound FX";
   type = "SoundFX";
   externalOutputs = [];
+  params = [{
+    name: 'volume',
+    key: 'volume',
+    min: 0,
+    max: 1
+  }]
 
   constructor(_initObject) {
     const initObject = {...defaultObject, ..._initObject};

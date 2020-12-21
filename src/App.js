@@ -11,22 +11,6 @@ import store from './redux/store';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 
-function measure(data) {
-  let result = [];
-
-  for (let i = 0; i < 500; i++) {
-    const t1 = window.performance.now();
-    data.setCurve('volume', Math.floor(Math.random() * 1000 + 25));
-    const t2 = window.performance.now();
-
-    result.push(t2 - t1);
-  }
-
-  result.sort();
-  const avg = result.reduce((prev, current) => prev + current) / result.length;
-  console.log(avg, result);
-}
-
 function App({ voices }) {
   const [playing, setPlaying] = useState(false);
   const [data, setData] = useState([]);
@@ -50,7 +34,6 @@ function App({ voices }) {
     .then(data => {
       // data.setAttenuation(1.0);
       setData(data);
-      measure(data);
       soundField.current = new SoundField();
       soundField.current.addSound(data);
       console.log(data);

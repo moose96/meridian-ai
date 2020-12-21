@@ -23,7 +23,16 @@ const defaultObject = {
   volume: 1,
   pan: 0.0,
   muted: false,
-  curves: []
+  /** params
+   * an array of objects:
+   * {
+   *  name: string,
+   *  key: string,
+   *  min: number,
+   *  max: number
+   * }
+   */
+  params: []
 }
 
 class SoundEngineObject
@@ -36,11 +45,8 @@ class SoundEngineObject
   #panNode;
   #muted;
   effects = [];
-  redux = {
-    store: null,
-    curves: []
-  };
-  curves = [];
+  params = [];
+  #paramStore;
 
   constructor(_initObject) {
     const initObject = {...defaultObject, ..._initObject};
@@ -58,7 +64,7 @@ class SoundEngineObject
     this.#panNode.connect(this.#gainNode);
 
     this.#muted = initObject.muted;
-    this.curves = initObject.curves;
+    this.params = initObject.params;
   }
 
   _connectSource(destination) {
@@ -191,21 +197,28 @@ class SoundEngineObject
     return ['volume', 'pan'];
   }
 
-  curvesListener = () => {
+  paramListener = () => {
     const linear = (min, max, x) => {
       return ((max - min) / 100.0) * x + min;
     }
 
-    const curves = this.redux.store.getState().soundEngine.curves['soundfx'];
+    const params = this.#paramStore.getStore();
 
-    if (this.curves[0] !== undefined) {
-      this[this.curves[0].key] = curves[this.curves[0].name];
-    }
+    this.params.forEach(param => {
+      const { name, key, min, max } = param;
+      const value = params[name];
+
+      if (value !== undefined) {
+        this[key] = linear(min, max, value);
+      } else {
+        console.warn(`${param.name} is ignored`);
+      }
+    })
   }
 
-  setReduxStore(reduxStore) {
-    this.redux.store = reduxStore;
-    this.redux.store.subscribe(this.curvesListener);
+  setParamStore(store) {
+    this.#paramStore = store;
+    this.#paramStore.subscribe(this.paramListener);
   }
 }
 

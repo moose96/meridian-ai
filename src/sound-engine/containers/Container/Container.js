@@ -96,6 +96,11 @@ class Container extends SoundEngineObject
       delay: this.delay
     }
   }
+
+  setParamStore(store) {
+    super.setParamStore(store);
+    this.source.forEach(source => source.setParamStore(store));
+  }
 }
 
 export default Container;

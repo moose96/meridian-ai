@@ -46,7 +46,7 @@ class SoundEngineObject
   #muted;
   effects = [];
   params = [];
-  #paramStore;
+  paramStore;
 
   constructor(_initObject) {
     const initObject = {...defaultObject, ..._initObject};
@@ -202,7 +202,7 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
-    const params = this.#paramStore.getStore();
+    const params = this.paramStore.getStore();
 
     this.params.forEach(param => {
       const { name, key, min, max } = param;
@@ -217,8 +217,8 @@ class SoundEngineObject
   }
 
   setParamStore(store) {
-    this.#paramStore = store;
-    this.#paramStore.subscribe(this.paramListener);
+    this.paramStore = store;
+    this.paramStore.subscribe(this.paramListener);
   }
 }
 

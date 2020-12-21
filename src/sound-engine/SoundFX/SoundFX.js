@@ -1,11 +1,12 @@
 import Pizzicato from 'pizzicato';
+import { createStore } from 'redux';
 
 import SoundEngineObject from '../base/SoundEngineObject';
 import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';
 import ExternalOutput from './ExternalOutput';
 
-import { setCurveValue, setCurves } from '../redux';
+import reducer, { setParamValue } from './redux';
 
 const defaultObject = {
 
@@ -36,6 +37,8 @@ class SoundFX extends SoundEngineObject
       }]
     });
     this.addEffect(eq);
+
+    this.setParamStore(createStore(reducer));
   }
 
   _connectSource(destination) {
@@ -70,13 +73,16 @@ class SoundFX extends SoundEngineObject
     this.externalOutputs[index].connect(external);
   }
 
-  setReduxStore(store) {
-    super.setReduxStore(store);
-    this.redux.store.dispatch(setCurves('soundfx'));
-  }
-
-  setCurve(name, value) {
-    this.redux.store.dispatch(setCurveValue('soundfx', name, value));
+  setParam(name, value) {
+    if (this.paramStore.getStore()[name] !== undefined) {
+      if (value >= 0 && value <= 100) {
+        this.paramStore.dispatch(setParamValue(name, value));
+      } else {
+        throw Error(`Value has to be between 0 and 100 (now value is ${value}`);
+      }
+    } else {
+      throw Error(`Can't find ${name} param in param store`);
+    }
   }
 
   toPlainObject() {
@@ -84,6 +90,11 @@ class SoundFX extends SoundEngineObject
       ...super.toPlainObject(),
       externalOutputs: this.externalOutputs
     }
+  }
+
+  setParamStore(store) {
+    super.setParamStore(store);
+    this.source.setParamStore(store);
   }
 }
 

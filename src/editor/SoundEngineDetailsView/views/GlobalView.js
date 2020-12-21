@@ -3,7 +3,7 @@ import Slider from '../../../ui/Slider';
 import DetailsGroup from '../../DetailsGroup';
 import { connect } from 'react-redux';
 
-import { setGlobalCurve } from '../../../sound-engine/redux';
+// import { setGlobalCurve } from '../../../sound-engine/redux';
 
 function GlobalView({ curves, setCurves }) {
   const handleChange = event => {
@@ -32,8 +32,8 @@ const mapStateToProps = state => ({
   curves: state.soundEngine.globalCurves
 });
 
-const mapDispatchToProps = dispatch => ({
-  setCurves: (curve, value) => dispatch(setGlobalCurve(curve, value))
-});
+// const mapDispatchToProps = dispatch => ({
+//   setCurves: (curve, value) => dispatch(setGlobalCurve(curve, value))
+// });
 
-export default connect(mapStateToProps, mapDispatchToProps)(GlobalView);
+export default GlobalView;

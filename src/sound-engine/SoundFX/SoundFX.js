@@ -5,6 +5,8 @@ import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';
 import ExternalOutput from './ExternalOutput';
 
+import { setCurveValue, setCurves } from '../redux';
+
 const defaultObject = {
 
 }
@@ -66,6 +68,15 @@ class SoundFX extends SoundEngineObject
 
   externalConnect(index, external) {
     this.externalOutputs[index].connect(external);
+  }
+
+  setReduxStore(store) {
+    super.setReduxStore(store);
+    this.redux.store.dispatch(setCurves('soundfx'));
+  }
+
+  setCurve(name, value) {
+    this.redux.store.dispatch(setCurveValue('soundfx', name, value));
   }
 
   toPlainObject() {

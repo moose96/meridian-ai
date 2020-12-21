@@ -79,7 +79,7 @@ export default function reducer (state = INITIAL_STATE, action) {
         curves: [...state.curves, action.payload]
       }
     case SET_CURVE_VALUE: {
-      let curves = {...state.curves};
+      let curves = [...state.curves];
       let sound = curves.find(curve => curve.id === action.payload.id);
       sound.curves[action.payload.curve] = action.payload.value;
 

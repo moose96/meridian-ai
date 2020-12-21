@@ -14,7 +14,7 @@ import StopIcon from '@material-ui/icons/Stop';
 function measure(data) {
   let result = [];
 
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < 500; i++) {
     const t1 = window.performance.now();
     data.setCurve('volume', Math.floor(Math.random() * 1000 + 25));
     const t2 = window.performance.now();
@@ -50,6 +50,7 @@ function App({ voices }) {
     .then(data => {
       // data.setAttenuation(1.0);
       setData(data);
+      measure(data);
       soundField.current = new SoundField();
       soundField.current.addSound(data);
       console.log(data);

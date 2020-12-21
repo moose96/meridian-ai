@@ -36,7 +36,7 @@ class SoundEngineObject
   #panNode;
   #muted;
   effects = [];
-  #redux = {
+  redux = {
     store: null,
     curves: []
   };
@@ -196,20 +196,16 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
-    const curves = this.#redux.store.getState().soundEngine.curves;
+    const curves = this.redux.store.getState().soundEngine.curves['soundfx'];
 
-      if (this.#redux.curves !== curves) {
-        this.curves.forEach(curve => {
-          const { id, key, min, max} = curve;
-          this[key] = linear(min, max, curves[id]);
-        });
-        this.#redux.curves = curves;
-      }
+    if (this.curves[0] !== undefined) {
+      this[this.curves[0].key] = curves[this.curves[0].name];
+    }
   }
 
   setReduxStore(reduxStore) {
-    this.#redux.store = reduxStore;
-    this.#redux.store.subscribe(this.curvesListener);
+    this.redux.store = reduxStore;
+    this.redux.store.subscribe(this.curvesListener);
   }
 }
 

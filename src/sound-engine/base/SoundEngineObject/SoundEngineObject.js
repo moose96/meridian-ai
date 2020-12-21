@@ -202,7 +202,7 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
-    const params = this.paramStore.getStore();
+    const params = this.paramStore.getState();
 
     this.params.forEach(param => {
       const { name, key, min, max } = param;

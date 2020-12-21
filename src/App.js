@@ -28,7 +28,6 @@ function App({ voices }) {
       const [_treeView, result, _refs] = makeTree(data);
       refs.current = _refs;
 
-      refs.current.forEach(ref => ref.setReduxStore(store));
       return result;
     })
     .then(data => {

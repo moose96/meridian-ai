@@ -80,7 +80,7 @@ class SoundFX extends SoundEngineObject
   }
 
   setParam(name, value) {
-    if (this.paramStore.getStore()[name] !== undefined) {
+    if (this.paramStore.getState()[name] !== undefined) {
       if (value >= 0 && value <= 100) {
         this.paramStore.dispatch(setParamValue(name, value));
       } else {
@@ -94,7 +94,8 @@ class SoundFX extends SoundEngineObject
   toPlainObject() {
     return {
       ...super.toPlainObject(),
-      externalOutputs: this.externalOutputs
+      externalOutputs: this.externalOutputs,
+      params: this.paramStore.getState()
     }
   }
 

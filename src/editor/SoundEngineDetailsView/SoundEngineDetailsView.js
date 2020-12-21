@@ -6,7 +6,6 @@ import RandomizationView from './views/RandomizationView';
 import SoundView from './views/SoundView';
 import SequenceView from './views/SequenceView'
 import SoundObjectView from './views/SoundObjectView';
-import GlobalView from './views/GlobalView';
 import EffectView from './views/effects/EffectView';
 import './SoundEngineDetailsView.scss'
 import SoundFXView from './views/SoundFXView/SoundFXView';
@@ -49,7 +48,6 @@ const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
           <BasicView ref={ref} object={object} onChange={onChange} />
           {dependentView}
           <EffectView ref={ref} object={object} id={0} onChange={onChange} />
-          <GlobalView />
         </Fragment>
       ) : (
         <p>Select object on the left side.</p>

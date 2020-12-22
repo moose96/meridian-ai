@@ -15,7 +15,10 @@ const INITIAL_STATE = {
   volume: 0,
   distance: 0,
   brightness: 0,
-  sharpness: 0
+  sharpness: 0,
+  intensivity: 0,
+  width: 0
+  //mobility: 0
 }
 
 export default function reducer(state = INITIAL_STATE, action) {

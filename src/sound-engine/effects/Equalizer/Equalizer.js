@@ -28,6 +28,8 @@ class Equalizer extends SoundEngineObject
       this.addEffect(Equalizer.createFilter(effect));
     });
 
+    this.params = initObject.params || [];
+
     this.#frequencies = generateFrequencies(1000);
   }
 

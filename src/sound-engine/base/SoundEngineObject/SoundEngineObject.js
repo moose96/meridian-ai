@@ -219,6 +219,10 @@ class SoundEngineObject
   setParamStore(store) {
     this.paramStore = store;
     this.paramStore.subscribe(this.paramListener);
+
+    // if (this.effects.length > 0) {
+    //   this.effects.forEach(effect => effect.setParamStore(store));
+    // }
   }
 }
 

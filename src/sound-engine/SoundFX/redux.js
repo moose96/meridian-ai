@@ -12,12 +12,12 @@ export function setParamValue(name, value) {
 }
 
 const INITIAL_STATE = {
-  volume: 0,
+  volume: 100,
   distance: 0,
   brightness: 0,
   sharpness: 0,
   intensivity: 0,
-  width: 0
+  width: 60
   //mobility: 0
 }
 

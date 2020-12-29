@@ -6,7 +6,19 @@ export function setParamValue(name, value) {
     type: SET_PARAM_VALUE,
     payload: {
       name,
-      value
+      value,
+      gradual: true
+    }
+  }
+}
+
+export function setParamValueImmediately(name, value) {
+  return {
+    type: SET_PARAM_VALUE,
+    payload: {
+      name,
+      value,
+      gradual: false
     }
   }
 }
@@ -17,8 +29,9 @@ const INITIAL_STATE = {
   brightness: 0,
   sharpness: 0,
   intensivity: 0,
-  width: 60
+  width: 60,
   //mobility: 0
+  gradual: true
 }
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -26,7 +39,8 @@ export default function reducer(state = INITIAL_STATE, action) {
     case SET_PARAM_VALUE:
       return {
         ...state,
-        [action.payload.name]: action.payload.value
+        [action.payload.name]: action.payload.value,
+        gradual: action.payload.gradual
       }
     default:
       return {...state};

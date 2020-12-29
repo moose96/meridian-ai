@@ -6,7 +6,7 @@ import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';
 import ExternalOutput from './ExternalOutput';
 
-import reducer, { setParamValue } from './redux';
+import reducer, { setParamValue, setParamValueImmediately } from './redux';
 
 const defaultObject = {
 
@@ -97,10 +97,20 @@ class SoundFX extends SoundEngineObject
     return this.paramStore.getState();
   }
 
-  setParam(name, value) {
+  setParam(name, value, variant = 'gradual') {
+    let action;
+
+    if (variant === 'gradual') {
+      action = setParamValue(name, value);
+    } else if (variant === 'immediately') {
+      action = setParamValueImmediately(name, value);
+    } else {
+      throw Error('Variant argument of setParam function must be one of the two following values: gradual or immediately.');
+    }
+
     if (this.paramStore.getState()[name] !== undefined) {
       if (value >= 0 && value <= 100) {
-        this.paramStore.dispatch(setParamValue(name, value));
+        this.paramStore.dispatch(action);
       } else {
         throw Error(`Value has to be between 0 and 100 (now value is ${value}`);
       }

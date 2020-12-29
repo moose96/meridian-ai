@@ -44,7 +44,6 @@ class SoundEngineObject
   outputNode;
   #panNode;
   #muted;
-  #lastContextTime;
   effects = [];
   params = [];
   paramStore;
@@ -66,7 +65,6 @@ class SoundEngineObject
 
     this.#muted = initObject.muted;
     this.params = initObject.params;
-    this.#lastContextTime = -2.0;
   }
 
   _connectSource(destination) {
@@ -95,25 +93,19 @@ class SoundEngineObject
     }
 
     if (audioParam instanceof AudioParam) {
-      if (typeof value === 'number') {
-        audioParam.value = parseFloat(_getValue(value));
-      } else if (typeof value === 'object') {
-        const delta = Pizzicato.context.currentTime - this.#lastContextTime;
-        let time = value.time / 1000.0;
+      let time = Pizzicato.context.currentTime;
+      let processedValue;
 
-        // if (delta < 2.0) { //check this
-        //   audioParam.cancelAndHoldAtTime(Pizzicato.context.currentTime);
-        //   console.log('cancelled at time: ', Pizzicato.context.currentTime);
-        //   time = value.time - delta;
-        // }
-        // audioParam.linearRampToValueAtTime(_getValue(value.value), Pizzicato.context.currentTime + /*value.time / 1000*/ time);
-        audioParam.value = _getValue(value.value);
-        audioParam.setTargetAtTime(_getValue(value.value), Pizzicato.context.currentTime + 1, 0.5);
-        console.log(audioParam);
-        this.#lastContextTime = Pizzicato.context.currentTime;
+      if (typeof value === 'number') {
+        processedValue = _getValue(value);
+      } else if (typeof value === 'object') {
+        processedValue = _getValue(value.value);
+        time += value.time / 1000;
       } else {
         throw Error('value has to be a number or object');
       }
+
+      audioParam.linearRampToValueAtTime(processedValue, time);
     } else {
       throw Error('audioParam has to be an instance of AudioParam');
     }
@@ -224,13 +216,14 @@ class SoundEngineObject
       const value = params[name];
 
       if (value !== undefined) {
-        if (audioParams.indexOf(key) !== -1) {
+        if (params.gradual && audioParams.indexOf(key) !== -1) {
           this[key] = {
             value: linear(min, max, value),
             time: 2000
           };
+        } else {
+          this[key] = linear(min, max, value);
         }
-        this[key] = linear(min, max, value);
       } else {
         console.warn(`${param.name} is ignored`);
       }

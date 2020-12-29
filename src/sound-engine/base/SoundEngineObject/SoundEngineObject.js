@@ -44,6 +44,7 @@ class SoundEngineObject
   outputNode;
   #panNode;
   #muted;
+  #lastContextTime;
   effects = [];
   params = [];
   paramStore;
@@ -65,6 +66,7 @@ class SoundEngineObject
 
     this.#muted = initObject.muted;
     this.params = initObject.params;
+    this.#lastContextTime = -2.0;
   }
 
   _connectSource(destination) {
@@ -96,7 +98,19 @@ class SoundEngineObject
       if (typeof value === 'number') {
         audioParam.value = parseFloat(_getValue(value));
       } else if (typeof value === 'object') {
-        audioParam.linearRampToValueAtTime(_getValue(value.value), Pizzicato.context.currentTime + value.time / 1000);
+        const delta = Pizzicato.context.currentTime - this.#lastContextTime;
+        let time = value.time / 1000.0;
+
+        // if (delta < 2.0) { //check this
+        //   audioParam.cancelAndHoldAtTime(Pizzicato.context.currentTime);
+        //   console.log('cancelled at time: ', Pizzicato.context.currentTime);
+        //   time = value.time - delta;
+        // }
+        // audioParam.linearRampToValueAtTime(_getValue(value.value), Pizzicato.context.currentTime + /*value.time / 1000*/ time);
+        audioParam.value = _getValue(value.value);
+        audioParam.setTargetAtTime(_getValue(value.value), Pizzicato.context.currentTime + 1, 0.5);
+        console.log(audioParam);
+        this.#lastContextTime = Pizzicato.context.currentTime;
       } else {
         throw Error('value has to be a number or object');
       }
@@ -202,6 +216,7 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
+    const audioParams = this.getKeysOfAudioParams();
     const params = this.paramStore.getState();
 
     this.params.forEach(param => {
@@ -209,6 +224,12 @@ class SoundEngineObject
       const value = params[name];
 
       if (value !== undefined) {
+        if (audioParams.indexOf(key) !== -1) {
+          this[key] = {
+            value: linear(min, max, value),
+            time: 2000
+          };
+        }
         this[key] = linear(min, max, value);
       } else {
         console.warn(`${param.name} is ignored`);

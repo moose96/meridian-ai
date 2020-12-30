@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Input from '../../../ui/Input';
-import Slider from '../../../ui/Slider';
-import DetailsGroup from '../../DetailsGroup';
-import withHandlers from './withHandlers';
+import { Input, Slider } from '../../../../ui';
+import DetailsGroup from '../../../DetailsGroup';
+import withHandlers from '../withHandlers';
 
 function BasicView({ object, onInputChange, onCheckedChange }) {
   return (

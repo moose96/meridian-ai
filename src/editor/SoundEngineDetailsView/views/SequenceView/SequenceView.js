@@ -1,9 +1,8 @@
 import React from 'react';
 
-import Input from '../../../ui/Input';
-import Number from '../../../ui/Number';
-import DetailsGroup from '../../DetailsGroup';
-import withHandlers from './withHandlers';
+import { Input, Number } from '../../../../ui';
+import DetailsGroup from '../../../DetailsGroup';
+import withHandlers from '../withHandlers';
 
 function SequenceView({ object, onInputChange, onCheckedChange }) {
   return (

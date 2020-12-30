@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react';
-import BasicView from './views/BasicView';
 
-import Header from './views/Header';
-import RandomizationView from './views/RandomizationView';
-import SoundView from './views/SoundView';
-import SequenceView from './views/SequenceView';
-import EffectView from './views/effects/EffectView';
+import {
+  Header,
+  BasicView,
+  RandomizationView,
+  SoundView,
+  SequenceView,
+  EffectView,
+  SoundFXView
+} from './views';
 import './SoundEngineDetailsView.scss'
-import SoundFXView from './views/SoundFXView/SoundFXView';
 
 const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
   let dependentView;

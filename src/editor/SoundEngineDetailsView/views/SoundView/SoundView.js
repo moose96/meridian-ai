@@ -1,10 +1,8 @@
 import React from 'react';
 
-import Input from '../../../ui/Input';
-import Slider from '../../../ui/Slider';
-import Number from '../../../ui/Number';
-import DetailsGroup from '../../DetailsGroup';
-import withHandlers from './withHandlers';
+import { Slider, Number } from '../../../../ui';
+import DetailsGroup from '../../../DetailsGroup';
+import withHandlers from '../withHandlers';
 
 function SoundView({ object, onInputChange }) {
   return (

@@ -45,7 +45,6 @@
     ]
   },
   "devDependencies": {
-    "madge": "^3.12.0",
     "web-audio-api": "^0.2.2"
   }
 }

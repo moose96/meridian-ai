@@ -66,5 +66,3 @@ export const makeTree = data => {
     return [null, result, refs];
   }
 }
-
-// export default resolveLinks;

@@ -3,9 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import RandomizationList from '../Randomization/RandomizationList';
 
-
-// import createEffect from '../../effects/createEffect';
-
 /*
 This is a base class for sound engine objects.
 
@@ -138,7 +135,6 @@ class SoundEngineObject
   }
 
   set pan(pan) {
-    // this.#panNode.pan = parseFloat(pan);
     this._setAudioParam(this.#panNode.pan, pan);
   }
 
@@ -233,10 +229,6 @@ class SoundEngineObject
   setParamStore(store) {
     this.paramStore = store;
     this.paramStore.subscribe(this.paramListener);
-
-    // if (this.effects.length > 0) {
-    //   this.effects.forEach(effect => effect.setParamStore(store));
-    // }
   }
 }
 

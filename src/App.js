@@ -15,7 +15,6 @@ function App({ voices }) {
   const [data, setData] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
 
-  // const soundField = useRef(new SoundField());
   const soundField = useRef();
   const refs = useRef([]);
   const currentRef = useRef(null);
@@ -30,7 +29,6 @@ function App({ voices }) {
       return result;
     })
     .then(data => {
-      // data.setAttenuation(1.0);
       setData(data);
       soundField.current = new SoundField();
       soundField.current.addSound(data);
@@ -50,9 +48,6 @@ function App({ voices }) {
 
   const handleSEDetailsChange = (object) => {
     setCurrentObject(object);
-    // currentRef.current[name] = value;
-    //setDeepValue(currentRef.current, names, value);
-    // setCurrentObject(currentRef.current.toPlainObject());
 
     /*
     all functions

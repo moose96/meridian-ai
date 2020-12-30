@@ -61,12 +61,10 @@ class Sound extends SoundEngineObject
 
     this.source.on('play', () => {
       store.dispatch(addCurrentVoices());
-      // console.log('play', initObject.filename, 'pan', this.pan, 'volume', this.volume, "tune", this.detune);
     });
 
     this.source.on('end', () => {
       store.dispatch(subCurrentVoices());
-      // console.log('end', initObject.filename);
     });
   }
 

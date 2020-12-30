@@ -81,8 +81,6 @@ class SoundFX extends SoundEngineObject
 
   createExternalOutputs(size) {
     for (let i = 0; i < size; i++) {
-      // const gain = Pizzicato.context.createGain();
-      // gain.gain.value = 0.0;
       const newExternal = new ExternalOutput();
       this.outputNode.connect(newExternal.node);
       this.externalOutputs.push(newExternal);

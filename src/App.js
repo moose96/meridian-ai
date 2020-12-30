@@ -23,7 +23,6 @@ function App({ voices }) {
     fetch('/data/aa2.json')
     .then(response => response.json())
     .then(data => {
-      // const [_treeView, result, _refs] = makeTree(data);
       const [_treeView, result, _refs] = SoundEngine.createSoundFX(data);
       refs.current = _refs;
 

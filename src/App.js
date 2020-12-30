@@ -6,7 +6,6 @@ import { SoundField } from './sound-engine';
 import { makeTree } from './utility/makeTree';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
-import store from './redux/store';
 
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';

@@ -4,8 +4,7 @@ import BasicView from './views/BasicView';
 import Header from './views/Header';
 import RandomizationView from './views/RandomizationView';
 import SoundView from './views/SoundView';
-import SequenceView from './views/SequenceView'
-import SoundObjectView from './views/SoundObjectView';
+import SequenceView from './views/SequenceView';
 import EffectView from './views/effects/EffectView';
 import './SoundEngineDetailsView.scss'
 import SoundFXView from './views/SoundFXView/SoundFXView';
@@ -25,10 +24,6 @@ const SoundEngineDetailsView = React.forwardRef(({ object, onChange }, ref) => {
       case 'ParallelContainer':
         dependentView = <SequenceView ref={ref} object={object} onChange={onChange} />
         additionalRandomizationKeys = SequenceView.randomizationKeys;
-      break;
-      case 'MultipleSoundObject':
-      case 'SingleSoundObject':
-        dependentView = <SoundObjectView ref={ref} object={object} onChange={onChange} />
       break;
       case 'SoundFX':
         dependentView = <SoundFXView ref={ref} object={object} onChange={onChange} />

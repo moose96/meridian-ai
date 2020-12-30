@@ -53,7 +53,7 @@ export const makeTree = data => {
       arg = value;
     }
 
-    const result = createObject(value);
+    const result = createObject(arg);
     refs.push(result);
     return result;
   }

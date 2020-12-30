@@ -3,8 +3,6 @@ import {
   RandomContainer,
   SequenceContainer,
   ParallelContainer,
-  SingleSoundObject,
-  MultipleSoundObject,
   SoundFX
 } from '../sound-engine';
 import createEffect from '../sound-engine/effects';
@@ -20,12 +18,6 @@ const createObject = object => {
     break;
     case "parallel container":
       result = new ParallelContainer(object);
-    break;
-    case "single sound object":
-      result = new SingleSoundObject(object);
-    break;
-    case "multiple sound object":
-      result = new MultipleSoundObject(object);
     break;
     case "sound":
       result = new Sound(object);
@@ -49,22 +41,21 @@ export const makeTree = data => {
   let refs = [];
 
   const _map = value => {
+    let arg;
+
     if (typeof(value) === 'number') { //if in the table will be number unlike object
-      const object = {...data[value]};
+      arg = {...data[value]};
 
-      if (object.objects) {
-        object.objects = object.objects.map(_map);
+      if (arg.objects) {
+        arg.objects = arg.objects.map(_map);
       }
-
-      const result = createObject(object);
-      refs.push(result);
-
-      return result;
     } else {
-      const result = createObject(value);
-      refs.push(result);
-      return result;
+      arg = value;
     }
+
+    const result = createObject(value);
+    refs.push(result);
+    return result;
   }
 
   if (root) {

@@ -1,4 +1,3 @@
-import Pizzicato from 'pizzicato';
 import { createStore } from 'redux';
 
 import SoundEngineObject from '../base/SoundEngineObject';

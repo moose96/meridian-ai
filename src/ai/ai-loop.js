@@ -11,7 +11,7 @@ export function startLoop(sounds /*object*/) {
 
       console.log(sound.storedParams);
     });
-  }, 5000);
+  }, 10000);
 }
 
 export function stopLoop() {

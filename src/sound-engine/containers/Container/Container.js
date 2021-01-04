@@ -101,6 +101,10 @@ class Container extends SoundEngineObject
     super.setParamStore(store);
     this.source.forEach(source => source.setParamStore(store));
   }
+
+  getKeysOfAudioParams() {
+    return [...super.getKeysOfAudioParams(), 'delay'];
+  }
 }
 
 export default Container;

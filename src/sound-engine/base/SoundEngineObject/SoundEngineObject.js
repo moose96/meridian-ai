@@ -215,7 +215,7 @@ class SoundEngineObject
         if (params.gradual && audioParams.indexOf(key) !== -1) {
           this[key] = {
             value: linear(min, max, value),
-            time: 2000
+            time: 5000
           };
         } else {
           this[key] = linear(min, max, value);

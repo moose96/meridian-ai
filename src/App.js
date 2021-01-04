@@ -7,6 +7,8 @@ import SoundEngine from './sound-engine/SoundEngine';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
 
+import { startLoop, stopLoop } from './ai/ai-loop';
+
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import StopIcon from '@material-ui/icons/Stop';
 
@@ -67,8 +69,10 @@ function App({ voices }) {
   useEffect(() => {
     if (playing) {
       soundField.current.start();
+      startLoop(soundField.current.sounds);
     } else if(soundField.current) {
       soundField.current.stop();
+      stopLoop();
     }
   }, [playing]);
 

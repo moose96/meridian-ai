@@ -91,7 +91,7 @@ class SoundFX extends SoundEngineObject
   }
 
   get storedParams() {
-    return this.paramStore.getState();
+    return this.paramStore.getState().params;
   }
 
   setParam(name, value, variant = 'gradual') {
@@ -105,7 +105,7 @@ class SoundFX extends SoundEngineObject
       throw Error('Variant argument of setParam function must be one of the two following values: gradual or immediately.');
     }
 
-    if (this.paramStore.getState()[name] !== undefined) {
+    if (this.paramStore.getState().params[name] !== undefined) {
       if (value >= 0 && value <= 100) {
         this.paramStore.dispatch(action);
       } else {

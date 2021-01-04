@@ -1,5 +1,5 @@
 const SET_PARAM_VALUE = 'params/SET_PARAM_VALUE';
-
+const SET_TIME = 'params/SET_TIME';
 
 export function setParamValue(name, value) {
   return {
@@ -23,15 +23,27 @@ export function setParamValueImmediately(name, value) {
   }
 }
 
+export function setTime(time) {
+  return {
+    type: SET_TIME,
+    payload: time
+  }
+}
+
 const INITIAL_STATE = {
-  volume: 100,
-  distance: 0,
-  brightness: 0,
-  sharpness: 0,
-  intensivity: 0,
-  width: 60,
-  //mobility: 0
-  gradual: true
+  params: {
+    volume: 100,
+    distance: 0,
+    brightness: 0,
+    sharpness: 0,
+    intensivity: 0,
+    width: 60,
+    //mobility: 0
+  },
+  settings: {
+    gradual: true,
+    time: 5000
+  }
 }
 
 export default function reducer(state = INITIAL_STATE, action) {
@@ -39,8 +51,22 @@ export default function reducer(state = INITIAL_STATE, action) {
     case SET_PARAM_VALUE:
       return {
         ...state,
-        [action.payload.name]: action.payload.value,
-        gradual: action.payload.gradual
+        params: {
+          ...state.params,
+          [action.payload.name]: action.payload.value,
+        },
+        settings: {
+          ...state.settings,
+          gradual: action.payload.gradual
+        }
+      }
+    case SET_TIME:
+      return {
+        ...state,
+        settings: {
+          ...state.settings,
+          time: action.payload
+        }
       }
     default:
       return {...state};

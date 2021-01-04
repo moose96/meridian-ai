@@ -206,14 +206,15 @@ class SoundEngineObject
     }
 
     const audioParams = this.getKeysOfAudioParams();
-    const params = this.paramStore.getState();
+    const params = this.paramStore.getState().params;
+    const settings = this.paramStore.getState().settings;
 
     this.params.forEach(param => {
       const { name, key, min, max } = param;
       const value = params[name];
 
       if (value !== undefined) {
-        if (params.gradual && audioParams.indexOf(key) !== -1) {
+        if (settings.gradual && audioParams.indexOf(key) !== -1) {
           this[key] = {
             value: linear(min, max, value),
             time: 5000

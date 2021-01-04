@@ -20,7 +20,7 @@ class GeneticProcessor
   }
 
   start() {
-    this.#timerID = setInterval(this.loop, 5000);
+    this.#timerID = setInterval(this.loop, 10000);
   }
 
   stop() {

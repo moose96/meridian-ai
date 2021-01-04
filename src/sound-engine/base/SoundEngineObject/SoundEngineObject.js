@@ -44,6 +44,7 @@ class SoundEngineObject
   effects = [];
   params = [];
   paramStore;
+  oldParamState;
 
   constructor(_initObject) {
     const initObject = {...defaultObject, ..._initObject};
@@ -80,10 +81,12 @@ class SoundEngineObject
     this.#gainNode.disconnect();
   }
 
-  _setAudioParam(audioParam, value) {
+  _setAudioParam(audioParam, value, processor) {
     const _getValue = value => {
       if (!isFinite(value) || isNaN(value)) {
         return 0;
+      } else if (processor instanceof Function) {
+        return processor(value);
       } else {
         return value;
       }
@@ -205,8 +208,27 @@ class SoundEngineObject
       return ((max - min) / 100.0) * x + min;
     }
 
+    const compareStores = () => {
+      const params = this.paramStore.getState().params;
+      const oldParams = this.oldParamState;
+      let diffParams = {};
+
+      Object.entries(params).forEach(([key, value]) => {
+        if (value !== oldParams[key]) {
+          diffParams = {
+            ...diffParams,
+            [key]: value
+          };
+        }
+      });
+
+      this.oldParamState = {...params};
+
+      return diffParams;
+    }
+
     const audioParams = this.getKeysOfAudioParams();
-    const params = this.paramStore.getState().params;
+    const params = compareStores();
     const settings = this.paramStore.getState().settings;
 
     this.params.forEach(param => {
@@ -217,19 +239,20 @@ class SoundEngineObject
         if (settings.gradual && audioParams.indexOf(key) !== -1) {
           this[key] = {
             value: linear(min, max, value),
-            time: 5000
+            time: settings.time
           };
         } else {
           this[key] = linear(min, max, value);
         }
-      } else {
+      } /*else {
         console.warn(`${param.name} is ignored`);
-      }
+      }*/
     })
   }
 
   setParamStore(store) {
     this.paramStore = store;
+    this.oldParamState = store.getState().params;
     this.paramStore.subscribe(this.paramListener);
   }
 }

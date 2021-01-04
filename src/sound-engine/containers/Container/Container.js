@@ -60,7 +60,7 @@ class Container extends SoundEngineObject
   }
 
   set delay(delay) {
-    this._setAudioParam(this.#delayNode.delayTime, parseInt(delay) / 1000);
+    this._setAudioParam(this.#delayNode.delayTime, delay, value => parseInt(value) / 1000);
   }
 
   setPan(pan) {

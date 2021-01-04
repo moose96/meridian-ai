@@ -42,7 +42,7 @@ const INITIAL_STATE = {
   },
   settings: {
     gradual: true,
-    time: 5000
+    time: 10000
   }
 }
 

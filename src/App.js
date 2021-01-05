@@ -6,6 +6,7 @@ import { SoundField } from './sound-engine';
 import SoundEngine from './sound-engine/SoundEngine';
 import { TreeView, TreeItemGenerator } from './ui/TreeView';
 import SoundEngineDetailsView from './editor/SoundEngineDetailsView';
+import { Input } from './ui';
 
 import { startLoop, stopLoop } from './ai/ai-loop';
 
@@ -14,6 +15,7 @@ import StopIcon from '@material-ui/icons/Stop';
 
 function App({ voices }) {
   const [playing, setPlaying] = useState(false);
+  const [simulation, setSimulation] = useState(true);
   const [data, setData] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
 
@@ -66,15 +68,25 @@ function App({ voices }) {
     */
   }
 
+  const handleSimulationChange = event => {
+    setSimulation(event.target.checked);
+  }
+
   useEffect(() => {
     if (playing) {
       soundField.current.start();
-      startLoop(soundField.current.sounds);
+
+      if (simulation) {
+        startLoop(soundField.current.sounds);
+      }
     } else if(soundField.current) {
       soundField.current.stop();
-      stopLoop();
+
+      if (simulation) {
+        stopLoop();
+      }
     }
-  }, [playing]);
+  }, [playing, simulation]);
 
   return (
     <div className="App">
@@ -88,6 +100,7 @@ function App({ voices }) {
           <SoundEngineDetailsView ref={currentRef} object={currentObject} onChange={handleSEDetailsChange} />
         </div>
         <div className="App__right__bottom">
+          <Input type="checkbox" name="ai" label="simulation" checked={simulation} onChange={handleSimulationChange} />
           <button style={{gridColumn: '2/3'}} onClick={handleClick}>
             {playing ? <StopIcon /> : <PlayArrowIcon />}
           </button>

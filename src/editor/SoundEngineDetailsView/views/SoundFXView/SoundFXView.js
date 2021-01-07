@@ -11,7 +11,7 @@ const SoundFXView = React.forwardRef(({ object, onChange }, ref) => {
   }
 
   const handleParamsChange = (name, value) => {
-    ref.current.setParam(name, value);
+    ref.current.setParam(name, value, 'immediately');
     onChange(ref.current.toPlainObject());
   }
 

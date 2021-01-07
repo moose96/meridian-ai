@@ -22,7 +22,7 @@ const EqualizerView = React.forwardRef(({ data, onChange }, ref) => {
 
   const handleChange = (id, name, value) => {
     if (ref.current?.filters?.length > 0) {
-      RawFilter.set(ref.current.filters[id], name, value);
+      ref.current.filters[id][name] = parseFloat(value);
     }
 
     onChange();

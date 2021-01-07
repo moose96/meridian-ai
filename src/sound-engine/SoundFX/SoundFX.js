@@ -48,7 +48,7 @@ class SoundFX extends EngineNode
         }]
       }, {
         type: "peaking",
-        frequency: 4000,
+        frequency: 6500,
         params: [{
           name: 'sharpness',
           key: 'gain',

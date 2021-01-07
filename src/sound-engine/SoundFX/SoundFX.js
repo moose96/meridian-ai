@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 
-import SoundEngineObject from '../base/SoundEngineObject';
+// import SoundEngineObject from '../base/SoundEngineObject';
+import EngineNode from '../base/EngineNode';
 import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';
 import ExternalOutput from './ExternalOutput';
@@ -11,7 +12,7 @@ const defaultObject = {
 
 }
 
-class SoundFX extends SoundEngineObject
+class SoundFX extends EngineNode
 {
   name = "Sound FX";
   type = "SoundFX";

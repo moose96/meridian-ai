@@ -1,6 +1,7 @@
 import Pizzicato from 'pizzicato';
 
-import SoundEngineObject from '../../base/SoundEngineObject';
+// import SoundEngineObject from '../../base/SoundEngineObject';
+import EngineNode from '../../base/EngineNode';
 
 const INTERVAL = 25; //ms
 
@@ -9,7 +10,7 @@ const defaultObject = {
   delay: 0
 }
 
-class Container extends SoundEngineObject
+class Container extends EngineNode
 {
   loop = false;
   counter = 0;

@@ -1,6 +1,7 @@
 import Pizzicato from 'pizzicato';
 
-import SoundEngineObject from '../../base/SoundEngineObject';
+// import SoundEngineObject from '../../base/SoundEngineObject';
+import EngineNode from '../../base/EngineNode';
 import Filter from './Filter';
 
 const generateFrequencies = (size) => {
@@ -13,7 +14,7 @@ const generateFrequencies = (size) => {
   return Float32Array.from(frequencies);
 }
 
-class Equalizer extends SoundEngineObject
+class Equalizer extends EngineNode
 {
   #frequencies;
   type = 'Equalizer';

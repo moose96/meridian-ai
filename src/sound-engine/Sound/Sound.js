@@ -1,5 +1,6 @@
 import Pizzicato from 'pizzicato';
-import SoundEngineObject from '../base/SoundEngineObject';
+// import SoundEngineObject from '../base/SoundEngineObject';
+import EngineNode from '../base/EngineNode';
 
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
@@ -14,7 +15,7 @@ const defaultObject = {
   detune: 0
 }
 
-class Sound extends SoundEngineObject
+class Sound extends EngineNode
 {
   name = 'Sound';
   buffer;

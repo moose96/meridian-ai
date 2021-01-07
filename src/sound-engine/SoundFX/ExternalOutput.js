@@ -1,27 +1,36 @@
 import Pizzicato from 'pizzicato';
 
-class ExternalOutput
+import BaseEngineNode from '../base/BaseEngineNode';
+
+const defaultObject = {
+  randomization: [],
+  params: [],
+  gain: 0.0
+};
+
+class ExternalOutput extends BaseEngineNode
 {
-  node;
-  constructor() {
-    this.node = Pizzicato.context.createGain();
-    this.node.gain.value = 0.0;
+  constructor(_initObject) {
+    const initObject = {...defaultObject, ..._initObject};
+    super(initObject);
+    this.source = Pizzicato.context.createGain();
+    this.source.gain.value = 0.0;
   }
 
   get gain() {
-    return this.node.gain.value;
+    return this.source.gain.value;
   }
 
   set gain(gain) {
-    this.node.gain.value = gain;
+    this.source.gain.value = gain;
   }
 
   connect(destination) {
-    this.node.connect(destination);
+    this.source.connect(destination);
   }
 
   disconnect() {
-    this.node.disconnect();
+    this.source.disconnect();
   }
 }
 

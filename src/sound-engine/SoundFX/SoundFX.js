@@ -82,7 +82,7 @@ class SoundFX extends EngineNode
   createExternalOutputs(size) {
     for (let i = 0; i < size; i++) {
       const newExternal = new ExternalOutput();
-      this.outputNode.connect(newExternal.node);
+      this.outputNode.connect(newExternal.source);
       this.externalOutputs.push(newExternal);
     }
   }

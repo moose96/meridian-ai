@@ -1,3 +1,12 @@
+/** params
+ * an array of objects:
+ * {
+ *  name: string,
+ *  key: string,
+ *  min: number,
+ *  max: number
+ * }
+**/
 const defaultObject ={
   params: []
 };

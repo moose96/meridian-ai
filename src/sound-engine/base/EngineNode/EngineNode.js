@@ -9,15 +9,6 @@ const defaultObject = {
   volume: 1,
   pan: 0.0,
   muted: false,
-  /** params
-   * an array of objects:
-   * {
-   *  name: string,
-   *  key: string,
-   *  min: number,
-   *  max: number
-   * }
-   */
   params: []
 }
 

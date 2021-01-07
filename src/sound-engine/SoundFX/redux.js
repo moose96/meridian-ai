@@ -33,9 +33,9 @@ export function setTime(time) {
 const INITIAL_STATE = {
   params: {
     volume: 100,
-    distance: 0,
-    brightness: 0,
-    sharpness: 0,
+    distance: 50,
+    brightness: 44,
+    sharpness: 44,
     intensivity: 0,
     width: 60,
     //mobility: 0

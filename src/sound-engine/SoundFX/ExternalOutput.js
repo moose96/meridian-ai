@@ -22,7 +22,7 @@ class ExternalOutput extends BaseEngineNode
   }
 
   set gain(gain) {
-    this.source.gain.value = gain;
+    this._setAudioParam(this.source.gain, gain);
   }
 
   connect(destination) {
@@ -31,6 +31,10 @@ class ExternalOutput extends BaseEngineNode
 
   disconnect() {
     this.source.disconnect();
+  }
+
+  getKeysOfAudioParams() {
+    return ['gain'];
   }
 }
 

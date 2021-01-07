@@ -49,7 +49,7 @@ class Filter extends BaseEngineNode
   }
 
   set frequency(frequency) {
-    this.source.frequency.value = frequency;
+    this._setAudioParam(this.source.frequency, frequency);
   }
 
   get gain() {
@@ -57,7 +57,7 @@ class Filter extends BaseEngineNode
   }
 
   set gain(gain) {
-    this.source.gain.value = gain;
+    this._setAudioParam(this.source.gain, gain);
   }
 
   get Q() {
@@ -65,11 +65,15 @@ class Filter extends BaseEngineNode
   }
 
   set Q(Q) {
-    this.source.Q.value = Q;
+    this._setAudioParam(this.source.Q, Q);
   }
 
   getFrequencyResponse(frequencyArray, magResponseOutput, phaseResponseOutput) {
     return this.source.getFrequencyResponse(frequencyArray, magResponseOutput, phaseResponseOutput);
+  }
+
+  getKeysOfAudioParams() {
+    return ['frequency', 'gain', 'Q'];
   }
 
   toPlainObject() {

@@ -56,36 +56,36 @@ class EngineNode extends BaseEngineNode
     this.#gainNode.disconnect();
   }
 
-  _setAudioParam(audioParam, value, processor) {
-    const _getValue = value => {
-      if (!isFinite(value) || isNaN(value)) {
-        return 0;
-      } else if (processor instanceof Function) {
-        return processor(value);
-      } else {
-        return value;
-      }
-    }
+  // _setAudioParam(audioParam, value, processor) {
+  //   const _getValue = value => {
+  //     if (!isFinite(value) || isNaN(value)) {
+  //       return 0;
+  //     } else if (processor instanceof Function) {
+  //       return processor(value);
+  //     } else {
+  //       return value;
+  //     }
+  //   }
 
-    if (audioParam instanceof AudioParam) {
-      let time = Pizzicato.context.currentTime;
-      let processedValue;
+  //   if (audioParam instanceof AudioParam) {
+  //     let time = Pizzicato.context.currentTime;
+  //     let processedValue;
 
-      if (typeof value === 'number') {
-        processedValue = _getValue(value);
-      } else if (typeof value === 'object') {
-        processedValue = _getValue(value.value);
-        time += value.time / 1000;
-      } else {
-        throw Error('value has to be a number or object');
-      }
+  //     if (typeof value === 'number') {
+  //       processedValue = _getValue(value);
+  //     } else if (typeof value === 'object') {
+  //       processedValue = _getValue(value.value);
+  //       time += value.time / 1000;
+  //     } else {
+  //       throw Error('value has to be a number or object');
+  //     }
 
-      audioParam.linearRampToValueAtTime(processedValue, time);
-      console.log(this.name, audioParam, processedValue, value.time);
-    } else {
-      throw Error('audioParam has to be an instance of AudioParam');
-    }
-  }
+  //     audioParam.linearRampToValueAtTime(processedValue, time);
+  //     console.log(this.name, audioParam, processedValue, value.time);
+  //   } else {
+  //     throw Error('audioParam has to be an instance of AudioParam');
+  //   }
+  // }
 
   get volume() {
     return this.#gainNode.gain.value;

@@ -1,44 +1,83 @@
-class Filter {
-  static get(filter, key) {
-    switch(key) {
-      case 'type':
-        return filter.type;
-      case 'gain':
-        return filter.gain.value;
-      case 'frequency':
-        return filter.frequency.value;
-      case 'Q':
-        return filter.Q.value;
-      default:
-        return null;
+import Pizzicato from 'pizzicato';
+
+import BaseEngineNode from '../../base/BaseEngineNode';
+
+const defaultObject = {
+  type: 'highpass',
+  frequency: 8000,
+  gain: 0.0,
+  Q: 1.0
+};
+
+class Filter extends BaseEngineNode
+{
+  type = 'Filter';
+
+  constructor(_initObject) {
+    let initObject;
+    if (typeof _initObject === 'string') {
+      initObject = {...defaultObject, type: _initObject};
+    } else if (typeof _initObject === 'object') {
+      initObject = {...defaultObject, ..._initObject};
+    } else {
+      initObject = {...defaultObject};
     }
+
+    super(initObject);
+
+    this.source = new BiquadFilterNode(Pizzicato.context, initObject);
   }
 
-  static set(filter, key, value) {
-    switch(key) {
-      case 'type':
-        filter.type = value;
-      break;
-      case 'gain':
-        filter.gain.value = value;
-      break;
-      case 'frequency':
-        filter.frequency.value = value;
-      break;
-      case 'Q':
-        filter.Q.value = value;
-      break;
-      default:
-        return null;
-    }
+  connect(destination) {
+    this.source.connect(destination);
   }
 
-  static toPlainObject(object) {
+  disconnect() {
+    this.source.disconnect();
+  }
+
+  get filterType() {
+    return this.source.type;
+  }
+
+  set filterType(type) {
+    this.source.type = type;
+  }
+
+  get frequency() {
+    return this.source.frequency.value;
+  }
+
+  set frequency(frequency) {
+    this.source.frequency.value = frequency;
+  }
+
+  get gain() {
+    return this.source.gain.value;
+  }
+
+  set gain(gain) {
+    this.source.gain.value = gain;
+  }
+
+  get Q() {
+    return this.source.Q.value;
+  }
+
+  set Q(Q) {
+    this.source.Q.value = Q;
+  }
+
+  getFrequencyResponse(frequencyArray, magResponseOutput, phaseResponseOutput) {
+    return this.source.getFrequencyResponse(frequencyArray, magResponseOutput, phaseResponseOutput);
+  }
+
+  toPlainObject() {
     return {
-      type: object.type,
-      gain: object.gain.value,
-      frequency: object.frequency.value,
-      Q: object.Q.value
+      type: this.filterType,
+      frequency: this.frequency,
+      gain: this.gain,
+      Q: this.Q
     }
   }
 }

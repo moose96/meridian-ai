@@ -25,10 +25,8 @@ class Equalizer extends EngineNode
     this.source = Pizzicato.context.createGain();
 
     initObject.effects.forEach(effect => {
-      this.addEffect(Equalizer.createFilter(effect));
+      this.addEffect(new Filter(effect));
     });
-
-    this.params = initObject.params || [];
 
     this.#frequencies = generateFrequencies(1000);
   }
@@ -51,7 +49,7 @@ class Equalizer extends EngineNode
   }
 
   createNewFilter(type = 'highpass') {
-    this.filters.push(Equalizer.createFilter(type));
+    this.filters.push(new Filter(type));
   }
 
   getFrequencyResponse() {
@@ -71,26 +69,10 @@ class Equalizer extends EngineNode
   toPlainObject() {
     return {
       type: this.type,
-      filters: this.filters.map(filter => Filter.toPlainObject(filter)),
+      filters: this.filters.map(filter => filter.toPlainObject()),
       frequencies: this.#frequencies,
       frequencyResponse: this.getFrequencyResponse()
     }
-  }
-
-  static createFilter(init) {
-    let initObject = {};
-
-    if (typeof(init) === 'string') {
-      initObject = { type: init };
-    } else if (typeof(init) === 'object') {
-      initObject = init;
-    } else {
-      initObject = {
-        type: 'highpass'
-      }
-    }
-
-    return new BiquadFilterNode(Pizzicato.context, initObject);
   }
 }
 

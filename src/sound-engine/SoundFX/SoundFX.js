@@ -39,21 +39,22 @@ class SoundFX extends EngineNode
     const eq = new Equalizer({
       effects: [{
         type: "highshelf",
-        frequency: 8000
+        frequency: 8000,
+        params: [{
+          name: 'brightness',
+          key: 'gain',
+          min: -3.0,
+          max: 6.0
+        }]
       }, {
         type: "peaking",
-        frequency: 4000
-      }],
-      params: [{
-        name: 'brightness',
-        key: 'gain',
-        min: -3.0,
-        max: 6.0
-      }, {
-        name: 'sharpness',
-        key: 'gain',
-        min: -3.0,
-        max: 6.0
+        frequency: 4000,
+        params: [{
+          name: 'sharpness',
+          key: 'gain',
+          min: -3.0,
+          max: 6.0
+        }]
       }]
     });
     this.addEffect(eq);
@@ -81,7 +82,18 @@ class SoundFX extends EngineNode
 
   createExternalOutputs(size) {
     for (let i = 0; i < size; i++) {
-      const newExternal = new ExternalOutput();
+      // template place of this code
+      const _initObject = {
+        params: [{
+          name: 'distance',
+          key: 'gain',
+          min: 1.0,
+          max: 0.0
+        }]
+      };
+      // ...
+      const newExternal = new ExternalOutput(_initObject);
+      newExternal.setParamStore(this.paramStore);
       this.outputNode.connect(newExternal.source);
       this.externalOutputs.push(newExternal);
     }

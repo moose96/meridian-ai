@@ -2,6 +2,7 @@ import Pizzicato from 'pizzicato';
 import { v4 as uuidv4 } from 'uuid';
 
 import BaseEngineNode from '../BaseEngineNode';
+import ParamListener from '../ParamListener';
 
 const defaultObject = {
   id: uuidv4(),
@@ -175,6 +176,15 @@ class EngineNode extends BaseEngineNode
 
   getKeysOfAudioParams() {
     return ['volume', 'pan'];
+  }
+
+  setParamStore(store) {
+    super.setParamStore(store);
+    this.effects.forEach(effect => {
+      if (effect instanceof ParamListener) {
+        effect.setParamStore(store);
+      }
+    })
   }
 }
 

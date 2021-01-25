@@ -44,7 +44,7 @@ class SoundFX extends EngineNode
           name: 'brightness',
           key: 'gain',
           min: -3.0,
-          max: 6.0
+          max: 0.0
         }]
       }, {
         type: "peaking",
@@ -53,7 +53,7 @@ class SoundFX extends EngineNode
           name: 'sharpness',
           key: 'gain',
           min: -3.0,
-          max: 6.0
+          max: 0.0
         }]
       }]
     });

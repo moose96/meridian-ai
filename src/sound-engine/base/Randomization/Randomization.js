@@ -1,13 +1,16 @@
+import ParamListener from "../ParamListener";
+
 const defaultObject = {
   enabled: true,
   key: '',
   offset: 0,
   value: 0,
   loop: false,
-  time: 2000
+  time: 2000,
+  params: []
 }
 
-class Randomization
+class Randomization extends ParamListener
 {
   randomization = {};
   #started = false;
@@ -15,10 +18,11 @@ class Randomization
   #audioParams;
   #intervalID;
 
-  constructor(randomizationInfo, object) {
-    if (randomizationInfo) {
-      this.randomization = {...defaultObject, ...randomizationInfo};
-    }
+  constructor(_randomizationInfo, object) {
+    const randomizationInfo = {...defaultObject, ..._randomizationInfo};
+
+    super(randomizationInfo);
+    this.randomization = {...defaultObject, ...randomizationInfo};
 
     this.#object = object;
     this.#audioParams = object.getKeysOfAudioParams();

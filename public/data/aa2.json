@@ -1,6 +1,17 @@
 [{
   "type": "sound",
-  "filename": "/data/aa_1.wav"
+  "filename": "/data/aa_1.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 5
+    }]
+  }]
 },{
   "type": "sound",
   "filename": "/data/aa_2.wav"

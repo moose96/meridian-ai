@@ -18,6 +18,11 @@ class SoundEngineObject extends ParamListener
     this.randomization = new RandomizationList(initObject.randomization, this);
   }
 
+  setParamStore(store) {
+    super.setParamStore(store);
+    this.randomization.setParamStore(store);
+  }
+
   toPlainObject() {
     return {
       randomization: this.randomization.toPlainObject(),

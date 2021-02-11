@@ -35,6 +35,10 @@ class RandomizationList
     this.randomization.forEach(randomization => randomization.stop());
   }
 
+  setParamStore(store) {
+    this.randomization.forEach(randomization => randomization.setParamStore(store));
+  }
+
   toPlainObject() {
     return this.randomization.map(randomization => randomization.toPlainObject());
   }

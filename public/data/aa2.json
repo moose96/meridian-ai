@@ -9,57 +9,233 @@
       "name": "width",
       "key": "offset",
       "min": 0,
-      "max": 5
+      "max": 0.5
     }]
   }]
 },{
   "type": "sound",
-  "filename": "/data/aa_2.wav"
+  "filename": "/data/aa_2.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_3.wav"
+  "filename": "/data/aa_3.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_4.wav"
+  "filename": "/data/aa_4.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_5.wav"
+  "filename": "/data/aa_5.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_6.wav"
+  "filename": "/data/aa_6.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_7.wav"
+  "filename": "/data/aa_7.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_8.wav"
+  "filename": "/data/aa_8.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_9.wav"
+  "filename": "/data/aa_9.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_10.wav"
+  "filename": "/data/aa_10.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_11.wav"
+  "filename": "/data/aa_11.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_12.wav"
+  "filename": "/data/aa_12.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_13.wav"
+  "filename": "/data/aa_13.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_14.wav"
+  "filename": "/data/aa_14.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_15.wav"
+  "filename": "/data/aa_15.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_16.wav"
+  "filename": "/data/aa_16.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
-  "filename": "/data/aa_17.wav"
+  "filename": "/data/aa_17.wav",
+  "randomization": [{
+    "key": "pan",
+    "value": 0,
+    "offset": 0,
+    "params": [{
+      "name": "width",
+      "key": "offset",
+      "min": 0,
+      "max": 0.5
+    }]
+  }]
 },{
   "type": "sound",
   "filename": "/data/aa_18.wav"

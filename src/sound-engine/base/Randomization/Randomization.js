@@ -12,17 +12,22 @@ const defaultObject = {
 
 class Randomization extends ParamListener
 {
-  randomization = {};
+  // randomization = {};
   #started = false;
   #object;
   #audioParams;
   #intervalID;
 
-  constructor(_randomizationInfo, object) {
-    const randomizationInfo = {...defaultObject, ..._randomizationInfo};
+  constructor(_initObject, object) {
+    const initObject = {...defaultObject, ..._initObject};
 
-    super(randomizationInfo);
-    this.randomization = {...defaultObject, ...randomizationInfo};
+    super(initObject);
+    this.enabled = initObject.enabled;
+    this.key = initObject.key;
+    this.offset = initObject.offset;
+    this.value = initObject.value;
+    this.loop = initObject.loop;
+    this.time = initObject.time;
 
     this.#object = object;
     this.#audioParams = object.getKeysOfAudioParams();
@@ -31,38 +36,38 @@ class Randomization extends ParamListener
   setValue(name, value) {
     switch(name) {
       case 'key':
-        this.randomization.key = value;
+        this.key = value;
       break;
       case 'loop':
-        this.randomization.loop = value;
+        this.loop = value;
       break;
       default:
-        this.randomization[name] = parseFloat(value);
+        this[name] = parseFloat(value);
     }
   }
 
   randomizeRunner = () => {
-    const { enabled, key, offset, value, loop, time } = this.randomization;
+    // const { enabled, key, offset, value, loop, time } = this.randomization;
 
-    if (enabled && (!loop || (loop && this.#started))) {
-      const top = value + offset;
-      const bottom = value - offset;
+    if (this.enabled && (!this.loop || (this.loop && this.#started))) {
+      const top = this.value + this.offset;
+      const bottom = this.value - this.offset;
       const _value = Math.random() * (top - bottom) + bottom;
 
-      if (this.#audioParams.indexOf(key) !== -1) {
-        this.#object[key] = {
+      if (this.#audioParams.indexOf(this.key) !== -1) {
+        this.#object[this.key] = {
           value: _value,
-          time: loop ? time : 0
+          time: this.loop ? this.time : 0
         };
       } else {
-        this.#object[key] = value;
+        this.#object[this.key] = this.value;
       }
     }
   }
 
   randomize() {
-    if (this.randomization.loop && !this.#started) {
-      this.#intervalID = setInterval(this.randomizeRunner, this.randomization.time);
+    if (this.loop && !this.#started) {
+      this.#intervalID = setInterval(this.randomizeRunner, this.time);
       this.#started = true;
     } else {
       this.randomizeRunner();
@@ -70,14 +75,21 @@ class Randomization extends ParamListener
   }
 
   stop() {
-    if (this.randomization.loop && this.#started) {
+    if (this.loop && this.#started) {
       clearInterval(this.#intervalID);
       this.#started = false;
     }
   }
 
   toPlainObject() {
-    return this.randomization;
+    return {
+      enabled: this.enabled,
+      key: this.key,
+      offset: this.offset,
+      value: this.value,
+      loop: this.loop,
+      time: this.time
+    }
   }
 }
 

@@ -32,7 +32,10 @@ Przykładowe rozwiązania:
 Poniżej zaprezentowano projekty wyglądu poszczególnych okien aplikacji.
 
 ### Tryb Live!
+![Live mode](./img/live.png)
 ### Tryb edycji
+![Edit mode](./img/edit.png)
 ### Formularz logowania
+![Login form](./img/login_form.png)
 ### Edycja konta
 ### Ustawienia

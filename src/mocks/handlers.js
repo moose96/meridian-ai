@@ -14,7 +14,7 @@ const handlers = [
 
     data = data.map(async (id) => await getSound(id));
     data = await Promise.all(data);
-    data = joinObjects(data);
+    // data = joinObjects(data);
 
     return res(
       ctx.status(200),

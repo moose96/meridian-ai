@@ -34,12 +34,12 @@ You can view the current version of app [here](https://meridian-ai.netlify.app/)
 
 ## Modules
 The Meridian-Ai consists of modules below:
-1. Sound Engine
-2. AI Composer
-3. Animation Engine
-4. Main UI
-5. Editor UI
-6. Sound and user data database
+1. [Sound Engine](./docs/Sound_Engine.md)
+2. [AI Composer](./docs/AI_Composer.md)
+3. [Animation Engine](./docs/Animation_Engine.md)
+4. [Main UI](./docs/Main_UI.md)
+5. [Editor UI](./docs/Editor_UI.md)
+6. [Sound and user data database](./docs/Server.md)
 
 ## Technology
 * ReactJS

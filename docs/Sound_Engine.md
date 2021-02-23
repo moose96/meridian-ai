@@ -133,7 +133,7 @@ Pole zawiera tablicę obiektów opisujących randomizację dowolnego parametru. 
 
 ### sound engine object (globalne parametry)
 
-Silnik dźwiękowy definiuje kilka rodzajów klas bazowych w zależności od zastosowania. Wyjaśnienie ich różnic znajduje się w [szczegółowej dokumentacji API](#api). W pliku json używana jest najbardziej zaawansowana z nich. Można powiedzieć, że stosuje się ją do obiektów, które można panoramować i zmieniać im głośność, a takich używa się bezpośrednio w drzewie dźwiękowym. Obiekt ten jest postaci:
+Silnik dźwiękowy definiuje kilka rodzajów klas bazowych w zależności od zastosowania. Wyjaśnienie ich różnic znajduje się w [szczegółowej dokumentacji API](#referencja-api). W pliku json używana jest najbardziej zaawansowana z nich. Można powiedzieć, że stosuje się ją do obiektów, które można panoramować i zmieniać im głośność, a takich używa się bezpośrednio w drzewie dźwiękowym. Obiekt ten jest postaci:
 
 ```ts
 {

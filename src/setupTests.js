@@ -5,9 +5,17 @@
 import '@testing-library/jest-dom';
 import WebAudioApi from 'web-audio-api';
 
-global.AudioContext = class extends WebAudioApi.AudioContext {
-  constructor(opts) {
-    super(opts);
-    this.outStream = process.stdout;
+import { server } from './mocks/server.js'
+
+beforeAll(() => {
+  global.AudioContext = class extends WebAudioApi.AudioContext {
+    constructor(opts) {
+      super(opts);
+      this.outStream = process.stdout;
+    }
   }
-}
+
+  server.listen();
+});
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());

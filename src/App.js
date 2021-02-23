@@ -25,20 +25,23 @@ function App({ voices }) {
 
   useEffect(() => {
     fetch('/data/aa2.json')
-    .then(response => response.json())
-    .then(data => {
-      const [_treeView, result, _refs] = SoundEngine.createSoundFX(data);
-      refs.current = _refs;
+      .then(response => response.json())
+      .then(data => {
+        const [_treeView, result, _refs] = SoundEngine.createSoundFX(data);
+        refs.current = _refs;
 
-      return result;
-    })
-    .then(data => {
-      setData(data);
-      soundField.current = new SoundField();
-      soundField.current.addSound(data);
-      console.log(data);
-      console.log(refs);
-    });
+        return result;
+      })
+      .then(data => {
+        setData(data);
+        soundField.current = new SoundField();
+        soundField.current.addSound(data);
+        console.log(data);
+        console.log(refs);
+      });
+    fetch('/v1/sounds')
+      .then(response => response.json())
+      .then(data => console.log(data));
   }, []);
 
   const handleClick = () => {

@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "msw": "^0.26.2",
     "web-audio-api": "^0.2.2"
   }
 }

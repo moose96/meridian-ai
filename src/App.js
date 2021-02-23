@@ -16,7 +16,7 @@ import StopIcon from '@material-ui/icons/Stop';
 function App({ voices }) {
   const [playing, setPlaying] = useState(false);
   const [simulation, setSimulation] = useState(true);
-  const [data, setData] = useState([]);
+  const [sounds, setSounds] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
 
   const soundField = useRef();
@@ -24,24 +24,24 @@ function App({ voices }) {
   const currentRef = useRef(null);
 
   useEffect(() => {
-    fetch('/data/aa2.json')
-      .then(response => response.json())
-      .then(data => {
-        const [_treeView, result, _refs] = SoundEngine.createSoundFX(data);
-        refs.current = _refs;
+    (async () => {
+      const response = await fetch('/v1/sounds');
 
-        return result;
-      })
-      .then(data => {
-        setData(data);
+      if (response.status === 200) {
+        const data = await response.json();
+
         soundField.current = new SoundField();
-        soundField.current.addSound(data);
-        console.log(data);
-        console.log(refs);
-      });
-    fetch('/v1/sounds/')
-      .then(response => response.json())
-      .then(data => console.log(data));
+
+        data.forEach(sound => {
+          const [_treeView, result, _refs] = SoundEngine.createSoundFX(sound);
+          refs.current = [...refs.current, ..._refs];
+          soundField.current.addSound(result);
+          setSounds(sounds => [...sounds, result]);
+          console.log("data", sounds);
+          console.log("refs", refs);
+        });
+      }
+    })()
   }, []);
 
   const handleClick = () => {
@@ -95,7 +95,9 @@ function App({ voices }) {
     <div className="App">
       <div className="App__left">
         <TreeView>
-          <TreeItemGenerator data={data} onClick={handleTreeItemClick}/>
+          {sounds.map((element, index) =>
+            <TreeItemGenerator key={`tree-item-sound-fx-${index}`} data={element} onClick={handleTreeItemClick}/>
+          )}
         </TreeView>
       </div>
       <div className="App__right">

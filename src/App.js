@@ -39,7 +39,7 @@ function App({ voices }) {
         console.log(data);
         console.log(refs);
       });
-    fetch('/v1/sounds')
+    fetch('/v1/sounds/')
       .then(response => response.json())
       .then(data => console.log(data));
   }, []);

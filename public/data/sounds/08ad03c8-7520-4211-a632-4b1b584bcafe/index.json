@@ -1,0 +1,282 @@
+[{
+  "type": "sound",
+  "filename": "drip_01.wav",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_02.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_03.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_04.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_05.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_06.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_07.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_08.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_09.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_10.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_11.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_12.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_13.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_14.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_15.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_16.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_17.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_18.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_19.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_20.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_21.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_22.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_23.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_24.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_25.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_26.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_27.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_28.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_29.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "filename": "drip_30.wav",
+  "type": "sound",
+  "randomization": {
+    "key": "pan",
+    "value": 0,
+    "offset": 0.1
+  }
+},{
+  "type": "random container",
+  "loop": true,
+  "delay": 1000,
+  "pan": 0.6,
+  "params": [{
+    "name": "intensivity",
+    "key": "delay",
+    "min": 1000,
+    "max": 25
+  }],
+  "objects": [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+  ]
+},{
+  "type": "random container",
+  "loop": true,
+  "delay": 1000,
+  "pan": 0.6,
+  "params": [{
+    "name": "intensivity",
+    "key": "delay",
+    "min": 1000,
+    "max": 25
+  }],
+  "objects": [
+    0, 1, 2, 3, 4, 5, 6, 7, 8, 9,
+    10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    20, 21, 22, 23, 24, 25, 26, 27, 28, 29
+  ]
+},{
+  "type": "parallel container",
+  "objects": [30, 31]
+},
+{
+  "type": "sound fx",
+  "name": "drip",
+  "root": true,
+  "objects": [32]
+}]

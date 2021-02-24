@@ -624,6 +624,7 @@
   "objects": [100, 101]
 }, {
   "type": "sound fx",
+  "name": "rain",
   "objects": [102],
   "root": true
 }]

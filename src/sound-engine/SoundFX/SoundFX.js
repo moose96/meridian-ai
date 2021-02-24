@@ -28,6 +28,8 @@ class SoundFX extends EngineNode
     const initObject = {...defaultObject, ..._initObject};
     super(initObject);
 
+    this.name = `${initObject.name ? initObject.name : 'bez_nazwy'} - ${this.name}`;
+
     if (initObject.objects[0] instanceof Container) {
       this.source = initObject.objects[0];
     } else {

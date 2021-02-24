@@ -25,7 +25,7 @@ class EngineNode extends BaseEngineNode
   constructor(_initObject) {
     const initObject = {...defaultObject, ..._initObject};
     super(initObject);
-    this.id = uuidv4();
+    this.id = initObject.id;
     this.type = this.constructor.name;
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume;

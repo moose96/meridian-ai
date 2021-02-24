@@ -8,9 +8,10 @@ import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
 import { worker } from './mocks/browser';
 
-if (process.env.NODE_ENV === 'development') {
+// ! ONLY FOR DEVELOPING APP. UNCOMMENT THIS IF THE SERVER HAS BEEN BUILT !
+// if (process.env.NODE_ENV === 'development') {
   worker.start()
-}
+// }
 
 ReactDOM.render(
   <React.StrictMode>

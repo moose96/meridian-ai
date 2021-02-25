@@ -241,5 +241,23 @@ Filtr zawiera te same pola jak w specyfikacji [Web Audio API](https://developer.
 ## Sound Engine
 
 ## Tworzenie własnych dźwięków
+1. Sklonuj repozytorium
+```
+git clone https://github.com/moose96/meridian-ai.git
+```
+lub pobierz najnowsze dane, jeśli masz już sklonowane repozytorium.
+```
+git pull
+```
+2. Utwórz nowy folder (w dolnym miejscu)
+3. Stwórz plik index.json zachowując zasady zgodne z dokumentacją powyżej
+4. Umieść pliki dźwiękowe w tym samym folderze co plik index.json
+  * Pamiętaj, aby w polu ```filename``` obiektu ```Sound``` podawać ścieżkę relatywną względem pliku index.json tworzonego dźwięku
+5. Przenieś folder do folderu ```/public/data/sounds/``` w katalogu tego projektu.
+6. Uruchom polecenie
+```
+npm run install-sound
+```
+Skrypt automatycznie doda dźwięki do bazy.
 ## Contributing
 ## Referencja API

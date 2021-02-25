@@ -14,34 +14,31 @@ const validateDirname = (id) => {
 }
 
 const checkDirname = (id) => {
-  return new Promise((resolve, reject) => {
-    try {
-      fs.lstat(`${SOUNDS_PATH}/${id}`, (err, stat) => {
-        if (!err) {
-          if (stat.isDirectory()) {
-            resolve(validateDirname(id));
-          }
-        } else {
-          reject(err);
-        }
-      });
-    } catch(err) {
-      reject(err);
+  try {
+    const stat = fs.lstatSync(`${SOUNDS_PATH}/${id}`);
+
+    if (stat.isDirectory()) {
+      return !validateDirname(id);
+    } else {
+      return false;
     }
-  });
+  } catch(err) {
+    throw Error(err);
+  }
 }
 
-const validateSoundPackage = (path) => {
-  let mainJSON;
-  const filenames = fs.readdirSync(path, { encoding: 'utf-8' });
+const validateSoundPackage = (_path) => {
+  const filenames = fs.readdirSync(_path, { encoding: 'utf-8' });
+  const mainJSON = readJSON(`${_path}/index.json`);
 
   filenames.forEach(filename => {
-    if (filename === 'index.json') {
-      mainJSON = readJSON(`${path}/${filename}`);
-    } else if (!ALLOWED_EXTENSIONS.includes(path.extname(filename))) {
-      throw Error(`${filename} is not one of allowed file types: ${ALLOWED_EXTENSIONS}`);
+    if (filename !== 'index.json' &&
+      !ALLOWED_EXTENSIONS.includes(path.extname(filename))) {
+        throw Error(`${filename} is not one of allowed file types: ${ALLOWED_EXTENSIONS}`);
     }
   });
+
+  validateIndexJSON(mainJSON);
 }
 
 const validateIndexJSON = (json) => {
@@ -53,26 +50,61 @@ const validateIndexJSON = (json) => {
 }
 
 const readJSON = (path) => {
-  const json = fs.readFileSync(path, { encoding: 'utf-8'});
-  return JSON.parse(json);
+  try {
+    const json = fs.readFileSync(path, { encoding: 'utf-8'});
+    // console.log(json);
+    return JSON.parse(json);
+  } catch(err) {
+    throw Error(err);
+  }
+}
+
+const writeJSON = (path, json) => {
+  try {
+    const string = JSON.stringify(json);
+    fs.writeFileSync(path, string);
+  } catch(err) {
+    throw Error(err);
+  }
+}
+
+const installNewSounds = (files) => {
+  const newSounds = [];
+
+  try {
+    files.forEach(filename => {
+      if (checkDirname(filename)) {
+        const path = `${SOUNDS_PATH}/${filename}`;
+        validateSoundPackage(path);
+        const newUUID = uuid.v4();
+        fs.renameSync(path, `${SOUNDS_PATH}/${newUUID}`);
+        newSounds.push(newUUID);
+      }
+    });
+  } catch(err) {
+    throw Error(err);
+  }
+
+  return newSounds;
 }
 
 fs.readdir(SOUNDS_PATH, (err, files) => {
   let mainJSON = {};
 
   if (!err) {
-    files.forEach(async filename => {
-      try {
-        if (filename === 'index.json') {
-          mainJSON = readJSON(`${SOUNDS_PATH}/${filename}`);
-        }
-        else if (!(await checkDirname(filename))) {
-          validateSoundPackage(`${SOUNDS_PATH}/${filename}`);
-        }
-      } catch(err) {
-        console.error(err);
+    try {
+      const newSounds = installNewSounds(files);
+
+      if (newSounds.length > 0) {
+        mainJSON = readJSON(`${SOUNDS_PATH}/index.json`);
+        mainJSON = [...mainJSON, ...newSounds];
+        writeJSON(`${SOUNDS_PATH}/index.json`, mainJSON);
+      } else {
+        console.log('nothing to install');
       }
-    });
+    } catch(err) {
+      console.log(err);
+    }
   } else {
     console.error(err);
   }

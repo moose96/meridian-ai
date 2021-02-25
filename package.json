@@ -25,7 +25,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "install-sound": "node ./src/scripts/installSound.js"
+    "install-sound": "node ./src/scripts/installSound"
   },
   "eslintConfig": {
     "extends": [

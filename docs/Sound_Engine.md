@@ -249,15 +249,29 @@ lub pobierz najnowsze dane, jeśli masz już sklonowane repozytorium.
 ```
 git pull
 ```
-2. Utwórz nowy folder (w dolnym miejscu)
-3. Stwórz plik index.json zachowując zasady zgodne z dokumentacją powyżej
-4. Umieść pliki dźwiękowe w tym samym folderze co plik index.json
+2. Utwórz nową gałąź feature
+```
+git checkout -b feature/nazwa_galezi
+```
+lub przełącz się na utworzoną wcześniej do tego celu. Możesz dodawać dźwięki nie tworząc za każdym razem nowej gałęzi. Pamiętaj tylko, żeby przed wprowadzeniem zmian połączyć zmiany z gałęzi ```master``` z Twoją.
+```
+git checkout feature/your_branch
+git merge master
+```
+3. Utwórz nowy folder (w dolnym miejscu)
+4. Stwórz plik index.json zachowując zasady zgodne z dokumentacją powyżej
+5. Umieść pliki dźwiękowe w tym samym folderze co plik index.json
   * Pamiętaj, aby w polu ```filename``` obiektu ```Sound``` podawać ścieżkę relatywną względem pliku index.json tworzonego dźwięku
-5. Przenieś folder do folderu ```/public/data/sounds/``` w katalogu tego projektu.
-6. Uruchom polecenie
+6. Przenieś folder do folderu ```/public/data/sounds/``` w katalogu tego projektu.
+7. Uruchom polecenie
 ```
 npm run install-sound
 ```
 Skrypt automatycznie doda dźwięki do bazy.
+
+8. Aby wysłać zmiany na serwer użyj komendy ```git push```
+```
+git push origin feature/your_branch
+```
 ## Contributing
 ## Referencja API

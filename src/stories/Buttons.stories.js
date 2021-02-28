@@ -1,13 +1,33 @@
 import React from 'react';
-import { Meta } from '@storybook/react';
-import Button from '@material-ui/core/Button';
+
+import {
+  PrimaryButton,
+  SecondaryButton,
+  RoundedButton,
+  TransportButton,
+  ASMRButton,
+  SnapshotButton
+} from '../components/Button';
 
 const meta = {
-  title: 'Button',
-  component: Button
+  title: 'Button'
 };
 
 export default meta;
 
-export const Primary = () => <Button variant="contained" color="primary">Primary</Button>;
-export const Secondary = () => <Button variant="text" color="default">Secondary</Button>;
+
+export const Primary = () => <PrimaryButton>Primary</PrimaryButton>;
+export const Secondary = () => <SecondaryButton>Secondary</SecondaryButton>;
+export const Rounded = () => <RoundedButton>P</RoundedButton>;
+export const Transport = (args) => <TransportButton {...args}/>;
+Transport.args = {
+  type: 'play'
+}
+
+export const ASMR = () => <ASMRButton />;
+export const Snapshot = (args) => <SnapshotButton {...args}>1</SnapshotButton>;
+Snapshot.args = {
+  value: '1',
+  selected: false,
+  filled: false
+}

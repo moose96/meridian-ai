@@ -2,15 +2,15 @@ import React from 'react';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     border: 'none'
   },
   filled: {
-    backgroundColor: 'white',
-    color: 'black'
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.action.active
   }
-});
+}));
 
 export default function SnapshotButton({ filled, ...props }) {
   const styles = useStyles();

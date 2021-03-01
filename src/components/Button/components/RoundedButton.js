@@ -5,12 +5,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     borderRadius: '50% 50% 50% 50%',
     aspectRatio: 1,
-    borderWidth: 1,
-    backgroundColor: theme.palette.background.paper
+    background: `linear-gradient(225deg, ${theme.palette.background.paper}, ${theme.palette.background.default})`,
+    color: `${theme.palette.text.icon}`
   }
 }));
 
 export default function RoundedButton(props) {
   const styles = useStyles();
-  return <Button className={styles.root} variant="outlined" {...props} />;
+  return <Button className={styles.root} variant="contained" {...props} />;
 }

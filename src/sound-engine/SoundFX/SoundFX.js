@@ -131,6 +131,10 @@ class SoundFX extends EngineNode
     }
   }
 
+  setParams(params) {
+    Object.entries(params).forEach(([key, value]) => this.setParam(key, value));
+  }
+
   toPlainObject() {
     return {
       ...super.toPlainObject(),

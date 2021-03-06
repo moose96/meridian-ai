@@ -1,8 +1,10 @@
 import React from 'react';
 import { Router, Link } from '@reach/router';
+import { ThemeProvider } from '@material-ui/core/styles';
 
-import { EditorPage } from './pages';
+import { EditorPage, MainPage } from './pages';
 import './App.scss';
+import { defaultTheme } from './theme';
 
 const Welcome = () => {
   return (
@@ -18,10 +20,12 @@ const Welcome = () => {
 function App({ voices }) {
   return (
     <div className="App">
-      <Router style={{ height: '100%' }}>
-        <Welcome path="/" />
-        <EditorPage path="/editor" />
-      </Router>
+      <ThemeProvider theme={defaultTheme}>
+        <Router style={{ height: '100%' }}>
+          <MainPage path="/" />
+          <EditorPage path="/editor" />
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }

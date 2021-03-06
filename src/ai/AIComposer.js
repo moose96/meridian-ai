@@ -1,3 +1,4 @@
+import SoundEngine, { SoundField } from '../sound-engine'
 class AIComposer {
   #intervalID;
   #soundField;
@@ -5,12 +6,8 @@ class AIComposer {
   #history;
   #time = 10000;
 
-  set soundField(soundField) {
-    this.#soundField = soundField;
-  }
-
-  set soundParams(soundParams) {
-    this.#soundsParams = soundParams;
+  constructor() {
+    this.#soundField = new SoundField();
   }
 
   _randomizeParams() {
@@ -37,6 +34,28 @@ class AIComposer {
     this.#soundField.sounds.forEach(sound => {
       sound.setParams(params[sound.id]);
     });
+  }
+
+  addSounds(data) {
+    if (data) {
+      const { sounds, snapshots } = data;
+      if (Array.isArray(sounds)) {
+        sounds.forEach(sound => {
+          const [_, result, __] = SoundEngine.createSoundFX(sound);
+          this.#soundField.addSound(result);
+        });
+      } else {
+        throw Error('sounds are not array');
+      }
+
+      if (Array.isArray(snapshots)) {
+        this.#soundsParams = snapshots;
+      } else {
+        throw Error('snapshots are not array');
+      }
+    } else {
+      throw Error('data is undefined');
+    }
   }
 
   start() {

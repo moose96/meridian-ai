@@ -12,14 +12,13 @@ export default function useAIComposer() {
         const data = await getSet('3bfa2ef6-63e1-41be-a977-0273ec87aa69');
         console.log('data', data);
         aiComposer.addSounds(data);
+        console.log('aiComposer', aiComposer);
       }
       catch(err) {
         console.log(err);
       }
     })();
   }, []);
-
-  useEffect(() => console.log('aiComposer', aiComposer), [aiComposer]);
 
   const handlePrev = () => aiComposer.prev();
   const handleNext = () => aiComposer.next();

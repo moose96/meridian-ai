@@ -2,8 +2,8 @@ import SoundEngine, { SoundField } from '../sound-engine'
 class AIComposer {
   #intervalID;
   #soundField;
-  #soundsParams;
-  #history;
+  #soundsParams = [];
+  #history = [];
   #time = 10000;
 
   constructor() {
@@ -12,20 +12,26 @@ class AIComposer {
 
   _randomizeParams() {
     const paramIDs = this.#soundsParams.map(params => params.id);
-    const used = this.#history.map(params => params.id);
-    const available = [];
-    paramIDs.forEach(id => used.includes(id) && available.push(id));
+    let used = this.#history.map(params => params.id);
+    let available = [];
+    paramIDs.forEach(id => !used.includes(id) && available.push(id));
 
     if (available.length === 0) {
-      this.stop();
-    } else {
-      const params = available[Math.random() % available.length];
-      this.#history.push(params);
-      return params;
+      used = [];
+      available = [...paramIDs];
     }
+
+    // console.log(paramIDs, used, available);
+
+    const paramID = available[Math.floor(Math.random() * available.length)];
+    const params = this.#soundsParams.find(item => item.id === paramID);
+    this.#history.push(params);
+
+    console.log(params, this.#history);
+    return params;
   }
 
-  _run() {
+  _run = () => {
     const params = this._randomizeParams();
     this._setParams(params);
   }

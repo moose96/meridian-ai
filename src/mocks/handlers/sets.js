@@ -10,8 +10,9 @@ export const getSet = async (id) => {
   const { data } = await getObject('sets', id);
   const { data: snapshots } = await getObject('sets', id, 'snapshots.json');
 
-  let sounds = await getSounds('sounds', data.sounds);
+  let sounds = await getSounds(data.sounds);
   sounds = sounds.map(sound => prepareObjects(sound.id, sound.data));
+
   return {
     ...data,
     sounds,
@@ -24,7 +25,7 @@ const handlers = [
     const response = await fetch('/data/sets/index.json');
     let data = response.json();
 
-    let sets = await getSets(data).map;
+    let sets = await getSets(data);
     sets = sets.map(set => set.data);
 
     return res (

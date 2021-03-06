@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   PlayArrow,
+  Stop,
   SkipNext,
   SkipPrevious
 } from '@material-ui/icons';
@@ -14,6 +15,11 @@ const getIconAndSizes = type => {
     default:
       return {
         icon: <PlayArrow />,
+        size: 'medium'
+      }
+    case 'stop':
+      return {
+        icon: <Stop />,
         size: 'medium'
       }
     case 'prev':
@@ -36,5 +42,5 @@ export default function TransportButton({ type, ...props }) {
 }
 
 TransportButton.propTypes = {
-  type: PropTypes.oneOf(['play', 'prev', 'next'])
+  type: PropTypes.oneOf(['play', 'stop','prev', 'next'])
 }

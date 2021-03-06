@@ -11,8 +11,8 @@ export default meta;
 
 export const Primary = (args) => (
   <Navigation {...args}>
-    <NavItem label="Edit" />
-    <NavItem label="Live!" />
+    <NavItem label="Browse" />
+    <NavItem label="Play!" />
   </Navigation>
 );
 Primary.args = {

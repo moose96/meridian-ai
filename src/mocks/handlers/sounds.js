@@ -1,10 +1,15 @@
 import { rest } from 'msw';
 
-import { prepareObjects, joinObjects } from './utility/functions';
+import { getObjects, getObject } from '../utility/functions';
+import { prepareObjects } from './utility/functions';
 
-const getSound = async (id) => {
-  const response = await fetch(`/data/sounds/${id}/index.json`);
-  return prepareObjects(id, await response.json());
+export const getSounds = async (data) => {
+  return await getObjects('sounds', data);
+}
+
+export const getSound = async (id) => {
+  const { id: objectID, data } = await getObject('sounds', id);
+  return prepareObjects(objectID, data);
 }
 
 const handlers = [

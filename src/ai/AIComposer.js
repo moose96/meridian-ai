@@ -1,44 +1,24 @@
 import SoundEngine, { SoundField } from '../sound-engine'
+// import { select, mix, oscillate, createNewParams } from './ParamsMixer';
+import { SnapshotList } from './Snapshot';
 class AIComposer {
   #intervalID;
   #soundField;
-  #soundsParams = [];
-  #history = [];
+  #snapshots;
   #time = 10000;
 
   constructor() {
     this.#soundField = new SoundField();
   }
 
-  _randomizeParams() {
-    const paramIDs = this.#soundsParams.map(params => params.id);
-    let used = this.#history.map(params => params.id);
-    let available = [];
-    paramIDs.forEach(id => !used.includes(id) && available.push(id));
-
-    if (available.length === 0) {
-      used = [];
-      available = [...paramIDs];
-    }
-
-    // console.log(paramIDs, used, available);
-
-    const paramID = available[Math.floor(Math.random() * available.length)];
-    const params = this.#soundsParams.find(item => item.id === paramID);
-    this.#history.push(params);
-
-    console.log(params, this.#history);
-    return params;
-  }
-
   _run = () => {
-    const params = this._randomizeParams();
-    this._setParams(params);
+    this.next();
   }
 
-  _setParams(params) {
+  _setParams(snapshot) {
+    console.log(this.#snapshots);
     this.#soundField.sounds.forEach(sound => {
-      sound.setParams(params[sound.id]);
+      sound.setParams(snapshot.getSoundParams(sound.id));
     });
   }
 
@@ -55,7 +35,7 @@ class AIComposer {
       }
 
       if (Array.isArray(snapshots)) {
-        this.#soundsParams = snapshots;
+        this.#snapshots = new SnapshotList(snapshots);
       } else {
         throw Error('snapshots are not array');
       }
@@ -75,11 +55,11 @@ class AIComposer {
   }
 
   next() {
-    this._run();
+    this._setParams(this.#snapshots.next());
   }
 
   prev() {
-    this._setParams(this.#history[this.#history.length - 1]);
+    this._setParams(this.#snapshots.prev());
   }
 }
 

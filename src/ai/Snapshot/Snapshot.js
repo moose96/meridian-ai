@@ -61,6 +61,27 @@ class Snapshot {
     return Object.keys(this.#sounds);
   }
 
+  calculateSimilarity(otherSnapshot) {
+    const soundEntries = Object.entries(this.#sounds);
+    const soundValues = Object.values(this.#sounds);
+
+    const maxValue = 100 * soundValues.reduce((accumulator, current) => //change 100 to param max value
+      accumulator + Object.keys(current).length
+    , 0);
+
+    const delta = soundEntries.reduce((accumulator, [currentKey, currentValue]) =>
+      accumulator +
+      Object.entries(currentValue)
+        .reduce((innerAccumulator, [innerCurrentKey, innerCurrentValue]) => {
+          return (
+            innerAccumulator + Math.abs(innerCurrentValue - otherSnapshot.getSoundParams(currentKey)[innerCurrentKey])
+          );
+        }, 0)
+    , 0);
+
+    return 1 - delta/maxValue;
+  }
+
   static mix(leftSnapshot, rightSnapshot, options = INITIAL_OPTIONS) {
     console.log(leftSnapshot, rightSnapshot);
     return createNewSnapshot(leftSnapshot, id =>

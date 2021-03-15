@@ -8,8 +8,8 @@ class SnapshotList {
   #defaultSnapshots = [];
   #snapshots = [];
   #history = [];
-  #asmr = false;
-  #asmrSnapshot = {};
+  #oscillate = false;
+  #oscillateSnapshot = {};
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
@@ -29,13 +29,18 @@ class SnapshotList {
 
   async _generate() {
     // this.#snapshots = ObservableArray.from(_.shuffle(this.#history[this.#generation]
+    let mutationProbability = 0.0;
+
     this.#snapshots = _.shuffle(this.#history[this.#generation]
       .map((item, _index, array) => {
         const index = (_index + 1) % array.length;
-        return Snapshot.mix(item, array[index])
+        return Snapshot.mix(item, array[index], { mutationProbability });
       // })));
       }));
     this.#generation++;
+    this.#history.push([]);
+
+    console.log('new generation: ', this.#snapshots, this.#generation);
   }
 
   _takeSnapshot() {
@@ -46,18 +51,19 @@ class SnapshotList {
   }
 
   _oscillate() {
-    return Snapshot.oscillate(this.#asmrSnapshot, 10);
+    return Snapshot.oscillate(this.#oscillateSnapshot, 10);
   }
 
   next() {
     let snapshot;
 
-    if (this.asmr) {
+    if (this.#oscillate) {
       snapshot = this._oscillate();
     } else {
       snapshot = this._takeSnapshot();
     }
 
+    console.log(this.#history);
     this.#history[this.#generation].push(snapshot);
 
     if (this.#snapshots.length === 0) {
@@ -67,18 +73,31 @@ class SnapshotList {
   }
 
   prev() {
+    const currentSnapshot = this.history[this.history.length - 1];
+    const prevSnapshot = this.history[this.history.length - 2];
+    const newSnapshot = Snapshot.mix(currentSnapshot, prevSnapshot, { mutationProbability: 0.5 });
 
+    this.#snapshots = [];
+    this.#snapshots.push(newSnapshot);
+
+    for (let i = 0; i < this.#defaultSnapshots.length; i++) {
+      this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
+    }
+
+    console.log('prev mode:', this.#snapshots);
+    return prevSnapshot;
   }
 
   get history() {
     return this.#history.flat();
   }
 
-  setAsmrMode(mode) {
-    this.#asmr = mode;
+  oscillate(mode = true) {
+    this.#oscillate = mode;
 
-    if (this.#asmr) {
-      this.#asmrSnapshot = this.history[this.history.length - 1];
+    if (this.#oscillate) {
+      this.#oscillateSnapshot = this.history[this.history.length - 1];
+      console.log('oscillate on: ', this.#oscillateSnapshot);
     }
   }
 }

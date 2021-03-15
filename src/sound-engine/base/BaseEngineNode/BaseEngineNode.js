@@ -37,7 +37,6 @@ class BaseEngineNode extends SoundEngineObject
       }
 
       audioParam.linearRampToValueAtTime(processedValue, time);
-      console.log(this.name, audioParam, processedValue, value.time);
     } else {
       throw Error('audioParam has to be an instance of AudioParam');
     }

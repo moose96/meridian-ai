@@ -8,7 +8,7 @@ const globalStyles = {
   borderWidth: 4
 }
 
-export default function ASMRButton() {
+export default function ASMRButton({ onClick }) {
   const theme = useTheme();
   let styles = {...globalStyles};
 
@@ -19,5 +19,5 @@ export default function ASMRButton() {
     }
   }
 
-  return <RoundedButton style={styles} size="large" variant="outlined">ASMR!</RoundedButton>;
+  return <RoundedButton style={styles} size="large" variant="outlined" onClick={onClick}>ASMR!</RoundedButton>;
 }

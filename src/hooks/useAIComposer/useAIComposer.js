@@ -24,11 +24,14 @@ export default function useAIComposer() {
   const handleNext = () => aiComposer.next();
   const handleStart = () => aiComposer.start();
   const handleStop = () => aiComposer.stop();
+  const handleOscillate = mode => aiComposer.oscillate(mode);
 
   return {
     prev: handlePrev,
     next: handleNext,
     start: handleStart,
-    stop: handleStop
+    stop: handleStop,
+    startOscillate: () => handleOscillate(true),
+    stopOscillate: () => handleOscillate(false)
   }
 }

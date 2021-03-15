@@ -7,7 +7,7 @@ const isUUID = id => {
 }
 
 const INITIAL_OPTIONS = {
-  mutationProbability: 0.2,
+  mutationProbability: 0.1,
   mutationSize: 10
 }
 
@@ -83,7 +83,7 @@ class Snapshot {
   }
 
   static mix(leftSnapshot, rightSnapshot, options = INITIAL_OPTIONS) {
-    console.log(leftSnapshot, rightSnapshot);
+    console.log('mix:', leftSnapshot, rightSnapshot);
     return createNewSnapshot(leftSnapshot, id =>
       mixParams(leftSnapshot.getSoundParams(id), rightSnapshot.getSoundParams(id), options)
     );

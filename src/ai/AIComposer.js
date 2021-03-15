@@ -6,6 +6,7 @@ class AIComposer {
   #soundField;
   #snapshots;
   #time = 10000;
+  #similarity = 100.0;
 
   constructor() {
     this.#soundField = new SoundField();
@@ -16,7 +17,9 @@ class AIComposer {
   }
 
   _setParams(snapshot) {
-    console.log(this.#snapshots);
+    console.log('new Snapshot', snapshot);
+    this.#similarity = snapshot.calculateSimilarity(this.#snapshots.history[this.#snapshots.history.length - 2]) * 100.0;
+    console.log('similarity: ', this.#similarity);
     this.#soundField.sounds.forEach(sound => {
       sound.setParams(snapshot.getSoundParams(sound.id));
     });
@@ -60,6 +63,10 @@ class AIComposer {
 
   prev() {
     this._setParams(this.#snapshots.prev());
+  }
+
+  oscillate() {
+    this.#snapshots.oscillate();
   }
 }
 

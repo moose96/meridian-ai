@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 
 import { Header, TransportBar, ASMRButton } from '../../components';
 import MainContainer from './styled/MainContainer';
@@ -10,9 +11,11 @@ export default function MainPage() {
   return (
     <MainContainer>
       <Header />
-      <div style={{ flex: 1 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
         <p>content</p>
-        <ASMRButton onClick={startOscillate} />
+        <Box display="flex" justifyContent="center">
+          <ASMRButton onClick={startOscillate} />
+        </Box>
       </div>
       <TransportBar
         onPrev={() => prev()}

@@ -1,15 +1,15 @@
 import _ from 'lodash';
 
-import Snapshot from './Snapshot';
-import ObservableArray from './ObservableArray';
+import Snapshot from '../Snapshot';
+import History from '../History';
 
 class SnapshotList {
-  #generation = 0;
   #defaultSnapshots = [];
   #snapshots = [];
-  #history = [];
+  #history;
   #oscillate = false;
   #oscillateSnapshot = {};
+  #similarity = 100.0;
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
@@ -17,7 +17,7 @@ class SnapshotList {
     this.#snapshots = _.shuffle(this.#defaultSnapshots);
     console.log(this.#snapshots);
     // this.#snapshots.observe(this.onSnapshotShift);
-    this.#history.push([]);
+    this.#history = new History();
   }
 
   // onSnapshotShift = () => {
@@ -29,18 +29,17 @@ class SnapshotList {
 
   async _generate() {
     // this.#snapshots = ObservableArray.from(_.shuffle(this.#history[this.#generation]
-    let mutationProbability = 0.0;
+    // let mutationProbability = 0.2;
 
-    this.#snapshots = _.shuffle(this.#history[this.#generation]
-      .map((item, _index, array) => {
-        const index = (_index + 1) % array.length;
-        return Snapshot.mix(item, array[index], { mutationProbability });
-      // })));
-      }));
-    this.#generation++;
-    this.#history.push([]);
+    this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
+      const index = (_index + 1) % array.length;
+      return Snapshot.mix(item, array[index]/*, { mutationProbability }*/);
+    // })));
+    }));
 
-    console.log('new generation: ', this.#snapshots, this.#generation);
+    this.#history.newGeneration();
+
+    console.log('new generation: ', this.#snapshots);
   }
 
   _takeSnapshot() {
@@ -54,6 +53,16 @@ class SnapshotList {
     return Snapshot.oscillate(this.#oscillateSnapshot, 10);
   }
 
+  _calculateSimilarity() {
+    const currentSnapshot = this.history.atBack();
+    const lastSnapshot = this.history.atBack(1);
+
+    if (lastSnapshot) {
+      this.#similarity = currentSnapshot.calculateSimilarity(lastSnapshot);
+    }
+    console.log('similarity: ', this.#similarity);
+  }
+
   next() {
     let snapshot;
 
@@ -64,17 +73,19 @@ class SnapshotList {
     }
 
     console.log(this.#history);
-    this.#history[this.#generation].push(snapshot);
+    this.#history.push(snapshot);
 
     if (this.#snapshots.length === 0) {
       this._generate();
     }
+
+    this._calculateSimilarity();
     return snapshot;
   }
 
   prev() {
-    const currentSnapshot = this.history[this.history.length - 1];
-    const prevSnapshot = this.history[this.history.length - 2];
+    const currentSnapshot = this.history.atBack(-1);
+    const prevSnapshot = this.history.atBack(-2);
     const newSnapshot = Snapshot.mix(currentSnapshot, prevSnapshot, { mutationProbability: 0.5 });
 
     this.#snapshots = [];
@@ -85,18 +96,19 @@ class SnapshotList {
     }
 
     console.log('prev mode:', this.#snapshots);
+    this._calculateSimilarity();
     return prevSnapshot;
   }
 
   get history() {
-    return this.#history.flat();
+    return this.#history;
   }
 
   oscillate(mode = true) {
     this.#oscillate = mode;
 
     if (this.#oscillate) {
-      this.#oscillateSnapshot = this.history[this.history.length - 1];
+      this.#oscillateSnapshot = this.history.atBack();
       console.log('oscillate on: ', this.#oscillateSnapshot);
     }
   }

@@ -83,7 +83,7 @@ class Snapshot {
   }
 
   static mix(leftSnapshot, rightSnapshot, options = INITIAL_OPTIONS) {
-    console.log('mix:', leftSnapshot, rightSnapshot);
+    // console.log('mix:', leftSnapshot, rightSnapshot);
     return createNewSnapshot(leftSnapshot, id =>
       mixParams(leftSnapshot.getSoundParams(id), rightSnapshot.getSoundParams(id), options)
     );

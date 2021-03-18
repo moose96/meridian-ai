@@ -56,7 +56,7 @@ const mutateValue = (value, options) => {
 
   if (_.random(PRECISION) < Math.floor(mutationProbability * PRECISION)) {
     newValue = offsetRand(value, mutationSize);
-    console.log('mutation offset: ', newValue);
+    // console.log('mutation offset: ', newValue);
   }
 
   return value;

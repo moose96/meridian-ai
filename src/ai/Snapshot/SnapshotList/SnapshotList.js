@@ -9,15 +9,24 @@ class SnapshotList {
   #history;
   #oscillate = false;
   #oscillateSnapshot = {};
-  #similarity = 100.0;
+  #similarity = 1.0;
+
+  mutation = {};
+  offset = 10;
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
     // this.#snapshots = ObservableArray.from(_.shuffle(this.#defaultSnapshots));
     this.#snapshots = _.shuffle(this.#defaultSnapshots);
-    console.log(this.#snapshots);
+    // console.log(this.#snapshots);
     // this.#snapshots.observe(this.onSnapshotShift);
     this.#history = new History();
+
+    //__TEST__
+    this.mutation = {
+      mutationProbability: 0.0,
+      mutationSize: 0
+    };
   }
 
   // onSnapshotShift = () => {
@@ -33,13 +42,13 @@ class SnapshotList {
 
     this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
       const index = (_index + 1) % array.length;
-      return Snapshot.mix(item, array[index]/*, { mutationProbability }*/);
+      return Snapshot.mix(item, array[index], this.mutation);
     // })));
     }));
 
     this.#history.newGeneration();
 
-    console.log('new generation: ', this.#snapshots);
+    // console.log('new generation: ', this.#snapshots);
   }
 
   _takeSnapshot() {
@@ -50,7 +59,7 @@ class SnapshotList {
   }
 
   _oscillate() {
-    return Snapshot.oscillate(this.#oscillateSnapshot, 10);
+    return Snapshot.oscillate(this.#oscillateSnapshot, this.offset);
   }
 
   _calculateSimilarity() {
@@ -60,7 +69,7 @@ class SnapshotList {
     if (lastSnapshot) {
       this.#similarity = currentSnapshot.calculateSimilarity(lastSnapshot);
     }
-    console.log('similarity: ', this.#similarity);
+    // console.log('similarity: ', this.#similarity);
   }
 
   next() {
@@ -72,7 +81,7 @@ class SnapshotList {
       snapshot = this._takeSnapshot();
     }
 
-    console.log(this.#history);
+    // console.log(this.#history);
     this.#history.push(snapshot);
 
     if (this.#snapshots.length === 0) {
@@ -95,7 +104,7 @@ class SnapshotList {
       this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
     }
 
-    console.log('prev mode:', this.#snapshots);
+    // console.log('prev mode:', this.#snapshots);
     this._calculateSimilarity();
     return prevSnapshot;
   }
@@ -109,8 +118,12 @@ class SnapshotList {
 
     if (this.#oscillate) {
       this.#oscillateSnapshot = this.history.atBack();
-      console.log('oscillate on: ', this.#oscillateSnapshot);
+      // console.log('oscillate on: ', this.#oscillateSnapshot);
     }
+  }
+
+  get __TEST__similarity() {
+    return this.#similarity;
   }
 }
 

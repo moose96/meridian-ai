@@ -3,7 +3,7 @@ import { useRef, useEffect } from 'react';
 import AIComposer from '../../ai/AIComposer';
 import { getSet } from '../../api/sets';
 
-export default function useAIComposer() {
+export default function useAIComposer({ oscillate }) {
   const aiComposer = useRef(new AIComposer()).current;
 
   useEffect(() => {
@@ -20,18 +20,19 @@ export default function useAIComposer() {
     })();
   }, []);
 
+  useEffect(() => {
+    aiComposer.oscillate();
+  }, [oscillate])
+
   const handlePrev = () => aiComposer.prev();
   const handleNext = () => aiComposer.next();
   const handleStart = () => aiComposer.start();
   const handleStop = () => aiComposer.stop();
-  const handleOscillate = mode => aiComposer.oscillate(mode);
 
   return {
     prev: handlePrev,
     next: handleNext,
     start: handleStart,
-    stop: handleStop,
-    startOscillate: () => handleOscillate(true),
-    stopOscillate: () => handleOscillate(false)
+    stop: handleStop
   }
 }

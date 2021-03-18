@@ -114,11 +114,13 @@ class SnapshotList {
   }
 
   oscillate(mode = true) {
-    this.#oscillate = mode;
+    if (this.history.atBack()) {
+      this.#oscillate = mode;
 
-    if (this.#oscillate) {
-      this.#oscillateSnapshot = this.history.atBack();
-      // console.log('oscillate on: ', this.#oscillateSnapshot);
+      if (this.#oscillate) {
+        this.#oscillateSnapshot = this.history.atBack();
+        // console.log('oscillate on: ', this.#oscillateSnapshot);
+      }
     }
   }
 

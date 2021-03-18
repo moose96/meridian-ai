@@ -8,14 +8,14 @@ const globalStyles = {
   borderWidth: 4
 }
 
-export default function ASMRButton({ onClick }) {
+export default function ASMRButton({ active, onClick }) {
   const theme = useTheme();
   let styles = {...globalStyles};
 
   if (theme) {
     styles = {
       ...globalStyles,
-      borderColor: theme.palette.primary.dark
+      borderColor: active ? theme.palette.primary.light : theme.palette.primary.dark
     }
   }
 

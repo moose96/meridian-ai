@@ -62,8 +62,10 @@ class AIComposer {
     this._setParams(this.#snapshots.prev());
   }
 
-  oscillate() {
-    this.#snapshots.oscillate();
+  oscillate(mode) {
+    if (this.#snapshots) {
+      this.#snapshots.oscillate(mode);
+    }
   }
 }
 

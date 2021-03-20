@@ -12,7 +12,7 @@ export default function Header() {
 
   useEffect(() => {
     navigate(currentPage);
-  }, [currentPage]);
+  }, [currentPage, navigate]);
 
   return (
     <HeaderWrapper>

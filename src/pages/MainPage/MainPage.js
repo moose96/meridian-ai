@@ -1,5 +1,4 @@
 import React from 'react';
-import { Router } from '@reach/router';
 
 import { Header } from '../../components';
 import { PlayPage, BrowsePage } from './pages/';

@@ -4,7 +4,7 @@ import { Card, CardHeader } from '@material-ui/core';
 import { CardMediaStyled, CardActionsStyled } from './styled';
 import { AddButton, RemoveButton, PlayDemoButton, StopDemoButton } from './components';
 
-export default function SoundCard({ name, cover, selected }) {
+export default function SoundCard({ name, cover, selected, onAdd, onRemove }) {
   const [playing, setPlaying] = useState(false);
 
   const handleChangePlaying = () => {
@@ -20,8 +20,8 @@ export default function SoundCard({ name, cover, selected }) {
           <StopDemoButton onClick={handleChangePlaying} /> :
           <PlayDemoButton onClick={handleChangePlaying} />}
         {selected ?
-          <RemoveButton /> :
-          <AddButton />}
+          <RemoveButton onClick={() => onRemove()} /> :
+          <AddButton onAdd={() => onAdd()} />}
       </CardActionsStyled>
     </Card>
   );

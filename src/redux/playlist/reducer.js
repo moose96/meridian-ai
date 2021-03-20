@@ -9,7 +9,7 @@ export default function reducer(state = INITIAL_STATE, action) {
     case ADD_TO_PLAYLIST:
       return [
         ...state,
-        payload
+        { id: payload.id, name: payload.name }
       ];
     case REMOVE_FROM_PLAYLIST:
       const items = [...state];

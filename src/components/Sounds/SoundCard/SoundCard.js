@@ -21,7 +21,7 @@ export default function SoundCard({ name, cover, selected, onAdd, onRemove }) {
           <PlayDemoButton onClick={handleChangePlaying} />}
         {selected ?
           <RemoveButton onClick={() => onRemove()} /> :
-          <AddButton onAdd={() => onAdd()} />}
+          <AddButton onClick={() => onAdd()} />}
       </CardActionsStyled>
     </Card>
   );

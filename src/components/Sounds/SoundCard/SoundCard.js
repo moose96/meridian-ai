@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import {
-  Card,
-  CardHeader,
-} from '@material-ui/core';
+import { Card, CardHeader } from '@material-ui/core';
 
-import CardMediaStyled from './styled/CardMediaStyled';
-import CardActionsStyled from './styled/CardActionsStyled';
-import PlayDemoButton from './components/PlayDemoButton';
-import StopDemoButton from './components/StopDemoButton';
-import AddButton from './components/AddButton';
-import RemoveButton from './components/RemoveButton';
+import { CardMediaStyled, CardActionsStyled } from './styled';
+import { AddButton, RemoveButton, PlayDemoButton, StopDemoButton } from './components';
 
 export default function SoundCard({ name, cover, selected }) {
   const [playing, setPlaying] = useState(false);

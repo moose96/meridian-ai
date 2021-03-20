@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import {useNavigate } from '@reach/router';
 
 import HeaderWrapper from '../styled/HeaderWrapper';
 import HeaderContent from '../styled/HeaderContent';
@@ -7,11 +7,18 @@ import Navigation, { NavItem } from '../../Navigation';
 import Logotype from '../../Logotype';
 
 export default function Header() {
+  const [currentPage, setCurrentPage] = useState('browse');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(currentPage);
+  }, [currentPage]);
+
   return (
     <HeaderWrapper>
-      <Navigation value={0}>
-          <NavItem label="Browse" />
-          <NavItem label="Play!" />
+      <Navigation value={currentPage} onChange={(event, value) => setCurrentPage(value)}>
+          <NavItem label="Browse" value="browse" />
+          <NavItem label="Play!" value="play"/>
         </Navigation>
       <HeaderContent>
         <Logotype />

@@ -5,6 +5,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { EditorPage, MainPage } from './pages';
 import './App.scss';
 import { defaultTheme } from './theme';
+import { BrowsePage, PlayPage } from './pages/MainPage/pages';
 
 const Welcome = () => {
   return (
@@ -22,7 +23,7 @@ function App({ voices }) {
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
         <Router style={{ height: '100%' }}>
-          <MainPage path="/" />
+          <MainPage path="/*" />
           <EditorPage path="/editor" />
         </Router>
       </ThemeProvider>

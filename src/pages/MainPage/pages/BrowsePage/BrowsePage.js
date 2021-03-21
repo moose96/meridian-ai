@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Grid } from '@material-ui/core';
 
 import SoundList from './components/SoundList';
+import SoundCategoriesList from './components/SoundCategoriesList';
 import { getSets } from '../../../../api/sets';
 
 export default function BrowsePage() {
@@ -22,10 +23,18 @@ export default function BrowsePage() {
   }, []);
 
   return (
-    <div>
-      {loading ?
-        <CircularProgress /> :
-        <SoundList data={sets}/>}
-    </div>
+    <Grid
+      container
+      direction="row"
+    >
+      <Grid item md={2}>
+        <SoundCategoriesList />
+      </Grid>
+      <Grid item md={10}>
+        {loading ?
+          <CircularProgress /> :
+          <SoundList data={sets}/>}
+      </Grid>
+    </Grid>
   );
 }

@@ -9,36 +9,40 @@ import PropTypes from 'prop-types';
 
 import RoundedButton from './RoundedButton';
 
-const getIconAndSizes = type => {
+const getButtonData = type => {
   switch(type) {
     case 'play':
     default:
       return {
         icon: <PlayArrow />,
-        size: 'medium'
+        size: 'medium',
+        tooltip: 'Play simulation'
       }
     case 'stop':
       return {
         icon: <Stop />,
-        size: 'medium'
+        size: 'medium',
+        tooltip: 'Stop simulation'
       }
     case 'prev':
       return {
         icon: <SkipPrevious />,
-        size: 'small'
+        size: 'small',
+        tooltip: 'Previous snapshot'
       }
     case 'next':
       return {
         icon: <SkipNext />,
-        size: 'small'
+        size: 'small',
+        tooltip: 'Next snapshot'
       }
   }
 }
 
 export default function TransportButton({ type, ...props }) {
-  const { icon, size } = getIconAndSizes(type);
+  const { icon, size, tooltip } = getButtonData(type);
 
-  return <RoundedButton {...props} size={size}>{icon}</RoundedButton>
+  return <RoundedButton {...props} size={size} tooltip={tooltip}>{icon}</RoundedButton>
 }
 
 TransportButton.propTypes = {

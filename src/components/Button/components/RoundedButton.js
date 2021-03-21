@@ -1,5 +1,7 @@
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+
+import ButtonWithTooltip from './ButtonWithTooltip';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,5 +14,5 @@ const useStyles = makeStyles(theme => ({
 
 export default function RoundedButton(props) {
   const styles = useStyles();
-  return <Button className={styles.root} variant="contained" {...props} />;
+  return <ButtonWithTooltip className={styles.root} variant="contained" {...props} />;
 }

@@ -19,5 +19,15 @@ export default function ASMRButton({ active, onClick }) {
     }
   }
 
-  return <RoundedButton style={styles} size="large" variant="outlined" onClick={onClick}>ASMR!</RoundedButton>;
+  return (
+    <RoundedButton
+      style={styles}
+      size="large"
+      variant="outlined"
+      onClick={onClick}
+      tooltip="Enables ASMR mode"
+    >
+      ASMR!
+    </RoundedButton>
+  );
 }

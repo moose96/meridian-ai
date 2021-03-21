@@ -19,6 +19,7 @@ export default function SoundCardList({ data }) {
             key={item.id}
             name={item.name}
             cover={item.cover}
+            demo={item.demo}
             selected={checkItem(item.id)}
             onAdd={() => dispatch(addToPlaylist(item))}
             onRemove={() => dispatch(removeFromPlaylist(item))}

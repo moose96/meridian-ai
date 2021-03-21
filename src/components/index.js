@@ -6,3 +6,4 @@ export { default as Navigation } from './Navigation';
 export * from './Slider';
 export { default as TransportBar } from './TransportBar';
 export * from './Sounds';
+export * from './MediaPlayer';

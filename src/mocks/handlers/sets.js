@@ -26,7 +26,10 @@ const handlers = [
     let data = await response.json();
 
     let sets = await getSets(data);
-    sets = sets.map(set => set.data);
+    sets = sets.map(set => ({
+      ...set.data,
+      demo: `/data/sets/${set.data.id}/demo.mp3`
+    }));
 
     return res (
       ctx.status(200),

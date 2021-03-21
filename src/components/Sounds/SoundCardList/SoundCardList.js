@@ -14,9 +14,8 @@ export default function SoundCardList({ data }) {
   return (
     <Grid container spacing={2} >
       {data.map(item => (
-        <Grid item md>
+        <Grid item md key={item.id}>
           <SoundCard
-            key={item.id}
             name={item.name}
             cover={item.cover}
             demo={item.demo}

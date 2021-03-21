@@ -4,19 +4,20 @@ import { Tooltip, Button } from '@material-ui/core';
 export default function ButtonWithTooltip ({ tooltip, tooltipDisabled, disabled, ...props }) {
   const button = <Button disabled={disabled} {...props} />;
 
-  if (tooltip || tooltipDisabled) {
-    if (disabled) {
-      return (
-        <Tooltip title={tooltipDisabled}>
-          <span>
-            {button}
-          </span>
-        </Tooltip>
-      );
-    }
+  if (tooltip) {
     return (
       <Tooltip title={tooltip}>
         {button}
+      </Tooltip>
+    );
+  }
+
+  if (tooltipDisabled && disabled) {
+    return (
+      <Tooltip title={tooltipDisabled}>
+        <span>
+          {button}
+        </span>
       </Tooltip>
     );
   }

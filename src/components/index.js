@@ -8,3 +8,4 @@ export { default as TransportBar } from './TransportBar';
 export * from './Sounds';
 export * from './MediaPlayer';
 export { default as Loading } from './Loading';
+export * from './Box';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Box from '@material-ui/core/Box';
+import { Grid } from '@material-ui/core';
 
-import { TransportBar, ASMRButton } from '../../../../components';
+import { RowBox, ColumnBox, CenteredRowBox, TransportBar, ASMRButton } from '../../../../components';
 import { useAIComposer } from '../../../../hooks';
 import SoundPlaylist from './components/SoundPlaylist';
 
@@ -11,14 +11,18 @@ export default function PlayPage() {
 
   return (
     <>
-      <Box display="flex" flex={1}>
-        <SoundPlaylist />
-        <div style={{ display: 'flex', flexDirection: 'column-reverse', flex: 1, justifyContent: 'space-between' }}>
-          <Box display="flex" justifyContent="center">
-            <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
-          </Box>
-        </div>
-      </Box>
+      <Grid container style={{ flex: 1 }}>
+        <Grid item md={2}>
+          <SoundPlaylist />
+        </Grid>
+        <Grid item md={10}>
+          <ColumnBox reverse fluid justifyContent="space-between" style={{ height: '100%' }}>
+            <CenteredRowBox horizontal>
+              <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
+            </CenteredRowBox>
+          </ColumnBox>
+        </Grid>
+      </Grid>
       <TransportBar
         onPrev={() => prev()}
         onNext={() => next()}

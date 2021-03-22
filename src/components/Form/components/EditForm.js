@@ -1,3 +1,4 @@
+//DEPRECATED
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';

@@ -12,7 +12,7 @@ export default function RowBox({ fluid, reverse, direction: _direction, ...props
   return (
     <Box
       display="flex"
-      direction={direction}
+      flexDirection={direction}
       flex={fluid && 1}
       {...props}
     />

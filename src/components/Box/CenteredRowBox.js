@@ -2,19 +2,19 @@ import React from 'react';
 
 import RowBox from './RowBox';
 
-export default function CenteredRowBox(props) {
-  let horizontal = props.horizontal;
-  let vertical = props.vertical;
+export default function CenteredRowBox({ horizontal, vertical, ...props }) {
+  let _horizontal = props.horizontal;
+  let _vertical = props.vertical;
 
-  if (!horizontal && !vertical) {
-    horizontal = true;
-    vertical = true;
+  if (!_horizontal && !_vertical) {
+    _horizontal = true;
+    _vertical = true;
   }
 
   return (
     <RowBox
-      justify={horizontal && 'center'}
-      alignItems={vertical && 'center'}
+      justifyContent={_horizontal && 'center'}
+      alignItems={_vertical && 'center'}
       {...props}
     />
   );

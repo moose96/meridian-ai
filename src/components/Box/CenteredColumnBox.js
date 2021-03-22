@@ -14,7 +14,7 @@ export default function CenteredRowBox(props) {
   return (
     <ColumnBox
       alignItems={horizontal && 'center'}
-      justify={vertical && 'center'}
+      justifyContent={vertical && 'center'}
       {...props}
     />
   );

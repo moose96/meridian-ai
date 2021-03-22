@@ -1,12 +1,12 @@
 import React from 'react';
-import { Grid, CircularProgress } from '@material-ui/core';
+import { CircularProgress } from '@material-ui/core';
+
+import { CenteredColumnBox } from '../../components';
 
 export default function Loading() {
   return (
-    <Grid container justify="center" alignItems="center">
-      <Grid item>
-        <CircularProgress />
-      </Grid>
-    </Grid>
+    <CenteredColumnBox>
+      <CircularProgress />
+    </CenteredColumnBox>
   );
 }

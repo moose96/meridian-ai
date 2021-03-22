@@ -1,3 +1,4 @@
+//DEPRECATED HERE - MOVE TO EDITOR
 import React from 'react';
 import { Typography, Slider } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';

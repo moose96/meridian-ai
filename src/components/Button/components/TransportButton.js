@@ -41,8 +41,18 @@ const getButtonData = type => {
 
 export default function TransportButton({ type, ...props }) {
   const { icon, size, tooltip } = getButtonData(type);
+  const disabledMessage = 'You have to wait for finish loading sounds';
 
-  return <RoundedButton {...props} size={size} tooltip={tooltip}>{icon}</RoundedButton>
+  return (
+    <RoundedButton
+      {...props}
+      size={size}
+      tooltip={tooltip}
+      tooltipDisabled={disabledMessage}
+    >
+      {icon}
+    </RoundedButton>
+  );
 }
 
 TransportButton.propTypes = {

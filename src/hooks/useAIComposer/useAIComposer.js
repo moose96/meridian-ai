@@ -5,10 +5,10 @@ import { getSet } from '../../api/sets';
 
 export default function useAIComposer({ oscillate }) {
   const [loading, setLoading] = useState(true);
-  const [progress, setProgress] = useState({ current: 0, max: 100 });
+  // const [progress, setProgress] = useState({ current: 0, max: 100 });
   const aiComposer = useRef(new AIComposer()).current;
 
-  aiComposer.onProgressChange((current, max) => setProgress({ current, max }));
+  // aiComposer.onProgressChange((current, max) => setProgress({ current, max }));
 
   useEffect(() => {
     (async () => {
@@ -39,9 +39,10 @@ export default function useAIComposer({ oscillate }) {
     next: handleNext,
     start: handleStart,
     stop: handleStop,
-    progress: {
-      loading,
-      ...progress
-    }
+    loading
+    // progress: {
+    //   loading,
+    //   ...progress
+    // }
   }
 }

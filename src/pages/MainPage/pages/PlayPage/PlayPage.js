@@ -7,8 +7,8 @@ import SoundPlaylist from './components/SoundPlaylist';
 
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
-  const { prev, next, start, stop, progress } = useAIComposer({ oscillate });
-  const { loading, current, max } = progress;
+  const { prev, next, start, stop, loading } = useAIComposer({ oscillate });
+  // const { loading, current, max } = progress;
 
   return (
     <>
@@ -18,7 +18,7 @@ export default function PlayPage() {
         </Grid>
         <Grid item md={10}>
           <ColumnBox reverse fluid justifyContent="space-between" style={{ height: '100%' }}>
-            {loading && <Loading variant="determinate" value={(current / max) * 100} />}
+            {loading && <Loading />}
             <CenteredRowBox horizontal>
               <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
             </CenteredRowBox>

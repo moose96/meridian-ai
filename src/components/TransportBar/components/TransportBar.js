@@ -5,7 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import TransportBarWrapper from '../styled/TransportBarWrapper';
 import { TransportButton } from '../../Button';
 
-export default function TransportBar({ onPrev, onPlay, onNext, onStop }) {
+export default function TransportBar({ onPrev, onPlay, onNext, onStop, disabled }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayClick = () => {
@@ -26,6 +26,7 @@ export default function TransportBar({ onPrev, onPlay, onNext, onStop }) {
     <TransportButton
       type="play"
       onClick={handlePlayClick}
+      disabled={disabled}
     />
   );
 
@@ -33,19 +34,28 @@ export default function TransportBar({ onPrev, onPlay, onNext, onStop }) {
     <TransportButton
       type="stop"
       onClick={handleStopClick}
+      disabled={disabled}
     />
   );
 
   return (
     <TransportBarWrapper container spacing={1}>
       <Grid item>
-        <TransportButton type="prev" onClick={() => onPrev && onPrev()}/>
+        <TransportButton
+          type="prev"
+          onClick={() => onPrev && onPrev()}
+          disabled={disabled}
+        />
       </Grid>
       <Grid item>
         {isPlaying ? stopButton : playButton}
       </Grid>
       <Grid item>
-        <TransportButton type="next" onClick={() => onNext && onNext()} />
+        <TransportButton
+          type="next"
+          onClick={() => onNext && onNext()}
+          disabled={disabled}
+        />
       </Grid>
     </TransportBarWrapper>
   )

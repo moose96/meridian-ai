@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import {
   Paper,
   List,
@@ -12,12 +11,8 @@ import {
 import { Delete } from '@material-ui/icons';
 
 import { SecondaryButton } from '../../../../../../components';
-import { getPlaylistItems, removeFromPlaylist } from '../../../../../../redux/playlist';
 
-export default function SoundPlaylist() {
-  const sounds = useSelector(getPlaylistItems);
-  const dispatch = useDispatch();
-
+export default function SoundPlaylist({ sounds, selected, onRemoveItem, onSelectItem }) {
   return (
     <Paper style={{ minHeight: '100%' }}>
       <List>
@@ -25,11 +20,16 @@ export default function SoundPlaylist() {
           Playlist
         </ListSubheader>
         {sounds.map(({ id, name }) => (
-          <ListItem key={id} button>
+          <ListItem
+            key={id}
+            button
+            selected={id === selected}
+            onClick={() => onSelectItem(id)}
+          >
             <ListItemText primary={name} />
             <ListItemSecondaryAction>
               <SecondaryButton>
-                <Delete onClick={() => dispatch(removeFromPlaylist(id))}/>
+                <Delete onClick={() => onRemoveItem(id)}/>
               </SecondaryButton>
             </ListItemSecondaryAction>
           </ListItem>

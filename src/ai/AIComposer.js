@@ -7,6 +7,7 @@ class AIComposer {
   #snapshots;
   #time = 10000;
   #progressChange = () => {};
+  #isRunning = false;
 
   constructor() {
     this.#soundField = new SoundField();
@@ -63,11 +64,13 @@ class AIComposer {
   start() {
     this.#soundField.start();
     this.#intervalID = setInterval(this._run, this.#time);
+    this.#isRunning = true;
   }
 
   stop() {
     clearInterval(this.#intervalID);
     this.#soundField.stop();
+    this.#isRunning = false;
   }
 
   next() {
@@ -82,6 +85,19 @@ class AIComposer {
     if (this.#snapshots) {
       this.#snapshots.oscillate(mode);
     }
+  }
+
+  clear() {
+    this.#soundField.clearSounds();
+    this.#snapshots = null;
+  }
+
+  hasSounds() {
+    return this.#soundField.sounds.length > 0;
+  }
+
+  isRunning() {
+
   }
 }
 

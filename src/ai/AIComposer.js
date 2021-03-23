@@ -6,6 +6,7 @@ class AIComposer {
   #soundField;
   #snapshots;
   #time = 10000;
+  #progressChange = () => {};
 
   constructor() {
     this.#soundField = new SoundField();
@@ -22,12 +23,27 @@ class AIComposer {
     });
   }
 
-  addSounds(data) {
+
+  onProgressChange(callback) {
+    this.#progressChange = callback;
+  }
+
+  handleSoundReady = (current, max, callback) => {
+    if (current + 1 === max) {
+      callback();
+    }
+  }
+
+  addSounds(data, onSoundReady) {
     if (data) {
       const { sounds, snapshots } = data;
       if (Array.isArray(sounds)) {
-        sounds.forEach(sound => {
-          const [_, result, __] = SoundEngine.createSoundFX(sound);
+        sounds.forEach((sound, index) => {
+          const [_, result, __] =
+            SoundEngine.createSoundFX(sound, () => {
+              this.handleSoundReady(index, sounds.length, onSoundReady)
+            },this.#progressChange);
+
           this.#soundField.addSound(result);
         });
       } else {

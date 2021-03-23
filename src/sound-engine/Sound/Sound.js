@@ -25,7 +25,7 @@ class Sound extends EngineNode
   originalLength = 0;
   delay = 0;
 
-  constructor(_initObject) {
+  constructor(_initObject, onReady) {
     const initObject = {...defaultObject, ..._initObject};
     super(initObject);
     this.type = 'Sound'; //due to webpack issue
@@ -52,6 +52,10 @@ class Sound extends EngineNode
         this.endPoint = initObject.endPoint;
       } else if(initObject.duration) {
         this.duration = initObject.duration;
+      }
+
+      if (onReady) {
+        onReady();
       }
     });
     this.delay = initObject.delay;

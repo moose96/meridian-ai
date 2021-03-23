@@ -3,10 +3,10 @@ import { CircularProgress } from '@material-ui/core';
 
 import { CenteredColumnBox } from '../../components';
 
-export default function Loading() {
+export default function Loading(props) {
   return (
     <CenteredColumnBox>
-      <CircularProgress />
+      <CircularProgress {...props}/>
     </CenteredColumnBox>
   );
 }

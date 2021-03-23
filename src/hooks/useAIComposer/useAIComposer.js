@@ -1,17 +1,22 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import AIComposer from '../../ai/AIComposer';
 import { getSet } from '../../api/sets';
 
 export default function useAIComposer({ oscillate }) {
+  const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState({ current: 0, max: 100 });
   const aiComposer = useRef(new AIComposer()).current;
+
+  aiComposer.onProgressChange((current, max) => setProgress({ current, max }));
 
   useEffect(() => {
     (async () => {
       try {
+        setLoading(true);
         const data = await getSet('3bfa2ef6-63e1-41be-a977-0273ec87aa69');
         console.log('data', data);
-        aiComposer.addSounds(data);
+        aiComposer.addSounds(data, () => setLoading(false));
         console.log('aiComposer', aiComposer);
       }
       catch(err) {
@@ -33,6 +38,10 @@ export default function useAIComposer({ oscillate }) {
     prev: handlePrev,
     next: handleNext,
     start: handleStart,
-    stop: handleStop
+    stop: handleStop,
+    progress: {
+      loading,
+      ...progress
+    }
   }
 }

@@ -6,7 +6,8 @@ import {
   ListSubheader,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction
+  ListItemSecondaryAction,
+  Drawer
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 
@@ -18,7 +19,7 @@ export default function SoundPlaylist() {
   const dispatch = useDispatch();
 
   return (
-    <Paper>
+    <Paper style={{ minHeight: '100%' }}>
       <List>
         <ListSubheader>
           Playlist

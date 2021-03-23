@@ -18,10 +18,10 @@ export default function PlayPage() {
         </Grid>
         <Grid item md={10}>
           <ColumnBox reverse fluid justifyContent="space-between" style={{ height: '100%' }}>
-            {loading && <Loading />}
             <CenteredRowBox horizontal>
               <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
             </CenteredRowBox>
+            {loading && <Loading />}
           </ColumnBox>
         </Grid>
       </Grid>

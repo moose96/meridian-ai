@@ -27,6 +27,7 @@ export default function BrowsePage() {
     <Grid
       container
       direction="row"
+      style={{ flex: 1 }}
     >
       <Grid item md={2}>
         <SoundCategoriesList />

@@ -12,9 +12,9 @@ import { Delete } from '@material-ui/icons';
 
 import { SecondaryButton } from '../../../../../../components';
 
-export default function SoundPlaylist({ sounds, selected, onRemoveItem, onSelectItem }) {
+export default function SoundPlaylist({ sounds, selected, onRemoveItem, onSelectItem, show }) {
   return (
-    <Slide direction="right" in>
+    <Slide direction="up" in={show}>
       <Paper style={{ minHeight: '100%' }}>
         <List>
           <ListSubheader>

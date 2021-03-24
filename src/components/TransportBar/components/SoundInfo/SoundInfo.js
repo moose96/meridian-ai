@@ -5,10 +5,10 @@ export default function SoundInfo({ cover, title }) {
   if (title) {
     return (
       <Grid container spacing={2}>
-        <Grid item xs={3}>
-          <img src={cover} alt="cover" />
+        <Grid item xs={6}>
+          {/* <img style={{ width: '25%', height: '25%', objectFit: 'cover' }} src={cover} alt="cover" /> */}
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={6}>
           <Typography variant="h6">
             {title}
           </Typography>

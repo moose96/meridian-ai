@@ -10,6 +10,7 @@ import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
   const [currentSound, setCurrentSound] = useState('');
+  const [playlistShow, setPlaylistShow] = useState(false);
   const sounds = useSelector(getPlaylistItems);
   const dispatch = useDispatch();
   const { prev, next, start, stop, loading } = useAIComposer({ oscillate, sound: currentSound });
@@ -17,13 +18,14 @@ export default function PlayPage() {
 
   return (
     <>
-      <Grid container style={{ flex: 1, position: 'relative' }}>
+      <Grid container style={{ flex: 1, overflow: 'hidden' }}>
         <Grid item md={2}>
           <SoundPlaylist
             sounds={sounds}
             selected={currentSound}
             onRemoveItem={id => dispatch(removeFromPlaylist(id))}
             onSelectItem={id => setCurrentSound(id)}
+            show={playlistShow}
           />
         </Grid>
         <Grid item md={10}>
@@ -37,10 +39,12 @@ export default function PlayPage() {
       </Grid>
       <TransportBar
         soundInfo={{ sounds, currentSound }}
+        playlistShow={playlistShow}
         onPrev={() => prev()}
         onNext={() => next()}
         onPlay={() => start()}
         onStop={() => stop()}
+        onPlaylistChange={value => setPlaylistShow(value)}
       />
     </>
   );

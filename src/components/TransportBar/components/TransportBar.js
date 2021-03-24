@@ -1,59 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 
 import TransportBarWrapper from '../styled/TransportBarWrapper';
-import { TransportButton } from '../../Button';
+import TransportControls from './TransportControls';
+import SoundInfo from './SoundInfo';
 
-export default function TransportBar({ onPrev, onPlay, onNext, onStop, disabled }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlayClick = () => {
-    setIsPlaying(true);
-    if (onPlay) {
-      onPlay();
-    }
-  }
-
-  const handleStopClick = () => {
-    setIsPlaying(false);
-    if (onStop) {
-      onStop();
-    }
-  }
-
-  const playButton = (
-    <TransportButton
-      type="play"
-      onClick={handlePlayClick}
-      disabled={disabled}
-    />
-  );
-
-  const stopButton = (
-    <TransportButton
-      type="stop"
-      onClick={handleStopClick}
-      disabled={disabled}
-    />
-  );
+export default function TransportBar({ soundInfo, onPrev, onPlay, onNext, onStop, disabled }) {
+  const { sounds, currentSound } = soundInfo;
+  const result = sounds.find(item => item.id === currentSound);
 
   return (
-    <TransportBarWrapper container spacing={1}>
+    <TransportBarWrapper container>
       <Grid item>
-        <TransportButton
-          type="prev"
-          onClick={() => onPrev && onPrev()}
-          disabled={disabled}
-        />
+        <SoundInfo cover={result?.cover} title={result?.name} />
       </Grid>
       <Grid item>
-        {isPlaying ? stopButton : playButton}
-      </Grid>
-      <Grid item>
-        <TransportButton
-          type="next"
-          onClick={() => onNext && onNext()}
+        <TransportControls
+          onPlay={() => onPlay()}
+          onPrev={() => onPrev()}
+          onStop={() => onStop()}
+          onNext={() => onNext()}
           disabled={disabled}
         />
       </Grid>

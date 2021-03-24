@@ -10,6 +10,7 @@ class AIComposer {
   #isRunning = false;
 
   constructor() {
+    console.log('create ai composer');
     this.#soundField = new SoundField();
   }
 

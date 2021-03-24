@@ -14,7 +14,7 @@ import { SecondaryButton } from '../../../../../../components';
 
 export default function SoundPlaylist({ sounds, selected, onRemoveItem, onSelectItem }) {
   return (
-    <Slide direction="right">
+    <Slide direction="right" in>
       <Paper style={{ minHeight: '100%' }}>
         <List>
           <ListSubheader>

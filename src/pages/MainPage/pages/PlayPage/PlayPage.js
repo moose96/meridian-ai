@@ -36,6 +36,7 @@ export default function PlayPage() {
         </Grid>
       </Grid>
       <TransportBar
+        soundInfo={{ sounds, currentSound }}
         onPrev={() => prev()}
         onNext={() => next()}
         onPlay={() => start()}

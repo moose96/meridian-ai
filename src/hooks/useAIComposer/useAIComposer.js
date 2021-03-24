@@ -6,16 +6,21 @@ import { getSet } from '../../api/sets';
 export default function useAIComposer({ oscillate, sound }) {
   const [loading, setLoading] = useState(true);
   // const [progress, setProgress] = useState({ current: 0, max: 100 });
-  const aiComposer = useRef(new AIComposer()).current;
+  const aiComposerRef = useRef();
+  const aiComposer = aiComposerRef.current;
 
   // aiComposer.onProgressChange((current, max) => setProgress({ current, max }));
+
+  useEffect(() => {
+    aiComposerRef.current = new AIComposer();
+  }, []);
 
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
 
-        if (aiComposer.hasSounds()) {
+        if (aiComposer?.hasSounds()) {
           if (aiComposer.isRunning()) {
             aiComposer.stop();
           }
@@ -35,11 +40,11 @@ export default function useAIComposer({ oscillate, sound }) {
         console.log(err);
       }
     })();
-  }, [sound]);
+  }, [aiComposer, sound]);
 
   useEffect(() => {
-    aiComposer.oscillate();
-  }, [oscillate])
+    aiComposer?.oscillate();
+  }, [aiComposer, oscillate])
 
   const handlePrev = () => aiComposer.prev();
   const handleNext = () => aiComposer.next();

@@ -17,7 +17,7 @@ export default function PlayPage() {
 
   return (
     <>
-      <Grid container style={{ flex: 1 }}>
+      <Grid container style={{ flex: 1, position: 'relative' }}>
         <Grid item md={2}>
           <SoundPlaylist
             sounds={sounds}

@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/v1';
+import { API_URL } from './constants';
 
 async function request(url, method = 'GET', data = null) {
   const options = {

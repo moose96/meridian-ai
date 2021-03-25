@@ -7,18 +7,18 @@ import { ColumnBox } from '../../../Box';
 export default function VolumeSlider() {
   return (
     <ColumnBox>
-      <Typography>
+      <Typography color="textPrimary">
         Volume
       </Typography>
       <Grid container spacing={2}>
         <Grid item>
-          <VolumeDown />
+          <VolumeDown color="action"/>
         </Grid>
         <Grid item xs>
           <Slider />
         </Grid>
         <Grid item>
-          <VolumeUp />
+          <VolumeUp color="action"/>
         </Grid>
       </Grid>
     </ColumnBox>

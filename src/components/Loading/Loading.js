@@ -5,7 +5,7 @@ import { CenteredColumnBox } from '../../components';
 
 export default function Loading(props) {
   return (
-    <CenteredColumnBox>
+    <CenteredColumnBox fluid>
       <CircularProgress {...props}/>
     </CenteredColumnBox>
   );

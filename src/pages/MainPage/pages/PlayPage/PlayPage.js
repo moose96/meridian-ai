@@ -6,6 +6,7 @@ import { ColumnBox, CenteredRowBox, TransportBar, ASMRButton, Loading } from '..
 import { useAIComposer } from '../../../../hooks';
 import SoundPlaylist from './components/SoundPlaylist';
 import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist'
+import ASMRButtonContainer from './styled/ASMRButtonContainer';
 
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
@@ -18,7 +19,10 @@ export default function PlayPage() {
 
   return (
     <>
-      <Grid container style={{ flex: 1, overflow: 'hidden' }}>
+      <Grid
+        container
+        style={{ flex: 1, overflow: 'hidden',  position: 'relative'  }}
+      >
         <Grid item md={2}>
           <SoundPlaylist
             sounds={sounds}
@@ -29,10 +33,14 @@ export default function PlayPage() {
           />
         </Grid>
         <Grid item md={10}>
-          <ColumnBox reverse fluid justifyContent="space-between" style={{ height: '100%' }}>
-            <CenteredRowBox horizontal>
+          <ColumnBox
+            reverse
+            fluid
+            style={{ height: '100%' }}
+          >
+            <ASMRButtonContainer>
               <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
-            </CenteredRowBox>
+            </ASMRButtonContainer>
             {loading && <Loading />}
           </ColumnBox>
         </Grid>

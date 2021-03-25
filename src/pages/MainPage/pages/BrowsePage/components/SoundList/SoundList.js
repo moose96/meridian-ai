@@ -7,7 +7,7 @@ import { SoundCardList } from '../../../../../../components';
 export default function SoundList({ data }) {
   return (
     <SoundListContainer>
-      <Typography variant="h4">
+      <Typography variant="h4" color="textPrimary" gutterBottom>
         Browse sounds
       </Typography>
       <SoundCardList data={data} />

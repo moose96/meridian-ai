@@ -9,7 +9,7 @@ export default function SoundInfo({ cover, title }) {
           {/* <img style={{ width: '25%', height: '25%', objectFit: 'cover' }} src={cover} alt="cover" /> */}
         </Grid>
         <Grid item xs={6}>
-          <Typography variant="h6">
+          <Typography variant="h6" color="textPrimary">
             {title}
           </Typography>
         </Grid>

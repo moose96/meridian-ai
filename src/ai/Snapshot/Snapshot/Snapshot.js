@@ -7,8 +7,8 @@ const isUUID = id => {
 }
 
 const INITIAL_OPTIONS = {
-  mutationProbability: 0.3,
-  mutationSize: 10
+  mutationProbability: 0.6,
+  mutationSize: 30
 }
 
 const createNewSnapshot = (snapshot, callback) => {

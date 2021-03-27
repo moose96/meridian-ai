@@ -11,8 +11,8 @@ class SnapshotList {
   #oscillateSnapshot = {};
   #similarity = 1.0;
 
-  mutation = {};
-  offset = 10;
+  // mutation = {};
+  // offset = 10;
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
@@ -23,10 +23,10 @@ class SnapshotList {
     this.#history = new History();
 
     //__TEST__
-    this.mutation = {
-      mutationProbability: 0.0,
-      mutationSize: 0
-    };
+    // this.mutation = {
+    //   mutationProbability: 0.0,
+    //   mutationSize: 0
+    // };
   }
 
   // onSnapshotShift = () => {
@@ -42,7 +42,7 @@ class SnapshotList {
 
     this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
       const index = (_index + 1) % array.length;
-      return Snapshot.mix(item, array[index], this.mutation);
+      return Snapshot.mix(item, array[index]);
     // })));
     }));
 
@@ -59,7 +59,7 @@ class SnapshotList {
   }
 
   _oscillate() {
-    return Snapshot.oscillate(this.#oscillateSnapshot, this.offset);
+    return Snapshot.oscillate(this.#oscillateSnapshot, 10);
   }
 
   _calculateSimilarity() {
@@ -69,7 +69,7 @@ class SnapshotList {
     if (lastSnapshot) {
       this.#similarity = currentSnapshot.calculateSimilarity(lastSnapshot);
     }
-    // console.log('similarity: ', this.#similarity);
+    console.log('similarity: ', this.#similarity);
   }
 
   next() {
@@ -124,9 +124,9 @@ class SnapshotList {
     }
   }
 
-  get __TEST__similarity() {
-    return this.#similarity;
-  }
+  // get __TEST__similarity() {
+  //   return this.#similarity;
+  // }
 }
 
 export default SnapshotList;

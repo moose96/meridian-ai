@@ -59,7 +59,7 @@ const mutateValue = (value, options) => {
     // console.log('mutation offset: ', newValue);
   }
 
-  return value;
+  return newValue;
 }
 
 export default function mixParams(leftParams, rightParams, options) {

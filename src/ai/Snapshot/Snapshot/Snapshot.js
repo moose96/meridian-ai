@@ -7,7 +7,7 @@ const isUUID = id => {
 }
 
 const INITIAL_OPTIONS = {
-  mutationProbability: 0.6,
+  mutationProbability: 0.4,
   mutationSize: 30
 }
 

@@ -65,7 +65,7 @@ class Snapshot {
     const soundEntries = Object.entries(this.#sounds);
     const soundValues = Object.values(this.#sounds);
 
-    const maxValue = 100 * soundValues.reduce((accumulator, current) => //change 100 to param max value
+    const maxValue = 100 * soundValues.reduce((accumulator, current) => //TODO: change 100 to param max value
       accumulator + Object.keys(current).length
     , 0);
 
@@ -83,7 +83,6 @@ class Snapshot {
   }
 
   static mix(leftSnapshot, rightSnapshot, options = INITIAL_OPTIONS) {
-    // console.log('mix:', leftSnapshot, rightSnapshot);
     return createNewSnapshot(leftSnapshot, id =>
       mixParams(leftSnapshot.getSoundParams(id), rightSnapshot.getSoundParams(id), options)
     );

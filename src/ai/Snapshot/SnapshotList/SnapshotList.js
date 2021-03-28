@@ -72,14 +72,9 @@ class SnapshotList {
   prev() {
     const currentSnapshot = this.history.atBack(1);
     const prevSnapshot = this.history.atBack(2);
-    console.log(this.history, currentSnapshot, prevSnapshot);
-    // const newSnapshot = Snapshot.mix(currentSnapshot, prevSnapshot, algorithms['genetic mixing'].prev);
 
     this.#snapshots = [];
-    // this.#snapshots.push(newSnapshot);
-
     for (let i = 0; i < this.#defaultSnapshots.length; i++) {
-      // this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
       this.#snapshots.push(Snapshot.mix(currentSnapshot, prevSnapshot, algorithms['genetic mixing'].prev));
     }
 

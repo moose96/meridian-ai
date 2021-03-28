@@ -19,7 +19,6 @@ const handlers = [
 
     data = data.map(async (id) => await getSound(id));
     data = await Promise.all(data);
-    // data = joinObjects(data);
 
     return res(
       ctx.status(200),
@@ -28,9 +27,6 @@ const handlers = [
   }),
   rest.get('/v1/sounds/:id', async (req, res, ctx) => {
     const { id } = req.params;
-
-    // const response = await fetch(`/data/sounds/${id}/index.json`);
-    // const data = prepareObjects(id, await response.json());
     const data = await getSound(id);
 
     return res(

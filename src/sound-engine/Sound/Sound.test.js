@@ -1,5 +1,3 @@
-// import Pizzicato from 'pizzicato';
-
 import Sound from './Sound';
 
 describe('test Sound object', () => {

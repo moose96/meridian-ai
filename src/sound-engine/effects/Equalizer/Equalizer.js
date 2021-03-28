@@ -1,6 +1,5 @@
 import Pizzicato from 'pizzicato';
 
-// import SoundEngineObject from '../../base/SoundEngineObject';
 import EngineNode from '../../base/EngineNode';
 import Filter from './Filter';
 

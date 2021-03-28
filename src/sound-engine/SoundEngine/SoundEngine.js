@@ -84,7 +84,6 @@ class SoundEngine {
     }
 
     if (root) {
-      // objectsLength++;
       root.objects = root.objects.map(_map);
       const result = createObject(root);
       refs.push(result);

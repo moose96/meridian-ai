@@ -1,3 +1,5 @@
+//DEPRECATED
+
 let id;
 
 export function startLoop(sounds /*object*/) {

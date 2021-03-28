@@ -38,6 +38,7 @@ const INITIAL_STATE = {
     sharpness: 44,
     intensivity: 0,
     width: 60,
+    //TODO:
     //mobility: 0
   },
   settings: {

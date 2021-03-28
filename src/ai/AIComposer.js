@@ -1,5 +1,4 @@
-import SoundEngine, { SoundField } from '../sound-engine'
-// import { select, mix, oscillate, createNewParams } from './ParamsMixer';
+import SoundEngine, { SoundField } from '../sound-engine';
 import { SnapshotList } from './Snapshot';
 class AIComposer {
   #intervalID;

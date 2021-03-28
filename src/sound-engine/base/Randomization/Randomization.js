@@ -12,7 +12,6 @@ const defaultObject = {
 
 class Randomization extends ParamListener
 {
-  // randomization = {};
   #started = false;
   #object;
   #audioParams;
@@ -47,8 +46,6 @@ class Randomization extends ParamListener
   }
 
   randomizeRunner = () => {
-    // const { enabled, key, offset, value, loop, time } = this.randomization;
-
     if (this.enabled && (!this.loop || (this.loop && this.#started))) {
       const top = this.value + this.offset;
       const bottom = this.value - this.offset;

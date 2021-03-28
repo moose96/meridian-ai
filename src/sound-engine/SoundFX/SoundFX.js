@@ -1,6 +1,5 @@
 import { createStore } from 'redux';
 
-// import SoundEngineObject from '../base/SoundEngineObject';
 import EngineNode from '../base/EngineNode';
 import Container from '../containers/Container';
 import Equalizer from '../effects/Equalizer';

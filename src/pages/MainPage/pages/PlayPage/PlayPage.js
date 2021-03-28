@@ -15,7 +15,6 @@ export default function PlayPage() {
   const sounds = useSelector(getPlaylistItems);
   const dispatch = useDispatch();
   const { prev, next, start, stop, loading } = useAIComposer({ oscillate, sound: currentSound });
-  // const { loading, current, max } = progress;
 
   useEffect(() => {
     if (sounds.length > 0 && currentSound.length === 0) {

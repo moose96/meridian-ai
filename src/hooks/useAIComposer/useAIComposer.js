@@ -5,6 +5,7 @@ import { getSet } from '../../api/sets';
 
 export default function useAIComposer({ oscillate, sound }) {
   const [loading, setLoading] = useState(true);
+  //TODO:
   // const [progress, setProgress] = useState({ current: 0, max: 100 });
   const aiComposerRef = useRef();
   const aiComposer = aiComposerRef.current;
@@ -28,7 +29,7 @@ export default function useAIComposer({ oscillate, sound }) {
         }
 
         if (sound.length > 0) {
-          const data = await getSet(/*'3bfa2ef6-63e1-41be-a977-0273ec87aa69'*/ sound);
+          const data = await getSet(sound);
           console.log('data', data);
           aiComposer.addSounds(data, () => setLoading(false));
           console.log('aiComposer', aiComposer);

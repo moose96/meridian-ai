@@ -20,7 +20,7 @@ export default function TransportBar(props) {
       <Grid item md={2}>
         <RowBox>
           <SecondaryButton
-            tooltip="Show playlist"
+            tooltip={playlistShow ? 'Hide playlist' : 'Show playlist'}
             onClick={() => onPlaylistChange(!playlistShow)}
           >
             {playlistShow ?

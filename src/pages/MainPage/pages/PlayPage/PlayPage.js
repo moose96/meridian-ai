@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
-import { ColumnBox, CenteredRowBox, TransportBar, ASMRButton, Loading } from '../../../../components';
+import { ColumnBox, TransportBar, ASMRButton, Loading } from '../../../../components';
 import { useAIComposer } from '../../../../hooks';
 import SoundPlaylist from './components/SoundPlaylist';
 import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist'
@@ -11,11 +11,17 @@ import ASMRButtonContainer from './styled/ASMRButtonContainer';
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
   const [currentSound, setCurrentSound] = useState('');
-  const [playlistShow, setPlaylistShow] = useState(false);
+  const [playlistShow, setPlaylistShow] = useState(true);
   const sounds = useSelector(getPlaylistItems);
   const dispatch = useDispatch();
   const { prev, next, start, stop, loading } = useAIComposer({ oscillate, sound: currentSound });
   // const { loading, current, max } = progress;
+
+  useEffect(() => {
+    if (sounds.length > 0 && currentSound.length === 0) {
+      setCurrentSound(sounds[0].id);
+    }
+  }, [sounds, currentSound]);
 
   const handleNext = () => {
     if (oscillate) {

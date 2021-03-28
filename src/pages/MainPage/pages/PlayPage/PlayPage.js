@@ -17,6 +17,22 @@ export default function PlayPage() {
   const { prev, next, start, stop, loading } = useAIComposer({ oscillate, sound: currentSound });
   // const { loading, current, max } = progress;
 
+  const handleNext = () => {
+    if (oscillate) {
+      setOscillate(false);
+    }
+
+    next();
+  }
+
+  const handlePrev = () => {
+    if (oscillate) {
+      setOscillate(false);
+    }
+
+    prev();
+  }
+
   return (
     <>
       <Grid
@@ -48,8 +64,8 @@ export default function PlayPage() {
       <TransportBar
         soundInfo={{ sounds, currentSound }}
         playlistShow={playlistShow}
-        onPrev={() => prev()}
-        onNext={() => next()}
+        onPrev={handlePrev}
+        onNext={handleNext}
         onPlay={() => start()}
         onStop={() => stop()}
         onPlaylistChange={value => setPlaylistShow(value)}

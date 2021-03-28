@@ -82,10 +82,9 @@ class AIComposer {
     this._setParams(this.#snapshots.prev());
   }
 
+  //change name to asmrMode
   oscillate(mode) {
-    if (this.#snapshots) {
-      this.#snapshots.oscillate(mode);
-    }
+    this.#snapshots?.oscillate(mode);
   }
 
   clear() {

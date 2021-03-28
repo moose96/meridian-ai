@@ -2,15 +2,17 @@ import _ from 'lodash';
 
 import Snapshot from '../Snapshot';
 import History from '../History';
+import { algorithms } from './constants';
 
 class SnapshotList {
   #defaultSnapshots = [];
   #snapshots = [];
   #history;
-  #oscillate = false;
-  #oscillateSnapshot = {};
+  #asmrMode = false;
+  #asmrSnapshot = {};
   #similarity = 1.0;
-
+  #mode = 'normal';
+  #algorithm = 'genetic mixing';
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
@@ -21,7 +23,7 @@ class SnapshotList {
   async _generate() {
     this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
       const index = (_index + 1) % array.length;
-      return Snapshot.mix(item, array[index]);
+      return Snapshot.mix(item, array[index], algorithms['genetic mixing'].normal);
     }));
 
     this.#history.newGeneration();
@@ -35,7 +37,7 @@ class SnapshotList {
   }
 
   _oscillate() {
-    return Snapshot.oscillate(this.#oscillateSnapshot, 10);
+    return Snapshot.oscillate(this.#asmrSnapshot, algorithms['oscillate'].asmr.mutationSize);
   }
 
   _calculateSimilarity() {
@@ -51,7 +53,7 @@ class SnapshotList {
   next() {
     let snapshot;
 
-    if (this.#oscillate) {
+    if (this.#asmrMode) {
       snapshot = this._oscillate();
     } else {
       snapshot = this._takeSnapshot();
@@ -70,16 +72,18 @@ class SnapshotList {
   prev() {
     const currentSnapshot = this.history.atBack(-1);
     const prevSnapshot = this.history.atBack(-2);
-    const newSnapshot = Snapshot.mix(currentSnapshot, prevSnapshot, { mutationProbability: 0.5 });
+    // const newSnapshot = Snapshot.mix(currentSnapshot, prevSnapshot, algorithms['genetic mixing'].prev);
 
     this.#snapshots = [];
-    this.#snapshots.push(newSnapshot);
+    // this.#snapshots.push(newSnapshot);
 
     for (let i = 0; i < this.#defaultSnapshots.length; i++) {
-      this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
+      // this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
+      this.#snapshots.push(Snapshot.mix(currentSnapshot, prevSnapshot, algorithms['genetic mixing'].prev));
     }
 
     this._calculateSimilarity();
+    this.#asmrMode = false;
     return prevSnapshot;
   }
 
@@ -87,12 +91,13 @@ class SnapshotList {
     return this.#history;
   }
 
+  //in next versions it will be deprecated
   oscillate(mode = true) {
     if (this.history.atBack()) {
-      this.#oscillate = mode;
+      this.#asmrMode = mode;
 
-      if (this.#oscillate) {
-        this.#oscillateSnapshot = this.history.atBack();
+      if (this.#asmrMode) {
+        this.#asmrSnapshot = this.history.atBack();
       }
     }
   }

@@ -43,7 +43,7 @@ export default function useAIComposer({ oscillate, sound }) {
   }, [aiComposer, sound]);
 
   useEffect(() => {
-    aiComposer?.oscillate();
+    aiComposer?.oscillate(oscillate);
   }, [aiComposer, oscillate])
 
   const handlePrev = () => aiComposer.prev();

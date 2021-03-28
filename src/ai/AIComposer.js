@@ -64,6 +64,7 @@ class AIComposer {
 
   start() {
     this.#soundField.start();
+    this.next();
     this.#intervalID = setInterval(this._run, this.#time);
     this.#isRunning = true;
   }

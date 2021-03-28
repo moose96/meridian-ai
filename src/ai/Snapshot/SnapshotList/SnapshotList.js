@@ -11,44 +11,20 @@ class SnapshotList {
   #oscillateSnapshot = {};
   #similarity = 1.0;
 
-  // mutation = {};
-  // offset = 10;
 
   constructor(snapshots) {
     this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
-    // this.#snapshots = ObservableArray.from(_.shuffle(this.#defaultSnapshots));
     this.#snapshots = _.shuffle(this.#defaultSnapshots);
-    // console.log(this.#snapshots);
-    // this.#snapshots.observe(this.onSnapshotShift);
     this.#history = new History();
-
-    //__TEST__
-    // this.mutation = {
-    //   mutationProbability: 0.0,
-    //   mutationSize: 0
-    // };
   }
 
-  // onSnapshotShift = () => {
-  //   if (this.#snapshots.length === 0) {
-  //     console.log(this.#snapshots);
-  //     this._generate();
-  //   }
-  // }
-
   async _generate() {
-    // this.#snapshots = ObservableArray.from(_.shuffle(this.#history[this.#generation]
-    // let mutationProbability = 0.2;
-
     this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
       const index = (_index + 1) % array.length;
       return Snapshot.mix(item, array[index]);
-    // })));
     }));
 
     this.#history.newGeneration();
-
-    // console.log('new generation: ', this.#snapshots);
   }
 
   _takeSnapshot() {
@@ -81,7 +57,6 @@ class SnapshotList {
       snapshot = this._takeSnapshot();
     }
 
-    // console.log(this.#history);
     this.#history.push(snapshot);
 
     if (this.#snapshots.length === 0) {
@@ -104,7 +79,6 @@ class SnapshotList {
       this.#snapshots.push(Snapshot.oscillate(newSnapshot, 30));
     }
 
-    // console.log('prev mode:', this.#snapshots);
     this._calculateSimilarity();
     return prevSnapshot;
   }
@@ -119,14 +93,13 @@ class SnapshotList {
 
       if (this.#oscillate) {
         this.#oscillateSnapshot = this.history.atBack();
-        // console.log('oscillate on: ', this.#oscillateSnapshot);
       }
     }
   }
 
-  // get __TEST__similarity() {
-  //   return this.#similarity;
-  // }
+  get __TEST__similarity() {
+    return this.#similarity;
+  }
 }
 
 export default SnapshotList;

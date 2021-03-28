@@ -1,3 +1,5 @@
+import Pizzicato from 'pizzicato';
+
 import {
   Sound,
   RandomContainer,
@@ -90,6 +92,10 @@ class SoundEngine {
       console.log(objectsLength);
       return [null, result, refs];
     }
+  }
+
+  static setMasterVolume(value) {
+    Pizzicato.volume = value;
   }
 }
 

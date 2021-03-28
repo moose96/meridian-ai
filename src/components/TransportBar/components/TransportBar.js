@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons';
 
+import SoundEngine from '../../../sound-engine';
 import { RowBox } from '../../Box';
 import { SecondaryButton } from '../../Button';
 import TransportBarWrapper from '../styled/TransportBarWrapper';
@@ -14,6 +15,12 @@ export default function TransportBar(props) {
   const { soundInfo, playlistShow, onPrev, onPlay, onNext, onStop, onPlaylistChange, disabled } = props;
   const { sounds, currentSound } = soundInfo;
   const result = sounds.find(item => item.id === currentSound);
+  const [masterVolume, setMasterVolume] = useState(1.0);
+
+  const handleVolumeChange = (event, value) => {
+    SoundEngine.setMasterVolume(value);
+    setMasterVolume(value);
+  }
 
   return (
     <TransportBarWrapper container>
@@ -41,7 +48,10 @@ export default function TransportBar(props) {
         />
       </Grid>
       <Grid item md={2}>
-        <VolumeSlider />
+        <VolumeSlider
+          value={masterVolume}
+          onChange={handleVolumeChange}
+        />
       </Grid>
     </TransportBarWrapper>
   )

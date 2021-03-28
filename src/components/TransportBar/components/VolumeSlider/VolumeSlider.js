@@ -4,7 +4,7 @@ import { VolumeDown, VolumeUp } from '@material-ui/icons';
 
 import { ColumnBox } from '../../../Box';
 
-export default function VolumeSlider() {
+export default function VolumeSlider({ value, onChange }) {
   return (
     <ColumnBox>
       <Typography color="textPrimary">
@@ -15,7 +15,13 @@ export default function VolumeSlider() {
           <VolumeDown color="action"/>
         </Grid>
         <Grid item xs>
-          <Slider />
+          <Slider
+            min={0.0}
+            max={1.0}
+            step={0.01}
+            value={value}
+            onChange={onChange}
+          />
         </Grid>
         <Grid item>
           <VolumeUp color="action"/>

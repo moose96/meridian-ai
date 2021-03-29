@@ -1,0 +1,56 @@
+[{
+  "id": "d1cdeedd-8acb-48cc-b9d1-a1277ede6004",
+  "2924a9db-7750-408f-bd45-f308cb720204": {
+    "volume": 100,
+    "width": 10,
+    "distance": 0,
+    "intensivity": 0,
+    "brightness": 0,
+    "sharpness": 0
+  },
+  "origin": "default"
+}, {
+  "id": "5f48007f-9f29-4eaf-98a4-477d48c75155",
+  "2924a9db-7750-408f-bd45-f308cb720204": {
+    "volume": 100,
+    "width": 40,
+    "distance": 20,
+    "intensivity": 10,
+    "brightness": 0,
+    "sharpness": 0
+  },
+  "origin": "default"
+}, {
+  "id": "520a0473-9f15-4f8b-ba45-fe65f7298225",
+  "2924a9db-7750-408f-bd45-f308cb720204": {
+    "volume": 100,
+    "width": 70,
+    "distance": 60,
+    "intensivity": 40,
+    "brightness": 30,
+    "sharpness": 30
+  },
+  "origin": "default"
+}, {
+  "id": "81157499-8723-45f1-9c2e-8bd6712026eb",
+  "2924a9db-7750-408f-bd45-f308cb720204": {
+    "volume": 100,
+    "width": 70,
+    "distance": 30,
+    "intensivity": 70,
+    "brightness": 50,
+    "sharpness": 30
+  },
+  "origin": "default"
+}, {
+  "id": "329bb3c9-d7f8-41df-b95d-299060d8c761",
+  "2924a9db-7750-408f-bd45-f308cb720204": {
+    "volume": 100,
+    "width": 90,
+    "distance": 20,
+    "intensivity": 90,
+    "brightness": 60,
+    "sharpness": 40
+  },
+  "origin": "default"
+}]

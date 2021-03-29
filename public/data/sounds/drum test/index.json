@@ -1,0 +1,237 @@
+[
+  {
+    "type": "sound",
+    "filename": "kick1.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "kick2.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "snare1.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "snare2.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "snare3.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "hihat1.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "hihat2.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  },{
+    "type": "sound",
+    "filename": "tom1.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "tom2.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "sound",
+    "filename": "tom3.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  },{
+    "type": "sound",
+    "filename": "tom4.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  },{
+    "type": "sound",
+    "filename": "crash1.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  },{
+    "type": "sound",
+    "filename": "crash2.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  },{
+    "type": "sound",
+    "filename": "ride.wav",
+    "randomization": [{
+      "key": "detune",
+      "offset": 400,
+      "value": 0
+    }]
+  }, {
+    "type": "random container",
+    "name": "Kick",
+    "loop": true,
+    "delay": 1000,
+    "randomization": [{
+      "key": "volume",
+      "offset": 0.3,
+      "value": 0.7
+    }],
+    "params": [{
+      "name": "intensivity",
+      "key": "delay",
+      "min": 2000,
+      "max": 250
+    }],
+    "objects": [0, 1]
+  }, {
+    "type": "random container",
+    "name": "Snare",
+    "loop": true,
+    "delay": 1000,
+    "randomization": [{
+      "key": "volume",
+      "offset": 0.3,
+      "value": 0.7
+    }],
+    "params": [{
+      "name": "intensivity",
+      "key": "delay",
+      "min": 2000,
+      "max": 250
+    }],
+    "objects": [2, 3, 4]
+  }, {
+    "type": "random container",
+    "name": "HiHat",
+    "loop": true,
+    "delay": 1000,
+    "randomization": [{
+      "key": "volume",
+      "offset": 0.3,
+      "value": 0.7
+    }, {
+      "key": "pan",
+      "offset": 0.5,
+      "value": 0,
+      "params": [{
+        "name": "width",
+        "key": "offset",
+        "min": 0.1,
+        "max": 0.5
+      }]
+    }],
+    "params": [{
+      "name": "intensivity",
+      "key": "delay",
+      "min": 2000,
+      "max": 250
+    }],
+    "objects": [5, 6]
+  }, {
+    "type": "random container",
+    "name": "Tom",
+    "loop": true,
+    "delay": 1000,
+    "randomization": [{
+      "key": "volume",
+      "offset": 0.3,
+      "value": 0.7
+    }, {
+      "key": "pan",
+      "offset": 0.5,
+      "value": 0,
+      "params": [{
+        "name": "width",
+        "key": "offset",
+        "min": 0.1,
+        "max": 0.5
+      }]
+    }],
+    "params": [{
+      "name": "intensivity",
+      "key": "delay",
+      "min": 2000,
+      "max": 250
+    }],
+    "objects": [7, 8, 9, 10]
+  }, {
+    "type": "random container",
+    "name": "Crash & Ride",
+    "loop": true,
+    "delay": 1000,
+    "randomization": [{
+      "key": "volume",
+      "offset": 0.3,
+      "value": 0.7
+    }, {
+      "key": "pan",
+      "offset": 0.5,
+      "value": 0,
+      "params": [{
+        "name": "width",
+        "key": "offset",
+        "min": 0.1,
+        "max": 0.5
+      }]
+    }],
+    "params": [{
+      "name": "intensivity",
+      "key": "delay",
+      "min": 2000,
+      "max": 250
+    }],
+    "objects": [11, 12, 13]
+  }, {
+    "type": "parallel container",
+    "objects": [14, 15, 16, 17, 18]
+  }, {
+    "type": "sound fx",
+    "objects": [19],
+    "root": true
+  }
+]

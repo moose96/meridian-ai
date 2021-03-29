@@ -73,6 +73,7 @@ class Sound extends EngineNode
   }
 
   _getRawSourceNode = () => {
+    console.log('get raw source node', this.detune);
     const node = new AudioBufferSourceNode(Pizzicato.context, {
       buffer: this.buffer,
       loop: this.node.loop,

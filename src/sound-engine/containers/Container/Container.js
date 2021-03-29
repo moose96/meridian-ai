@@ -49,6 +49,7 @@ class Container extends EngineNode
 
     if (this.counter >= currentDelay) {
       if (!this.muted) {
+        super.play();
         this.onPlay();
       }
       this.counter = 0;

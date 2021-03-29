@@ -54,10 +54,10 @@ class Randomization extends ParamListener
       if (this.#audioParams.indexOf(this.key) !== -1) {
         this.#object[this.key] = {
           value: _value,
-          time: this.loop ? this.time : 0
+          time: this.loop ? this.time : 250
         };
       } else {
-        this.#object[this.key] = this.value;
+        this.#object[this.key] = _value;
       }
     }
   }

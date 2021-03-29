@@ -4,7 +4,7 @@
     "filename": "kick1.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -12,7 +12,7 @@
     "filename": "kick2.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -20,7 +20,7 @@
     "filename": "snare1.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -28,7 +28,7 @@
     "filename": "snare2.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -36,7 +36,7 @@
     "filename": "snare3.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -44,7 +44,7 @@
     "filename": "hihat1.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -52,7 +52,7 @@
     "filename": "hihat2.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   },{
@@ -60,7 +60,7 @@
     "filename": "tom1.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -68,7 +68,7 @@
     "filename": "tom2.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -76,7 +76,7 @@
     "filename": "tom3.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   },{
@@ -84,7 +84,7 @@
     "filename": "tom4.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   },{
@@ -92,7 +92,7 @@
     "filename": "crash1.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   },{
@@ -100,7 +100,7 @@
     "filename": "crash2.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   },{
@@ -108,7 +108,7 @@
     "filename": "ride.wav",
     "randomization": [{
       "key": "detune",
-      "offset": 400,
+      "offset": 200,
       "value": 0
     }]
   }, {
@@ -124,10 +124,10 @@
     "params": [{
       "name": "intensivity",
       "key": "delay",
-      "min": 2000,
-      "max": 250
+      "min": 1000,
+      "max": 100
     }],
-    "objects": [0, 1]
+    "objects": [0, 1, 0, 1]
   }, {
     "type": "random container",
     "name": "Snare",
@@ -141,10 +141,10 @@
     "params": [{
       "name": "intensivity",
       "key": "delay",
-      "min": 2000,
-      "max": 250
+      "min": 1000,
+      "max": 100
     }],
-    "objects": [2, 3, 4]
+    "objects": [2, 3, 4, 2, 3, 4]
   }, {
     "type": "random container",
     "name": "HiHat",
@@ -168,10 +168,10 @@
     "params": [{
       "name": "intensivity",
       "key": "delay",
-      "min": 2000,
-      "max": 250
+      "min": 1000,
+      "max": 100
     }],
-    "objects": [5, 6]
+    "objects": [5, 6, 5, 6]
   }, {
     "type": "random container",
     "name": "Tom",
@@ -195,10 +195,10 @@
     "params": [{
       "name": "intensivity",
       "key": "delay",
-      "min": 2000,
-      "max": 250
+      "min": 1000,
+      "max": 100
     }],
-    "objects": [7, 8, 9, 10]
+    "objects": [7, 8, 9, 10, 7, 8, 9, 10]
   }, {
     "type": "random container",
     "name": "Crash & Ride",
@@ -222,10 +222,10 @@
     "params": [{
       "name": "intensivity",
       "key": "delay",
-      "min": 2000,
-      "max": 250
+      "min": 1000,
+      "max": 100
     }],
-    "objects": [11, 12, 13]
+    "objects": [11, 12, 13, 11, 12, 13]
   }, {
     "type": "parallel container",
     "objects": [14, 15, 16, 17, 18]

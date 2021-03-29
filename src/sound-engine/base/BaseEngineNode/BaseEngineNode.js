@@ -27,7 +27,7 @@ class BaseEngineNode extends SoundEngineObject
       let time = Pizzicato.context.currentTime;
       let processedValue;
 
-      console.log('setting audo param', value);
+      // console.log('setting audo param', value);
 
       if (typeof value === 'number') {
         processedValue = _getValue(value);

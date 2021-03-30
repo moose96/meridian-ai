@@ -12,7 +12,7 @@ export default function SoundCardList({ data }) {
   const checkItem = id => playlistItems.find(element => element.id === id);
 
   return (
-    <Grid container spacing={2} >
+    <Grid container spacing={2} style={{ marginTop: '1rem' }}>
       {data.map(item => (
         <Grid item lg={4} md={6} sm={12} key={item.id}>
           <SoundCard

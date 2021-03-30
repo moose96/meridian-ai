@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid } from '@material-ui/core';
 
-import { ColumnBox, TransportBar, ASMRButton, Loading } from '../../../../components';
+import { ColumnBox, TransportBar, Loading } from '../../../../components';
 import { useAIComposer } from '../../../../hooks';
 import SoundPlaylist from './components/SoundPlaylist';
-import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist'
-import ASMRButtonContainer from './styled/ASMRButtonContainer';
+import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist';
 
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
@@ -59,9 +58,6 @@ export default function PlayPage() {
             fluid
             style={{ height: '100%' }}
           >
-            <ASMRButtonContainer>
-              <ASMRButton active={oscillate} onClick={() => setOscillate(!oscillate)} />
-            </ASMRButtonContainer>
             {loading && <Loading />}
           </ColumnBox>
         </Grid>
@@ -69,11 +65,13 @@ export default function PlayPage() {
       <TransportBar
         soundInfo={{ sounds, currentSound }}
         playlistShow={playlistShow}
+        asmrActive={oscillate}
         onPrev={handlePrev}
         onNext={handleNext}
         onPlay={() => start()}
         onStop={() => stop()}
         onPlaylistChange={value => setPlaylistShow(value)}
+        onASMRClick={value => setOscillate(value)}
       />
     </>
   );

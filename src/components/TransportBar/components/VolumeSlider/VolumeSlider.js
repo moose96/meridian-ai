@@ -4,9 +4,9 @@ import { VolumeDown, VolumeUp } from '@material-ui/icons';
 
 import { ColumnBox } from '../../../Box';
 
-export default function VolumeSlider({ value, onChange }) {
+export default function VolumeSlider({ value, style, onChange }) {
   return (
-    <ColumnBox>
+    <ColumnBox style={style}>
       <Typography color="textPrimary">
         Volume
       </Typography>

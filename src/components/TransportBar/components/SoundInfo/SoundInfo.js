@@ -1,19 +1,19 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+
+import { RowBox } from '../../../Box';
 
 export default function SoundInfo({ cover, title }) {
   if (title) {
     return (
-      <Grid container spacing={2}>
-        <Grid item xs={6}>
-          {/* <img style={{ width: '25%', height: '25%', objectFit: 'cover' }} src={cover} alt="cover" /> */}
-        </Grid>
-        <Grid item xs={6}>
-          <Typography variant="h6" color="textPrimary">
-            {title}
-          </Typography>
-        </Grid>
-      </Grid>
+      <RowBox alignItems="center">
+        <div style={{ height: '4rem', width: '4rem', marginRight: '1rem' }}>
+          <img src={cover} alt="cover" style={{ width: '100%', height: '100%' }} />
+        </div>
+        <Typography variant="h6" color="textPrimary">
+          {title}
+        </Typography>
+      </RowBox>
     );
   }
 

@@ -25,7 +25,6 @@
   "objects": [0]
 },{
   "type": "sound fx",
-  "objects": [2],
+  "objects": [1],
   "root": true
-}
-]
+}]

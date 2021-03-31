@@ -23,6 +23,10 @@ class Sound extends EngineNode
   startPoint = 0;
   originalLength = 0;
   delay = 0;
+  // #playingSounds = 0;
+  isPlaying = false;
+  sourceReserve = [];
+  #reserveSize = 0;
 
   constructor(_initObject, onReady) {
     const initObject = {...defaultObject, ..._initObject};
@@ -53,10 +57,25 @@ class Sound extends EngineNode
         this.duration = initObject.duration;
       }
 
+      // start test code
+      for (let i = 0; i < 80; i++) {
+        this.sourceReserve.push(this.source.clone());
+      }
+      this.sourceReserve.forEach(item => {
+        item.on('play', () => {
+          // console.log('play reserve', this.#reserveUsed);
+        });
+        item.on('end', () => {
+          this.#reserveSize--;
+        });
+      });
+      // end test code
+
       if (onReady) {
         onReady();
       }
     });
+
     this.delay = initObject.delay;
     this.startPoint = initObject.startPoint;
     this.detune = initObject.detune;
@@ -64,10 +83,14 @@ class Sound extends EngineNode
     this._connectSource(this.outputNode);
 
     this.source.on('play', () => {
+      console.log('play normal');
+      this.isPlaying = true;
       store.dispatch(addCurrentVoices());
     });
 
     this.source.on('end', () => {
+      console.log('stop normal');
+      this.isPlaying = false;
       store.dispatch(subCurrentVoices());
     });
   }
@@ -84,10 +107,12 @@ class Sound extends EngineNode
 
   _connectSource(destination) {
     this.source.connect(destination);
+    this.sourceReserve.forEach(item => item.connect(destination));
   }
 
   _disconnectSource() {
     this.source.disconnect();
+    this.sourceReserve.forEach(item => item.disconnect());
   }
 
   get endPoint() {
@@ -130,6 +155,10 @@ class Sound extends EngineNode
     this.source.release = parseFloat(release);
   }
 
+  // get isPlaying() {
+  //   return this.#playingSounds > 0;
+  // }
+
   setPan(newPan) {
     this.pan = newPan;
   }
@@ -152,12 +181,21 @@ class Sound extends EngineNode
     const _delay = delay ? delay : this.delay;
     const _startPoint = startPoint ? startPoint : this.startPoint;
 
-    this.source.play(_delay, _startPoint);
+    if (!this.isPlaying) {
+      this.source.play(_delay, _startPoint);
+    } else {
+      const reserveSound = this.sourceReserve.shift();
+      this.sourceReserve.push(reserveSound);
+      reserveSound.play(_delay, _startPoint);
+      this.#reserveSize++;
+      console.log(this.#reserveSize);
+    }
   }
 
   stop() {
     super.stop();
     this.source.stop();
+    this.sourceReserve.forEach(item => item.stop());
   }
 
   toPlainObject() {

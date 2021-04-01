@@ -7,7 +7,15 @@
     "value": 0
   }]
 }, {
-  "type": "random container",
+  "type": "sound",
+  "filename": "tom2.wav",
+  "randomization": [{
+    "key": "detune",
+    "offset": 200,
+    "value": 0
+  }]
+},{
+  "type": "sequence container",
   "name": "Tom",
   "loop": true,
   "delay": 1000,
@@ -22,9 +30,9 @@
     "min": 1000,
     "max": 100
   }],
-  "objects": [0]
+  "objects": [0, 1]
 },{
   "type": "sound fx",
-  "objects": [1],
+  "objects": [2],
   "root": true
 }]

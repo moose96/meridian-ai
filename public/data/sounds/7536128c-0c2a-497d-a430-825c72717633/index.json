@@ -1,0 +1,30 @@
+[{
+  "type": "sound",
+  "filename": "tom1.wav",
+  "randomization": [{
+    "key": "detune",
+    "offset": 200,
+    "value": 0
+  }]
+}, {
+  "type": "random container",
+  "name": "Tom",
+  "loop": true,
+  "delay": 1000,
+  "randomization": [{
+    "key": "volume",
+    "offset": 0.3,
+    "value": 0.7
+  }],
+  "params": [{
+    "name": "intensivity",
+    "key": "delay",
+    "min": 1000,
+    "max": 100
+  }],
+  "objects": [0]
+},{
+  "type": "sound fx",
+  "objects": [1],
+  "root": true
+}]

@@ -1,5 +1,7 @@
 import Pizzicato from 'pizzicato';
 import EngineNode from '../base/EngineNode';
+//benchmark test
+// import { performance } from 'perf_hooks';
 
 import store from '../../redux/store';
 import { addCurrentVoices, subCurrentVoices } from '../redux';
@@ -42,6 +44,7 @@ class Sound extends EngineNode
         release: initObject.release && initObject.release
       }
     }, () => {
+      //hack Pizzicato: this hack enables ability to change detune and length of buffer
       this.node = this.source.getRawSourceNode();
       this.buffer = this.node.buffer;
       this.originalLength = this.node.buffer.length;
@@ -57,6 +60,7 @@ class Sound extends EngineNode
         onReady();
       }
     });
+
     this.delay = initObject.delay;
     this.startPoint = initObject.startPoint;
     this.detune = initObject.detune;
@@ -64,14 +68,17 @@ class Sound extends EngineNode
     this._connectSource(this.outputNode);
 
     this.source.on('play', () => {
+      console.log('play normal');
       store.dispatch(addCurrentVoices());
     });
 
     this.source.on('end', () => {
+      console.log('stop normal');
       store.dispatch(subCurrentVoices());
     });
   }
 
+  //for hacking Pizzicato
   _getRawSourceNode = () => {
     console.log('get raw source node', this.detune);
     const node = new AudioBufferSourceNode(Pizzicato.context, {
@@ -153,11 +160,14 @@ class Sound extends EngineNode
     const _startPoint = startPoint ? startPoint : this.startPoint;
 
     this.source.play(_delay, _startPoint);
+    //Pizzicato hack: it enables ability to play sounds without waiting to end before one
+    this.source.playing = false;
   }
 
   stop() {
     super.stop();
     this.source.stop();
+    this.sourceReserve.forEach(item => item.stop());
   }
 
   toPlainObject() {

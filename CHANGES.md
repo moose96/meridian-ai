@@ -1,3 +1,9 @@
+# Changes in v0.8.2
+
+## Sound engine
+
+1. Feat: Sound can play many sounds (polyphonic) now.
+
 # Changes in v0.8.1
 
 ## Database

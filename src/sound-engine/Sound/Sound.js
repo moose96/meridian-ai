@@ -1,25 +1,28 @@
-import Pizzicato from 'pizzicato';
-import EngineNode from '../base/EngineNode';
-import { v4 as uuid } from 'uuid';
+import Pizzicato from "pizzicato";
+import EngineNode from "../base/EngineNode";
+import { v4 as uuid } from "uuid";
+
+import { linear } from "../utility";
 
 // import store from '../../redux/store';
 // import { addCurrentVoices, subCurrentVoices } from '../redux';
 
 const defaultObject = {
   //filename
-  attack: 0.04,
-  release: 0.04,
+  fadeMode: "cue", //cue | always
+  attack: 0.02,
+  release: 0.02,
   //endPoint || duration
-  delay: 0,
   startPoint: 0,
-  detune: 0
-}
+  delay: 0,
+  duration: 4800,
+  detune: 0,
+};
 
-class Sound extends EngineNode
-{
-  name = 'Sound';
-  attack;
-  release;
+class Sound extends EngineNode {
+  name = "Sound";
+  #attack;
+  #release;
   #defaultBuffer;
   #buffer;
   node;
@@ -29,57 +32,51 @@ class Sound extends EngineNode
   delay = 0;
 
   constructor(_initObject, onReady) {
-    const initObject = {...defaultObject, ..._initObject};
+    const initObject = { ...defaultObject, ..._initObject };
     super(initObject);
-    this.type = 'Sound'; //due to webpack issue
+    this.type = "Sound"; //due to webpack issue
 
     if (!initObject.filename) {
       throw Error('"filename" field is not defined');
     }
 
     fetch(initObject.filename)
-      .then(data => data.arrayBuffer())
-      .then(rawSoundData => Pizzicato.context.decodeAudioData(rawSoundData))
-      .then(decodedData => {
+      .then((data) => data.arrayBuffer())
+      .then((rawSoundData) => Pizzicato.context.decodeAudioData(rawSoundData))
+      .then((decodedData) => {
         this.#defaultBuffer = decodedData;
         this.originalLength = this.#defaultBuffer.length;
         this.#buffer = this.#defaultBuffer;
 
-        this.startPoint = initObject.startPoint;
+        this.#release = initObject.release;
+
+        if (initObject.startPoint !== 0) {
+          this.#attack = initObject.attack;
+          this.startPoint = initObject.startPoint;
+        } else if (initObject.fadeMode === "always") {
+          this.attack = initObject.attack;
+        }
 
         if (initObject.endPoint) {
           this.endPoint = initObject.endPoint;
-        } else if(initObject.duration) {
+        } else if (initObject.duration) {
           this.duration = initObject.duration;
+        } else if (initObject.fadeMode === "always") {
+          this.release = initObject.release;
         }
 
         if (onReady) {
           onReady();
         }
       })
-      .catch(err => {
-        throw Error(err)
+      .catch((err) => {
+        throw Error(err);
       });
 
     this.source = {};
-    this.attack = initObject.attack;
-    this.release = initObject.release;
     this.delay = initObject.delay;
     this.detune = initObject.detune;
-
-    // this._connectSource(this.outputNode);
   }
-
-  //for hacking Pizzicato
-  // _getRawSourceNode = () => {
-  //   console.log('get raw source node', this.detune);
-  //   const node = new AudioBufferSourceNode(Pizzicato.context, {
-  //     buffer: this.#buffer,
-  //     loop: this.node.loop,
-  //     detune: this.detune
-  //   })
-  //   return node;
-  // }
 
   _connectSource(destination) {
     this.source.connect(destination);
@@ -89,6 +86,17 @@ class Sound extends EngineNode
     this.source.disconnect();
   }
 
+  _modifyBuffer(inBuffer, modifyCallback) {
+    const data = modifyCallback(inBuffer.getChannelData(0));
+    const outBuffer = new AudioBuffer({
+      sampleRate: inBuffer.sampleRate,
+      numberOfChannels: inBuffer.numberOfChannels,
+      length: data.length,
+    });
+    outBuffer.copyToChannel(data, 0);
+    return outBuffer;
+  }
+
   get startPoint() {
     return this.#startPoint;
   }
@@ -96,35 +104,23 @@ class Sound extends EngineNode
   set startPoint(startPoint) {
     this.#startPoint = startPoint;
 
-    let data = this.#defaultBuffer.getChannelData(0);
-    data = data.subarray(startPoint);
-    const buffer = new AudioBuffer({
-      sampleRate: this.#defaultBuffer.sampleRate,
-      numberOfChannels: this.#defaultBuffer.numberOfChannels,
-      length: data.length
+    this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
+      const newData = data.subarray(startPoint);
+      return this._applyFade(newData, this.#attack);
     });
-
-    buffer.copyToChannel(data, 0);
-    this.#buffer = buffer;
   }
 
   get endPoint() {
-    return this.#defaultBuffer.length - this.#defaultBuffer.length + this.#startPoint;
+    return (
+      this.#defaultBuffer.length - this.#defaultBuffer.length + this.#startPoint
+    );
   }
 
   set endPoint(endPoint) {
-    let data = this.#defaultBuffer.getChannelData(0);
-    console.log(data.length);
-    data = data.subarray(0, endPoint);
-    console.log(data.length, endPoint);
-    const buffer = new AudioBuffer({
-      sampleRate: this.#defaultBuffer.sampleRate,
-      numberOfChannels: this.#defaultBuffer.numberOfChannels,
-      length: data.length
+    this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
+      const newData = data.subarray(0, endPoint);
+      return this._applyFade(newData, -this.#release);
     });
-
-    buffer.copyToChannel(data, 0);
-    this.#buffer = buffer;
   }
 
   get duration() {
@@ -135,23 +131,47 @@ class Sound extends EngineNode
     this.endPoint = parseInt(duration - this.startPoint);
   }
 
-  //TODO: apply attack and release
+  get attack() {
+    return this.#attack;
+  }
 
-  // get attack() {
-  //   return this.source.attack;
-  // }
+  set attack(attack) {
+    this.#attack = attack;
+    this.#buffer = this._modifyBuffer(this.#buffer, (data) =>
+      this._applyFade(data, attack)
+    );
+  }
 
-  // set attack(attack) {
-  //   this.source.attack = parseFloat(attack);
-  // }
+  get release() {
+    return this.#release;
+  }
 
-  // get release() {
-  //   return this.source.release;
-  // }
+  set release(release) {
+    this.#release = release;
+    this.#buffer = this._modifyBuffer(this.#buffer, (data) =>
+      this._applyFade(data, -release)
+    );
+  }
 
-  // set release(release) {
-  //   this.source.release = parseFloat(release);
-  // }
+  _applyFade(data, fadeSizeSec) {
+    const fadeSize = fadeSizeSec * this.#buffer.sampleRate;
+    const start = fadeSize >= 0 ? 0 : data.length + fadeSize; //plus because fadeSize is < 0
+    const end = fadeSize >= 0 ? fadeSize : data.length;
+    let newData = new Float32Array(data);
+
+    const linearOptions = {
+      minY: fadeSize >= 0 ? 0.0 : 1.0,
+      maxY: fadeSize >= 0 ? 1.0 : 0.0,
+      minX: start,
+      maxX: end,
+    };
+
+    for (let i = start; i < end; i++) {
+      newData[i] *= linear(i, linearOptions);
+    }
+
+    return newData;
+  }
 
   setPan(newPan) {
     this.pan = newPan;
@@ -172,12 +192,12 @@ class Sound extends EngineNode
   _onEnded = (id, callback) => {
     delete this.source[id];
 
-    console.log('sound end', id);
+    console.log("sound end", id);
 
     if (callback) {
       callback();
     }
-  }
+  };
 
   play(delay) {
     super.play();
@@ -187,7 +207,7 @@ class Sound extends EngineNode
     const node = new AudioBufferSourceNode(Pizzicato.context, {
       buffer: this.#buffer,
       loop: this.loop,
-      detune: this.detune
+      detune: this.detune,
     });
 
     node.connect(this.outputNode);
@@ -195,7 +215,7 @@ class Sound extends EngineNode
     this.source[id] = node;
 
     return new Promise((resolve, reject) => {
-      node.addEventListener('ended', () => this._onEnded(id, () => resolve()));
+      node.addEventListener("ended", () => this._onEnded(id, () => resolve()));
       node.start(_delay);
       console.log(Object.keys(this.source).length);
     });
@@ -203,7 +223,7 @@ class Sound extends EngineNode
 
   stop() {
     super.stop();
-    this.source.forEach(item => item.stop());
+    this.source.forEach((item) => item.stop());
   }
 
   toPlainObject() {
@@ -215,9 +235,9 @@ class Sound extends EngineNode
       duration: this.duration,
       originalLength: this.originalLength,
       delay: this.delay,
-      attack: this.attack,
-      release: this.release
-    }
+      attack: this.#attack,
+      release: this.#release,
+    };
   }
 }
 

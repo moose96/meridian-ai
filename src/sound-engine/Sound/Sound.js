@@ -1,26 +1,25 @@
-import Pizzicato from "pizzicato";
-import EngineNode from "../base/EngineNode";
-import { v4 as uuid } from "uuid";
+import Pizzicato from 'pizzicato';
+import EngineNode from '../base/EngineNode';
+import { v4 as uuid } from 'uuid';
 
-import { linear } from "../utility";
+import { linear } from '../utility';
 
 // import store from '../../redux/store';
 // import { addCurrentVoices, subCurrentVoices } from '../redux';
 
 const defaultObject = {
   //filename
-  fadeMode: "cue", //cue | always
+  fadeMode: 'cue', //cue | always
   attack: 0.02,
   release: 0.02,
   //endPoint || duration
   startPoint: 0,
   delay: 0,
-  duration: 4800,
   detune: 0,
 };
 
 class Sound extends EngineNode {
-  name = "Sound";
+  name = 'Sound';
   #attack;
   #release;
   #defaultBuffer;
@@ -34,7 +33,7 @@ class Sound extends EngineNode {
   constructor(_initObject, onReady) {
     const initObject = { ...defaultObject, ..._initObject };
     super(initObject);
-    this.type = "Sound"; //due to webpack issue
+    this.type = 'Sound'; //due to webpack issue
 
     if (!initObject.filename) {
       throw Error('"filename" field is not defined');
@@ -53,7 +52,7 @@ class Sound extends EngineNode {
         if (initObject.startPoint !== 0) {
           this.#attack = initObject.attack;
           this.startPoint = initObject.startPoint;
-        } else if (initObject.fadeMode === "always") {
+        } else if (initObject.fadeMode === 'always') {
           this.attack = initObject.attack;
         }
 
@@ -61,7 +60,7 @@ class Sound extends EngineNode {
           this.endPoint = initObject.endPoint;
         } else if (initObject.duration) {
           this.duration = initObject.duration;
-        } else if (initObject.fadeMode === "always") {
+        } else if (initObject.fadeMode === 'always') {
           this.release = initObject.release;
         }
 
@@ -192,8 +191,6 @@ class Sound extends EngineNode {
   _onEnded = (id, callback) => {
     delete this.source[id];
 
-    console.log("sound end", id);
-
     if (callback) {
       callback();
     }
@@ -215,9 +212,8 @@ class Sound extends EngineNode {
     this.source[id] = node;
 
     return new Promise((resolve, reject) => {
-      node.addEventListener("ended", () => this._onEnded(id, () => resolve()));
+      node.addEventListener('ended', () => this._onEnded(id, () => resolve()));
       node.start(_delay);
-      console.log(Object.keys(this.source).length);
     });
   }
 

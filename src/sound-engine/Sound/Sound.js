@@ -1,33 +1,37 @@
 import Pizzicato from 'pizzicato';
 import EngineNode from '../base/EngineNode';
-//benchmark test
-// import { performance } from 'perf_hooks';
+import { v4 as uuid } from 'uuid';
 
-import store from '../../redux/store';
-import { addCurrentVoices, subCurrentVoices } from '../redux';
+import { linear } from '../utility';
+
+// import store from '../../redux/store';
+// import { addCurrentVoices, subCurrentVoices } from '../redux';
 
 const defaultObject = {
   //filename
-  //attack
-  //release
+  fadeMode: 'cue', //cue | always
+  attack: 0.02,
+  release: 0.02,
   //endPoint || duration
-  delay: 0,
   startPoint: 0,
-  detune: 0
-}
+  delay: 0,
+  detune: 0,
+};
 
-class Sound extends EngineNode
-{
+class Sound extends EngineNode {
   name = 'Sound';
-  buffer;
+  #attack;
+  #release;
+  #defaultBuffer;
+  #buffer;
   node;
   detune;
-  startPoint = 0;
+  #startPoint = 0;
   originalLength = 0;
   delay = 0;
 
   constructor(_initObject, onReady) {
-    const initObject = {...defaultObject, ..._initObject};
+    const initObject = { ...defaultObject, ..._initObject };
     super(initObject);
     this.type = 'Sound'; //due to webpack issue
 
@@ -35,58 +39,42 @@ class Sound extends EngineNode
       throw Error('"filename" field is not defined');
     }
 
-    this.source = new Pizzicato.Sound({
-      source: 'file',
-      options: {
-        path: initObject.filename,
-        detached: true,
-        attack: initObject.attack && initObject.attack,
-        release: initObject.release && initObject.release
-      }
-    }, () => {
-      //hack Pizzicato: this hack enables ability to change detune and length of buffer
-      this.node = this.source.getRawSourceNode();
-      this.buffer = this.node.buffer;
-      this.originalLength = this.node.buffer.length;
-      this.source.getRawSourceNode = this._getRawSourceNode;
+    fetch(initObject.filename)
+      .then((data) => data.arrayBuffer())
+      .then((rawSoundData) => Pizzicato.context.decodeAudioData(rawSoundData))
+      .then((decodedData) => {
+        this.#defaultBuffer = decodedData;
+        this.originalLength = this.#defaultBuffer.length;
+        this.#buffer = this.#defaultBuffer;
 
-      if (initObject.endPoint) {
-        this.endPoint = initObject.endPoint;
-      } else if(initObject.duration) {
-        this.duration = initObject.duration;
-      }
+        this.#release = initObject.release;
 
-      if (onReady) {
-        onReady();
-      }
-    });
+        if (initObject.startPoint !== 0) {
+          this.#attack = initObject.attack;
+          this.startPoint = initObject.startPoint;
+        } else if (initObject.fadeMode === 'always') {
+          this.attack = initObject.attack;
+        }
 
+        if (initObject.endPoint) {
+          this.endPoint = initObject.endPoint;
+        } else if (initObject.duration) {
+          this.duration = initObject.duration;
+        } else if (initObject.fadeMode === 'always') {
+          this.release = initObject.release;
+        }
+
+        if (onReady) {
+          onReady();
+        }
+      })
+      .catch((err) => {
+        throw Error(err);
+      });
+
+    this.source = {};
     this.delay = initObject.delay;
-    this.startPoint = initObject.startPoint;
     this.detune = initObject.detune;
-
-    this._connectSource(this.outputNode);
-
-    this.source.on('play', () => {
-      console.log('play normal');
-      store.dispatch(addCurrentVoices());
-    });
-
-    this.source.on('end', () => {
-      console.log('stop normal');
-      store.dispatch(subCurrentVoices());
-    });
-  }
-
-  //for hacking Pizzicato
-  _getRawSourceNode = () => {
-    console.log('get raw source node', this.detune);
-    const node = new AudioBufferSourceNode(Pizzicato.context, {
-      buffer: this.buffer,
-      loop: this.node.loop,
-      detune: this.detune
-    })
-    return node;
   }
 
   _connectSource(destination) {
@@ -97,20 +85,41 @@ class Sound extends EngineNode
     this.source.disconnect();
   }
 
+  _modifyBuffer(inBuffer, modifyCallback) {
+    const data = modifyCallback(inBuffer.getChannelData(0));
+    const outBuffer = new AudioBuffer({
+      sampleRate: inBuffer.sampleRate,
+      numberOfChannels: inBuffer.numberOfChannels,
+      length: data.length,
+    });
+    outBuffer.copyToChannel(data, 0);
+    return outBuffer;
+  }
+
+  get startPoint() {
+    return this.#startPoint;
+  }
+
+  set startPoint(startPoint) {
+    this.#startPoint = startPoint;
+
+    this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
+      const newData = data.subarray(startPoint);
+      return this._applyFade(newData, this.#attack);
+    });
+  }
+
   get endPoint() {
-    return this.buffer.length;
+    return (
+      this.#defaultBuffer.length - this.#defaultBuffer.length + this.#startPoint
+    );
   }
 
   set endPoint(endPoint) {
-    const data = this.buffer.getChannelData(0);
-    const buffer = new AudioBuffer({
-      sampleRate: this.buffer.sampleRate,
-      numberOfChannels: this.buffer.numberOfChannels,
-      length: parseInt(endPoint)
+    this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
+      const newData = data.subarray(0, endPoint);
+      return this._applyFade(newData, -this.#release);
     });
-
-    buffer.copyToChannel(data, 0);
-    this.buffer = buffer;
   }
 
   get duration() {
@@ -122,19 +131,45 @@ class Sound extends EngineNode
   }
 
   get attack() {
-    return this.source.attack;
+    return this.#attack;
   }
 
   set attack(attack) {
-    this.source.attack = parseFloat(attack);
+    this.#attack = attack;
+    this.#buffer = this._modifyBuffer(this.#buffer, (data) =>
+      this._applyFade(data, attack)
+    );
   }
 
   get release() {
-    return this.source.release;
+    return this.#release;
   }
 
   set release(release) {
-    this.source.release = parseFloat(release);
+    this.#release = release;
+    this.#buffer = this._modifyBuffer(this.#buffer, (data) =>
+      this._applyFade(data, -release)
+    );
+  }
+
+  _applyFade(data, fadeSizeSec) {
+    const fadeSize = fadeSizeSec * this.#buffer.sampleRate;
+    const start = fadeSize >= 0 ? 0 : data.length + fadeSize; //plus because fadeSize is < 0
+    const end = fadeSize >= 0 ? fadeSize : data.length;
+    let newData = new Float32Array(data);
+
+    const linearOptions = {
+      minY: fadeSize >= 0 ? 0.0 : 1.0,
+      maxY: fadeSize >= 0 ? 1.0 : 0.0,
+      minX: start,
+      maxX: end,
+    };
+
+    for (let i = start; i < end; i++) {
+      newData[i] *= linear(i, linearOptions);
+    }
+
+    return newData;
   }
 
   setPan(newPan) {
@@ -153,21 +188,38 @@ class Sound extends EngineNode
     this.startPoint = startPoint;
   }
 
-  play(delay, startPoint) {
+  _onEnded = (id, callback) => {
+    delete this.source[id];
+
+    if (callback) {
+      callback();
+    }
+  };
+
+  play(delay) {
     super.play();
 
     const _delay = delay ? delay : this.delay;
-    const _startPoint = startPoint ? startPoint : this.startPoint;
 
-    this.source.play(_delay, _startPoint);
-    //Pizzicato hack: it enables ability to play sounds without waiting to end before one
-    this.source.playing = false;
+    const node = new AudioBufferSourceNode(Pizzicato.context, {
+      buffer: this.#buffer,
+      loop: this.loop,
+      detune: this.detune,
+    });
+
+    node.connect(this.outputNode);
+    const id = uuid();
+    this.source[id] = node;
+
+    return new Promise((resolve, reject) => {
+      node.addEventListener('ended', () => this._onEnded(id, () => resolve()));
+      node.start(_delay);
+    });
   }
 
   stop() {
     super.stop();
-    this.source.stop();
-    this.sourceReserve.forEach(item => item.stop());
+    this.source.forEach((item) => item.stop());
   }
 
   toPlainObject() {
@@ -179,9 +231,9 @@ class Sound extends EngineNode
       duration: this.duration,
       originalLength: this.originalLength,
       delay: this.delay,
-      attack: this.attack,
-      release: this.release
-    }
+      attack: this.#attack,
+      release: this.#release,
+    };
   }
 }
 

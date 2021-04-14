@@ -2,9 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Grid, Slide, Paper } from '@material-ui/core';
 
-import { ColumnBox, TransportBar, Loading } from '../../../../components';
+import {
+  ColumnBox,
+  TransportBar,
+  Loading,
+  SoundPlaylist,
+} from '../../../../components';
 import { useAIComposer, useOrientation } from '../../../../hooks';
-import SoundPlaylist from './components/SoundPlaylist';
 import {
   getPlaylistItems,
   removeFromPlaylist,
@@ -56,9 +60,9 @@ export default function PlayPage() {
   );
 
   const content = (
-    <ColumnBox reverse fluid style={{ height: '100%' }}>
-      {loading ? <Loading /> : null}
+    <ColumnBox fluid style={{ height: '100%' }}>
       {portrait && playlistShow ? soundPlaylist : null}
+      {loading ? <Loading /> : null}
     </ColumnBox>
   );
 

@@ -10,7 +10,7 @@ function App({ voices }) {
   return (
     <div className="App">
       <ThemeProvider theme={defaultTheme}>
-        <Router style={{ height: '100%' }}>
+        <Router style={{ minHeight: '100vh' }}>
           <MainPage path="/*" />
           <EditorPage path="/editor" />
         </Router>

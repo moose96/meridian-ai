@@ -1,17 +1,15 @@
 import React from 'react';
-import { Typography, Divider } from '@material-ui/core';
+import { Divider } from '@material-ui/core';
 
 import SoundListContainer from '../../styled/SoundListContainer';
 import { SoundCardList } from '../../../../../../components';
 
-export default function SoundList({ data, header }) {
+export default function SoundList({ data, header, content }) {
   return (
     <SoundListContainer>
-      {/* <Typography variant="h4" color="textPrimary" gutterBottom>
-        Browse sounds
-      </Typography> */}
       {header}
       <Divider />
+      {content}
       <SoundCardList data={data} />
     </SoundListContainer>
   );

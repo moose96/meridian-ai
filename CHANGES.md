@@ -6,6 +6,10 @@
 2. Fix: Sequence container - it should play sound correctly.
 3. Refactor: Rewrite Sound object without Pizzicato.Sound dependency.
 
+## Main UI
+
+4. Feat: Responsive UI.
+
 # Changes in v0.8.1
 
 ## Database

@@ -10,7 +10,7 @@ import {
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 
-import { SecondaryButton } from '../../../../../../components';
+import { SecondaryButton } from '../../Button';
 
 export default function SoundPlaylist({
   sounds,

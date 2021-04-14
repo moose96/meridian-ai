@@ -5,22 +5,22 @@ import {
   ListItemText,
   ListSubheader,
   Paper,
-  Divider
+  Divider,
 } from '@material-ui/core';
 
 export default function SoundCategoriesList() {
   return (
-    <Paper style={{ minHeight: '100%' }}>
-      <List>
-        <ListItem button selected>
-          <ListItemText primary="All sounds" />
-        </ListItem>
-        <Divider />
-        <ListSubheader>Categories</ListSubheader>
-        <ListItem button>
-          <ListItemText primary="Other" />
-        </ListItem>
-      </List>
-    </Paper>
+    // <Paper style={{ minHeight: '100%' }}>
+    <List>
+      <ListItem button selected>
+        <ListItemText primary="All sounds" />
+      </ListItem>
+      <Divider />
+      <ListSubheader>Categories</ListSubheader>
+      <ListItem button>
+        <ListItemText primary="Other" />
+      </ListItem>
+    </List>
+    // </Paper>
   );
 }

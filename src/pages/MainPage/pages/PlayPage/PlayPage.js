@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Grid } from '@material-ui/core';
+import { Grid, Slide, Paper } from '@material-ui/core';
 
 import { ColumnBox, TransportBar, Loading } from '../../../../components';
-import { useAIComposer } from '../../../../hooks';
+import { useAIComposer, useOrientation } from '../../../../hooks';
 import SoundPlaylist from './components/SoundPlaylist';
-import { getPlaylistItems, removeFromPlaylist } from '../../../../redux/playlist';
+import {
+  getPlaylistItems,
+  removeFromPlaylist,
+} from '../../../../redux/playlist';
+import { OrientationRoute } from '../../../../containers';
 
 export default function PlayPage() {
   const [oscillate, setOscillate] = useState(false);
@@ -13,7 +17,11 @@ export default function PlayPage() {
   const [playlistShow, setPlaylistShow] = useState(true);
   const sounds = useSelector(getPlaylistItems);
   const dispatch = useDispatch();
-  const { prev, next, start, stop, loading } = useAIComposer({ oscillate, sound: currentSound });
+  const { prev, next, start, stop, loading } = useAIComposer({
+    oscillate,
+    sound: currentSound,
+  });
+  const { portrait } = useOrientation();
 
   useEffect(() => {
     if (sounds.length > 0 && currentSound.length === 0) {
@@ -27,7 +35,7 @@ export default function PlayPage() {
     }
 
     next();
-  }
+  };
 
   const handlePrev = () => {
     if (oscillate) {
@@ -35,33 +43,45 @@ export default function PlayPage() {
     }
 
     prev();
-  }
+  };
+
+  const soundPlaylist = (
+    <SoundPlaylist
+      sounds={sounds}
+      selected={currentSound}
+      onRemoveItem={(id) => dispatch(removeFromPlaylist(id))}
+      onSelectItem={(id) => setCurrentSound(id)}
+      show={playlistShow}
+    />
+  );
+
+  const content = (
+    <ColumnBox reverse fluid style={{ height: '100%' }}>
+      {loading ? <Loading /> : null}
+      {portrait && playlistShow ? soundPlaylist : null}
+    </ColumnBox>
+  );
 
   return (
     <>
-      <Grid
-        container
-        style={{ flex: 1, overflow: 'hidden',  position: 'relative'  }}
-      >
-        <Grid item md={2}>
-          <SoundPlaylist
-            sounds={sounds}
-            selected={currentSound}
-            onRemoveItem={id => dispatch(removeFromPlaylist(id))}
-            onSelectItem={id => setCurrentSound(id)}
-            show={playlistShow}
-          />
-        </Grid>
-        <Grid item md={10}>
-          <ColumnBox
-            reverse
-            fluid
-            style={{ height: '100%' }}
+      <OrientationRoute
+        landscape={
+          <Grid
+            container
+            style={{ flex: 1, overflow: 'hidden', position: 'relative' }}
           >
-            {loading && <Loading />}
-          </ColumnBox>
-        </Grid>
-      </Grid>
+            <Grid item md={2}>
+              <Slide direction="up" in={playlistShow}>
+                <Paper style={{ minHeight: '100%' }}>{soundPlaylist}</Paper>
+              </Slide>
+            </Grid>
+            <Grid item md={10}>
+              {content}
+            </Grid>
+          </Grid>
+        }
+        portrait={content}
+      />
       <TransportBar
         soundInfo={{ sounds, currentSound }}
         playlistShow={playlistShow}
@@ -70,8 +90,8 @@ export default function PlayPage() {
         onNext={handleNext}
         onPlay={() => start()}
         onStop={() => stop()}
-        onPlaylistChange={value => setPlaylistShow(value)}
-        onASMRClick={value => setOscillate(value)}
+        onPlaylistChange={(value) => setPlaylistShow(value)}
+        onASMRClick={(value) => setOscillate(value)}
       />
     </>
   );

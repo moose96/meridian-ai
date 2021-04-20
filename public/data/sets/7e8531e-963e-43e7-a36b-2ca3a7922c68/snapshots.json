@@ -1,0 +1,50 @@
+[
+  {
+    "id": "faa4e774-ecf3-4275-b1b4-1580400ea5aa",
+    "97460c23-b1cb-4469-ba78-7a611e2fcf42": {
+      "volume": 100,
+      "width": 10,
+      "distance": 80,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "origin": "default"
+  },
+  {
+    "id": "c0d78165-a568-4987-a9e1-d9bf65e7e27c",
+    "97460c23-b1cb-4469-ba78-7a611e2fcf42": {
+      "volume": 100,
+      "width": 50,
+      "distance": 60,
+      "intensivity": 40,
+      "brightness": 20,
+      "sharpness": 0
+    },
+    "origin": "default"
+  },
+  {
+    "id": "da6dfea9-6b35-49ec-a5fb-d8c89d8155d9",
+    "97460c23-b1cb-4469-ba78-7a611e2fcf42": {
+      "volume": 100,
+      "width": 100,
+      "distance": 70,
+      "intensivity": 80,
+      "brightness": 20,
+      "sharpness": 10
+    },
+    "origin": "default"
+  },
+  {
+    "id": "4c0cea4b-52c6-4a7e-a68f-ac48f0fcbc93",
+    "97460c23-b1cb-4469-ba78-7a611e2fcf42": {
+      "volume": 100,
+      "width": 100,
+      "distance": 80,
+      "intensivity": 100,
+      "brightness": 20,
+      "sharpness": 10
+    },
+    "origin": "default"
+  }
+]

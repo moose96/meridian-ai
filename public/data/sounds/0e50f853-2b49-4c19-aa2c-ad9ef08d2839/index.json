@@ -1,0 +1,144 @@
+[
+  {
+    "type": "sound",
+    "filename": "asmr2.mp3",
+    "attack": 1,
+    "release": 1,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 20000000,
+        "value": 20000000
+      },
+      {
+        "key": "duration",
+        "offset": 24000,
+        "value": 480000
+      }
+    ],
+    "params": [
+      {
+        "name": "width",
+        "key": "pan",
+        "min": -0.1,
+        "max": -1
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "filename": "asmr2.mp3",
+    "attack": 1,
+    "release": 1,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 20000000,
+        "value": 20000000
+      },
+      {
+        "key": "duration",
+        "offset": 24000,
+        "value": 480000
+      }
+    ],
+    "params": [
+      {
+        "name": "width",
+        "key": "pan",
+        "min": 0.1,
+        "max": 1
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "filename": "asmr2.mp3",
+    "attack": 1,
+    "release": 1,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 20000000,
+        "value": 20000000
+      },
+      {
+        "key": "duration",
+        "offset": 24000,
+        "value": 480000
+      }
+    ],
+    "params": [
+      {
+        "name": "width",
+        "key": "pan",
+        "min": 0,
+        "max": -0.5
+      },
+      {
+        "name": "width",
+        "key": "volume",
+        "min": 0,
+        "max": 0.8
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "filename": "asmr2.mp3",
+    "attack": 1,
+    "release": 1,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 20000000,
+        "value": 20000000
+      },
+      {
+        "key": "duration",
+        "offset": 24000,
+        "value": 480000
+      }
+    ],
+    "params": [
+      {
+        "name": "width",
+        "key": "pan",
+        "min": 0,
+        "max": 0.5
+      },
+      {
+        "name": "width",
+        "key": "volume",
+        "min": 0,
+        "max": 0.8
+      }
+    ]
+  },
+  {
+    "type": "parallel container",
+    "loop": true,
+    "delay": 3000,
+    "params": [
+      {
+        "name": "intensivity",
+        "key": "delay",
+        "min": 3000,
+        "max": 200
+      }
+    ],
+    "objects": [
+      0,
+      1,
+      2,
+      3
+    ]
+  },
+  {
+    "type": "sound fx",
+    "root": true,
+    "objects": [
+      4
+    ]
+  }
+]

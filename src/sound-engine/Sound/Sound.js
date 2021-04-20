@@ -27,6 +27,7 @@ class Sound extends EngineNode {
   node;
   detune;
   #startPoint = 0;
+  #endPoint;
   originalLength = 0;
   delay = 0;
 
@@ -45,6 +46,7 @@ class Sound extends EngineNode {
       .then((decodedData) => {
         this.#defaultBuffer = decodedData;
         this.originalLength = this.#defaultBuffer.length;
+        this.#endPoint = this.originalLength;
         this.#buffer = this.#defaultBuffer;
 
         this.#release = initObject.release;
@@ -93,6 +95,7 @@ class Sound extends EngineNode {
       length: data.length,
     });
     outBuffer.copyToChannel(data, 0);
+    console.log('buffer length', outBuffer.length);
     return outBuffer;
   }
 
@@ -101,11 +104,17 @@ class Sound extends EngineNode {
   }
 
   set startPoint(startPoint) {
-    this.#startPoint = startPoint;
+    this.#startPoint = Math.floor(startPoint);
+
+    console.log('start length', this.#endPoint - this.#startPoint);
 
     this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
-      const newData = data.subarray(startPoint);
-      return this._applyFade(newData, this.#attack);
+      let newData = data.subarray(
+        this.#startPoint,
+        this.#endPoint > this.#startPoint ? this.#endPoint : undefined
+      );
+      newData = this._applyFade(newData, this.#attack);
+      return this._applyFade(newData, -this.#release);
     });
   }
 
@@ -116,8 +125,11 @@ class Sound extends EngineNode {
   }
 
   set endPoint(endPoint) {
+    this.#endPoint = Math.floor(endPoint);
+    console.log('end length', this.#endPoint - this.#startPoint);
     this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
-      const newData = data.subarray(0, endPoint);
+      let newData = data.subarray(this.#startPoint, this.#endPoint);
+      newData = this._applyFade(newData, this.#attack);
       return this._applyFade(newData, -this.#release);
     });
   }
@@ -127,7 +139,7 @@ class Sound extends EngineNode {
   }
 
   set duration(duration) {
-    this.endPoint = parseInt(duration - this.startPoint);
+    this.endPoint = parseInt(duration + this.startPoint);
   }
 
   get attack() {
@@ -214,12 +226,13 @@ class Sound extends EngineNode {
     return new Promise((resolve, reject) => {
       node.addEventListener('ended', () => this._onEnded(id, () => resolve()));
       node.start(_delay);
+      console.log(Object.values(this.source).length);
     });
   }
 
   stop() {
     super.stop();
-    this.source.forEach((item) => item.stop());
+    Object.values(this.source).forEach((item) => item.stop());
   }
 
   toPlainObject() {

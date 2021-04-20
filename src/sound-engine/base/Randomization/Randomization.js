@@ -1,4 +1,4 @@
-import ParamListener from "../ParamListener";
+import ParamListener from '../ParamListener';
 
 const defaultObject = {
   enabled: true,
@@ -7,18 +7,17 @@ const defaultObject = {
   value: 0,
   loop: false,
   time: 2000,
-  params: []
-}
+  params: [],
+};
 
-class Randomization extends ParamListener
-{
+class Randomization extends ParamListener {
   #started = false;
   #object;
   #audioParams;
   #intervalID;
 
   constructor(_initObject, object) {
-    const initObject = {...defaultObject, ..._initObject};
+    const initObject = { ...defaultObject, ..._initObject };
 
     super(initObject);
     this.enabled = initObject.enabled;
@@ -33,13 +32,13 @@ class Randomization extends ParamListener
   }
 
   setValue(name, value) {
-    switch(name) {
+    switch (name) {
       case 'key':
         this.key = value;
-      break;
+        break;
       case 'loop':
         this.loop = value;
-      break;
+        break;
       default:
         this[name] = parseFloat(value);
     }
@@ -54,13 +53,13 @@ class Randomization extends ParamListener
       if (this.#audioParams.indexOf(this.key) !== -1) {
         this.#object[this.key] = {
           value: _value,
-          time: this.loop ? this.time : 250
+          time: this.loop ? this.time : 250,
         };
       } else {
         this.#object[this.key] = _value;
       }
     }
-  }
+  };
 
   randomize() {
     if (this.loop && !this.#started) {
@@ -85,9 +84,9 @@ class Randomization extends ParamListener
       offset: this.offset,
       value: this.value,
       loop: this.loop,
-      time: this.time
-    }
+      time: this.time,
+    };
   }
 }
 
-export default Randomization
+export default Randomization;

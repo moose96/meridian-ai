@@ -5,6 +5,11 @@
 1. Feat: Sound can play many sounds (polyphonic) now.
 2. Fix: Sequence container - it should play sound correctly.
 3. Refactor: Rewrite Sound object without Pizzicato.Sound dependency.
+4. Fix: some little fixes in playing sounds.
+
+## Database
+
+1. Feat: Add new two sounds.
 
 ## Main UI
 

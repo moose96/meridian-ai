@@ -1,3 +1,9 @@
+# Changes in v0.8.3
+
+## Database
+
+1. Refactor: Join two sets into one.
+
 # Changes in v0.8.2
 
 ## Sound engine

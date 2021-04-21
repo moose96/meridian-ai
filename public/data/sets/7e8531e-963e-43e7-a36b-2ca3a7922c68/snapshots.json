@@ -9,6 +9,14 @@
       "brightness": 0,
       "sharpness": 0
     },
+    "0e50f853-2b49-4c19-aa2c-ad9ef08d2839": {
+      "volume": 100,
+      "width": 50,
+      "distance": 50,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
     "origin": "default"
   },
   {
@@ -19,6 +27,14 @@
       "distance": 60,
       "intensivity": 40,
       "brightness": 20,
+      "sharpness": 0
+    },
+    "0e50f853-2b49-4c19-aa2c-ad9ef08d2839": {
+      "volume": 100,
+      "width": 100,
+      "distance": 50,
+      "intensivity": 40,
+      "brightness": 0,
       "sharpness": 0
     },
     "origin": "default"
@@ -33,6 +49,14 @@
       "brightness": 20,
       "sharpness": 10
     },
+    "0e50f853-2b49-4c19-aa2c-ad9ef08d2839": {
+      "volume": 100,
+      "width": 100,
+      "distance": 50,
+      "intensivity": 80,
+      "brightness": 0,
+      "sharpness": 0
+    },
     "origin": "default"
   },
   {
@@ -44,6 +68,14 @@
       "intensivity": 100,
       "brightness": 20,
       "sharpness": 10
+    },
+    "0e50f853-2b49-4c19-aa2c-ad9ef08d2839": {
+      "volume": 100,
+      "width": 100,
+      "distance": 50,
+      "intensivity": 100,
+      "brightness": 0,
+      "sharpness": 0
     },
     "origin": "default"
   }

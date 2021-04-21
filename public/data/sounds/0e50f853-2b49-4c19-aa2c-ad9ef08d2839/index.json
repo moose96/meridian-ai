@@ -119,6 +119,7 @@
     "type": "parallel container",
     "loop": true,
     "delay": 3000,
+    "volume": 0.25,
     "params": [
       {
         "name": "intensivity",
@@ -129,9 +130,7 @@
     ],
     "objects": [
       0,
-      1,
-      2,
-      3
+      1
     ]
   },
   {

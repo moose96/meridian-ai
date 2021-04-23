@@ -1,3 +1,5 @@
+export { default as Guide } from './Guide';
+export { GuideTooltip } from './Guide';
 export * from './Button';
 export * from './Form';
 export { default as Header } from './Header';

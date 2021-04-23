@@ -3,11 +3,13 @@ import { PlayArrow } from '@material-ui/icons';
 
 import { SecondaryButton } from '../../../Button';
 
-export default function PlayDemoButton(props) {
+const PlayDemoButton = React.forwardRef((props, ref) => {
   return (
-    <SecondaryButton {...props}>
+    <SecondaryButton ref={ref} {...props}>
       <PlayArrow />
       Play demo
     </SecondaryButton>
   );
-}
+});
+
+export default PlayDemoButton;

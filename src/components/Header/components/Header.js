@@ -9,6 +9,8 @@ import Navigation, { NavItem } from '../../Navigation';
 import Logotype from '../../Logotype';
 import SidebarMenu from '../../SidebarMenu';
 import { SecondaryButton } from '../../Button';
+import { useGuide } from '../../../hooks';
+import { GuideTooltip } from '../../Guide';
 
 import { mainMenu } from '../../../constants';
 
@@ -17,6 +19,7 @@ export default function Header() {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const navigate = useNavigate();
   const portrait = useMediaQuery('(orientation: portrait)');
+  const { guide, style: guideStyle } = useGuide(['navigation']);
 
   useEffect(() => {
     navigate(currentPage);
@@ -35,20 +38,23 @@ export default function Header() {
           <Menu />
         </SecondaryButton>
       ) : (
-        <Navigation
-          value={currentPage}
-          onChange={(event, value) => setCurrentPage(value)}
-        >
-          {/* <NavItem label="Browse" value="browse" />
+        <GuideTooltip frames={['navigation']}>
+          <Navigation
+            value={currentPage}
+            onChange={(event, value) => setCurrentPage(value)}
+            style={guide ? guideStyle : undefined}
+          >
+            {/* <NavItem label="Browse" value="browse" />
           <NavItem label="Play!" value="play" /> */}
-          {mainMenu.map((element) => (
-            <NavItem
-              key={element.id}
-              label={element.title}
-              value={element.id}
-            />
-          ))}
-        </Navigation>
+            {mainMenu.map((element) => (
+              <NavItem
+                key={element.id}
+                label={element.title}
+                value={element.id}
+              />
+            ))}
+          </Navigation>
+        </GuideTooltip>
       )}
       <HeaderContent>
         <Logotype />

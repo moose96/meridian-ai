@@ -7,8 +7,9 @@ import {
   TransportBar,
   Loading,
   SoundPlaylist,
+  GuideTooltip,
 } from '../../../../components';
-import { useAIComposer, useOrientation } from '../../../../hooks';
+import { useAIComposer, useOrientation, useGuide } from '../../../../hooks';
 import {
   getPlaylistItems,
   removeFromPlaylist,
@@ -26,6 +27,7 @@ export default function PlayPage() {
     sound: currentSound,
   });
   const { portrait } = useOrientation();
+  const { guide, style: guideStyle, data } = useGuide(['play-playlist']);
 
   useEffect(() => {
     if (sounds.length > 0 && currentSound.length === 0) {
@@ -50,13 +52,15 @@ export default function PlayPage() {
   };
 
   const soundPlaylist = (
-    <SoundPlaylist
-      sounds={sounds}
-      selected={currentSound}
-      onRemoveItem={(id) => dispatch(removeFromPlaylist(id))}
-      onSelectItem={(id) => setCurrentSound(id)}
-      show={playlistShow}
-    />
+    <GuideTooltip frames={['play-playlist']} placement="right">
+      <SoundPlaylist
+        sounds={sounds}
+        selected={currentSound}
+        onRemoveItem={(id) => dispatch(removeFromPlaylist(id))}
+        onSelectItem={(id) => setCurrentSound(id)}
+        show={playlistShow}
+      />
+    </GuideTooltip>
   );
 
   const content = (
@@ -74,7 +78,7 @@ export default function PlayPage() {
             container
             style={{ flex: 1, overflow: 'hidden', position: 'relative' }}
           >
-            <Grid item md={2}>
+            <Grid item md={2} style={guide ? guideStyle : undefined}>
               <Slide direction="up" in={playlistShow}>
                 <Paper style={{ minHeight: '100%' }}>{soundPlaylist}</Paper>
               </Slide>

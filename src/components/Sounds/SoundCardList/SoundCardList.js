@@ -35,6 +35,7 @@ export default function SoundCardList({ data }) {
             selected={checkItem(item.id)}
             onAdd={() => dispatch(addToPlaylist(item))}
             onRemove={() => dispatch(removeFromPlaylist(item))}
+            showGuideTooltip={index === 0}
           />
         </Grid>
       ))}

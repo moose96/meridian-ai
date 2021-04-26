@@ -18,6 +18,7 @@ export default function SoundCard({
   selected,
   onAdd,
   onRemove,
+  showGuideTooltip,
 }) {
   const [playing, setPlaying] = useState(false);
   const { ref, play, stop } = useMediaPlayer();
@@ -43,7 +44,7 @@ export default function SoundCard({
         {playing ? (
           <StopDemoButton onClick={handleChangePlaying} />
         ) : (
-          <GuideTooltip frames={['browse-demo']}>
+          <GuideTooltip frames={['browse-demo']} show={showGuideTooltip}>
             <PlayDemoButton
               onClick={handleChangePlaying}
               disabled={!demo}
@@ -54,7 +55,7 @@ export default function SoundCard({
         {selected ? (
           <RemoveButton onClick={() => onRemove()} />
         ) : (
-          <GuideTooltip frames={['browse-add']}>
+          <GuideTooltip frames={['browse-add']} show={showGuideTooltip}>
             <AddButton onClick={() => onAdd()} />
           </GuideTooltip>
         )}

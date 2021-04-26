@@ -4,6 +4,7 @@ import {
   SET_NEXT_FRAME,
   SET_VISITED,
   RESET_VISITED,
+  ADD_VISITED,
   SET_DATA,
 } from './types';
 
@@ -34,6 +35,13 @@ export function setVisited() {
 export function resetVisited() {
   return {
     type: RESET_VISITED,
+  };
+}
+
+export function addVisited(data) {
+  return {
+    type: ADD_VISITED,
+    payload: data,
   };
 }
 

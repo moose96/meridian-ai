@@ -4,5 +4,6 @@ const getData = (state) => state.guide.data;
 export const getIsGuide = (state) => getControl(state).guideMode;
 export const getCurrentFrame = (state) => getControl(state).currentFrame;
 export const getIsVisited = (state) => getControl(state).visited;
+export const getVisitedRoutes = (state) => getControl(state).visitedRoutes;
 
 export const getGuideData = (state) => getData(state).data;

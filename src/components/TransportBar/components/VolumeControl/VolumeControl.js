@@ -5,6 +5,7 @@ import { bindTrigger } from 'material-ui-popup-state';
 
 import VolumeSlider from '../../../VolumeSlider';
 import { SecondaryButton } from '../../../Button';
+import { GuideTooltip } from '../../../Guide';
 import VolumePopover from './VolumePopover';
 import NamedVolumeSlider from './NamedVolumeSlider';
 
@@ -27,12 +28,14 @@ export default function VolumeControl({ value, onChange }) {
           </SecondaryButton>
         )}
       >
-        <VolumeSlider
-          value={value}
-          onChange={onChange}
-          vertical
-          style={{ height: 250, marginTop: 5, marginBottom: 5 }}
-        />
+        <GuideTooltip frames={['play-volume']}>
+          <VolumeSlider
+            value={value}
+            onChange={onChange}
+            vertical
+            style={{ height: 250, marginTop: 5, marginBottom: 5 }}
+          />
+        </GuideTooltip>
       </VolumePopover>
     );
   } else {

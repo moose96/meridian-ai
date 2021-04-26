@@ -5,22 +5,25 @@ import RoundedButton from './RoundedButton';
 
 const globalStyles = {
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  borderWidth: 4
-}
+  borderWidth: 4,
+};
 
-export default function ASMRButton({ active, onClick }) {
+const ASMRButton = React.forwardRef(({ active, onClick }, ref) => {
   const theme = useTheme();
-  let styles = {...globalStyles};
+  let styles = { ...globalStyles };
 
   if (theme) {
     styles = {
       ...globalStyles,
-      borderColor: active ? theme.palette.primary.light : theme.palette.primary.dark
-    }
+      borderColor: active
+        ? theme.palette.primary.light
+        : theme.palette.primary.dark,
+    };
   }
 
   return (
     <RoundedButton
+      ref={ref}
       style={styles}
       size="large"
       variant="outlined"
@@ -30,4 +33,6 @@ export default function ASMRButton({ active, onClick }) {
       ASMR!
     </RoundedButton>
   );
-}
+});
+
+export default ASMRButton;

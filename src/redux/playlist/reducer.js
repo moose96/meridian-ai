@@ -5,15 +5,15 @@ const INITIAL_STATE = [];
 export default function reducer(state = INITIAL_STATE, action) {
   const { type, payload } = action;
 
-  switch(type) {
+  switch (type) {
     case ADD_TO_PLAYLIST:
       return [
         ...state,
-        { id: payload.id, name: payload.name, cover: payload.cover }
+        { id: payload.id, name: payload.name, cover: payload.cover },
       ];
     case REMOVE_FROM_PLAYLIST:
       const items = [...state];
-      const index = items.findIndex(item => item.id === payload);
+      const index = items.findIndex((item) => item.id === payload);
       items.splice(index, 1);
       return [...items];
     default:

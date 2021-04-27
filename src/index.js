@@ -2,22 +2,25 @@ import 'fontsource-roboto';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import { store, persistor } from './redux/store';
 import { worker } from './mocks/browser';
 
 // ! ONLY FOR DEVELOPING APP. UNCOMMENT THIS IF THE SERVER HAS BEEN BUILT !
 // if (process.env.NODE_ENV === 'development') {
-  worker.start()
+worker.start();
 // }
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <PersistGate persistor={persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

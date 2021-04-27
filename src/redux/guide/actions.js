@@ -2,9 +2,9 @@ import {
   DISABLE_GUIDE,
   ENABLE_GUIDE,
   SET_NEXT_FRAME,
-  SET_VISITED,
   RESET_VISITED,
   ADD_VISITED,
+  SET_ALL_VISITED,
   SET_DATA,
 } from './types';
 
@@ -26,21 +26,23 @@ export function setNextFrame() {
   };
 }
 
-export function setVisited() {
-  return {
-    type: SET_VISITED,
-  };
-}
-
-export function resetVisited() {
+export function resetVisited(data) {
   return {
     type: RESET_VISITED,
+    payload: data,
   };
 }
 
 export function addVisited(data) {
   return {
     type: ADD_VISITED,
+    payload: data,
+  };
+}
+
+export function setAllVisited(data) {
+  return {
+    type: SET_ALL_VISITED,
     payload: data,
   };
 }

@@ -3,14 +3,13 @@ import {
   ENABLE_GUIDE,
   RESET_VISITED,
   ADD_VISITED,
+  SET_ALL_VISITED,
   SET_NEXT_FRAME,
-  SET_VISITED,
 } from '../types';
 
 const INITIAL_STATE = {
   guideMode: false,
   currentFrame: 0,
-  visited: false,
   visitedRoutes: [],
 };
 
@@ -33,25 +32,29 @@ export default function reducer(state = INITIAL_STATE, action) {
         ...state,
         currentFrame: state.currentFrame + 1,
       };
-    case SET_VISITED:
-      return {
-        ...state,
-        visited: true,
-        currentFrame: 0,
-        guideMode: false,
-      };
     case RESET_VISITED:
       return {
         ...state,
-        visited: false,
+        visitedRoutes: [
+          ...state.visitedRoutes.slice(0, state.visitedRoutes.indexOf(payload)),
+          ...state.visitedRoutes.slice(
+            state.visitedRoutes.indexOf(payload) + 1
+          ),
+        ],
       };
     case ADD_VISITED:
       return {
         ...state,
-        visited: true,
         currentFrame: 0,
         guideMode: false,
         visitedRoutes: [...state.visitedRoutes, payload],
+      };
+    case SET_ALL_VISITED:
+      return {
+        ...state,
+        visitedRoutes: payload,
+        currentFrame: 0,
+        guideMode: false,
       };
     default:
       return state;

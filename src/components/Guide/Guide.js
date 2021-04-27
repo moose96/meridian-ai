@@ -10,8 +10,8 @@ import {
   getCurrentFrame,
   getVisitedRoutes,
   getIsGuide,
-  resetVisited,
   setData,
+  setAllVisited,
   enableGuide,
 } from '../../redux/guide';
 
@@ -29,7 +29,6 @@ export default function Guide({ data, route }) {
 
   useEffect(() => {
     if (!visitedRoutes.includes(route)) {
-      dispatch(resetVisited());
       dispatch(enableGuide());
     }
   }, [route, dispatch, visitedRoutes]);
@@ -47,7 +46,9 @@ export default function Guide({ data, route }) {
       <GuideContainer>
         <GuideToolbar reverse>
           <PrimaryButton onClick={handleNextFrame}>Next</PrimaryButton>
-          <SecondaryButton onClick={() => dispatch(addVisited(route))}>
+          <SecondaryButton
+            onClick={() => dispatch(setAllVisited(Object.keys(data)))}
+          >
             Skip guide
           </SecondaryButton>
         </GuideToolbar>

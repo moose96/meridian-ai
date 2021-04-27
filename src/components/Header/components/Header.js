@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from '@reach/router';
 import { useMediaQuery } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import { Menu, Help } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
+import { useLocation } from '@reach/router';
 
 import HeaderWrapper from '../styled/HeaderWrapper';
 import HeaderContent from '../styled/HeaderContent';
@@ -11,6 +13,7 @@ import SidebarMenu from '../../SidebarMenu';
 import { SecondaryButton } from '../../Button';
 import { useGuide } from '../../../hooks';
 import { GuideTooltip } from '../../Guide';
+import { resetVisited } from '../../../redux/guide';
 
 import { mainMenu } from '../../../constants';
 
@@ -20,6 +23,8 @@ export default function Header() {
   const navigate = useNavigate();
   const portrait = useMediaQuery('(orientation: portrait)');
   const { guide, style: guideStyle } = useGuide(['navigation']);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     navigate(currentPage);
@@ -44,8 +49,6 @@ export default function Header() {
             onChange={(event, value) => setCurrentPage(value)}
             style={guide ? guideStyle : undefined}
           >
-            {/* <NavItem label="Browse" value="browse" />
-          <NavItem label="Play!" value="play" /> */}
             {mainMenu.map((element) => (
               <NavItem
                 key={element.id}
@@ -58,6 +61,12 @@ export default function Header() {
       )}
       <HeaderContent>
         <Logotype />
+        <SecondaryButton
+          tooltip="View guide"
+          onClick={() => dispatch(resetVisited(location.pathname))}
+        >
+          <Help />
+        </SecondaryButton>
       </HeaderContent>
     </HeaderWrapper>
   );

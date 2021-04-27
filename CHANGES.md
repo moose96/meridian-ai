@@ -1,3 +1,9 @@
+#Changes in v0.8.4
+
+## Main UI
+
+1. Feat: Add help guide.
+
 # Changes in v0.8.3
 
 ## Database

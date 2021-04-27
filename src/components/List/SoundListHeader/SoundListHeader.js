@@ -4,6 +4,7 @@ import { Category } from '@material-ui/icons';
 
 import { RowBox, SecondaryButton } from '../../.';
 import { useOrientation } from '../../../hooks';
+import { GuideTooltip } from '../../Guide';
 
 export default function SoundListHeader({ onCategoriesVisibilityChange }) {
   const { portrait } = useOrientation();
@@ -14,9 +15,11 @@ export default function SoundListHeader({ onCategoriesVisibilityChange }) {
         Browse sounds
       </Typography>
       {portrait ? (
-        <SecondaryButton onClick={onCategoriesVisibilityChange}>
-          <Category />
-        </SecondaryButton>
+        <GuideTooltip frames={['browse-categories']}>
+          <SecondaryButton onClick={onCategoriesVisibilityChange}>
+            <Category />
+          </SecondaryButton>
+        </GuideTooltip>
       ) : null}
     </RowBox>
   );

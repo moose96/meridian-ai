@@ -17,25 +17,25 @@ export default function VolumeControl({ value, onChange }) {
     return (
       <VolumePopover
         button={(popupState) => (
-          <SecondaryButton {...bindTrigger(popupState)}>
-            {value === 0 ? (
-              <VolumeMute />
-            ) : value < 0.5 ? (
-              <VolumeDown />
-            ) : (
-              <VolumeUp />
-            )}
-          </SecondaryButton>
+          <GuideTooltip frames={['play-volume']}>
+            <SecondaryButton {...bindTrigger(popupState)}>
+              {value === 0 ? (
+                <VolumeMute />
+              ) : value < 0.5 ? (
+                <VolumeDown />
+              ) : (
+                <VolumeUp />
+              )}
+            </SecondaryButton>
+          </GuideTooltip>
         )}
       >
-        <GuideTooltip frames={['play-volume']}>
-          <VolumeSlider
-            value={value}
-            onChange={onChange}
-            vertical
-            style={{ height: 250, marginTop: 5, marginBottom: 5 }}
-          />
-        </GuideTooltip>
+        <VolumeSlider
+          value={value}
+          onChange={onChange}
+          vertical
+          style={{ height: 250, marginTop: 5, marginBottom: 5 }}
+        />
       </VolumePopover>
     );
   } else {

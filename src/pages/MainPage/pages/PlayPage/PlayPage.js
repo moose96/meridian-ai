@@ -26,7 +26,7 @@ export default function PlayPage() {
     oscillate,
     sound: currentSound,
   });
-  const { portrait } = useOrientation();
+  const { portrait, landscape } = useOrientation();
   const { guide, style: guideStyle } = useGuide(['play-playlist']);
 
   useEffect(() => {
@@ -52,13 +52,17 @@ export default function PlayPage() {
   };
 
   const soundPlaylist = (
-    <GuideTooltip frames={['play-playlist']} placement="right">
+    <GuideTooltip
+      frames={['play-playlist']}
+      placement={landscape ? 'right' : 'bottom'}
+    >
       <SoundPlaylist
         sounds={sounds}
         selected={currentSound}
         onRemoveItem={(id) => dispatch(removeFromPlaylist(id))}
         onSelectItem={(id) => setCurrentSound(id)}
         show={playlistShow}
+        style={guide ? guideStyle : undefined}
       />
     </GuideTooltip>
   );

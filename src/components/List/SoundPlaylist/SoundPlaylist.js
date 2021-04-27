@@ -13,11 +13,11 @@ import { Delete } from '@material-ui/icons';
 import { SecondaryButton } from '../../Button';
 
 const SoundPlaylist = React.forwardRef(
-  ({ sounds, selected, onRemoveItem, onSelectItem, show }, ref) => {
+  ({ sounds, selected, onRemoveItem, onSelectItem, style }, ref) => {
     return (
       // <Slide direction="up" in={show}>
       //   <Paper style={{ minHeight: '100%' }}>
-      <List style={{ minHeight: '100%' }} ref={ref}>
+      <List style={{ minHeight: '100%', ...style }} ref={ref}>
         <ListSubheader>Playlist</ListSubheader>
         {sounds.map(({ id, name }) => (
           <ListItem

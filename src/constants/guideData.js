@@ -23,7 +23,8 @@ export const GUIDE_DATA = {
     {
       id: 'play-playlist',
       text: `This is the main playlist where your chosen sounds are. Before loading next sound you have 
-        to stop currently playing sound and then click next sound in playlist. You can remove sounds by clicking thrash icon.`,
+        to stop currently playing sound and then click next sound in playlist. You can remove sounds by clicking thrash icon.
+        If you use portrait orientation you can show and hide playlist by clicking little image on the bottom-left corner.`,
     },
     {
       id: 'play-transport-play',

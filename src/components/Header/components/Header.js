@@ -39,9 +39,11 @@ export default function Header() {
         onClose={() => setShowSideMenu(false)}
       />
       {portrait ? (
-        <SecondaryButton onClick={() => setShowSideMenu(!showSideMenu)}>
-          <Menu />
-        </SecondaryButton>
+        <GuideTooltip frames={['navigation']}>
+          <SecondaryButton onClick={() => setShowSideMenu(!showSideMenu)}>
+            <Menu />
+          </SecondaryButton>
+        </GuideTooltip>
       ) : (
         <GuideTooltip frames={['navigation']}>
           <Navigation

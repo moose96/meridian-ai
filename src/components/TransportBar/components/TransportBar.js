@@ -53,7 +53,7 @@ export default function TransportBar(props) {
       </Grid>
       <Grid item md={6} style={{ position: 'relative' }}>
         <ASMRButtonContainer>
-          <GuideTooltip frames={['play-asmr-button']}>
+          <GuideTooltip frames={['play-asmr-button']} placement="top">
             <ASMRButton
               active={asmrActive}
               onClick={() => onASMRClick(!asmrActive)}

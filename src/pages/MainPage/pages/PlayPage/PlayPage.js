@@ -27,7 +27,7 @@ export default function PlayPage() {
     sound: currentSound,
   });
   const { portrait } = useOrientation();
-  const { guide, style: guideStyle, data } = useGuide(['play-playlist']);
+  const { guide, style: guideStyle } = useGuide(['play-playlist']);
 
   useEffect(() => {
     if (sounds.length > 0 && currentSound.length === 0) {

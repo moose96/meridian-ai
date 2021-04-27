@@ -5,21 +5,18 @@ import { KeyboardArrowUp, KeyboardArrowDown } from '@material-ui/icons';
 import { RowBox } from '../../../Box';
 import { SecondaryButton } from '../../../Button';
 import SoundInfo from '../../../SoundInfo';
-import { GuideTooltip } from '../../../Guide';
 
 export default function SoundControls({ playlist, soundInfo }) {
   const portrait = useMediaQuery('(orientation: portrait)');
   const { show, onChange } = playlist;
 
   const playlistButton = (
-    <GuideTooltip frames={['play-playlist-hide']}>
-      <SecondaryButton
-        tooltip={show ? 'Hide playlist' : 'Show playlist'}
-        onClick={() => onChange(!show)}
-      >
-        {show ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
-      </SecondaryButton>
-    </GuideTooltip>
+    <SecondaryButton
+      tooltip={show ? 'Hide playlist' : 'Show playlist'}
+      onClick={() => onChange(!show)}
+    >
+      {show ? <KeyboardArrowDown /> : <KeyboardArrowUp />}
+    </SecondaryButton>
   );
 
   return (

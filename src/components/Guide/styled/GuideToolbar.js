@@ -8,6 +8,7 @@ const GuideToolbar = styled(RowBox)({
   left: 0,
   right: 0,
   height: '5%',
+  padding: '1rem',
 });
 
 export default GuideToolbar;

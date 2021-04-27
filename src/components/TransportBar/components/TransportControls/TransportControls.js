@@ -46,25 +46,27 @@ export default function TransportControls({
 
   return (
     <Grid container justify="center" spacing={1}>
-      <Grid item>
-        <GuideTooltip frames={['play-transport-prev']}>
+      <GuideTooltip frames={['play-transport-prev']}>
+        <Grid item>
           <TransportButton
             type="prev"
             onClick={() => onPrev && onPrev()}
             disabled={disabled}
           />
-        </GuideTooltip>
-      </Grid>
-      <Grid item>{isPlaying ? stopButton : playButton}</Grid>
-      <Grid item>
-        <GuideTooltip frames={['play-transport-next']}>
+        </Grid>
+      </GuideTooltip>
+      <GuideTooltip frames={['play-transport-play']}>
+        <Grid item>{isPlaying ? stopButton : playButton}</Grid>
+      </GuideTooltip>
+      <GuideTooltip frames={['play-transport-next']}>
+        <Grid item>
           <TransportButton
             type="next"
             onClick={() => onNext && onNext()}
             disabled={disabled}
           />
-        </GuideTooltip>
-      </Grid>
+        </Grid>
+      </GuideTooltip>
     </Grid>
   );
 }

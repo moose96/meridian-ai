@@ -2,53 +2,59 @@ export const GUIDE_DATA = {
   '/browse': [
     {
       id: 'browse-add',
-      text: 'First, you should add sound which you like to playlist.',
+      text: `First of all, add sound(s) to the playlist. 
+        You can browse and choose the ones you like in this section.`,
     },
+    // {
+    //   id: 'browse-add-all',
+    //   text: 'For a new comers, here you can add all of the sounds if you want a quick start.'
+    // },
     {
       id: 'browse-demo',
-      text:
-        'If you want to know how the sounds might sound like you can play the prerecorded demo.',
+      text: 'Here is a button for you to play a prerecorded demo of them.',
     },
     {
       id: 'browse-categories',
-      text: `If you don't want to show all sounds you can filter it by categories.`,
+      text: `Filter sounds by preferable categories if needed.`,
     },
     {
       id: 'navigation',
-      text:
-        'There is the main navigation of this app. If you choose the sounds you should go to Play! page.',
+      text: `Here you can switch between sound browser and the player. 
+        After choosing your sounds go the second section for an interactive play!`,
     },
   ],
   '/play': [
     {
       id: 'play-playlist',
-      text: `This is the main playlist where your chosen sounds are. Before loading next sound you have 
-        to stop currently playing sound and then click next sound in playlist. You can remove sounds by clicking thrash icon.
-        If you use portrait orientation you can show and hide playlist by clicking little image on the bottom-left corner.`,
+      text: `In this section you can see your chosen sounds. 
+      If you want, stop currently playing sound and click the next one for loading it. 
+      You can also remove sounds by clicking the trash icon.`,
     },
     {
       id: 'play-transport-play',
-      text: `Before clicking play wait until loading is complete. Then click this button and enjoy. 
-        The properties of sound (also called "snapshot") will be changing periodically.`,
+      text: `Wait until loading is complete and click play here afterwards. 
+      The sounds will intelligently generate with various properties (also called snapshots) 
+      that will change periodically.`,
     },
     {
       id: 'play-transport-next',
-      text: 'If you want to change properties immediately, click this button',
+      text:
+        'If you want to change the properties immediately, click this button.',
     },
     {
       id: 'play-transport-prev',
-      text: `If you don't like current properties of sound clicking this button move you backward 
-      to previous snapshot and the player will try to randomize other properties which are less 
-      similar to previous.`,
+      text: `If you prefer previous sound properties click this button to cancel the changes. 
+      The player will choose similar snapshot to the one before the current. `,
     },
     {
       id: 'play-asmr-button',
-      text: `If you really like current snapshot you can click this button. 
-      The properties will be frozen and you could enjoy more current played sound.`,
+      text: `If you really enjoy the current moment you can click this button. 
+      The sound snapshot will freeze with its properties until you click it again.`,
     },
     {
       id: 'play-volume',
-      text: 'This control changes master volume of played sounds.',
+      text: `At last, this slider gives you the control over general sound volume. 
+        Thank you for your attention and enjoy your sensations!`,
     },
   ],
 };

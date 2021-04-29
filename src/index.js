@@ -10,6 +10,8 @@ import reportWebVitals from './reportWebVitals';
 import { store, persistor } from './redux/store';
 import { worker } from './mocks/browser';
 
+import './i18n';
+
 // ! ONLY FOR DEVELOPING APP. UNCOMMENT THIS IF THE SERVER HAS BEEN BUILT !
 // if (process.env.NODE_ENV === 'development') {
 worker.start();

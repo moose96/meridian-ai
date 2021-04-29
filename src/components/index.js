@@ -13,3 +13,4 @@ export { default as Loading } from './Loading';
 export * from './Box';
 export { default as SidebarMenu } from './SidebarMenu';
 export * from './List';
+export { default as Typography } from './Typography';

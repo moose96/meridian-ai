@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { PrimaryButton, SecondaryButton } from '../Button';
 import GuideContainer from './styled/GuideContainer';
@@ -20,6 +21,7 @@ export default function Guide({ data, route }) {
   const currentFrame = useSelector(getCurrentFrame);
   const visitedRoutes = useSelector(getVisitedRoutes);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (data[route]) {
@@ -45,11 +47,13 @@ export default function Guide({ data, route }) {
     return (
       <GuideContainer>
         <GuideToolbar reverse>
-          <PrimaryButton onClick={handleNextFrame}>Next</PrimaryButton>
+          <PrimaryButton onClick={handleNextFrame}>
+            {t('buttons.nextGuide')}
+          </PrimaryButton>
           <SecondaryButton
             onClick={() => dispatch(setAllVisited(Object.keys(data)))}
           >
-            Skip guide
+            {t('buttons.skipGuide')}
           </SecondaryButton>
         </GuideToolbar>
       </GuideContainer>

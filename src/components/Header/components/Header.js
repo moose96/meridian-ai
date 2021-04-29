@@ -4,6 +4,7 @@ import { useMediaQuery } from '@material-ui/core';
 import { Menu, Help } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import { useLocation } from '@reach/router';
+import { useTranslation } from 'react-i18next';
 
 import HeaderWrapper from '../styled/HeaderWrapper';
 import HeaderContent from '../styled/HeaderContent';
@@ -25,6 +26,7 @@ export default function Header() {
   const { guide, style: guideStyle } = useGuide(['navigation']);
   const dispatch = useDispatch();
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     navigate(currentPage);
@@ -54,7 +56,7 @@ export default function Header() {
             {mainMenu.map((element) => (
               <NavItem
                 key={element.id}
-                label={element.title}
+                label={t(`menu.${element.id}`)}
                 value={element.id}
               />
             ))}

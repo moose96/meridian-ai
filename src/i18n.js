@@ -9,7 +9,7 @@ i18n.use(initReactI18next).init({
   debug: true,
   lng: 'pl',
   resources,
-  ns: ['common', 'translations', 'tooltips'],
+  ns: ['common', 'translations'],
   interpolation: { escapeValue: false },
 });
 

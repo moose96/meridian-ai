@@ -1,5 +1,6 @@
 const tooltips = {
   viewGuide: 'View guide',
+  settings: 'Settings',
   unavailableDemo: 'Demo of this sound is unavailable',
   playlistShow: 'Show playlist',
   playlistHide: 'Hide playlist',

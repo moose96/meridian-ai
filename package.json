@@ -11,6 +11,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "classnames": "^2.2.6",
+    "flag-icon-css": "^3.5.0",
     "fontsource-roboto": "^4.0.0",
     "i18next": "^20.2.2",
     "lodash": "^4.17.21",

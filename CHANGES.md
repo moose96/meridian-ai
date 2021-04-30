@@ -3,6 +3,8 @@
 ## Main UI
 
 1. Feat: Add help guide.
+2. Feat: Add other languages
+3. Feat: Add Settings control
 
 # Changes in v0.8.3
 

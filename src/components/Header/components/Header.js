@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from '@reach/router';
 import { useMediaQuery } from '@material-ui/core';
-import { Menu, Help } from '@material-ui/icons';
+import { Menu, Help, Settings } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import { useLocation } from '@reach/router';
 import { useTranslation } from 'react-i18next';
@@ -15,8 +15,9 @@ import { SecondaryButton } from '../../Button';
 import { useGuide } from '../../../hooks';
 import { GuideTooltip } from '../../Guide';
 import { resetVisited } from '../../../redux/guide';
-
 import { mainMenu } from '../../../constants';
+import { RowBox } from '../../Box';
+import SettingsControl from '../../SettingsControl';
 
 export default function Header() {
   const [currentPage, setCurrentPage] = useState('browse');
@@ -65,12 +66,15 @@ export default function Header() {
       )}
       <HeaderContent>
         <Logotype />
-        <SecondaryButton
-          tooltip="View guide"
-          onClick={() => dispatch(resetVisited(location.pathname))}
-        >
-          <Help />
-        </SecondaryButton>
+        <RowBox>
+          <SettingsControl />
+          <SecondaryButton
+            tooltip="View guide"
+            onClick={() => dispatch(resetVisited(location.pathname))}
+          >
+            <Help />
+          </SecondaryButton>
+        </RowBox>
       </HeaderContent>
     </HeaderWrapper>
   );

@@ -14,3 +14,4 @@ export * from './Box';
 export { default as SidebarMenu } from './SidebarMenu';
 export * from './List';
 export { default as Typography } from './Typography';
+export { default as SettingsControl } from './SettingsControl';

@@ -1,5 +1,6 @@
 const tooltips = {
   viewGuide: 'Wyświelt przewodnik',
+  settings: 'Ustawienia',
   unavailableDemo: 'Demo tego dźwięku jest niedostępne',
   playlistShow: 'Pokaż playlistę',
   playlistHide: 'Ukryj playlistę',

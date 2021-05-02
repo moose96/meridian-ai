@@ -14,7 +14,7 @@ export default function SettingsContent({ language }) {
         labelId="language-select"
         value={current}
         onChange={(event) => onChange(event.target.value)}
-        style={{ marginTop: '0.5rem', width: '10vw' }}
+        style={{ marginTop: '0.5rem', width: '200px' }}
       >
         {languages.map(({ id, label }) => (
           <MenuItem key={`language-select-${id}`} value={id}>

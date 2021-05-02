@@ -1,10 +1,14 @@
-#Changes in v0.8.4
+# Changes in v0.8.4
 
 ## Main UI
 
 1. Feat: Add help guide.
 2. Feat: Add other languages
 3. Feat: Add Settings control
+
+## Chore
+
+4. Updated browsers target.
 
 # Changes in v0.8.3
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 
 import LandingStyled from './styled/LandingStyled';
 import LandingShapedContent from './components/LandingShapedContent';

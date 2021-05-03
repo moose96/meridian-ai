@@ -29,7 +29,7 @@ export default function ASMRLanding({ id }) {
           innych obszarach ludzkiego ciała. Może zostać wywołane poprzez
           wizualne, słuchowe, dotykowe i zapachowe bodźce zewnętrzne. Czasami
           określane jest również jako orgazm mózgu ze względu na podobne
-          zamknięcie obszarów mózgu odpowiedzialnych za stres.{' '}
+          zamknięcie obszarów mózgu odpowiedzialnych za stres.
         </Typography>
       </LandingContent.Shaped>
     </LandingContent>

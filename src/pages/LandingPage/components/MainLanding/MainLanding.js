@@ -28,7 +28,8 @@ export default function MainLanding({ id, onRunApp, onGoNext }) {
         alt=""
       /> */}
       <Box style={{ filter: 'blur(2px)', zIndex: 1 }}>
-        <video width="100%" muted autoPlay loop>
+        <video height="100%">
+          {/*muted autoPlay loop*/}
           <source src="/vid/main.webm" type="video/webm" />
         </video>
       </Box>

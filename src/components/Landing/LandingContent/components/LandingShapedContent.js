@@ -13,20 +13,21 @@ const CONTAINER_DEFAULT_STYLE = {
 
 export default function LandingShapedContent({
   children,
-  shape,
-  float,
+  shapes,
   containerStyle,
 }) {
   return (
     <Box style={{ ...CONTAINER_DEFAULT_STYLE, ...containerStyle }}>
-      <div
-        style={{
-          float: float,
-          shapeOutside: shape,
-          width: '100%',
-          height: '100%',
-        }}
-      ></div>
+      {shapes.map(({ float, shape }) => (
+        <div
+          style={{
+            float,
+            shapeOutside: shape,
+            width: `${100 / shapes.length}%`,
+            height: '100%',
+          }}
+        />
+      ))}
       {children}
     </Box>
   );

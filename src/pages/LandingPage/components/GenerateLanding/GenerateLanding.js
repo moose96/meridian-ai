@@ -1,12 +1,7 @@
 import React from 'react';
-import { Typography, Box } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import { LandingContent } from '../../../../components';
-
-const shapeStyle = {
-  width: '50%',
-  height: '50%',
-};
 
 export default function GenerateLanding({ id }) {
   return (
@@ -14,31 +9,18 @@ export default function GenerateLanding({ id }) {
       id={id}
       background={{ animated: true, image: '/img/fractal-18485.jpg' }}
     >
-      <Box
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          right: 0,
-          height: '100%',
-          zIndex: 2,
-          padding: '2rem',
-        }}
-      >
-        <div
-          style={{
-            ...shapeStyle,
+      <LandingContent.Shaped
+        shapes={[
+          {
             float: 'left',
-            shapeOutside: 'polygon(25% 0%, 100% 50%, 25% 100%)',
-          }}
-        />
-        <div
-          style={{
-            ...shapeStyle,
+            shape: 'polygon(35% 0%, 100% 50%, 35% 100%)',
+          },
+          {
             float: 'right',
-            shapeOutside: 'polygon(50% 50%, 75% 0%, 75% 100%)',
-          }}
-        />
+            shape: 'polygon(0% 50%, 65% 0%, 65% 100%)',
+          },
+        ]}
+      >
         <Typography align="justify" color="textPrimary">
           Aplikacja generuje ciąg specyficznych warstw dźwiękowych, które
           przeplatają się między sobą w kreatywny i kompozycyjnie harmonijny
@@ -52,7 +34,7 @@ export default function GenerateLanding({ id }) {
           m.in. długość, intensywność, zagęszczenie, barwa i charakter, które
           ulegają zmianie w trakcie trwania symulacji.
         </Typography>
-      </Box>
+      </LandingContent.Shaped>
     </LandingContent>
   );
 }

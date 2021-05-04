@@ -10,8 +10,12 @@ export default function EffectsLanding({ id }) {
       background={{ animated: true, image: '/img/white-4557097.jpg' }}
     >
       <LandingContent.Shaped
-        float="left"
-        shape="polygon(0% 0%, 55% 0%, 70% 35%, 60% 100%)"
+        shapes={[
+          {
+            float: 'left',
+            shape: 'polygon(0% 0%, 55% 0%, 70% 35%, 60% 100%)',
+          },
+        ]}
       >
         <Typography align="justify">
           Obecnie ASMR jest jednym z najchętniej oglądanych rodzajów filmów na

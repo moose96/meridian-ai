@@ -13,22 +13,8 @@ import {
 export default function MainLanding({ id, onRunApp, onGoNext }) {
   return (
     <LandingContent id={id}>
-      {/* <img
-        src="/img/main.png"
-        style={{
-          position: 'absolute',
-          left: 0,
-          top: 0,
-          height: '100%',
-          width: '100%',
-          filter: 'blur(5px) brightness(0.5)',
-          transform: 'scale(1.05)',
-          zIndex: 1,
-        }}
-        alt=""
-      /> */}
       <Box style={{ filter: 'blur(2px)', zIndex: 1 }}>
-        <video height="100%" muted autoPlay loop>
+        <video height="100%">
           {/*muted autoPlay loop*/}
           <source src="/vid/main.webm" type="video/webm" />
         </video>

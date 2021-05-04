@@ -16,4 +16,4 @@ export { default as SidebarMenu } from './SidebarMenu';
 export * from './List';
 export { default as Typography } from './Typography';
 export { default as SettingsControl } from './SettingsControl';
-export { default as LandingContent } from './LandingContent';
+export * from './Landing';

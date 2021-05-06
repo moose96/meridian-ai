@@ -3,6 +3,7 @@ import React from 'react';
 import LandingStyled from './styled/LandingStyled';
 import LandingShapedContent from './components/LandingShapedContent';
 import LandingBackgroundImage from './components/LandingBackgroundImage';
+import LandingAnimated from './components/LandingAnimated';
 
 /* background: image, color, gradient, animated, cssImage */
 
@@ -30,5 +31,6 @@ const LandingContent = React.forwardRef(
 );
 
 LandingContent.Shaped = LandingShapedContent;
+LandingContent.Animated = LandingAnimated;
 
 export default LandingContent;

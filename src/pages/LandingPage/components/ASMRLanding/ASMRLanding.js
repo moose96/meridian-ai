@@ -33,13 +33,9 @@ export default function ASMRLanding({ id }) {
           },
         ]}
       >
-        <motion.div
-          animate={isVisible ? 'show' : 'hidden'}
-          variants={{
-            hidden: { translateX: -50 },
-            show: { translateX: 0 },
-          }}
-          transform={{ duration: 2 }}
+        <LandingContent.Animated
+          variant={isVisible ? 'show' : 'hidden'}
+          from="left"
         >
           <Typography variant="h2" color="textPrimary" gutterBottom>
             ASMR
@@ -59,7 +55,7 @@ export default function ASMRLanding({ id }) {
             określane jest również jako orgazm mózgu ze względu na podobne
             zamknięcie obszarów mózgu odpowiedzialnych za stres.
           </Typography>
-        </motion.div>
+        </LandingContent.Animated>
       </LandingContent.Shaped>
     </LandingContent>
   );

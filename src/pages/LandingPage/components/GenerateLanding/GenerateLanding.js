@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 import { LandingContent } from '../../../../components';
+import { useScrollableElement } from '../../../../hooks';
 import useIsNarrow from '../../hooks';
 
 const POLYGONS = {
@@ -16,10 +17,12 @@ const POLYGONS = {
 };
 
 export default function GenerateLanding({ id }) {
+  const { isVisible, ref } = useScrollableElement();
   const isNarrow = useIsNarrow();
 
   return (
     <LandingContent
+      ref={ref}
       id={id}
       background={{ animated: true, image: '/img/fractal-18485.jpg' }}
     >
@@ -35,19 +38,29 @@ export default function GenerateLanding({ id }) {
           },
         ]}
       >
-        <Typography align="justify" color="textPrimary">
-          Aplikacja generuje ciąg specyficznych warstw dźwiękowych, które
-          przeplatają się między sobą w kreatywny i kompozycyjnie harmonijny
-          sposób. Warstwy przypomniają dźwięki znane z filmów ASMR ale dostępne
-          są również te bardziej abstrakcyjne, przetworzone lub takie, które
-          przypominają relaksacyjną muzykę.
-        </Typography>
-        <Typography align="justify" color="textPrimary">
-          Generacja dźwiękowych warstw opiera się na interaktywnej manipulacji
-          krótkimi fragmentami. Każda warstwa ma przypisane parametry takie jak
-          m.in. długość, intensywność, zagęszczenie, barwa i charakter, które
-          ulegają zmianie w trakcie trwania symulacji.
-        </Typography>
+        <LandingContent.Animated
+          from="left"
+          variant={isVisible ? 'show' : 'hidden'}
+        >
+          <Typography align="justify" color="textPrimary">
+            Aplikacja generuje ciąg specyficznych warstw dźwiękowych, które
+            przeplatają się między sobą w kreatywny i kompozycyjnie harmonijny
+            sposób. Warstwy przypomniają dźwięki znane z filmów ASMR ale
+            dostępne są również te bardziej abstrakcyjne, przetworzone lub
+            takie, które przypominają relaksacyjną muzykę.
+          </Typography>
+        </LandingContent.Animated>
+        <LandingContent.Animated
+          from="right"
+          variant={isVisible ? 'show' : 'hidden'}
+        >
+          <Typography align="justify" color="textPrimary">
+            Generacja dźwiękowych warstw opiera się na interaktywnej manipulacji
+            krótkimi fragmentami. Każda warstwa ma przypisane parametry takie
+            jak m.in. długość, intensywność, zagęszczenie, barwa i charakter,
+            które ulegają zmianie w trakcie trwania symulacji.
+          </Typography>
+        </LandingContent.Animated>
       </LandingContent.Shaped>
     </LandingContent>
   );

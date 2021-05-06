@@ -61,7 +61,7 @@ export default function MainLanding({ id, onRunApp, onGoNext }) {
         <ColumnBox
           width="100%"
           alignItems="center"
-          justifyContent="flex-end"
+          justifyContent="center"
           flex={1}
         >
           <PrimaryButton onClick={onRunApp}>Uruchom aplikację</PrimaryButton>

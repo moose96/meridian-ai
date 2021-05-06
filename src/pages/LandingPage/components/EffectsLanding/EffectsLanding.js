@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 import { LandingContent } from '../../../../components';
+import { useScrollableElement } from '../../../../hooks';
 import useIsNarrow from '../../hooks';
 
 const POLYGONS = {
@@ -10,10 +11,12 @@ const POLYGONS = {
 };
 
 export default function EffectsLanding({ id }) {
+  const { isVisible, ref } = useScrollableElement();
   const isNarrow = useIsNarrow();
 
   return (
     <LandingContent
+      ref={ref}
       id={id}
       background={{
         animated: true,
@@ -28,15 +31,20 @@ export default function EffectsLanding({ id }) {
           },
         ]}
       >
-        <Typography align="justify">
-          Obecnie ASMR jest jednym z najchętniej oglądanych rodzajów filmów na
-          platformie YouTube. Zazwyczaj osoby tworzące takie filmy korzystają ze
-          swojego głosu, szeptu, stukania, skrobania, pocierania różnych
-          przedmiotów by stworzyć delikatną, bogatą w transienty warstwę
-          dźwiękową. Oprócz tego istnieje praktycznie każdy rodzaj dźwięków tam
-          użyty, od miauczenia małego kotka, krojenie mydła w kostki, po
-          mlaskanie osoby jedzącej ośmiornice.
-        </Typography>
+        <LandingContent.Animated
+          from="right"
+          variant={isVisible ? 'show' : 'hidden'}
+        >
+          <Typography align="justify">
+            Obecnie ASMR jest jednym z najchętniej oglądanych rodzajów filmów na
+            platformie YouTube. Zazwyczaj osoby tworzące takie filmy korzystają
+            ze swojego głosu, szeptu, stukania, skrobania, pocierania różnych
+            przedmiotów by stworzyć delikatną, bogatą w transienty warstwę
+            dźwiękową. Oprócz tego istnieje praktycznie każdy rodzaj dźwięków
+            tam użyty, od miauczenia małego kotka, krojenie mydła w kostki, po
+            mlaskanie osoby jedzącej ośmiornice.
+          </Typography>
+        </LandingContent.Animated>
       </LandingContent.Shaped>
     </LandingContent>
   );

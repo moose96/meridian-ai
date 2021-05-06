@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from '@reach/router';
 import { useMediaQuery } from '@material-ui/core';
-import { Menu, Help, Settings } from '@material-ui/icons';
+import { Help } from '@material-ui/icons';
 import { useDispatch } from 'react-redux';
 import { useLocation } from '@reach/router';
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,7 @@ import HeaderContent from '../styled/HeaderContent';
 import Navigation, { NavItem } from '../../Navigation';
 import Logotype from '../../Logotype';
 import SidebarMenu from '../../SidebarMenu';
-import { SecondaryButton } from '../../Button';
+import { SecondaryButton, MenuButton } from '../../Button';
 import { useGuide } from '../../../hooks';
 import { GuideTooltip } from '../../Guide';
 import { resetVisited } from '../../../redux/guide';
@@ -43,9 +43,7 @@ export default function Header() {
       />
       {portrait ? (
         <GuideTooltip frames={['navigation']}>
-          <SecondaryButton onClick={() => setShowSideMenu(!showSideMenu)}>
-            <Menu />
-          </SecondaryButton>
+          <MenuButton onClick={() => setShowSideMenu(!showSideMenu)} />
         </GuideTooltip>
       ) : (
         <GuideTooltip frames={['navigation']}>

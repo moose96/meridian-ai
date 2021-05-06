@@ -5,6 +5,8 @@ const HeaderWrapper = styled(Box)(({ theme }) => ({
   padding: `${theme.spacing(1)}px 0`,
   display: 'flex',
   justifyContent: 'flex-start',
+  width: '100%',
+  height: '3.5rem',
 }));
 
 export default HeaderWrapper;

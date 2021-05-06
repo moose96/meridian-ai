@@ -3,7 +3,7 @@ import { motion, useTransform } from 'framer-motion';
 
 import { useScrollableElement } from '../../../../hooks';
 
-export default function LandingBackgroundImage({ src }) {
+export default function LandingBackgroundImage({ src, filter }) {
   const { ref, scrollBounds, scrollY } = useScrollableElement();
   const position = useTransform(
     scrollY,
@@ -25,6 +25,7 @@ export default function LandingBackgroundImage({ src }) {
         left: 0,
         top: 0,
         scale: position,
+        filter,
       }}
     />
   );

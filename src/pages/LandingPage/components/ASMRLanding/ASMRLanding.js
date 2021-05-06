@@ -4,20 +4,32 @@ import { motion } from 'framer-motion';
 
 import { LandingContent } from '../../../../components';
 import { useScrollableElement } from '../../../../hooks';
+import useIsNarrow from '../../hooks';
+
+const POLYGONS = {
+  normal: 'polygon(35% 0, 16% 100%, 100% 0)',
+  narrow: 'polygon(79% 0, 60% 100%, 100% 0)',
+};
 
 export default function ASMRLanding({ id }) {
   const { isVisible, ref } = useScrollableElement();
+  const isNarrow = useIsNarrow();
+
   return (
     <LandingContent
       ref={ref}
       id={id}
-      background={{ animated: true, image: '/img/ear-3971050.jpg' }}
+      background={{
+        animated: true,
+        image: '/img/ear-3971050.jpg',
+        darken: isNarrow,
+      }}
     >
       <LandingContent.Shaped
         shapes={[
           {
             float: 'right',
-            shape: 'polygon(31% 0, 16% 90%, 75% 80%,95% 45%)',
+            shape: POLYGONS[isNarrow ? 'narrow' : 'normal'],
           },
         ]}
       >

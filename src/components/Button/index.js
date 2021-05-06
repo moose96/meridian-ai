@@ -4,3 +4,4 @@ export { default as RoundedButton } from './components/RoundedButton';
 export { default as TransportButton } from './components/TransportButton';
 export { default as ASMRButton } from './components/ASMRButton';
 export { default as SnapshotButton } from './components/SnapshotButton';
+export { default as MenuButton } from './components/MenuButton';

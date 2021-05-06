@@ -12,7 +12,7 @@ import {
 
 export default function MainLanding({ id, onRunApp, onGoNext }) {
   return (
-    <LandingContent id={id}>
+    <LandingContent id={id} style={{ marginTop: '4rem' }}>
       <Box style={{ filter: 'blur(2px)', zIndex: 1 }}>
         <video height="100%">
           {/*muted autoPlay loop*/}
@@ -27,6 +27,7 @@ export default function MainLanding({ id, onRunApp, onGoNext }) {
           top: 0,
           right: 0,
           zIndex: 2,
+          padding: '1rem',
         }}
       >
         <ColumnBox

@@ -18,7 +18,10 @@ const LandingContent = React.forwardRef(
     return (
       <LandingStyled ref={ref} background={styledBackground} {...props}>
         {background?.animated ? (
-          <LandingBackgroundImage src={background?.image} />
+          <LandingBackgroundImage
+            src={background?.image}
+            filter={background?.darken ? 'brightness(0.6)' : undefined}
+          />
         ) : null}
         {children}
       </LandingStyled>

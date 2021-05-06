@@ -1,16 +1,6 @@
-import { Box, Link } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useNavigate } from '@reach/router';
-import Slick from 'react-slick';
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-
-import {
-  HeaderWrapper,
-  Logotype,
-  RowBox,
-  LandingContainer,
-} from '../../components';
 import {
   MainLanding,
   ASMRLanding,
@@ -18,6 +8,7 @@ import {
   NeuronLanding,
   GenerateLanding,
   StartLanding,
+  Header,
 } from './components';
 
 const SECTIONS = [
@@ -55,31 +46,11 @@ export default function LandingPage() {
   };
 
   return (
-    <Box>
-      <HeaderWrapper
-        bgcolor="black"
-        style={{ justifyContent: 'space-between' }}
-      >
-        <Logotype />
-        <RowBox alignItems="center">
-          {SECTIONS.map(({ id, label }) => (
-            <Link
-              href={`#${id}`}
-              color="textPrimary"
-              style={{ marginRight: '0.5rem' }}
-            >
-              {label}
-            </Link>
-          ))}
-        </RowBox>
-      </HeaderWrapper>
+    <Box style={{ position: 'relative' }}>
+      <Header navItems={SECTIONS} />
       <MainLanding id="main" onRunApp={handleRunApp} />
-      <LandingContainer>
-        <Slick fade speed={1000} autoplay autoplaySpeed={5000} infinite dots>
-          <ASMRLanding id="asmr" />
-          <EffectsLanding id="effects" />
-        </Slick>
-      </LandingContainer>
+      <ASMRLanding id="asmr" />
+      <EffectsLanding id="effects" />
       <NeuronLanding id="neuron" />
       <GenerateLanding id="generate" />
       <StartLanding id="run" onRunApp={handleRunApp} />

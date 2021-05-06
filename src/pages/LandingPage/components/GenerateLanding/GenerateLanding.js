@@ -2,8 +2,22 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 
 import { LandingContent } from '../../../../components';
+import useIsNarrow from '../../hooks';
+
+const POLYGONS = {
+  normal: [
+    'polygon(35% 0%, 100% 50%, 35% 100%)',
+    'polygon(0% 50%, 65% 0%, 65% 100%)',
+  ],
+  narrow: [
+    'polygon(0% 0%, 50% 50%, 0% 100%)',
+    'polygon(50% 50%, 100% 0%, 100% 100%)',
+  ],
+};
 
 export default function GenerateLanding({ id }) {
+  const isNarrow = useIsNarrow();
+
   return (
     <LandingContent
       id={id}
@@ -13,11 +27,11 @@ export default function GenerateLanding({ id }) {
         shapes={[
           {
             float: 'left',
-            shape: 'polygon(35% 0%, 100% 50%, 35% 100%)',
+            shape: POLYGONS[isNarrow ? 'narrow' : 'normal'][0],
           },
           {
             float: 'right',
-            shape: 'polygon(0% 50%, 65% 0%, 65% 100%)',
+            shape: POLYGONS[isNarrow ? 'narrow' : 'normal'][1],
           },
         ]}
       >

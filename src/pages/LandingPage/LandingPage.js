@@ -1,5 +1,6 @@
 import { Box } from '@material-ui/core';
 import { useNavigate } from '@reach/router';
+import { scroller } from 'react-scroll';
 
 import {
   MainLanding,
@@ -10,6 +11,7 @@ import {
   StartLanding,
   Header,
 } from './components';
+import scrollSettings from './constants/scrollSettings';
 
 const SECTIONS = [
   {
@@ -48,7 +50,11 @@ export default function LandingPage() {
   return (
     <Box style={{ position: 'relative' }}>
       <Header navItems={SECTIONS} />
-      <MainLanding id="main" onRunApp={handleRunApp} />
+      <MainLanding
+        id="main"
+        onRunApp={handleRunApp}
+        onGoNext={() => scroller.scrollTo('asmr', scrollSettings(48))}
+      />
       <ASMRLanding id="asmr" />
       <EffectsLanding id="effects" />
       <NeuronLanding id="neuron" />

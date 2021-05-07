@@ -9,9 +9,20 @@ import {
 } from '@material-ui/core';
 
 import { MenuButton } from '../../../../components';
+import MenuDialogWrapper from './styled/MenuDialogWrapper';
 
-export default function MenuDialog({ open, navItems, onClose }) {
+export default function MenuDialog({ open, navItems, onClose, onLinkClick }) {
   const handleClose = () => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
+  const handleLinkClick = (id, event) => {
+    if (onLinkClick) {
+      onLinkClick(id, event);
+    }
+
     if (onClose) {
       onClose();
     }
@@ -26,7 +37,11 @@ export default function MenuDialog({ open, navItems, onClose }) {
         <List>
           {navItems.map(({ id, label }) => (
             <ListItem>
-              <Link href={`#${id}`} onClick={handleClose}>
+              <Link
+                href={`#${id}`}
+                color="textPrimary"
+                onClick={(event) => handleLinkClick(id, event)}
+              >
                 {label}
               </Link>
             </ListItem>

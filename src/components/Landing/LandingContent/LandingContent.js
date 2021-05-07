@@ -1,4 +1,5 @@
 import React from 'react';
+import { Element } from 'react-scroll';
 
 import LandingStyled from './styled/LandingStyled';
 import LandingShapedContent from './components/LandingShapedContent';
@@ -8,7 +9,7 @@ import LandingAnimated from './components/LandingAnimated';
 /* background: image, color, gradient, animated, cssImage */
 
 const LandingContent = React.forwardRef(
-  ({ background, children, ...props }, ref) => {
+  ({ background, children, id, ...props }, ref) => {
     const styledBackground = background
       ? {
           ...background,
@@ -17,15 +18,17 @@ const LandingContent = React.forwardRef(
       : undefined;
 
     return (
-      <LandingStyled ref={ref} background={styledBackground} {...props}>
-        {background?.animated ? (
-          <LandingBackgroundImage
-            src={background?.image}
-            filter={background?.darken ? 'brightness(0.6)' : undefined}
-          />
-        ) : null}
-        {children}
-      </LandingStyled>
+      <Element name={id}>
+        <LandingStyled ref={ref} background={styledBackground} {...props}>
+          {background?.animated ? (
+            <LandingBackgroundImage
+              src={background?.image}
+              filter={background?.darken ? 'brightness(0.6)' : undefined}
+            />
+          ) : null}
+          {children}
+        </LandingStyled>
+      </Element>
     );
   }
 );

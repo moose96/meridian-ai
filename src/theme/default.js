@@ -5,9 +5,12 @@ const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: {
-      main: purple[400]
-    }
-  }
+      main: purple[400],
+    },
+  },
+  sizes: {
+    header: 3.5, //rem
+  },
 });
 
 export default theme;

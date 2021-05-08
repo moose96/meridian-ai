@@ -7,7 +7,7 @@ import {
   PrimaryButton,
 } from '../../../../components';
 
-export default function GenerateLanding({ id, onRunApp }) {
+export default function StartLanding({ id, onRunApp }) {
   return (
     <LandingContent
       id={id}
@@ -23,7 +23,7 @@ export default function GenerateLanding({ id, onRunApp }) {
           <Typography variant="h5" gutterBottom>
             Przekonaj się sam i uruchom teraz aplikację!
           </Typography>
-          <PrimaryButton onClick={onRunApp} zIndex="1">
+          <PrimaryButton onClick={onRunApp} style={{ zIndex: 1 }}>
             Uruchom teraz!
           </PrimaryButton>
         </ColumnBox>

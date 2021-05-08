@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Typography } from '@material-ui/core';
 import { motion } from 'framer-motion';
 
@@ -15,28 +15,32 @@ export default function ASMRLanding({ id }) {
   const { isVisible, ref } = useScrollableElement();
   const isNarrow = useIsNarrow();
 
+  const background = useMemo(
+    () => ({
+      animated: true,
+      image: '/img/ear-3971050.jpg',
+      darken: isNarrow,
+    }),
+    [isNarrow]
+  );
+
+  const shape = useMemo(() => POLYGONS[isNarrow ? 'narrow' : 'normal'], [
+    isNarrow,
+  ]);
+
+  const variant = useMemo(() => (isVisible ? 'show' : 'hidden'), [isVisible]);
+
   return (
-    <LandingContent
-      ref={ref}
-      id={id}
-      background={{
-        animated: true,
-        image: '/img/ear-3971050.jpg',
-        darken: isNarrow,
-      }}
-    >
+    <LandingContent ref={ref} id={id} background={background}>
       <LandingContent.Shaped
         shapes={[
           {
             float: 'right',
-            shape: POLYGONS[isNarrow ? 'narrow' : 'normal'],
+            shape,
           },
         ]}
       >
-        <LandingContent.Animated
-          variant={isVisible ? 'show' : 'hidden'}
-          from="left"
-        >
+        <LandingContent.Animated variant={variant} from="left">
           <Typography variant="h2" color="textPrimary" gutterBottom>
             ASMR
           </Typography>

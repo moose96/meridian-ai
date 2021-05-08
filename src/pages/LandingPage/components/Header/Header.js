@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useTheme, Box } from '@material-ui/core';
-import { scroller } from 'react-scroll';
+import { useTheme } from '@material-ui/core';
 
 import {
   HeaderWrapper,
@@ -11,42 +10,28 @@ import {
 } from '../../../../components';
 import MenuDialog from '../MenuDialog';
 import useIsNarrow from '../../hooks';
-import scrollSettings from '../../constants/scrollSettings';
+import Link from './components';
 
 export default function Header({ navItems }) {
   const [dialogShow, setDialogShow] = useState(false);
-  const theme = useTheme();
+  const [currentElement, setCurrentElement] = useState('');
   const isNarrow = useIsNarrow();
+  const theme = useTheme();
 
-  const headerSizePx = theme.sizes.header * theme.typography.htmlFontSize;
-
-  // useEffect(() => {
-  //   Events.scrollEvent.register('end', (to) =>
-  //     console.log(scroller.getActiveLink())
-  //   );
-
-  //   return () => {
-  //     Events.scrollEvent.remove('end');
-  //   };
-  // }, []);
-
-  const handleLinkClick = (id, event) => {
-    scroller.scrollTo(id, scrollSettings(headerSizePx));
-    event.preventDefault();
-  };
+  const links = navItems.map(({ id, label }) => (
+    <Link
+      key={`link-${id}-${label}`}
+      to={id}
+      active={currentElement === id}
+      onSetActive={(to) => setCurrentElement(to)}
+    >
+      {label}
+    </Link>
+  ));
 
   const horizontalMenu = (
     <RowBox alignItems="center">
-      {navItems.map(({ id, label }) => (
-        <Link
-          href={`#${id}`}
-          color="textPrimary"
-          style={{ marginRight: '0.5rem' }}
-          onClick={(event) => handleLinkClick(id, event)}
-        >
-          {label}
-        </Link>
-      ))}
+      {links}
       <SettingsControl />
     </RowBox>
   );
@@ -59,6 +44,8 @@ export default function Header({ navItems }) {
         position: 'fixed',
         zIndex: 10,
         top: 0,
+        paddingLeft: '1rem',
+        paddingRight: '1rem',
       }}
     >
       <RowBox>
@@ -70,9 +57,8 @@ export default function Header({ navItems }) {
       {!isNarrow ? horizontalMenu : <SettingsControl />}
       <MenuDialog
         open={dialogShow}
-        navItems={navItems}
+        Links={links}
         onClose={() => setDialogShow(false)}
-        onLinkClick={handleLinkClick}
       />
     </HeaderWrapper>
   );

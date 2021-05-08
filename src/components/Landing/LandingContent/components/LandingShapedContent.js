@@ -18,8 +18,9 @@ export default function LandingShapedContent({
 }) {
   return (
     <Box style={{ ...CONTAINER_DEFAULT_STYLE, ...containerStyle }}>
-      {shapes.map(({ float, shape }) => (
+      {shapes.map(({ float, shape }, index) => (
         <div
+          key={`shape-${shape}`}
           style={{
             float,
             shapeOutside: shape,

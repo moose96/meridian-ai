@@ -8,6 +8,7 @@ export default function useScrollableElement() {
     bottom: 0,
   });
   const [isVisible, setIsVisible] = useState(false);
+  const [boundsSet, setBoundsSet] = useState(false);
   const { scrollY } = useViewportScroll();
 
   const ref = useRef();
@@ -23,12 +24,14 @@ export default function useScrollableElement() {
         const top = y - height;
         const bottom = y + height;
 
-        setScrollBounds({
-          y,
-          height,
-          top,
-          bottom,
-        });
+        if (!boundsSet) {
+          setScrollBounds({
+            y,
+            height,
+            top,
+            bottom,
+          });
+        }
 
         setIsVisible(currentScroll >= top && currentScroll <= bottom);
       }

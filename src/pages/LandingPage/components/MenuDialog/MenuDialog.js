@@ -11,39 +11,23 @@ import {
 import { MenuButton } from '../../../../components';
 import MenuDialogWrapper from './styled/MenuDialogWrapper';
 
-export default function MenuDialog({ open, navItems, onClose, onLinkClick }) {
+export default function MenuDialog({ open, Links, onClose, onLinkClick }) {
   const handleClose = () => {
     if (onClose) {
       onClose();
     }
   };
 
-  const handleLinkClick = (id, event) => {
-    if (onLinkClick) {
-      onLinkClick(id, event);
-    }
-
-    if (onClose) {
-      onClose();
-    }
-  };
-
   return (
-    <Dialog fullScreen open={open} handleClose={handleClose}>
+    <Dialog fullScreen open={open} onClose={handleClose}>
       <DialogTitle>
         <MenuButton onClick={handleClose} /> Menu
       </DialogTitle>
       <DialogContent>
         <List>
-          {navItems.map(({ id, label }) => (
-            <ListItem>
-              <Link
-                href={`#${id}`}
-                color="textPrimary"
-                onClick={(event) => handleLinkClick(id, event)}
-              >
-                {label}
-              </Link>
+          {Links?.map((link, index) => (
+            <ListItem key={`menu-dialog-link-${index}`}>
+              {React.cloneElement(link, { onClick: handleClose })}
             </ListItem>
           ))}
         </List>

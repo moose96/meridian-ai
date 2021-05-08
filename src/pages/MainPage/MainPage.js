@@ -17,8 +17,8 @@ export default function MainPage() {
       <Guide data={GUIDE_DATA} route={location.pathname} />
       <Header />
       <ContentStyled>
-        <BrowsePage path="browse" />
-        <PlayPage path="play" />
+        <BrowsePage path="/browse" />
+        <PlayPage path="/play" />
       </ContentStyled>
     </MainContainer>
   );

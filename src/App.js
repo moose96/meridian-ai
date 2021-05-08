@@ -15,7 +15,7 @@ function App({ voices }) {
         <Router style={{ minHeight: '100vh' }}>
           <MainPage path="/*" />
           <EditorPage path="/editor" />
-          <LandingPage path="/landing" />
+          <LandingPage path="/" />
         </Router>
       </ThemeProvider>
     </div>

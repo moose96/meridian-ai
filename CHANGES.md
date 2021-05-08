@@ -1,10 +1,11 @@
-# Changes in v0.8.4
+# Changes in v0.9.0
 
 ## Main UI
 
 1. Feat: Add help guide.
 2. Feat: Add other languages
 3. Feat: Add Settings control
+4. Add landing welcome page
 
 ## Chore
 

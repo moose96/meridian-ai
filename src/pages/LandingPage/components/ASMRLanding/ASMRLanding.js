@@ -24,22 +24,16 @@ export default function ASMRLanding({ id }) {
     [isNarrow]
   );
 
-  const shape = useMemo(() => POLYGONS[isNarrow ? 'narrow' : 'normal'], [
-    isNarrow,
-  ]);
+  const shapes = useMemo(
+    () => [{ float: 'right', shape: POLYGONS[isNarrow ? 'narrow' : 'normal'] }],
+    [isNarrow]
+  );
 
   const variant = useMemo(() => (isVisible ? 'show' : 'hidden'), [isVisible]);
 
   return (
     <LandingContent ref={ref} id={id} background={background}>
-      <LandingContent.Shaped
-        shapes={[
-          {
-            float: 'right',
-            shape,
-          },
-        ]}
-      >
+      <LandingContent.Shaped shapes={shapes}>
         <LandingContent.Animated variant={variant} from="left">
           <Typography variant="h2" color="textPrimary" gutterBottom>
             ASMR

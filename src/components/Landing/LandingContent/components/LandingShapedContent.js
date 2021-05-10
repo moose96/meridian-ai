@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Box } from '@material-ui/core';
 
 const CONTAINER_DEFAULT_STYLE = {
@@ -16,8 +16,13 @@ export default function LandingShapedContent({
   shapes,
   containerStyle,
 }) {
+  const mergedContainerStyle = useMemo(
+    () => ({ ...CONTAINER_DEFAULT_STYLE, ...containerStyle }),
+    [containerStyle]
+  );
+
   return (
-    <Box style={{ ...CONTAINER_DEFAULT_STYLE, ...containerStyle }}>
+    <Box style={mergedContainerStyle}>
       {shapes.map(({ float, shape }, index) => (
         <div
           key={`shape-${shape}`}

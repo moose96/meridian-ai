@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Typography } from '@material-ui/core';
 
 import { LandingContent } from '../../../../components';
@@ -14,23 +14,27 @@ export default function EffectsLanding({ id }) {
   const { isVisible, ref } = useScrollableElement();
   const isNarrow = useIsNarrow();
 
+  const background = useMemo(
+    () => ({
+      animated: true,
+      image: '/img/white-4557097.jpg',
+    }),
+    []
+  );
+
+  const shapes = useMemo(
+    () => [
+      {
+        float: 'left',
+        shape: POLYGONS[isNarrow ? 'narrow' : 'normal'],
+      },
+    ],
+    [isNarrow]
+  );
+
   return (
-    <LandingContent
-      ref={ref}
-      id={id}
-      background={{
-        animated: true,
-        image: '/img/white-4557097.jpg',
-      }}
-    >
-      <LandingContent.Shaped
-        shapes={[
-          {
-            float: 'left',
-            shape: POLYGONS[isNarrow ? 'narrow' : 'normal'],
-          },
-        ]}
-      >
+    <LandingContent ref={ref} id={id} background={background}>
+      <LandingContent.Shaped shapes={shapes}>
         <LandingContent.Animated
           from="right"
           variant={isVisible ? 'show' : 'hidden'}

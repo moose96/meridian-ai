@@ -31,6 +31,7 @@ export default function useScrollableElement() {
             top,
             bottom,
           });
+          setBoundsSet(true);
         }
 
         setIsVisible(currentScroll >= top && currentScroll <= bottom);
@@ -38,7 +39,7 @@ export default function useScrollableElement() {
     });
 
     return unsubscribe;
-  }, [scrollY]);
+  }, [scrollY, boundsSet]);
 
   return {
     ref,

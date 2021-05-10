@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useTheme } from '@material-ui/core';
 
 import {
@@ -55,11 +55,13 @@ export default function Header({ navItems }) {
         <Logotype />
       </RowBox>
       {!isNarrow ? horizontalMenu : <SettingsControl />}
-      <MenuDialog
-        open={dialogShow}
-        Links={links}
-        onClose={() => setDialogShow(false)}
-      />
+      {isNarrow ? (
+        <MenuDialog
+          open={dialogShow}
+          Links={links}
+          onClose={() => setDialogShow(false)}
+        />
+      ) : null}
     </HeaderWrapper>
   );
 }

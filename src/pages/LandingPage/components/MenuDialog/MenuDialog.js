@@ -5,11 +5,9 @@ import {
   DialogContent,
   List,
   ListItem,
-  Link,
 } from '@material-ui/core';
 
 import { MenuButton } from '../../../../components';
-import MenuDialogWrapper from './styled/MenuDialogWrapper';
 
 export default function MenuDialog({ open, Links, onClose, onLinkClick }) {
   const handleClose = () => {

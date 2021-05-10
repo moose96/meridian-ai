@@ -1,5 +1,5 @@
-import React from 'react';
-import { Typography, Box } from '@material-ui/core';
+import React, { useMemo } from 'react';
+import { Typography } from '@material-ui/core';
 
 import {
   LandingContent,
@@ -8,11 +8,14 @@ import {
 } from '../../../../components';
 
 export default function StartLanding({ id, onRunApp }) {
+  const background = useMemo(
+    () => ({ animated: true, image: '/img/music-5190768.jpg' }),
+    []
+  );
+  const buttonStyle = useMemo(() => ({ zIndex: 2 }), []);
+
   return (
-    <LandingContent
-      id={id}
-      background={{ animated: true, image: '/img/music-5190768.jpg' }}
-    >
+    <LandingContent id={id} background={background}>
       <ColumnBox
         justifyContent="center"
         zIndex="2"
@@ -23,7 +26,7 @@ export default function StartLanding({ id, onRunApp }) {
           <Typography variant="h5" gutterBottom>
             Przekonaj się sam i uruchom teraz aplikację!
           </Typography>
-          <PrimaryButton onClick={onRunApp} style={{ zIndex: 1 }}>
+          <PrimaryButton onClick={onRunApp} style={buttonStyle}>
             Uruchom teraz!
           </PrimaryButton>
         </ColumnBox>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
 const DIRECTIONS = {
@@ -9,15 +9,18 @@ const DIRECTIONS = {
 };
 
 export default function LandingAnimated({ children, variant, from }) {
+  const variants = useMemo(
+    () => ({
+      hidden: DIRECTIONS[from],
+      show: { translateX: 0, translateY: 0 },
+    }),
+    [from]
+  );
+
+  const transform = useMemo(() => ({ duration: 2 }), []);
+
   return (
-    <motion.div
-      animate={variant}
-      variants={{
-        hidden: DIRECTIONS[from],
-        show: { translateX: 0, translateY: 0 },
-      }}
-      transform={{ duration: 2 }}
-    >
+    <motion.div animate={variant} variants={variants} transform={transform}>
       {children}
     </motion.div>
   );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Element } from 'react-scroll';
 
 import LandingStyled from './styled/LandingStyled';
@@ -10,12 +10,16 @@ import LandingAnimated from './components/LandingAnimated';
 
 const LandingContent = React.forwardRef(
   ({ background, children, id, ...props }, ref) => {
-    const styledBackground = background
-      ? {
-          ...background,
-          image: !background.animated ? background.image : undefined,
-        }
-      : undefined;
+    const styledBackground = useMemo(
+      () =>
+        background
+          ? {
+              ...background,
+              image: !background.animated ? background.image : undefined,
+            }
+          : undefined,
+      [background]
+    );
 
     return (
       <Element name={id}>

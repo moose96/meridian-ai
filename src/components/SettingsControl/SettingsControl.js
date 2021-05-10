@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Settings } from '@material-ui/icons';
 import { bindTrigger } from 'material-ui-popup-state';
 
@@ -9,14 +9,17 @@ import { useSettingsData } from './hooks';
 export default function SettingsControl() {
   const { language } = useSettingsData();
 
+  const renderButton = useCallback(
+    (popoverState) => (
+      <SecondaryButton {...bindTrigger(popoverState)}>
+        <Settings />
+      </SecondaryButton>
+    ),
+    []
+  );
+
   return (
-    <SettingsPopover
-      button={(popverState) => (
-        <SecondaryButton {...bindTrigger(popverState)}>
-          <Settings />
-        </SecondaryButton>
-      )}
-    >
+    <SettingsPopover button={renderButton}>
       <SettingsContent language={language} />
     </SettingsPopover>
   );

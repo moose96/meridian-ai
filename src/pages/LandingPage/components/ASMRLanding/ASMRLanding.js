@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Typography } from '@material-ui/core';
-import { motion } from 'framer-motion';
 
 import { LandingContent } from '../../../../components';
 import { useScrollableElement } from '../../../../hooks';

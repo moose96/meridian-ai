@@ -4,7 +4,6 @@ import {
   ListItem,
   ListItemText,
   ListSubheader,
-  Paper,
   Divider,
 } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
@@ -13,7 +12,6 @@ export default function SoundCategoriesList() {
   const { t } = useTranslation();
 
   return (
-    // <Paper style={{ minHeight: '100%' }}>
     <List>
       <ListItem button selected>
         <ListItemText primary={t('categories.all')} />
@@ -24,6 +22,5 @@ export default function SoundCategoriesList() {
         <ListItemText primary={t('categories.other')} />
       </ListItem>
     </List>
-    // </Paper>
   );
 }

@@ -1,12 +1,10 @@
 import React from 'react';
 import {
-  Paper,
   List,
   ListSubheader,
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  Slide,
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import { useTranslation } from 'react-i18next';
@@ -18,8 +16,6 @@ const SoundPlaylist = React.forwardRef(
     const { t } = useTranslation();
 
     return (
-      // <Slide direction="up" in={show}>
-      //   <Paper style={{ minHeight: '100%' }}>
       <List style={{ minHeight: '100%', ...style }} ref={ref}>
         <ListSubheader>{t('headers.playlist')}</ListSubheader>
         {sounds.map(({ id, name }) => (
@@ -38,8 +34,6 @@ const SoundPlaylist = React.forwardRef(
           </ListItem>
         ))}
       </List>
-      //   </Paper>
-      // </Slide>
     );
   }
 );

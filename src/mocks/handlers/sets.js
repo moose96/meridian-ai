@@ -11,14 +11,14 @@ export const getSet = async (id) => {
   const { data: snapshots } = await getObject('sets', id, 'snapshots.json');
 
   let sounds = await getSounds(data.sounds);
-  sounds = sounds.map(sound => prepareObjects(sound.id, sound.data));
+  sounds = sounds.map((sound) => prepareObjects(sound.id, sound.data));
 
   return {
     ...data,
     sounds,
-    snapshots
-  }
-}
+    snapshots,
+  };
+};
 
 const handlers = [
   rest.get('/v1/sets/', async (req, res, ctx) => {
@@ -27,34 +27,37 @@ const handlers = [
     let data = await response.json();
 
     let sets = await getSets(data);
-    sets = sets.map(set => {
-      const { id, demo } = set.data;
+    sets = sets.map((set) => {
+      const { id, demo, cover } = set.data;
+      const coverIsExternal = /(http:\/\/ | https:\/\/)/g.test(cover);
+
+      let returnSet = { ...set.data };
 
       if (demo) {
-        return {
+        returnSet = {
           ...set.data,
-          demo: `/data/sets/${id}/${demo}`
+          demo: `/data/sets/${id}/${demo}`,
         };
-      } else {
-        return set.data;
       }
+      if (!coverIsExternal) {
+        returnSet = {
+          ...set.data,
+          cover: `/data/sets/${id}/${cover}`,
+        };
+      }
+
+      return returnSet;
     });
 
-    return res (
-      ctx.status(200),
-      ctx.json(sets)
-    );
+    return res(ctx.status(200), ctx.json(sets));
   }),
   rest.get('/v1/sets/:id', async (req, res, ctx) => {
     const { id } = req.params;
 
     const set = await getSet(id);
 
-    return res (
-      ctx.status(200),
-      ctx.json(set)
-    );
-  })
+    return res(ctx.status(200), ctx.json(set));
+  }),
 ];
 
 export default handlers;

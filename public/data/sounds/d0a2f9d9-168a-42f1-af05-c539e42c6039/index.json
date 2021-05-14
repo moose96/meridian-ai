@@ -1,0 +1,100 @@
+[
+  {
+    "type": "sound",
+    "filename": "guero.mp3",
+    "attack": 0.05,
+    "release": 0.05,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 5000000,
+        "value": 5000000
+      },
+      {
+        "key": "duration",
+        "offset": 48000,
+        "value": 144000
+      },
+      {
+        "key": "pan",
+        "loop": true,
+        "time": 1000,
+        "params": [
+          {
+            "name": "width",
+            "key": "offset",
+            "min": 0.2,
+            "max": 0.5
+          },
+          {
+            "name": "width",
+            "key": "value",
+            "min": -0.1,
+            "max": -0.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "sound",
+    "filename": "guero.mp3",
+    "attack": 0.05,
+    "release": 0.05,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 5000000,
+        "value": 5000000
+      },
+      {
+        "key": "duration",
+        "offset": 48000,
+        "value": 144000
+      },
+      {
+        "key": "pan",
+        "loop": true,
+        "time": 1000,
+        "params": [
+          {
+            "name": "width",
+            "key": "offset",
+            "min": 0.2,
+            "max": 0.5
+          },
+          {
+            "name": "width",
+            "key": "value",
+            "min": 0.1,
+            "max": 0.5
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "parallel container",
+    "loop": true,
+    "delay": 500,
+    "params": [
+      {
+        "name": "intensivity",
+        "key": "delay",
+        "min": 2000,
+        "max": 50
+      }
+    ],
+    "objects": [
+      0,
+      1
+    ]
+  },
+  {
+    "type": "sound fx",
+    "root": true,
+    "objects": [
+      2
+    ]
+  }
+]

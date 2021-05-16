@@ -1,0 +1,82 @@
+[
+  {
+    "id": "012e2891-6bcc-4cb2-a9e6-eedc5ca5acdb",
+    "d7ea15d7-3399-46e4-8aa2-66c1b162f3af": {
+      "volume": 100,
+      "width": 0,
+      "distance": 90,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "1ee14f8e-9dbb-43d1-82c8-909771f3d74b": {
+      "volume": 100,
+      "width": 100,
+      "distance": 80,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "origin": "default"
+  },
+  {
+    "id": "d8b032a0-88ae-4a89-a853-d7747ee9636a",
+    "d7ea15d7-3399-46e4-8aa2-66c1b162f3af": {
+      "volume": 100,
+      "width": 100,
+      "distance": 100,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "1ee14f8e-9dbb-43d1-82c8-909771f3d74b": {
+      "volume": 100,
+      "width": 10,
+      "distance": 80,
+      "intensivity": 0,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "origin": "default"
+  },
+  {
+    "id": "384d5b1a-4a12-463b-b44a-8f078a3e8113",
+    "d7ea15d7-3399-46e4-8aa2-66c1b162f3af": {
+      "volume": 100,
+      "width": 100,
+      "distance": 100,
+      "intensivity": 50,
+      "brightness": 50,
+      "sharpness": 35
+    },
+    "1ee14f8e-9dbb-43d1-82c8-909771f3d74b": {
+      "volume": 100,
+      "width": 10,
+      "distance": 80,
+      "intensivity": 50,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "origin": "default"
+  },
+  {
+    "id": "2725448f-46b7-48fe-b352-9b9294401a5e",
+    "d7ea15d7-3399-46e4-8aa2-66c1b162f3af": {
+      "volume": 100,
+      "width": 0,
+      "distance": 90,
+      "intensivity": 50,
+      "brightness": 80,
+      "sharpness": 50
+    },
+    "1ee14f8e-9dbb-43d1-82c8-909771f3d74b": {
+      "volume": 100,
+      "width": 100,
+      "distance": 80,
+      "intensivity": 50,
+      "brightness": 0,
+      "sharpness": 0
+    },
+    "origin": "default"
+  }
+]

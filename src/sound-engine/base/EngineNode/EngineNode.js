@@ -5,16 +5,14 @@ import BaseEngineNode from '../BaseEngineNode';
 import ParamListener from '../ParamListener';
 
 const defaultObject = {
-  id: uuidv4(),
   randomization: [],
   volume: 1,
   pan: 0.0,
   muted: false,
-  params: []
-}
+  params: [],
+};
 
-class EngineNode extends BaseEngineNode
-{
+class EngineNode extends BaseEngineNode {
   id;
   #gainNode;
   outputNode;
@@ -23,15 +21,15 @@ class EngineNode extends BaseEngineNode
   effects = [];
 
   constructor(_initObject) {
-    const initObject = {...defaultObject, ..._initObject};
+    const initObject = { ...defaultObject, ..._initObject };
     super(initObject);
-    this.id = initObject.id;
+    this.id = initObject.id ? initObject.id : uuidv4();
     this.type = this.constructor.name;
     this.#gainNode = Pizzicato.context.createGain();
     this.#gainNode.gain.value = initObject.volume;
 
     this.#panNode = new StereoPannerNode(Pizzicato.context, {
-      pan: initObject.pan
+      pan: initObject.pan,
     });
 
     this.outputNode = this.#panNode;
@@ -87,7 +85,7 @@ class EngineNode extends BaseEngineNode
   }
 
   _connectEffects() {
-    const _getNodeByType = effect => {
+    const _getNodeByType = (effect) => {
       if (effect instanceof BaseEngineNode || effect instanceof EngineNode) {
         return effect.source;
       } else if (effect instanceof AudioNode) {
@@ -109,7 +107,7 @@ class EngineNode extends BaseEngineNode
 
   _disconnectEffects() {
     this._disconnectSource();
-    this.effects.forEach(effect => effect.disconnect());
+    this.effects.forEach((effect) => effect.disconnect());
   }
 
   addEffect(effect) {
@@ -139,7 +137,7 @@ class EngineNode extends BaseEngineNode
       name: this.name,
       volume: this.volume,
       pan: this.pan,
-      effects: this.effects.map(effect => effect.toPlainObject())
+      effects: this.effects.map((effect) => effect.toPlainObject()),
     };
   }
 
@@ -149,11 +147,11 @@ class EngineNode extends BaseEngineNode
 
   setParamStore(store) {
     super.setParamStore(store);
-    this.effects.forEach(effect => {
+    this.effects.forEach((effect) => {
       if (effect instanceof ParamListener) {
         effect.setParamStore(store);
       }
-    })
+    });
   }
 }
 

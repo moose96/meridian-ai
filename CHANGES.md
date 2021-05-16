@@ -1,3 +1,15 @@
+# Changes in v0.9.1
+
+## Database
+
+1. Feat: Add new sounds: _Tribute to Guero_ and _Campfire_
+2. Refactor: Rename _Water test_ to _Clicking_
+3. Refactor: Change covers for all sounds
+
+## Sound Engine
+
+4. Fix: Containers now start immediately (without individual lags)
+
 # Changes in v0.9.0
 
 ## Main UI
@@ -5,11 +17,11 @@
 1. Feat: Add help guide.
 2. Feat: Add other languages
 3. Feat: Add Settings control
-4. Add landing welcome page
+4. Feat: Add landing welcome page
 
 ## Chore
 
-4. Updated browsers target.
+5. Updated browsers target.
 
 # Changes in v0.8.3
 

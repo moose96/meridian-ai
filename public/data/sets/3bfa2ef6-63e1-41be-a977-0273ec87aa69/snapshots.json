@@ -1,58 +1,38 @@
-[{
-  "id": "9ecf953b-602a-4cb9-acfa-3dd2db905fe8",
-  "08ad03c8-7520-4211-a632-4b1b584bcafe": {
-    "volume": 100,
-    "width": 10,
-    "distance": 50,
-    "intensivity": 0,
-    "brightness": 30,
-    "sharpness": 35
+[
+  {
+    "id": "9ecf953b-602a-4cb9-acfa-3dd2db905fe8",
+    "40068432-113c-4dce-87c9-1483e6618ba1": {
+      "volume": 100,
+      "width": 10,
+      "distance": 50,
+      "intensivity": 0,
+      "brightness": 30,
+      "sharpness": 35
+    },
+    "origin": "default"
   },
-  "40068432-113c-4dce-87c9-1483e6618ba1": {
-    "volume": 100,
-    "width": 10,
-    "distance": 50,
-    "intensivity": 0,
-    "brightness": 30,
-    "sharpness": 35
+  {
+    "id": "df50b3db-a772-4ea3-91e3-d5948163b23b",
+    "40068432-113c-4dce-87c9-1483e6618ba1": {
+      "volume": 100,
+      "width": 50,
+      "distance": 30,
+      "intensivity": 40,
+      "brightness": 30,
+      "sharpness": 35
+    },
+    "origin": "default"
   },
-  "origin": "default"
-}, {
-  "id": "df50b3db-a772-4ea3-91e3-d5948163b23b",
-  "08ad03c8-7520-4211-a632-4b1b584bcafe": {
-    "volume": 40,
-    "width": 60,
-    "distance": 30,
-    "intensivity": 40,
-    "brightness": 30,
-    "sharpness": 35
-  },
-  "40068432-113c-4dce-87c9-1483e6618ba1": {
-    "volume": 100,
-    "width": 20,
-    "distance": 30,
-    "intensivity": 40,
-    "brightness": 30,
-    "sharpness": 35
-  },
-  "origin": "default"
-}, {
-  "id": "5235bc64-e16a-4735-a53a-8e54b5b48d31",
-  "08ad03c8-7520-4211-a632-4b1b584bcafe": {
-    "volume": 100,
-    "width": 20,
-    "distance": 30,
-    "intensivity": 60,
-    "brightness": 30,
-    "sharpness": 35
-  },
-  "40068432-113c-4dce-87c9-1483e6618ba1": {
-    "volume": 40,
-    "width": 60,
-    "distance": 30,
-    "intensivity": 60,
-    "brightness": 30,
-    "sharpness": 35
-  },
-  "origin": "default"
-}]
+  {
+    "id": "5235bc64-e16a-4735-a53a-8e54b5b48d31",
+    "40068432-113c-4dce-87c9-1483e6618ba1": {
+      "volume": 100,
+      "width": 100,
+      "distance": 30,
+      "intensivity": 60,
+      "brightness": 30,
+      "sharpness": 35
+    },
+    "origin": "default"
+  }
+]

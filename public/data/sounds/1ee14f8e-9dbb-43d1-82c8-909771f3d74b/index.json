@@ -1,0 +1,57 @@
+[
+  {
+    "type": "sound",
+    "filename": "ASMR-DRAGONFLIES.mp3",
+    "attack": 0.8,
+    "release": 0.8,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 9000000,
+        "value": 9000000
+      },
+      {
+        "key": "duration",
+        "offset": 100,
+        "value": 480000
+      }
+    ],
+    "pan": -1
+  },
+  {
+    "type": "sound",
+    "filename": "ASMR-DRAGONFLIES.mp3",
+    "attack": 0.8,
+    "release": 0.8,
+    "randomization": [
+      {
+        "key": "startPoint",
+        "offset": 9000000,
+        "value": 9000000
+      },
+      {
+        "key": "duration",
+        "offset": 100,
+        "value": 480000
+      }
+    ],
+    "pan": 1
+  },
+  {
+    "type": "parallel container",
+    "loop": true,
+    "delay": 4000,
+    "volume": 0.05,
+    "objects": [
+      0,
+      1
+    ]
+  },
+  {
+    "type": "sound fx",
+    "root": true,
+    "objects": [
+      2
+    ]
+  }
+]

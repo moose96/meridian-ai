@@ -19,6 +19,7 @@ const translations = {
   categories: {
     all: 'Wszystkie kategorie',
     other: 'Inne',
+    none: 'Brak kategorii',
   },
   volume: 'Głośność',
 };

@@ -19,13 +19,10 @@ export default function useTranslateByValue({ ns, value, subKey }) {
     (object) => object.value === escapeLineBreaks(value)
   );
 
-  // console.log(resources, resource, subKey, ns, value);
-
   if (resource) {
     if (subKey) {
       return t(`${subKey}.${resource.key}`);
     } else {
-      console.log(t(resource.key));
       return t(resource.key);
     }
   } else {

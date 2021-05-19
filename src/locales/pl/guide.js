@@ -5,7 +5,7 @@ const guide = {
   'browse-demo': `Tym przyciskiem odtwarza się demo danego dźwięku, 
     dzięki czemu możesz zorientować się czego się spodziewać.`,
   'browse-categories':
-    'Filtruj dźwięki wybierając kategorie, które Cię interesują.',
+    'Filtruj dźwięki wybierając kategorie, które Cię interesują. (Jeszcze nie gotowe)',
   navigation: `Tutaj możesz przełączyć się między zakładką wyszukiwania dźwięków, 
   a zakładką ich odtwarzania. 
   Po wybraniu dźwięków przejdź do zakładki "Graj!", aby rozpocząć interaktywne odtwarzanie!`,

@@ -15,16 +15,22 @@ class SnapshotList {
   #algorithm = 'genetic mixing';
 
   constructor(snapshots) {
-    this.#defaultSnapshots = snapshots.map(item => new Snapshot(item));
+    this.#defaultSnapshots = snapshots.map((item) => new Snapshot(item));
     this.#snapshots = _.shuffle(this.#defaultSnapshots);
     this.#history = new History();
   }
 
   async _generate() {
-    this.#snapshots = _.shuffle(this.#history.map((item, _index, array) => {
-      const index = (_index + 1) % array.length;
-      return Snapshot.mix(item, array[index], algorithms['genetic mixing'].normal);
-    }));
+    this.#snapshots = _.shuffle(
+      this.#history.map((item, _index, array) => {
+        const index = (_index + 1) % array.length;
+        return Snapshot.mix(
+          item,
+          array[index],
+          algorithms['genetic mixing'].normal
+        );
+      })
+    );
 
     this.#history.newGeneration();
   }
@@ -37,7 +43,10 @@ class SnapshotList {
   }
 
   _oscillate() {
-    return Snapshot.oscillate(this.#asmrSnapshot, algorithms['oscillate'].asmr.mutationSize);
+    return Snapshot.oscillate(
+      this.#asmrSnapshot,
+      algorithms['oscillate'].asmr.mutationSize
+    );
   }
 
   _calculateSimilarity() {
@@ -47,7 +56,6 @@ class SnapshotList {
     if (lastSnapshot) {
       this.#similarity = currentSnapshot.calculateSimilarity(lastSnapshot);
     }
-    console.log('similarity: ', this.#similarity);
   }
 
   next() {
@@ -75,7 +83,13 @@ class SnapshotList {
 
     this.#snapshots = [];
     for (let i = 0; i < this.#defaultSnapshots.length; i++) {
-      this.#snapshots.push(Snapshot.mix(currentSnapshot, prevSnapshot, algorithms['genetic mixing'].prev));
+      this.#snapshots.push(
+        Snapshot.mix(
+          currentSnapshot,
+          prevSnapshot,
+          algorithms['genetic mixing'].prev
+        )
+      );
     }
 
     this._calculateSimilarity();

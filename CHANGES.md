@@ -1,3 +1,11 @@
+# Changes in v0.9.2
+
+## Main UI
+
+1. Fix: changing sound in playlist.
+2. Change: Delete category _Other_.
+3. Fix: tooltips.
+
 # Changes in v0.9.1
 
 ## Database

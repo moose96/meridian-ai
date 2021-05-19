@@ -2,8 +2,7 @@ import Pizzicato from 'pizzicato';
 
 import SoundEngineObject from '../SoundEngineObject';
 
-class BaseEngineNode extends SoundEngineObject
-{
+class BaseEngineNode extends SoundEngineObject {
   type;
   source;
 
@@ -13,7 +12,7 @@ class BaseEngineNode extends SoundEngineObject
   }
 
   _setAudioParam(audioParam, value, processor) {
-    const _getValue = value => {
+    const _getValue = (value) => {
       if (!isFinite(value) || isNaN(value)) {
         return 0;
       } else if (processor instanceof Function) {
@@ -21,13 +20,11 @@ class BaseEngineNode extends SoundEngineObject
       } else {
         return value;
       }
-    }
+    };
 
     if (audioParam instanceof AudioParam) {
       let time = Pizzicato.context.currentTime;
       let processedValue;
-
-      // console.log('setting audo param', value);
 
       if (typeof value === 'number') {
         processedValue = _getValue(value);

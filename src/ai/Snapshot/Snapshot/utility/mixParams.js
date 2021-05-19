@@ -3,35 +3,36 @@ import _ from 'lodash';
 const OFFSET_RAND_OPTIONS = {
   floating: false,
   min: 0,
-  max: 100
-}
+  max: 100,
+};
 
-const validateOffsetBounds = args => {
+const validateOffsetBounds = (args) => {
   const { top, bottom, deltaTop, deltaBottom } = args;
 
-  if (deltaTop + deltaBottom > 0 ) { //check if the bounds are higher than max - min
+  if (deltaTop + deltaBottom > 0) {
+    //check if the bounds are higher than max - min
     const scaleValue = Math.max(deltaTop, deltaBottom);
     return {
       top: top - scaleValue,
-      bottom: bottom + scaleValue
-    }
+      bottom: bottom + scaleValue,
+    };
   } else if (deltaTop > 0) {
     return {
       top: top - deltaTop,
-      bottom: bottom - deltaTop
-    }
+      bottom: bottom - deltaTop,
+    };
   } else if (deltaBottom > 0) {
     return {
       top: top + deltaBottom,
-      bottom: bottom + deltaBottom
-    }
+      bottom: bottom + deltaBottom,
+    };
   } else {
     return {
       top,
-      bottom
-    }
+      bottom,
+    };
   }
-}
+};
 
 const offsetRand = (value, offset, options = OFFSET_RAND_OPTIONS) => {
   const { min, max, floating } = options;
@@ -44,11 +45,11 @@ const offsetRand = (value, offset, options = OFFSET_RAND_OPTIONS) => {
     top: rawTop,
     bottom: rawBottom,
     deltaTop,
-    deltaBottom
+    deltaBottom,
   });
 
   return _.random(top, bottom, floating);
-}
+};
 
 const mutateValue = (value, options) => {
   const { mutationProbability, mutationSize, PRECISION } = options;
@@ -56,11 +57,10 @@ const mutateValue = (value, options) => {
 
   if (_.random(PRECISION) < Math.floor(mutationProbability * PRECISION)) {
     newValue = offsetRand(value, mutationSize);
-    // console.log('mutation offset: ', newValue);
   }
 
   return newValue;
-}
+};
 
 export default function mixParams(leftParams, rightParams, options) {
   const PRECISION = 10000;

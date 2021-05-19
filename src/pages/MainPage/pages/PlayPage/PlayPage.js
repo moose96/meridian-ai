@@ -51,6 +51,10 @@ export default function PlayPage() {
     prev();
   };
 
+  const handleSelectItem = (id) => {
+    setCurrentSound(id);
+  };
+
   const soundPlaylist = (
     <GuideTooltip
       frames={['play-playlist']}
@@ -60,7 +64,7 @@ export default function PlayPage() {
         sounds={sounds}
         selected={currentSound}
         onRemoveItem={(id) => dispatch(removeFromPlaylist(id))}
-        onSelectItem={(id) => setCurrentSound(id)}
+        onSelectItem={handleSelectItem}
         show={playlistShow}
         style={guide ? guideStyle : undefined}
       />
@@ -104,6 +108,7 @@ export default function PlayPage() {
         onStop={() => stop()}
         onPlaylistChange={(value) => setPlaylistShow(value)}
         onASMRClick={(value) => setOscillate(value)}
+        disabled={loading}
       />
     </>
   );

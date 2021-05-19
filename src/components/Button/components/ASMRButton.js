@@ -28,7 +28,7 @@ const ASMRButton = React.forwardRef(({ active, onClick }, ref) => {
       size="large"
       variant="outlined"
       onClick={onClick}
-      tooltip="Enables ASMR mode"
+      tooltip={active ? 'Disables ASMR mode' : 'Enables ASMR mode'}
     >
       ASMR!
     </RoundedButton>

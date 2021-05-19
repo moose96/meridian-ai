@@ -5,6 +5,7 @@ import { getSet } from '../../api/sets';
 
 export default function useAIComposer({ oscillate, sound }) {
   const [loading, setLoading] = useState(true);
+  const [isRunning, setIsRunning] = useState(false);
   //TODO:
   // const [progress, setProgress] = useState({ current: 0, max: 100 });
   const aiComposerRef = useRef();
@@ -15,6 +16,8 @@ export default function useAIComposer({ oscillate, sound }) {
   useEffect(() => {
     aiComposerRef.current = new AIComposer();
   }, []);
+
+  useEffect(() => console.log(isRunning), [isRunning]);
 
   useEffect(() => {
     (async () => {
@@ -30,14 +33,17 @@ export default function useAIComposer({ oscillate, sound }) {
 
         if (sound.length > 0) {
           const data = await getSet(sound);
-          console.log('data', data);
-          aiComposer.addSounds(data, () => setLoading(false));
-          console.log('aiComposer', aiComposer);
+          aiComposer.addSounds(data, () => {
+            setLoading(false);
+            console.log(isRunning);
+            if (isRunning) {
+              setTimeout(() => aiComposer.start(), 500);
+            }
+          });
         } else {
           setLoading(false);
         }
-      }
-      catch(err) {
+      } catch (err) {
         console.log(err);
       }
     })();
@@ -45,22 +51,29 @@ export default function useAIComposer({ oscillate, sound }) {
 
   useEffect(() => {
     aiComposer?.oscillate(oscillate);
-  }, [aiComposer, oscillate])
+  }, [aiComposer, oscillate]);
 
   const handlePrev = () => aiComposer.prev();
   const handleNext = () => aiComposer.next();
-  const handleStart = () => aiComposer.start();
-  const handleStop = () => aiComposer.stop();
+  const handleStart = () => {
+    aiComposer?.start();
+    setIsRunning(true);
+  };
+  const handleStop = () => {
+    aiComposer?.stop();
+    setIsRunning(false);
+  };
 
   return {
     prev: handlePrev,
     next: handleNext,
     start: handleStart,
     stop: handleStop,
-    loading
+    loading,
+    isRunning,
     // progress: {
     //   loading,
     //   ...progress
     // }
-  }
+  };
 }

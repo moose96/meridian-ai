@@ -18,8 +18,11 @@ export default function SoundCategoriesList() {
       </ListItem>
       <Divider />
       <ListSubheader>{t('headers.categories')}</ListSubheader>
-      <ListItem button>
+      {/* <ListItem button>
         <ListItemText primary={t('categories.other')} />
+      </ListItem> */}
+      <ListItem>
+        <ListItemText>{t('categories.none')}</ListItemText>
       </ListItem>
     </List>
   );

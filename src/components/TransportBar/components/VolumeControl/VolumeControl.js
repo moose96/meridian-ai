@@ -13,7 +13,6 @@ export default function VolumeControl({ value, onChange }) {
   const portrait = useMediaQuery('(orientation: portrait)');
 
   if (portrait) {
-    console.log('portrait');
     return (
       <VolumePopover
         button={(popupState) => (

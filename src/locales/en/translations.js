@@ -19,6 +19,7 @@ const translations = {
   categories: {
     all: 'All categories',
     other: 'Other',
+    none: 'No categories',
   },
   volume: 'Volume',
 };

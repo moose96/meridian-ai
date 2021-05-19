@@ -8,7 +8,9 @@ const tooltips = {
   nextSnapshot: 'Next snapshot',
   play: 'Play simulation',
   stop: 'Stop simulation',
-  asmrMode: 'Enables ASMR mode',
+  enableAsmrMode: 'Enables ASMR mode',
+  disableAsmrMode: 'Disables ASMR mode',
+  disabledTransport: 'You have to wait for finish loading sounds',
 };
 
 export default tooltips;

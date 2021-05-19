@@ -9,21 +9,18 @@ class AIComposer {
   #isRunning = false;
 
   constructor() {
-    console.log('create ai composer');
     this.#soundField = new SoundField();
   }
 
   _run = () => {
     this.next();
-  }
+  };
 
   _setParams(snapshot) {
-    console.log('new Snapshot', snapshot);
-    this.#soundField.sounds.forEach(sound => {
+    this.#soundField.sounds.forEach((sound) => {
       sound.setParams(snapshot.getSoundParams(sound.id));
     });
   }
-
 
   onProgressChange(callback) {
     this.#progressChange = callback;
@@ -33,17 +30,20 @@ class AIComposer {
     if (current + 1 === max) {
       callback();
     }
-  }
+  };
 
   addSounds(data, onSoundReady) {
     if (data) {
       const { sounds, snapshots } = data;
       if (Array.isArray(sounds)) {
         sounds.forEach((sound, index) => {
-          const [_, result, __] =
-            SoundEngine.createSoundFX(sound, () => {
-              this.handleSoundReady(index, sounds.length, onSoundReady)
-            },this.#progressChange);
+          const [_, result, __] = SoundEngine.createSoundFX(
+            sound,
+            () => {
+              this.handleSoundReady(index, sounds.length, onSoundReady);
+            },
+            this.#progressChange
+          );
 
           this.#soundField.addSound(result);
         });
@@ -97,7 +97,7 @@ class AIComposer {
   }
 
   isRunning() {
-
+    return this.#isRunning;
   }
 }
 

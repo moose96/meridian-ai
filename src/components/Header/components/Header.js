@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from '@reach/router';
 import { useMediaQuery } from '@material-ui/core';
 import { Help } from '@material-ui/icons';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from '@reach/router';
 import { useTranslation } from 'react-i18next';
 
@@ -15,6 +15,7 @@ import { SecondaryButton, MenuButton } from '../../Button';
 import { useGuide } from '../../../hooks';
 import { GuideTooltip } from '../../Guide';
 import { resetVisited } from '../../../redux/guide';
+import { getPlaylistItems } from '../../../redux/playlist';
 import { mainMenu } from '../../../constants';
 import { RowBox } from '../../Box';
 import SettingsControl from '../../SettingsControl';
@@ -28,6 +29,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const location = useLocation();
   const { t } = useTranslation();
+  const playlistItems = useSelector(getPlaylistItems);
 
   useEffect(() => {
     navigate(currentPage);

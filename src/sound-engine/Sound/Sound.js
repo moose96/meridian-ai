@@ -95,7 +95,6 @@ class Sound extends EngineNode {
       length: data.length,
     });
     outBuffer.copyToChannel(data, 0);
-    console.log('buffer length', outBuffer.length);
     return outBuffer;
   }
 
@@ -105,8 +104,6 @@ class Sound extends EngineNode {
 
   set startPoint(startPoint) {
     this.#startPoint = Math.floor(startPoint);
-
-    console.log('start length', this.#endPoint - this.#startPoint);
 
     this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
       let newData = data.subarray(
@@ -126,7 +123,6 @@ class Sound extends EngineNode {
 
   set endPoint(endPoint) {
     this.#endPoint = Math.floor(endPoint);
-    console.log('end length', this.#endPoint - this.#startPoint);
     this.#buffer = this._modifyBuffer(this.#defaultBuffer, (data) => {
       let newData = data.subarray(this.#startPoint, this.#endPoint);
       newData = this._applyFade(newData, this.#attack);
@@ -226,7 +222,6 @@ class Sound extends EngineNode {
     return new Promise((resolve, reject) => {
       node.addEventListener('ended', () => this._onEnded(id, () => resolve()));
       node.start(_delay);
-      console.log(Object.values(this.source).length);
     });
   }
 

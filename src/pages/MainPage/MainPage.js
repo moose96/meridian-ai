@@ -9,9 +9,6 @@ import { GUIDE_DATA } from '../../constants';
 
 export default function MainPage() {
   const location = useLocation();
-
-  console.log(location);
-
   return (
     <MainContainer>
       <Guide data={GUIDE_DATA} route={location.pathname} />

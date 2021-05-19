@@ -27,9 +27,11 @@ const SoundPlaylist = React.forwardRef(
           >
             <ListItemText primary={name} />
             <ListItemSecondaryAction>
-              <SecondaryButton>
-                <Delete onClick={() => onRemoveItem(id)} />
-              </SecondaryButton>
+              {selected !== id ? (
+                <SecondaryButton>
+                  <Delete onClick={() => onRemoveItem(id)} />
+                </SecondaryButton>
+              ) : null}
             </ListItemSecondaryAction>
           </ListItem>
         ))}

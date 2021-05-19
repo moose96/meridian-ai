@@ -18,7 +18,7 @@ function EditorPage() {
   const [simulation, setSimulation] = useState(true);
   const [sounds, setSounds] = useState([]);
   const [currentObject, setCurrentObject] = useState(null);
-  const voices = useSelector(state => state.soundEngine.voices);
+  const voices = useSelector((state) => state.soundEngine.voices);
 
   const soundField = useRef();
   const refs = useRef([]);
@@ -33,26 +33,24 @@ function EditorPage() {
 
         soundField.current = new SoundField();
 
-        data.forEach(sound => {
+        data.forEach((sound) => {
           const [_treeView, result, _refs] = SoundEngine.createSoundFX(sound);
           refs.current = [...refs.current, ..._refs];
           soundField.current.addSound(result);
-          setSounds(sounds => [...sounds, result]);
-          console.log("data", sounds);
-          console.log("refs", refs);
+          setSounds((sounds) => [...sounds, result]);
         });
       }
-    })()
+    })();
   }, []);
 
   const handleClick = () => {
     setPlaying(!playing);
-  }
+  };
 
-  const handleTreeItemClick = id => {
-    currentRef.current = refs.current.find(ref => ref.id === id);
+  const handleTreeItemClick = (id) => {
+    currentRef.current = refs.current.find((ref) => ref.id === id);
     setCurrentObject(currentRef.current.toPlainObject());
-  }
+  };
 
   const handleSEDetailsChange = (object) => {
     setCurrentObject(object);
@@ -70,11 +68,11 @@ function EditorPage() {
     current.effect[effectID].filters[0].frequency = value
     current.addEffect()
     */
-  }
+  };
 
-  const handleSimulationChange = event => {
+  const handleSimulationChange = (event) => {
     setSimulation(event.target.checked);
-  }
+  };
 
   useEffect(() => {
     if (playing) {
@@ -83,7 +81,7 @@ function EditorPage() {
       if (simulation) {
         startLoop(soundField.current.sounds);
       }
-    } else if(soundField.current) {
+    } else if (soundField.current) {
       soundField.current.stop();
 
       if (simulation) {
@@ -96,18 +94,32 @@ function EditorPage() {
     <div className="Editor">
       <div className="Editor__left">
         <TreeView>
-          {sounds.map((element, index) =>
-            <TreeItemGenerator key={`tree-item-sound-fx-${index}`} data={element} onClick={handleTreeItemClick}/>
-          )}
+          {sounds.map((element, index) => (
+            <TreeItemGenerator
+              key={`tree-item-sound-fx-${index}`}
+              data={element}
+              onClick={handleTreeItemClick}
+            />
+          ))}
         </TreeView>
       </div>
       <div className="Editor__right">
         <div className="Editor__right__top">
-          <SoundEngineDetailsView ref={currentRef} object={currentObject} onChange={handleSEDetailsChange} />
+          <SoundEngineDetailsView
+            ref={currentRef}
+            object={currentObject}
+            onChange={handleSEDetailsChange}
+          />
         </div>
         <div className="Editor__right__bottom">
-          <Input type="checkbox" name="ai" label="simulation" checked={simulation} onChange={handleSimulationChange} />
-          <button style={{gridColumn: '2/3'}} onClick={handleClick}>
+          <Input
+            type="checkbox"
+            name="ai"
+            label="simulation"
+            checked={simulation}
+            onChange={handleSimulationChange}
+          />
+          <button style={{ gridColumn: '2/3' }} onClick={handleClick}>
             {playing ? <StopIcon /> : <PlayArrowIcon />}
           </button>
           <p id="voices">voices: {voices}</p>

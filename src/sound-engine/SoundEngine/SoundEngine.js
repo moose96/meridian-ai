@@ -5,53 +5,54 @@ import {
   RandomContainer,
   SequenceContainer,
   ParallelContainer,
-  SoundFX
+  SoundFX,
 } from '../';
 import createEffect from '../effects';
 
 const createObject = (object, onReady) => {
   let result;
-  switch(object.type) {
-    case "random container":
+  switch (object.type) {
+    case 'random container':
       result = new RandomContainer(object);
-    break;
-    case "sequence container":
+      break;
+    case 'sequence container':
       result = new SequenceContainer(object);
-    break;
-    case "parallel container":
+      break;
+    case 'parallel container':
       result = new ParallelContainer(object);
-    break;
-    case "sound":
+      break;
+    case 'sound':
       result = new Sound(object, onReady);
-    break;
-    case "sound fx":
+      break;
+    case 'sound fx':
       result = new SoundFX(object);
-    break
+      break;
     default:
-      result = object
+      result = object;
   }
 
   if (object.effects) {
-    object.effects.forEach(effect => result.addEffect(createEffect(effect)));
+    object.effects.forEach((effect) => result.addEffect(createEffect(effect)));
   }
 
   return result;
-}
+};
 
 class SoundEngine {
   static globalStore;
 
   static createSoundFX(data, onSoundReady, onProgressChange) {
-    const root = data.find(object => object.root);
+    const root = data.find((object) => object.root);
     let refs = [];
     let objectsLength = 0;
     let objectsReady = 0;
 
-    const _map = value => {
+    const _map = (value) => {
       let arg;
 
-      if (typeof(value) === 'number') { //if in the table will be number unlike object
-        arg = {...data[value]};
+      if (typeof value === 'number') {
+        //if in the table will be number unlike object
+        arg = { ...data[value] };
 
         if (arg.type === 'sound') {
           objectsLength++;
@@ -77,18 +78,16 @@ class SoundEngine {
         if (objectsReady >= objectsLength && onSoundReady) {
           onSoundReady();
         }
-
       });
       refs.push(result);
       return result;
-    }
+    };
 
     if (root) {
       root.objects = root.objects.map(_map);
       const result = createObject(root);
       refs.push(result);
 
-      console.log(objectsLength);
       return [null, result, refs];
     }
   }

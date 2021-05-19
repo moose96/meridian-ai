@@ -2,7 +2,8 @@ const guide = {
   'browse-add': `First of all, add sound(s) to the playlist. 
   You can browse and choose the ones you like in this section.`,
   'browse-demo': 'Here is a button for you to play a prerecorded demo of them.',
-  'browse-categories': 'Filter sounds by preferable categories if needed.',
+  'browse-categories':
+    'Filter sounds by preferable categories if needed. (Not ready yet)',
   navigation: `Here you can switch between sound browser and the player. 
   After choosing your sounds go the second section for an interactive play!`,
   'play-playlist': `In this section you can see your chosen sounds. 

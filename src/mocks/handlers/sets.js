@@ -23,7 +23,6 @@ export const getSet = async (id) => {
 const handlers = [
   rest.get('/v1/sets/', async (req, res, ctx) => {
     const response = await fetch('/data/sets/index.json');
-    console.log(response);
     let data = await response.json();
 
     let sets = await getSets(data);

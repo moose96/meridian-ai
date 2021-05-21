@@ -40,7 +40,7 @@ const handlers = [
       }
       if (!coverIsExternal) {
         returnSet = {
-          ...set.data,
+          ...returnSet,
           cover: `/data/sets/${id}/${cover}`,
         };
       }

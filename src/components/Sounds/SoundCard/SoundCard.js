@@ -24,16 +24,21 @@ export default function SoundCard({
   const { ref, play, stop } = useMediaPlayer();
 
   const handleChangePlaying = () => {
-    setPlaying(!playing);
-  };
-
-  useEffect(() => {
-    if (playing) {
+    if (!playing) {
       play();
     } else {
       stop();
     }
-  }, [playing]);
+    setPlaying(!playing);
+  };
+
+  // useEffect(() => {
+  //   if (!playing) {
+  //     play();
+  //   } else {
+  //     stop();
+  //   }
+  // }, [playing]);
 
   return (
     <Card style={{ maxWidth: 400 }}>

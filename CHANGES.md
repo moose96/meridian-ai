@@ -1,3 +1,9 @@
+# Changes in v0.9.3
+
+## Database
+
+1. Feat: Add missing demos.
+
 # Changes in v0.9.2
 
 ## Main UI
@@ -5,6 +11,7 @@
 1. Fix: changing sound in playlist.
 2. Change: Delete category _Other_.
 3. Fix: tooltips.
+4. Refactor: Delete almost all
 
 # Changes in v0.9.1
 

@@ -4,6 +4,10 @@
 
 1. Feat: Add missing demos.
 
+## Main UI
+
+2. Fix: responsive layout.
+
 # Changes in v0.9.2
 
 ## Main UI

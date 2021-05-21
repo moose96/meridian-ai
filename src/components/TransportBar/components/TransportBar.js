@@ -45,13 +45,13 @@ export default function TransportBar(props) {
 
   return (
     <TransportBarWrapper container style={guide ? guideStyle : undefined}>
-      <Grid item md={3}>
+      <Grid item lg={3} md={4} sm={3} xs={2}>
         <SoundControls
           playlist={{ show: playlistShow, onChange: onPlaylistChange }}
           soundInfo={{ cover: result?.cover, title: result?.name }}
         />
       </Grid>
-      <Grid item md={6} style={{ position: 'relative' }}>
+      <Grid item lg={6} md={4} sm={6} xs={8} style={{ position: 'relative' }}>
         <ASMRButtonContainer>
           <GuideTooltip frames={['play-asmr-button']} placement="top">
             <ASMRButton
@@ -68,7 +68,14 @@ export default function TransportBar(props) {
           disabled={disabled}
         />
       </Grid>
-      <Grid item md={3} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Grid
+        item
+        lg={3}
+        md={4}
+        sm={3}
+        xs={2}
+        style={{ display: 'flex', justifyContent: 'flex-end' }}
+      >
         <VolumeControl value={masterVolume} onChange={handleVolumeChange} />
       </Grid>
     </TransportBarWrapper>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery, useTheme } from '@material-ui/core';
 import { VolumeUp, VolumeDown, VolumeMute } from '@material-ui/icons';
 import { bindTrigger } from 'material-ui-popup-state';
 
@@ -10,9 +10,11 @@ import VolumePopover from './VolumePopover';
 import NamedVolumeSlider from './NamedVolumeSlider';
 
 export default function VolumeControl({ value, onChange }) {
+  const theme = useTheme();
   const portrait = useMediaQuery('(orientation: portrait)');
+  const tooSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
-  if (portrait) {
+  if (portrait || tooSmall) {
     return (
       <VolumePopover
         button={(popupState) => (

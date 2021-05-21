@@ -10,6 +10,8 @@ import {
 } from '../../../redux/playlist';
 import { useGuide } from '../../../hooks';
 
+const GRID_ITEM_STYLE = { display: 'flex' };
+
 export default function SoundCardList({ data }) {
   const playlistItems = useSelector(getPlaylistItems);
   const dispatch = useDispatch();
@@ -26,7 +28,12 @@ export default function SoundCardList({ data }) {
           md={6}
           sm={12}
           key={item.id}
-          style={index === 0 && guide ? guideStyle : undefined}
+          style={
+            index === 0 && guide
+              ? { ...GRID_ITEM_STYLE, ...guideStyle }
+              : GRID_ITEM_STYLE
+          }
+          justify="center"
         >
           <SoundCard
             name={item.name}

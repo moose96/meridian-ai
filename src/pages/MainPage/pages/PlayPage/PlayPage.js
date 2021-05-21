@@ -86,12 +86,19 @@ export default function PlayPage() {
             container
             style={{ flex: 1, overflow: 'hidden', position: 'relative' }}
           >
-            <Grid item md={2} style={guide ? guideStyle : undefined}>
+            <Grid
+              item
+              lg={2}
+              md={3}
+              sm={3}
+              xs={4}
+              style={guide ? guideStyle : undefined}
+            >
               <Slide direction="up" in={playlistShow}>
                 <Paper style={{ minHeight: '100%' }}>{soundPlaylist}</Paper>
               </Slide>
             </Grid>
-            <Grid item md={10}>
+            <Grid item lg={10} md={9} sm={9} xs={8}>
               {content}
             </Grid>
           </Grid>

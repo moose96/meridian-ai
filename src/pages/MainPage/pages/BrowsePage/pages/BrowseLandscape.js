@@ -15,14 +15,21 @@ export default function BrowseLandscape({ loading, sounds }) {
   const { guide, style: guideStyle } = useGuide(['browse-categories']);
   return (
     <Grid container direction="row" style={{ flex: 1 }}>
-      <Grid item md={2} style={guide ? guideStyle : undefined}>
+      <Grid
+        item
+        lg={2}
+        md={3}
+        sm={3}
+        xs={4}
+        style={guide ? guideStyle : undefined}
+      >
         <GuideTooltip frames={['browse-categories']} placement="right">
           <Paper style={{ minHeight: '100%' }}>
             <SoundCategoriesList />
           </Paper>
         </GuideTooltip>
       </Grid>
-      <Grid item md={10}>
+      <Grid item lg={10} md={9} sm={9} xs={8}>
         {loading ? (
           <Loading />
         ) : (

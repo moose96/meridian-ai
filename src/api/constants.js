@@ -6,6 +6,4 @@ if (process.env.NODE_ENV === 'development') {
   API_URL = 'https://meridian-ai.netlify.app/v1';
 }
 
-export {
-  API_URL
-}
+export { API_URL };

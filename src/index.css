@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'KoHo';
+  src: url('./fonts/KoHo/KoHo-ExtraLight.ttf');
+}
+
 html,
 body,
 #root {

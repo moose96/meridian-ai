@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { Box, useTheme } from '@material-ui/core';
 import { useNavigate } from '@reach/router';
 import { scroller } from 'react-scroll';
+import { isSafari } from 'react-device-detect';
 
 import {
   MainLanding,
@@ -12,6 +14,8 @@ import {
   Header,
 } from './components';
 import scrollSettings from './constants/scrollSettings';
+
+import { BrowserNotSupported } from '../../components';
 
 const SECTIONS = [
   {
@@ -41,11 +45,16 @@ const SECTIONS = [
 ];
 
 export default function LandingPage() {
+  const [showDialog, setShowDialog] = useState(false);
   const navigate = useNavigate();
   const theme = useTheme();
 
   const handleRunApp = () => {
-    navigate('/browse');
+    if (isSafari) {
+      setShowDialog(true);
+    } else {
+      navigate('/browse');
+    }
   };
 
   const handleGoNext = () => {
@@ -62,6 +71,10 @@ export default function LandingPage() {
       <NeuronLanding id="neuron" />
       <GenerateLanding id="generate" />
       <StartLanding id="run" onRunApp={handleRunApp} />
+      <BrowserNotSupported
+        open={showDialog}
+        onClose={() => setShowDialog(false)}
+      />
     </Box>
   );
 }

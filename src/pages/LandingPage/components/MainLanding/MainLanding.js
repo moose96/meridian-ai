@@ -13,12 +13,12 @@ import {
 export default function MainLanding({ id, onRunApp, onGoNext }) {
   return (
     <LandingContent id={id} style={{ marginTop: '4rem' }}>
-      <Box style={{ filter: 'blur(2px)', zIndex: 1 }}>
-        <video height="100%">
-          {/*muted autoPlay loop*/}
+      {/* <Box bgcolor="black" style={{ filter: 'blur(2px)', zIndex: 1 }}>
+        {/* <video height="100%">
+          {/*muted autoPlay loop
           <source src="/vid/main.webm" type="video/webm" />
         </video>
-      </Box>
+      </Box> */}
       <ColumnBox
         style={{
           height: '100%',
@@ -28,6 +28,7 @@ export default function MainLanding({ id, onRunApp, onGoNext }) {
           right: 0,
           zIndex: 2,
           padding: '1rem',
+          backgroundColor: 'black',
         }}
       >
         <ColumnBox

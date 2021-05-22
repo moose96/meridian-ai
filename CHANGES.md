@@ -1,5 +1,11 @@
 # Changes in v0.9.4
 
+## Main UI
+
+1. Feat: Add dialog which informs Safari users that them browser isn't supported.
+2. Feat: Add footer.
+3. Styling: Change design of main landing component.
+
 # Changes in v0.9.3
 
 ## Database

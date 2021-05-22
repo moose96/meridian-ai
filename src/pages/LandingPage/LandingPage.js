@@ -15,7 +15,7 @@ import {
 } from './components';
 import scrollSettings from './constants/scrollSettings';
 
-import { BrowserNotSupported } from '../../components';
+import { BrowserNotSupported, Footer } from '../../components';
 
 const SECTIONS = [
   {
@@ -71,6 +71,7 @@ export default function LandingPage() {
       <NeuronLanding id="neuron" />
       <GenerateLanding id="generate" />
       <StartLanding id="run" onRunApp={handleRunApp} />
+      <Footer />
       <BrowserNotSupported
         open={showDialog}
         onClose={() => setShowDialog(false)}

@@ -18,3 +18,4 @@ export { default as Typography } from './Typography';
 export { default as SettingsControl } from './SettingsControl';
 export * from './Landing';
 export * from './Dialogs';
+export { default as Footer } from './Footer';

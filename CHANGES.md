@@ -1,3 +1,7 @@
+# Changes in v0.9.5
+
+1. Change icon.
+
 # Changes in v0.9.4
 
 ## Main UI
